@@ -6,7 +6,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { NewsPage } from '../pages/news/news'
+import { StepperPage } from '../pages/stepper/stepper'
 
+import { ENV } from '../config/env';
+import firebase from 'firebase';
 
 @Component({
   templateUrl: 'app.html'
@@ -25,9 +28,11 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'List', component: ListPage },
-      { title: 'News', component: NewsPage }
+      { title: 'News', component: NewsPage },
+      { title: 'Stepper', component: StepperPage }
     ];
 
+    firebase.initializeApp(ENV.firebase);
   }
 
   initializeApp() {

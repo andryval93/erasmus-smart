@@ -21,6 +21,7 @@
     "@angular/platform-browser": "5.2.11",
     "@angular/platform-browser-dynamic": "5.2.11",
     "@ionic-native/core": "~4.17.0",
+    "@ionic-native/firebase": "^4.18.0",
     "@ionic-native/splash-screen": "~4.17.0",
     "@ionic-native/status-bar": "~4.17.0",
     "@ionic/storage": "2.2.0",
@@ -28,7 +29,12 @@
     "ionicons": "3.0.0",
     "rxjs": "5.5.11",
     "sw-toolbox": "3.6.0",
-    "zone.js": "0.8.26"
+    "zone.js": "0.8.26",
+    "angularfire2": "^5.1.1",
+    "firebase": "^5.7.0",
+    "firebase-admin": "^6.3.0",
+    "firebaseui": "3.1.1",
+    "ionic-stepper": "^1.1.0"
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.2.1",

@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
@@ -12,6 +13,15 @@ import { FooterEsComponent } from '../components/footer-es/footer-es'
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { IonicStepperModule } from 'ionic-stepper';
+import { StepperPage } from '../pages/stepper/stepper';
+import { HttpClientModule } from '@angular/common/http';
+
+import { Firebase } from '@ionic-native/firebase';
+/*import { AngularFireModule } from 'angularfire2';*/
+import { AngularFirestoreModule } from "angularfire2/firestore";
+/*import { EnvironmentsProvider } from '../providers/environments/environments';*/
+import { ServiceProvider } from '../providers/service/stepperService';
 
 @NgModule({
   declarations: [
@@ -20,22 +30,32 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     NewsPage,
     ListPage,
     HeaderEsComponent,
-    FooterEsComponent
+    FooterEsComponent,
+    StepperPage
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    AngularFirestoreModule,
+    IonicStepperModule,
     IonicModule.forRoot(MyApp),
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
     NewsPage,
-    ListPage
+    ListPage,
+    StepperPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    Firebase,
+    /*EnvironmentsProvider,*/
+    ServiceProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
