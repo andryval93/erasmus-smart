@@ -7,6 +7,9 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { NewsPage } from '../pages/news/news';
 
+import { HeaderEsComponent } from '../components/header-es/header-es';
+import { FooterEsComponent } from '../components/footer-es/footer-es'
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -15,7 +18,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     NewsPage,
-    ListPage
+    ListPage,
+    HeaderEsComponent,
+    FooterEsComponent
   ],
   imports: [
     BrowserModule,
