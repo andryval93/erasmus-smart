@@ -7,16 +7,21 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { NewsPage } from '../pages/news/news'
 import { StepperPage } from '../pages/stepper/stepper'
+import { QeaPage } from '../pages/qea/qea';
+
 
 import { ENV } from '../config/env';
 import firebase from 'firebase';
+import { from } from 'rxjs/observable/from';
+
+
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-
+  
   rootPage: any = HomePage;
 
   pages: Array<{ title: string, component: any }>;
@@ -29,7 +34,8 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'List', component: ListPage },
       { title: 'News', component: NewsPage },
-      { title: 'Stepper', component: StepperPage }
+      { title: 'Stepper', component: StepperPage },
+      { title: 'Q&A', component: QeaPage},
     ];
 
     firebase.initializeApp(ENV.firebase);

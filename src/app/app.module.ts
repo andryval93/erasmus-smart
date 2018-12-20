@@ -7,6 +7,9 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { NewsPage } from '../pages/news/news';
+import { QeaPage } from '../pages/qea/qea';
+import { NuovadomandaPage } from '../pages/nuovadomanda/nuovadomanda';
+
 
 import { HeaderEsComponent } from '../components/header-es/header-es';
 import { FooterEsComponent } from '../components/footer-es/footer-es'
@@ -22,6 +25,9 @@ import { Firebase } from '@ionic-native/firebase';
 import { AngularFirestoreModule } from "angularfire2/firestore";
 /*import { EnvironmentsProvider } from '../providers/environments/environments';*/
 import { ServiceProvider } from '../providers/service/stepperService';
+import { QeaServiceProvider } from '../providers/service/qeaService';
+import { RispostePage } from '../pages/risposte/risposte';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +37,11 @@ import { ServiceProvider } from '../providers/service/stepperService';
     ListPage,
     HeaderEsComponent,
     FooterEsComponent,
-    StepperPage
+    StepperPage,
+    QeaPage,
+    NuovadomandaPage,
+    RispostePage,
+
   ],
   imports: [
     BrowserModule,
@@ -48,7 +58,10 @@ import { ServiceProvider } from '../providers/service/stepperService';
     HomePage,
     NewsPage,
     ListPage,
-    StepperPage
+    StepperPage,
+    QeaPage,
+    NuovadomandaPage,
+    RispostePage,
   ],
   providers: [
     StatusBar,
@@ -56,6 +69,7 @@ import { ServiceProvider } from '../providers/service/stepperService';
     Firebase,
     /*EnvironmentsProvider,*/
     ServiceProvider,
+    QeaServiceProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
