@@ -39,7 +39,7 @@ import { RispostePage } from '../pages/risposte/risposte';
     HeaderEsComponent,
     FooterEsComponent,
     StepperPage,
-    InserisciRecensionePage
+    InserisciRecensionePage,
     StepperPage,
     QeaPage,
     NuovadomandaPage,
@@ -62,7 +62,7 @@ import { RispostePage } from '../pages/risposte/risposte';
     NewsPage,
     ListPage,
     StepperPage,
-    InserisciRecensionePage
+    InserisciRecensionePage,
     StepperPage,
     QeaPage,
     NuovadomandaPage,
