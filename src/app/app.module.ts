@@ -25,6 +25,7 @@ import { Firebase } from '@ionic-native/firebase';
 import { AngularFirestoreModule } from "angularfire2/firestore";
 /*import { EnvironmentsProvider } from '../providers/environments/environments';*/
 import { ServiceProvider } from '../providers/service/stepperService';
+import { InserisciRecensionePage } from '../pages/inserisci-recensione/inserisci-recensione'
 import { QeaServiceProvider } from '../providers/service/qeaService';
 import { RispostePage } from '../pages/risposte/risposte';
 
@@ -37,6 +38,8 @@ import { RispostePage } from '../pages/risposte/risposte';
     ListPage,
     HeaderEsComponent,
     FooterEsComponent,
+    StepperPage,
+    InserisciRecensionePage
     StepperPage,
     QeaPage,
     NuovadomandaPage,
@@ -58,6 +61,8 @@ import { RispostePage } from '../pages/risposte/risposte';
     HomePage,
     NewsPage,
     ListPage,
+    StepperPage,
+    InserisciRecensionePage
     StepperPage,
     QeaPage,
     NuovadomandaPage,
