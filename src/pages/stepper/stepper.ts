@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController,} from 'ionic-angular';
+import { IonicPage, NavController} from 'ionic-angular';
 import { ServiceProvider } from '../../providers/service/stepperService';
+import { InserisciRecensionePage } from '../inserisci-recensione/inserisci-recensione';
+import { HomePage } from '../home/home';
+
+
+
 /**
  * Generated class for the StepperPage page.
  *
@@ -17,19 +22,42 @@ import { ServiceProvider } from '../../providers/service/stepperService';
 })
 
 
-/*export class StepperPage {
-
-  constructor(public navCtrl: NavController) {
-
-   }
-
-  selectChange(e) {
-    console.log(e);
-  }
-
-  */
 
 export class StepperPage {
+   clickMessage = '';
+   hide: boolean;
+   show: boolean;
+   prova: String;
+   sceltaTutor: any;
+   sceltaSede: any;
+   hideConferma: boolean;
+  
+   
+   onChangeTutor(SelectedValue: any){
+      console.log("Selected:",SelectedValue);
+      this.sceltaTutor = SelectedValue;
+      if(this.sceltaSede !=undefined && this.sceltaTutor!=undefined)
+      {
+      this.hideConferma=true
+      }else this.hideConferma=false;
+    }
+
+    onChangeSede(SelectedValue: any){
+      console.log("Selected:",SelectedValue);
+      this.sceltaSede = SelectedValue;
+      if(this.sceltaSede !=undefined && this.sceltaTutor!=undefined)
+      {
+      this.hideConferma=true
+      }else this.hideConferma=false;
+    }
+
+
+   onClickMe() {
+     this.hide=false;
+     this.show=true;
+     this.hideConferma=false;
+    
+   }
   /**
    * @name _COLL
    * @type {string}
@@ -59,17 +87,29 @@ export class StepperPage {
    */
   public locations     : any;
   mode: string;
+   
   constructor(public navCtrl        : NavController,
               private DBistance     : ServiceProvider){
                 this.mode = "horizontal";
-              }
+              this.hide=true;
+             
               
-              selectChange(e) {
+              }
+            
+              selectChange(e: any) {
+            
                 console.log(e);
               }
+              inserisciRecensionePush(){
+                 this.navCtrl.push(InserisciRecensionePage);
+              }
+              HomePagePush(){
+               this.navCtrl.push(HomePage);
+            }
               
-             /**
-    * Retrieve all documents from the specified collection using the
+
+
+    /* Retrieve all documents from the specified collection using the
     * retrieveCollection method when the view is entered
     *
     * @public

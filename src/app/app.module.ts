@@ -22,7 +22,7 @@ import { Firebase } from '@ionic-native/firebase';
 import { AngularFirestoreModule } from "angularfire2/firestore";
 /*import { EnvironmentsProvider } from '../providers/environments/environments';*/
 import { ServiceProvider } from '../providers/service/stepperService';
-
+import { InserisciRecensionePage } from '../pages/inserisci-recensione/inserisci-recensione'
 @NgModule({
   declarations: [
     MyApp,
@@ -31,7 +31,8 @@ import { ServiceProvider } from '../providers/service/stepperService';
     ListPage,
     HeaderEsComponent,
     FooterEsComponent,
-    StepperPage
+    StepperPage,
+    InserisciRecensionePage
   ],
   imports: [
     BrowserModule,
@@ -48,7 +49,8 @@ import { ServiceProvider } from '../providers/service/stepperService';
     HomePage,
     NewsPage,
     ListPage,
-    StepperPage
+    StepperPage,
+    InserisciRecensionePage
   ],
   providers: [
     StatusBar,

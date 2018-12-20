@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>stepper</ion-title>
+    <ion-title>Guida</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,7 +15,7 @@
 
 <ion-content padding>
   <ion-stepper #stepper (selectIndexChange)="selectChange($event)" [mode]="mode">
-    <ion-step label="Step1" description="Step1 description">
+    <ion-step description="Step1 description">
 
       <!-- qui va il Titolo -->
 
@@ -26,8 +26,7 @@
 
 
 
-        <ion-item class="list-item-stepper-starter">
-        </ion-item>
+
 
         <ion-item *ngFor='let location of locations'>
 
@@ -50,39 +49,138 @@
       </ion-list>
       <!-- qui finisce il contenuto -->
 
+      <div class="AvantiDietroStepper">
+        <button ion-button small ionicStepperNext class="Step-1-Successivo"><img src="assets/imgs/frecciaVettorialeAvanti.png"></button>
 
-      <p> </p>
-      <button ion-button small ionicStepperNext>Next</button>
-
+      </div>
 
     </ion-step>
 
-    <ion-step label="Step2" description="Step2 description">
-      <h2>Step2 Content</h2>
-      <p>Step2 Content</p>
-      <button ion-button small ionicStepperNext>Next</button>
-      <button ion-button color="light" small ionicStepperPrevious>Previous</button>
+    <ion-step description="Step2 description">
+      <div class="contenitore-step-5-dad">
+
+        <div class="contenitore-step-5-son">
+          <h4>Qui sono riportate le informazioni relative alla candidatura </h4>
+          <img src="assets/imgs/learning-agreement-facsimile.jpg">
+          <p>Link al documento relativo alla candidatura </p>
+        </div>
+
+        <div class="AvantiDietroStepper">
+          <button ion-button small ionicStepperNext class="Step-Successivo"><img src="assets/imgs/frecciaVettorialeAvanti.png"></button>
+
+        </div>
+      </div>
     </ion-step>
 
 
-    <ion-step label="Step3" description="Step3 description">
-      <h2>Step3 Content</h2>
-      <p>Step3 Content</p>
-      <button ion-button small ionicStepperNext>Next</button>
-      <button ion-button color="light" small ionicStepperPrevious>Previous</button>
+    <ion-step description="Step3 description">
+      <div class="contenitore-step-5-dad">
+
+        <div class="contenitore-step-5-son">
+          <h4>Qui sono riportate le informazioni relative al colloquio </h4>
+
+          <p>Link al documento relativo al colloquio</p>
+        </div>
+
+        <div class="AvantiDietroStepper">
+          <button ion-button small ionicStepperNext class="Step-Successivo"><img src="assets/imgs/frecciaVettorialeAvanti.png"></button>
+
+        </div>
+      </div>
     </ion-step>
 
-    <ion-step label="Step4" description="Step4 description">
-      <h2>Step3 Content</h2>
-      <p>Step3 Content</p>
-      <button ion-button small ionicStepperNext>Next</button>
-      <button ion-button color="light" small ionicStepperPrevious>Previous</button>    </ion-step>
+    <ion-step description="Step4 description">
+      <div class="contenitore-step-4">
+        <h6 class="titolo"></h6>
 
-    <ion-step label="Step5" description="Step5 description">
-      <h2>Step3 Content</h2>
-      <p>Step3 Content</p>
-      <button ion-button small ionicStepperNext>Confirm</button>
-      <button ion-button color="light" small ionicStepperPrevious>Previous</button>
+
+        <!-- Dopo Aver premuto su conferma -->
+        <h6 *ngIf="show" class="titolo">Hai Selezionato : </h6>
+        <ion-item *ngIf="show">
+          <p>{{sceltaSede}}</p>
+        </ion-item>
+
+        <!-- Prima di premere su conferma -->
+        <h6 *ngIf="hide" class="titolo">Inserisci la sede che ti è stata assegnata</h6>
+        <ion-item *ngIf="hide">
+          <ion-label>Sede</ion-label>
+
+          <!--Metto tutte le sedi dentro la combo box "Sedi"-->
+          <ion-select [(ngModel)]="Sedi" (ngModelChange)="onChangeSede(Sedi)">
+
+            <ion-option *ngFor='let location of locations'>{{location.nome}}</ion-option>
+
+          </ion-select>
+
+        </ion-item>
+
+        <!-- Prima di premere su conferma -->
+        <h6 class="titolo" *ngIf="hide">Inserisci il Tutor che ti è stato assegnato {{prova}} </h6>
+        <ion-item *ngIf="hide">
+
+          <ion-label>Tutor</ion-label>
+          <ion-select #newSelect [(ngModel)]="tutors" (ngModelChange)="onChangeTutor(tutors)">
+
+            <ion-option value="Tutor1">Tutor1</ion-option>
+            <ion-option value="Tutor2">Tutor2</ion-option>
+
+          </ion-select>
+        </ion-item>
+        <!-- Dopo Aver premuto su conferma -->
+        <h6 *ngIf="show" class="titolo">Con il Tutor : </h6>
+        <ion-item *ngIf="show">
+
+          <p>{{this.sceltaTutor}} </p>
+
+        </ion-item>
+        <div class="Conferma-contenitore">
+
+          <button (click)="onClickMe(tutors)" *ngIf="hideConferma" ion-button small class="Conferma-Step4">Conferma</button>
+          <p class="Richiesta-in-attesa" *ngIf="show"> Richiesta in attesa di accettazione </p>
+
+        </div>
+        <div class="AvantiDietroStepper">
+          <button ion-button small ionicStepperNext class="Step-Successivo"><img src="assets/imgs/frecciaVettorialeAvanti.png"></button>
+
+        </div>
+      </div>
+    </ion-step>
+
+    <ion-step description="Step5 description">
+      <div class="contenitore-step-5-dad">
+
+        <div class="contenitore-step-5-son">
+          <h4>Qui sono riportate le informazioni relative al Learning Agreement </h4>
+          <img src="assets/imgs/learning-agreement-facsimile.jpg">
+          <p>Link al documento relativo al Learning Agreement </p>
+        </div>
+
+        <div class="AvantiDietroStepper">
+          <button ion-button small ionicStepperNext class="Step-Successivo" ><img src="assets/imgs/frecciaVettorialeAvanti.png"></button>
+
+        </div>
+      </div>
+    </ion-step>
+
+    <ion-step description="Step6 description">
+      <div class="contenitore-step-4">
+        <div class="Step-6-scritta">
+          <h2>Complimenti hai completato il percorso Erasmus!!!</h2>
+          <h6>E il momenti di lasciare una recensione per i tuoi colleghi che usufruiranno di questa esperienza </h6>
+
+        </div>
+        <div class="Conferma-contenitore">
+
+          <button ion-button small class="Conferma-Step6" (click)="inserisciRecensionePush()" >Aggiungi Recensione</button>
+
+
+        </div>
+        <div class="AvantiDietroStepper">
+          <button ion-button small ionicStepperNext class="Step-Successivo" (click)="HomePagePush()"><img src="assets/imgs/endgiallo.png"></button>
+
+        </div>
+
+      </div>
     </ion-step>
 
   </ion-stepper>
