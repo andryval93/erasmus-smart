@@ -12,7 +12,10 @@ import { QeaPage } from '../pages/qea/qea';
 
 import { ENV } from '../config/env';
 import firebase from 'firebase';
-import { from } from 'rxjs/observable/from';
+
+import { LoginPage } from '../pages/login/login';
+import { RegistrazionePage } from '../pages/registrazione/registrazione';
+import { AngularFireModule } from 'angularfire2';
 
 
 
@@ -36,9 +39,12 @@ export class MyApp {
       { title: 'News', component: NewsPage },
       { title: 'Stepper', component: StepperPage },
       { title: 'Q&A', component: QeaPage},
+      { title: 'Login', component: LoginPage},
+      { title: 'Registrazione', component: RegistrazionePage},
     ];
 
     firebase.initializeApp(ENV.firebase);
+    
   }
 
   initializeApp() {

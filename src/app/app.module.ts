@@ -21,15 +21,20 @@ import { StepperPage } from '../pages/stepper/stepper';
 import { HttpClientModule } from '@angular/common/http';
 
 import { Firebase } from '@ionic-native/firebase';
-/*import { AngularFireModule } from 'angularfire2';*/
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuth } from 'angularfire2/auth';
+
 import { AngularFirestoreModule } from "angularfire2/firestore";
-/*import { EnvironmentsProvider } from '../providers/environments/environments';*/
+
 import { ServiceProvider } from '../providers/service/stepperService';
 import { InserisciRecensionePage } from '../pages/inserisci-recensione/inserisci-recensione'
 import { QeaServiceProvider } from '../providers/service/qeaService';
 import { RispostePage } from '../pages/risposte/risposte';
 
-
+import { LoginPage } from '../pages/login/login';
+import { LoginService } from '../providers/service/loginService';
+import { RegistrazionePage } from '../pages/registrazione/registrazione';
+import { ENV } from '../config/env';
 @NgModule({
   declarations: [
     MyApp,
@@ -44,7 +49,9 @@ import { RispostePage } from '../pages/risposte/risposte';
     QeaPage,
     NuovadomandaPage,
     RispostePage,
-
+    LoginPage,
+    RegistrazionePage
+   
   ],
   imports: [
     BrowserModule,
@@ -53,6 +60,8 @@ import { RispostePage } from '../pages/risposte/risposte';
     AngularFirestoreModule,
     IonicStepperModule,
     IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(ENV.firebase)
+   
 
   ],
   bootstrap: [IonicApp],
@@ -67,6 +76,9 @@ import { RispostePage } from '../pages/risposte/risposte';
     QeaPage,
     NuovadomandaPage,
     RispostePage,
+    LoginPage,
+    RegistrazionePage
+   
   ],
   providers: [
     StatusBar,
@@ -75,6 +87,9 @@ import { RispostePage } from '../pages/risposte/risposte';
     /*EnvironmentsProvider,*/
     ServiceProvider,
     QeaServiceProvider,
+    LoginService,
+    AngularFireAuth,
+
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
