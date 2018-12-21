@@ -62,7 +62,10 @@ export class QeaPage {
              openAddPage() {
                this.navCtrl.push(NuovadomandaPage)
              }
-             openPageRisposte() {
+             openPageRisposte(Domanda:string , tutteRisposte: Array<String>) {
+               localStorage.setItem("Domanda", Domanda);
+               localStorage.setItem("list_Risposte", JSON.stringify(tutteRisposte));
+               
                this.navCtrl.push(RispostePage)
              }
              /**

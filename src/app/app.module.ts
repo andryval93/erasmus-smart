@@ -27,7 +27,9 @@ import { AngularFirestoreModule } from "angularfire2/firestore";
 import { ServiceProvider } from '../providers/service/stepperService';
 import { InserisciRecensionePage } from '../pages/inserisci-recensione/inserisci-recensione'
 import { QeaServiceProvider } from '../providers/service/qeaService';
+import { RisposteQeaServiceProvider } from '../providers/service/risposteQeaService';
 import { RispostePage } from '../pages/risposte/risposte';
+import { from } from 'rxjs/observable/from';
 
 
 @NgModule({
@@ -75,6 +77,7 @@ import { RispostePage } from '../pages/risposte/risposte';
     /*EnvironmentsProvider,*/
     ServiceProvider,
     QeaServiceProvider,
+    RisposteQeaServiceProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

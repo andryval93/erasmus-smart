@@ -12,20 +12,22 @@
 
 </ion-header>
 
-<ion-list>
-
-    <ion-item>
-      <ion-label floating>Titolo</ion-label>
-      <ion-input type="Titolo"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label floating>Descrizione</ion-label>
-      <ion-input type=""></ion-input>
-    </ion-item>
-
-  </ion-list>
-
 <ion-content padding>
 
-</ion-content>
+ 
+        <h1>
+            {{numDomanda}}
+        </h1>
+      
+          <ion-item *ngFor='let D of ArrayData'>
+           <h2> {{ D }} </h2> 
+          </ion-item>
+        
+
+
+
+  </ion-content>
+
+<ion-footer>
+  <footer-es></footer-es>
+</ion-footer>
