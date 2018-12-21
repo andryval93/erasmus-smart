@@ -21,9 +21,11 @@ import { StepperPage } from '../pages/stepper/stepper';
 import { HttpClientModule } from '@angular/common/http';
 
 import { Firebase } from '@ionic-native/firebase';
-/*import { AngularFireModule } from 'angularfire2';*/
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuth } from 'angularfire2/auth';
+
 import { AngularFirestoreModule } from "angularfire2/firestore";
-/*import { EnvironmentsProvider } from '../providers/environments/environments';*/
+
 import { ServiceProvider } from '../providers/service/stepperService';
 import { InserisciRecensionePage } from '../pages/inserisci-recensione/inserisci-recensione'
 import { QeaServiceProvider } from '../providers/service/qeaService';
@@ -31,7 +33,10 @@ import { RisposteQeaServiceProvider } from '../providers/service/risposteQeaServ
 import { RispostePage } from '../pages/risposte/risposte';
 import { from } from 'rxjs/observable/from';
 
-
+import { LoginPage } from '../pages/login/login';
+import { LoginService } from '../providers/service/loginService';
+import { RegistrazionePage } from '../pages/registrazione/registrazione';
+import { ENV } from '../config/env';
 @NgModule({
   declarations: [
     MyApp,
@@ -46,7 +51,9 @@ import { from } from 'rxjs/observable/from';
     QeaPage,
     NuovadomandaPage,
     RispostePage,
-
+    LoginPage,
+    RegistrazionePage
+   
   ],
   imports: [
     BrowserModule,
@@ -55,6 +62,8 @@ import { from } from 'rxjs/observable/from';
     AngularFirestoreModule,
     IonicStepperModule,
     IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(ENV.firebase)
+   
 
   ],
   bootstrap: [IonicApp],
@@ -69,6 +78,9 @@ import { from } from 'rxjs/observable/from';
     QeaPage,
     NuovadomandaPage,
     RispostePage,
+    LoginPage,
+    RegistrazionePage
+   
   ],
   providers: [
     StatusBar,
@@ -77,6 +89,9 @@ import { from } from 'rxjs/observable/from';
     /*EnvironmentsProvider,*/
     ServiceProvider,
     QeaServiceProvider,
+    LoginService,
+    AngularFireAuth,
+
     RisposteQeaServiceProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
