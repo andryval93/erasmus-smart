@@ -57,7 +57,6 @@ import { ENV } from '../config/env';
     RispostePage,
     LoginPage,
     RegistrazionePage
-   
   ],
   imports: [
     BrowserModule,
@@ -83,8 +82,7 @@ import { ENV } from '../config/env';
     NuovadomandaPage,
     RispostePage,
     LoginPage,
-    RegistrazionePage
-   
+    RegistrazionePage,
     UiChatPage,
     OpenchatPage
   ],
