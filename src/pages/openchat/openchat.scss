@@ -1,0 +1,57 @@
+page-openchat {
+
+    #container{
+        position: absolute;
+        left: 20%; 
+        width: 60%;
+        height: 70%;
+        border-color: black;
+        border-style: solid;
+    }
+    
+    #infodestinatario{
+        position: absolute;
+        width: 25%;
+        height: 100%;
+        background-color: rgb(66, 66, 66);
+        color: white;
+        text-align: center;
+        padding-top: 30%;
+    }
+
+    #chat{
+        position: absolute;
+        left: 25%;
+        width: 75%;
+        height: 90%;
+        color: black;
+        border-bottom-color: black;
+        border-bottom-style: solid;
+        text-align: right;
+    }
+
+    .messageText{
+        border-style: none;
+        resize: none;   
+        position: absolute;
+        left: 25%;
+        width: 70%;
+        height: 10%;
+        top: 90%;
+        color: black;
+    }
+    
+    .inputType{
+        border-style: none;
+        resize: none;   
+        position: absolute;
+        left: 95%;
+        width: 5%;
+        height: 10%;
+        top: 90%;
+        color: black;
+        background-image: url("../../assets/icon/send.png");
+        background-size: 100%;
+    }
+}
+

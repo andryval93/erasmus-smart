@@ -6,12 +6,14 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { NewsPage } from '../pages/news/news';
+import { UiChatPage } from '../pages/chat/ui-chat';
 
 import { HeaderEsComponent } from '../components/header-es/header-es';
 import { FooterEsComponent } from '../components/footer-es/footer-es'
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { OpenchatPage } from '../pages/openchat/openchat';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     NewsPage,
     ListPage,
+    UiChatPage,
+    OpenchatPage,
     HeaderEsComponent,
     FooterEsComponent
   ],
@@ -31,7 +35,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     NewsPage,
-    ListPage
+    ListPage,
+    UiChatPage,
+    OpenchatPage
   ],
   providers: [
     StatusBar,
