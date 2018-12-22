@@ -1,0 +1,26 @@
+
+<ion-header>
+  <header-es [title]="title"></header-es>
+</ion-header>
+
+<ion-content padding>
+  <ion-searchbar id="search"></ion-searchbar>
+  <div id="container">
+    <table>
+      <tr *ngFor="let item of items">
+        <td class="name">
+          {{item.nome}}
+        </td>
+        <td class="sede">
+          {{item.sede}}
+        </td>
+        <td class="send"><button ion-button round (click)="openChat(item.nome, item.sede)">
+          Invio Messaggio</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</ion-content>
+<ion-footer>
+  <footer-es></footer-es>
+</ion-footer>

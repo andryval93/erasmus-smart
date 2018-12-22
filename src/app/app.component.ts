@@ -8,6 +8,7 @@ import { ListPage } from '../pages/list/list';
 import { NewsPage } from '../pages/news/news'
 import { StepperPage } from '../pages/stepper/stepper'
 import { QeaPage } from '../pages/qea/qea';
+import { UiChatPage } from '../pages/chat/ui-chat';
 
 
 import { ENV } from '../config/env';
@@ -41,6 +42,7 @@ export class MyApp {
       { title: 'Q&A', component: QeaPage},
       { title: 'Login', component: LoginPage},
       { title: 'Registrazione', component: RegistrazionePage},
+      { title: 'Chat', component: UiChatPage },
     ];
 
     firebase.initializeApp(ENV.firebase);

@@ -9,6 +9,7 @@ import { ListPage } from '../pages/list/list';
 import { NewsPage } from '../pages/news/news';
 import { QeaPage } from '../pages/qea/qea';
 import { NuovadomandaPage } from '../pages/nuovadomanda/nuovadomanda';
+import { UiChatPage } from '../pages/chat/ui-chat';
 
 
 import { HeaderEsComponent } from '../components/header-es/header-es';
@@ -16,6 +17,7 @@ import { FooterEsComponent } from '../components/footer-es/footer-es'
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { OpenchatPage } from '../pages/openchat/openchat';
 import { IonicStepperModule } from 'ionic-stepper';
 import { StepperPage } from '../pages/stepper/stepper';
 import { HttpClientModule } from '@angular/common/http';
@@ -43,6 +45,8 @@ import { ENV } from '../config/env';
     HomePage,
     NewsPage,
     ListPage,
+    UiChatPage,
+    OpenchatPage,
     HeaderEsComponent,
     FooterEsComponent,
     StepperPage,
@@ -81,6 +85,8 @@ import { ENV } from '../config/env';
     LoginPage,
     RegistrazionePage
    
+    UiChatPage,
+    OpenchatPage
   ],
   providers: [
     StatusBar,
