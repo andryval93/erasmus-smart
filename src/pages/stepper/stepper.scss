@@ -1,10 +1,59 @@
 page-stepper {
    /*footer*/
-   ion-footer{
-    background: white;
+  body {
+	height: 100%;
 }
+ion-content {
+    height: 100%;
+}
+.container {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -50px;
+}
+.footer {
+    border-style: ridge;
+   
+    border-width: 2px 0px 0px 0px;
+     border-color:rgb(134, 133, 133);
+     
 
+    height: 50px;
+    padding-top: 1.5%;
+    padding-bottom: 2%;
+    clear: both;
+    background: white;
+    font-weight: bold;
+    text-align: center;
+}
+.push {
+	height: 50px;
+	clear: both;
+}
+   .scroll-content{
+       padding: 0 !important;
+   }
+   .content-ios{
+       padding-bottom: 0 !important;
+   }
+   .content-md{
+       padding-bottom: 0 !important;
+   }
+  /* fine footer */ 
 /*step1*/
+.Step-1-container{
+    padding: 5%;
+    padding-bottom: 10%;
+ 
+}
+.Step-1-container-list{
+    border-style: outset;
+   border-radius: 15%;
+   border-width: 10px 10px 10px 10px;
+    border-color:blue whitesmoke;
+    box-shadow: 5px 10px 18px #4b4a4a;
+}
 .Step-1-Successivo{
   
     background-color: cornflowerblue;
@@ -37,9 +86,12 @@ page-stepper {
      text-align: center;
  }
 .contenitore-step-4{
-    //margin:10%;
+
+
+    margin-left:10%;
+    margin-right: 10%;
     padding-top:10%;
-    padding-bottom: 30%;
+    padding-bottom: 20%;
     padding-left: 20%;
     padding-right: 20%;
     border: 2px rgb(37, 36, 36) solid;
@@ -157,10 +209,13 @@ text-align: center;
 .contenitore-step-5-dad{
    height: min-content;
     padding-top:10%;
-    padding-bottom: 30%;
+    padding-bottom: 10%;
     padding-left: 20%;
     padding-right: 20%;
     
+  
+    margin-left: 10%;
+    margin-right:10%;
     min-height: 600px;
     border: 2px rgb(37, 36, 36) solid;
   box-shadow: 5px 10px 18px #4b4a4a;

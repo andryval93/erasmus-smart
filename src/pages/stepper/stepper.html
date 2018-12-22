@@ -4,28 +4,24 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+
+
 <ion-header>
 
-  <header-es [title]="title"></header-es>
+    <header-es [title]="title"></header-es>
 
 </ion-header>
 
-
 <ion-content padding>
+    <div class="container">
+    
   <ion-stepper #stepper (selectIndexChange)="selectChange($event)" [mode]="mode">
+     
     <ion-step description="Step1 description">
-
+      <div class="Step-1-container">
       <!-- qui va il Titolo -->
-
-
-
       <!-- qui va il contenuto -->
-      <ion-list>
-
-
-
-
-
+      <ion-list class="Step-1-container-list">
         <ion-item *ngFor='let location of locations'>
 
           <ion-thumbnail item-start>
@@ -51,7 +47,7 @@
         <button ion-button small ionicStepperNext class="Step-1-Successivo"><img src="assets/imgs/frecciaVettorialeAvanti.png"></button>
 
       </div>
-
+    </div>
     </ion-step>
 
     <ion-step description="Step2 description">
@@ -141,24 +137,30 @@
           <button ion-button small ionicStepperNext class="Step-Successivo"><img src="assets/imgs/frecciaVettorialeAvanti.png"></button>
 
         </div>
+        
       </div>
+
     </ion-step>
 
-    <ion-step description="Step5 description">
-      <div class="contenitore-step-5-dad">
+    
+      <ion-step description="Step5 description">
 
-        <div class="contenitore-step-5-son">
-          <h4>Qui sono riportate le informazioni relative al Learning Agreement </h4>
-          <img src="assets/imgs/learning-agreement-facsimile.jpg">
-          <p>Link al documento relativo al Learning Agreement </p>
+        <div class="contenitore-step-5-dad">
+
+          <div class="contenitore-step-5-son">
+            <h4>Qui sono riportate le informazioni relative al Learning Agreement </h4>
+            <img src="assets/imgs/learning-agreement-facsimile.jpg">
+            <p>Link al documento relativo al Learning Agreement </p>
+          </div>
+
+          <div class="AvantiDietroStepper">
+            <button ion-button small ionicStepperNext class="Step-Successivo"><img src="assets/imgs/frecciaVettorialeAvanti.png"></button>
+          </div>
+          
         </div>
-
-        <div class="AvantiDietroStepper">
-          <button ion-button small ionicStepperNext class="Step-Successivo" ><img src="assets/imgs/frecciaVettorialeAvanti.png"></button>
-
-        </div>
-      </div>
-    </ion-step>
+      </ion-step>
+    
+  
 
     <ion-step description="Step6 description">
       <div class="contenitore-step-4">
@@ -169,7 +171,7 @@
         </div>
         <div class="Conferma-contenitore">
 
-          <button ion-button small class="Conferma-Step6" (click)="inserisciRecensionePush()" >Aggiungi Recensione</button>
+          <button ion-button small class="Conferma-Step6" (click)="inserisciRecensionePush()">Aggiungi Recensione</button>
 
 
         </div>
@@ -182,7 +184,10 @@
     </ion-step>
 
   </ion-stepper>
-  <ion-footer>
-    <footer-es></footer-es>
-  </ion-footer>
+  <div class="push"></div>
+</div>
+
+  <div class="footer">Erasmus Smart - Enterprise 2018</div>
+
 </ion-content>
+
