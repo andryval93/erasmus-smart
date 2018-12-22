@@ -11,7 +11,7 @@ import { NewsPage } from '../pages/news/news';
 import { QeaPage } from '../pages/qea/qea';
 import { NuovadomandaPage } from '../pages/nuovadomanda/nuovadomanda';
 import { UiChatPage } from '../pages/chat/ui-chat';
-
+import { NewNewsPage } from '../pages/new-news/new-news';
 
 import { HeaderEsComponent } from '../components/header-es/header-es';
 import { FooterEsComponent } from '../components/footer-es/footer-es'
@@ -58,6 +58,7 @@ import { ReviewsListPage } from '../pages/reviews-list/reviews-list';
     QeaPage,
     NuovadomandaPage,
     RispostePage,
+    NewNewsPage,
     LoginPage,
     RegistrazionePage,
     ReviewsListPage,
@@ -86,6 +87,7 @@ import { ReviewsListPage } from '../pages/reviews-list/reviews-list';
     QeaPage,
     NuovadomandaPage,
     RispostePage,
+    NewNewsPage,
     LoginPage,
     RegistrazionePage,
     UiChatPage,

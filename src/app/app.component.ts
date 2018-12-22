@@ -9,6 +9,7 @@ import { NewsPage } from '../pages/news/news'
 import { StepperPage } from '../pages/stepper/stepper'
 import { QeaPage } from '../pages/qea/qea';
 import { UiChatPage } from '../pages/chat/ui-chat';
+import { NewNewsPage } from '../pages/new-news/new-news';
 
 
 import { ENV } from '../config/env';
@@ -46,6 +47,7 @@ export class MyApp {
       { title: 'Chat', component: UiChatPage },
       { title: 'Recensioni', component: ReviewMainPage},
       
+      { title: 'NewsTEMP', component: NewNewsPage},
     ];
 
     firebase.initializeApp(ENV.firebase);

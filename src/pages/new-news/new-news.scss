@@ -1,0 +1,13 @@
+page-new-news {
+    .creaNews{
+        float: right;
+        margin-top: 2%;
+        color: cornflowerblue; 
+        border-radius: 2%; 
+        background: white; 
+        transition: 0.2s;  
+    }
+    .creaNews:hover {
+        background-color: #efc810 !important; 
+    } 
+}
