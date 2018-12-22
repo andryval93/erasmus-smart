@@ -1,3 +1,36 @@
+
+  <ion-header>
+    <ion-navbar>
+      <ion-title>Login</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <ion-list>
+      <ion-item>
+        <ion-icon name="contact" item-start></ion-icon>
+        <ion-label fixed>E-Mail</ion-label>
+        <ion-input type="text" name="email" required></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-icon name="lock" item-start></ion-icon>
+        <ion-label fixed>Password</ion-label>
+        <ion-input type="password" name="password" required></ion-input>
+      </ion-item>
+    </ion-list>
+    
+    <div padding>
+      <button type="submit" ion-button round large icon-start>
+        <ion-icon name="checkmark-circle-outline"></ion-icon>  
+        Login
+      </button>
+    </div>
+  </ion-content>
+  
+
+<!--Parte di Emilio-->
+<!--
 <ion-header>
 	<ion-navbar>
 		<button ion-button menuToggle>
@@ -15,17 +48,17 @@
 				<ion-input type="text" placeholder="Email" formControlName="email"></ion-input>
 			</ion-item>
 
-		<!--	<div ngxErrors="email" #emailErrors="ngxErrors">
+			<div ngxErrors="email" #emailErrors="ngxErrors">
 				<div [ngxError]="['email', 'required']" [when]="['touched', 'dirty']">It should be a valid email</div>
-			</div>-->
+			</div>
 
 			<ion-item [ngClass]="{ invalid: passwordErrors }">
 				<ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
 			</ion-item>
 
-		<!--	<div ngxErrors="password" #passwordErrors="ngxErrors">
+			<div ngxErrors="password" #passwordErrors="ngxErrors">
 				<div [ngxError]="['minlength', 'required']" [when]="['touched']">It should be at least 5 characters</div>
-			</div>-->
+			</div>
 		</ion-list>
 
 		<div padding-horizontal>
@@ -48,3 +81,4 @@
 		</div>
 	</form>
 </ion-content>
+-->

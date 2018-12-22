@@ -1,3 +1,125 @@
+<!--
+  Visualizza una form che richiede il completamento di:
+• Codice Fiscale: Stringa di 16 caratteri alfanumerici.
+• Nome: Stringa di caratteri alfabetici.
+• Cognome: Stringa di caratteri alfabetici.
+• Sesso: E’ possibile selezionare il sesso.
+• Data di nascita: Sono presenti 3 menù che consentono di specificare, giorno mese ed anno di nascita.
+• Luogo di nascita.
+• Indirizzo e-mail/Username: Stringa.
+• Scelta tra: studente e tutor. 
+• Password: Stringa di almeno 8 caratteri, di cui almeno una cifra e almeno una
+lettera.
+• Conferma password: Stringa formato analogo alla password.
+• Conferma regolamento sulla privacy, accanto ad una sezione in cui la stessa è riportata.
+-->
+
+<ion-header>
+	<ion-navbar>
+	  <ion-title>Registration</ion-title>
+	</ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+	<ion-grid>
+	  <ion-row>
+  
+		<ion-col>
+		  <ion-list>
+			<ion-list-header>Dati Personali</ion-list-header>
+  
+			<ion-item>
+				<ion-label floating>Nome</ion-label>
+				<ion-input type="text" name="name" required></ion-input>
+			</ion-item>
+  
+			<ion-item>
+				<ion-label floating>Cognome</ion-label>
+				<ion-input type="text" name="surname" required></ion-input>
+			</ion-item>
+  
+			<ion-grid radio-group>
+			  <ion-row>
+				<ion-label>Sesso</ion-label>
+			  </ion-row>
+			  <ion-row>
+				<ion-col col-2>
+				  <ion-label>M</ion-label>
+				  <ion-radio value="male" checked="true"></ion-radio>
+				</ion-col>
+				<ion-col col-2>
+				  <ion-label>F</ion-label>
+				  <ion-radio value="female"></ion-radio>
+				</ion-col>
+			  </ion-row>
+			</ion-grid>
+			
+			<ion-item>
+				<ion-label>Data di nascita</ion-label>
+				<ion-input type="date" name="email" required></ion-input>
+			</ion-item>
+  
+			<ion-item>
+				<ion-label floating>Luogo di Nascita</ion-label>
+				<ion-input type="text" name="birthPlace" required></ion-input>
+			</ion-item>
+  
+			<ion-item>
+				<ion-label floating>Codice Fiscale</ion-label>
+				<ion-input type="text" name="fiscalCode" required></ion-input>
+			</ion-item>
+		  </ion-list>
+		</ion-col>
+  
+  
+		<ion-col>
+		  <ion-list>
+			<ion-list-header>Dati Utente</ion-list-header>
+			
+			<ion-grid radio-group>
+			  <ion-row>
+				<ion-label>Tipo Account</ion-label>
+			  </ion-row>
+			  <ion-row>
+				<ion-col col-2>
+				  <ion-label>Studente</ion-label>
+				  <ion-radio value="student" checked="true"></ion-radio>
+				</ion-col>
+				 <ion-col col-2>
+				  <ion-label>Docente</ion-label>
+				  <ion-radio value="tutor"></ion-radio>
+				</ion-col>
+			  </ion-row>
+			</ion-grid>
+  
+			<ion-item>
+				<ion-label floating>E-Mail</ion-label>
+				<ion-input type="text" name="email" required></ion-input>
+			</ion-item>
+  
+			<ion-item>
+				<ion-label floating>Password</ion-label>
+				<ion-input type="password" name="password" required></ion-input>
+			</ion-item>
+			
+			<ion-item>
+				<ion-label floating>Conferma Password</ion-label>
+				<ion-input type="password" name="confirmPassword" required></ion-input>
+			</ion-item>
+  
+			<ion-item>
+				<ion-label floating>License</ion-label>
+				<ion-input type="text" name="license" required></ion-input>
+			</ion-item>
+		  </ion-list>
+		</ion-col>
+		
+	  </ion-row>
+	</ion-grid>
+  </ion-content>
+
+<!--Parte di Emilio-->
+<!--
 <ion-header>
 	<ion-navbar>
 		<ion-title>Sign up</ion-title>
@@ -13,17 +135,17 @@
 				<ion-input type="text" placeholder="Email" formControlName="email"></ion-input>
 			</ion-item>
 
-		<!--	<div ngxErrors="email" #emailErrors="ngxErrors">
+			<div ngxErrors="email" #emailErrors="ngxErrors">
 				<div [ngxError]="['email', 'required']" [when]="['touched']">It should be a valid email</div>
-			</div>-->
+			</div>
 
 			<ion-item [ngClass]="{ invalid: passwordErrors }">
 				<ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
 			</ion-item>
 
-			<!--  <div ngxErrors="password" #passwordErrors="ngxErrors">
+			  <div ngxErrors="password" #passwordErrors="ngxErrors">
 				<div [ngxError]="['minlength', 'required']" [when]="['touched']">It should be at least 6 characters</div>
-			</div>-->
+			</div>
 		</ion-list>
 
 		<div padding-horizontal>
@@ -33,3 +155,4 @@
 		</div>
 	</form>
 </ion-content>
+-->
