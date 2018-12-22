@@ -1,3 +1,4 @@
+import { ReviewMainPage } from './../pages/review-main/review-main';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -39,6 +40,8 @@ import { LoginPage } from '../pages/login/login';
 import { LoginService } from '../providers/service/loginService';
 import { RegistrazionePage } from '../pages/registrazione/registrazione';
 import { ENV } from '../config/env';
+import { ReviewsListPage } from '../pages/reviews-list/reviews-list';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -56,7 +59,9 @@ import { ENV } from '../config/env';
     NuovadomandaPage,
     RispostePage,
     LoginPage,
-    RegistrazionePage
+    RegistrazionePage,
+    ReviewsListPage,
+    ReviewMainPage
   ],
   imports: [
     BrowserModule,
@@ -84,7 +89,9 @@ import { ENV } from '../config/env';
     LoginPage,
     RegistrazionePage,
     UiChatPage,
-    OpenchatPage
+    OpenchatPage,
+    ReviewsListPage,
+    ReviewMainPage
   ],
   providers: [
     StatusBar,

@@ -17,6 +17,7 @@ import firebase from 'firebase';
 import { LoginPage } from '../pages/login/login';
 import { RegistrazionePage } from '../pages/registrazione/registrazione';
 import { AngularFireModule } from 'angularfire2';
+import { ReviewMainPage } from '../pages/review-main/review-main';
 
 
 
@@ -43,6 +44,8 @@ export class MyApp {
       { title: 'Login', component: LoginPage},
       { title: 'Registrazione', component: RegistrazionePage},
       { title: 'Chat', component: UiChatPage },
+      { title: 'Recensioni', component: ReviewMainPage},
+      
     ];
 
     firebase.initializeApp(ENV.firebase);

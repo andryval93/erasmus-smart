@@ -1,0 +1,110 @@
+<!--
+  Generated template for the UiRegPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>ui_rg</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-md-2>
+        <div id="choose_stars">
+          <ion-list [(ngModel)]="Stars" radio-group>
+            <h3>Filtra recensioni</h3>
+
+            <ion-item>
+              <ion-label>1 Stella</ion-label>
+              <ion-radio checked="true" value="one"></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>2 Stelle</ion-label>
+              <ion-radio value="two"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>3 Stelle</ion-label>
+              <ion-radio value="three"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>4 Stelle</ion-label>
+              <ion-radio value="four"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>5 Stelle</ion-label>
+              <ion-radio value="five"></ion-radio>
+            </ion-item>
+          </ion-list>
+          <div align="right">
+            <button ion-button color="light" (click)="selectReviews()">Filtra</button>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col align-self-center>
+      <div id="choosen_uni">
+        <h2>Recensioni per "{{University}}"</h2>
+        <ion-card>
+
+          <ion-item>
+            <ion-avatar item-start>
+              <img src="../../assets/imgs/moc.png">
+            </ion-avatar>
+            <h2>Rossi Mario</h2>
+            <p>November 5, 2018</p>
+            <p>
+              <ion-icon name="ios-star"></ion-icon>
+              <ion-icon name="ios-star"></ion-icon>
+              <ion-icon name="ios-star"></ion-icon>
+              <ion-icon name="ios-star"></ion-icon>
+              <ion-icon name="ios-star"></ion-icon>
+            </p>
+          </ion-item>
+
+          <ion-card-content>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+              ex ea
+              commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+              anim id est laborum.</p>
+          </ion-card-content>
+        </ion-card>
+
+
+        <ion-card>
+
+          <ion-item>
+            <ion-avatar item-start>
+              <img src="../../assets/imgs/moc.png">
+            </ion-avatar>
+            <h2>Bruni Pasquale</h2>
+            <p>Dicember 20, 2018</p>
+            <p>
+              <ion-icon name="ios-star"></ion-icon>
+              <ion-icon name="ios-star"></ion-icon>
+              <ion-icon name="ios-star"></ion-icon>
+              <ion-icon name="ios-star"></ion-icon>
+              <ion-icon name="ios-star"></ion-icon>
+            </p>
+          </ion-item>
+
+          <ion-card-content>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+              ex ea
+              commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+              anim id est laborum.</p>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
