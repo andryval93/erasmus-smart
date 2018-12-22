@@ -8,6 +8,7 @@ import { ListPage } from '../pages/list/list';
 import { NewsPage } from '../pages/news/news'
 import { StepperPage } from '../pages/stepper/stepper'
 import { QeaPage } from '../pages/qea/qea';
+import { NewNewsPage } from '../pages/new-news/new-news';
 
 
 import { ENV } from '../config/env';
@@ -36,6 +37,7 @@ export class MyApp {
       { title: 'News', component: NewsPage },
       { title: 'Stepper', component: StepperPage },
       { title: 'Q&A', component: QeaPage},
+      { title: 'NewsTEMP', component: NewNewsPage},
     ];
 
     firebase.initializeApp(ENV.firebase);

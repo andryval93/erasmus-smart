@@ -9,7 +9,7 @@ import { ListPage } from '../pages/list/list';
 import { NewsPage } from '../pages/news/news';
 import { QeaPage } from '../pages/qea/qea';
 import { NuovadomandaPage } from '../pages/nuovadomanda/nuovadomanda';
-
+import { NewNewsPage } from '../pages/new-news/new-news';
 
 import { HeaderEsComponent } from '../components/header-es/header-es';
 import { FooterEsComponent } from '../components/footer-es/footer-es'
@@ -44,6 +44,7 @@ import { RispostePage } from '../pages/risposte/risposte';
     QeaPage,
     NuovadomandaPage,
     RispostePage,
+    NewNewsPage,
 
   ],
   imports: [
@@ -67,6 +68,7 @@ import { RispostePage } from '../pages/risposte/risposte';
     QeaPage,
     NuovadomandaPage,
     RispostePage,
+    NewNewsPage,
   ],
   providers: [
     StatusBar,
