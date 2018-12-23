@@ -1,3 +1,23 @@
 page-login {
 
+    .fixed-content{
+
+        background-color: rgba(100, 148, 237, 0.658);
+    }
+
+    .item {
+
+        max-width: 50% !important;
+        margin-left: 25%;
+    }
+
+    #buttonLogin {
+
+        text-align: center;
+    }    
+
+    #notRegistredDivLogin {
+
+        text-align: center;
+    }
 }
