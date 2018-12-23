@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+/*import { HttpClient } from '@angular/common/http';
 
 import { Injectable } from '@angular/core';
 
@@ -20,7 +20,7 @@ import { SingletonDatabase } from '../../model/Database';
   and Angular DI.
 
 */
-
+/*
 @Injectable()
 
 export class ServiceProvider {
@@ -41,7 +41,7 @@ export class ServiceProvider {
   * Note the use of merge : true flag within the returned promise  - this
   * is needed to ensure that the collection is not repeatedly recreated should
   * this method be called again (we DON'T want to overwrite our documents!)
-  */
+  *//*
   createAndPopulateDocument(collectionObj: string,
     docID: string,
     dataObj: any): Promise<any> {
@@ -60,8 +60,8 @@ export class ServiceProvider {
   }
   /*
    * Return documents from specific database collection
-   */
-  getDocuments(collectionObj: string): Promise<any> {
+   *//*
+getDocuments(collectionObj: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this.DBistance.collection(collectionObj)
         .get()
@@ -88,7 +88,7 @@ export class ServiceProvider {
   }
   /**
    * Add a new document to a selected database collection
-   */
+   *//*
   addDocument(collectionObj: string,
     dataObj: any): Promise<any> {
     return new Promise((resolve, reject) => {
@@ -105,7 +105,7 @@ export class ServiceProvider {
 
   /**
    * Delete an existing document from a selected database collection
-   */
+   *//*
   deleteDocument(collectionObj: string,
     docID: string): Promise<any> {
     return new Promise((resolve, reject) => {
@@ -123,7 +123,7 @@ export class ServiceProvider {
   }
   /**
    * Update an existing document within a selected database collection
-   */
+   *//*
   updateDocument(collectionObj: string,
     docID: string,
     dataObj: any): Promise<any> {
@@ -140,4 +140,4 @@ export class ServiceProvider {
         });
     });
   }
-}
+}*/
