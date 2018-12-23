@@ -19,11 +19,13 @@
     </ion-list>
     
     <div padding id="buttonLogin">
+				<div class="form-error" style="color:red">{{loginError}}</div>
       <button type="submit" ion-button round large icon-start color="es_white" [disabled]="!loginForm.valid">
         <ion-icon name="checkmark-circle-outline"></ion-icon>  
         Login
       </button>
 		</div>
+		
 		<ion-list>
 				<button ion-button icon-left block clear (click)="signup()">
 					<ion-icon name="person-add"></ion-icon>
