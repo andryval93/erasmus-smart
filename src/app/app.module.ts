@@ -1,3 +1,4 @@
+import { reviewService } from './../providers/service/reviewsService';
 import { ReviewMainPage } from './../pages/review-main/review-main';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -104,7 +105,7 @@ import { ReviewsListPage } from '../pages/reviews-list/reviews-list';
     QeaServiceProvider,
     LoginService,
     AngularFireAuth,
-
+    reviewService,
     RisposteQeaServiceProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
