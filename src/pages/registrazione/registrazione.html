@@ -36,18 +36,18 @@ lettera.
 							<ion-input type="text" name="surname" required formControlName="surname"></ion-input>
 						</ion-item>
 						
-						<ion-grid radio-group ng-controller="genderController">
+						<ion-grid radio-group ng-controller="genderController" formControlName="gender"> 
 							<ion-row>
 								<ion-label>Sesso</ion-label>
 							</ion-row>
 							<ion-row>
 								<ion-col col-2>
 									<ion-label>M</ion-label>
-									<ion-radio ng-value="male" checked="true" ng-model="gender"></ion-radio>
+									<ion-radio value="male" checked="true" ng-model="gender"></ion-radio>
 								</ion-col>
 								<ion-col col-2>
 									<ion-label>F</ion-label>
-									<ion-radio ng-value="female" ng-model="gender"></ion-radio>
+									<ion-radio value="female" ng-model="gender"></ion-radio>
 								</ion-col>
 							</ion-row>
 						</ion-grid> 
@@ -75,18 +75,18 @@ lettera.
 					<ion-list>
 						<ion-list-header>Dati Utente</ion-list-header>
 						
-						<ion-grid radio-group ng-controller="accountTypeController">
+						<ion-grid radio-group ng-controller="accountTypeController" formControlName="userType">
 							<ion-row>
 								<ion-label>Tipo Account</ion-label>
 							</ion-row>
 							<ion-row>
 								<ion-col col-2>
 									<ion-label>Studente</ion-label>
-									<ion-radio ng-value="student" ng-model="accountType" checked="true"></ion-radio>
+									<ion-radio value="student" ng-model="accountType" checked="true"></ion-radio>
 								</ion-col>
 								<ion-col col-2>
 									<ion-label>Docente</ion-label>
-									<ion-radio ng-value="tutor" ng-model="accountType"></ion-radio>
+									<ion-radio value="tutor" ng-model="accountType"></ion-radio>
 								</ion-col>
 							</ion-row>
 						</ion-grid> 
@@ -105,12 +105,13 @@ lettera.
 							<ion-label floating>Conferma Password</ion-label>
 							<ion-input type="password" name="confirmPassword" formControlName="confirmPassword"></ion-input>
 						</ion-item>
-						<!--
+					
 						<ion-item>
 							<ion-label floating>License</ion-label>
-							<ion-input type="text" name="license" required></ion-input>
+							<ion-checkbox formControlName="privacyCheck"></ion-checkbox>
+							<ion-label floating>Acconsento ai trattamenti dei dati</ion-label>
 						</ion-item>
-						-->
+						
 					</ion-list>
 
 				</ion-col>
