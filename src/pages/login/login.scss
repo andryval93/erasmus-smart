@@ -1,8 +1,8 @@
 page-login {
 
-    .fixed-content{
+    .fixed-content {
 
-        background-color: rgba(100, 148, 237, 0.658);
+        background-color: cornflowerblue;
     }
 
     .item {
@@ -11,10 +11,16 @@ page-login {
         margin-left: 25%;
     }
 
-    #buttonLogin {
+    #buttonLoginDiv {
 
         text-align: center;
     }    
+
+    #loginButton {
+
+        background: #f5f5f5;
+        color: cornflowerblue;
+    }
 
     #notRegistredDivLogin {
 
