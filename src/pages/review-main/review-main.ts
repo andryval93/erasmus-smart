@@ -15,6 +15,8 @@ import { reviewService } from '../../providers/service/reviewsService'
   templateUrl: 'review-main.html',
 })
 export class ReviewMainPage {
+  private Document: string ="Universities";
+  private uniDocument: string ="university";
   Sede: any;
   Comparison: String;
   Unis: any;
@@ -29,13 +31,12 @@ export class ReviewMainPage {
 
   fillUniversities() {
     console.log("activated", "yessssssssss");
-    this.DBIstance.getUniversities("Universities")
+    this.DBIstance.getUniversities(this.Document)
       .then((data) => {
         // IF we don't have any documents then the collection doesn't exist
         // so we create it!
         if (data.length === 0) {
           console.log("Error", "Errorrrrrrrrrrrr!!!!!!!")
-          //this.generateCollectionAndDocument();
         }
         // Otherwise the collection does exist and we assign the returned
         // documents to the public property of locations so this can be
@@ -46,8 +47,8 @@ export class ReviewMainPage {
             //console.log("University", this.Unis[i]);
             this.Universities.push(
               {
-                id: this.Unis[i]["university"],
-                name: this.Unis[i]["university"]
+                id: this.Unis[i][this.uniDocument],
+                name: this.Unis[i][this.uniDocument]
               }
             )
           }
