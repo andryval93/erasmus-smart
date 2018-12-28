@@ -19,13 +19,13 @@ export class ReviewsListPage {
   private Document :string="Universities"
   Stars: any;
   University: any;
+  private uni: String;
 
   Reviews: Array<{recensore: String, date: String, stars: any, text: String}>
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private DBIstance: reviewService) {
-    const uni=navParams.get("University");
+    this.uni=navParams.get("University");
     //const uni=localStorage.getItem("University");
-    this.University=uni;
     this.Reviews=[];
     this.fillUniversityReviews();
   }
@@ -40,7 +40,7 @@ export class ReviewsListPage {
         else {
           for(let i=0; i<data.length;i++)
           {
-            if(this.University===data[i]["id"])
+            if(this.uni===data[i]["id"])
             {
               this.University=data[i]["university"]
             }
