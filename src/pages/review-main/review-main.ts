@@ -17,16 +17,17 @@ import { reviewService } from '../../providers/service/reviewsService'
 export class ReviewMainPage {
   private Document: string ="Universities";
   private uniDocument: string ="university";
+  private idDocument: string="id";
   Sede: any;
   Comparison: String;
-  Unis: any;
-  Universities: Array<{ id: String, name: String }>;
+  //Unis: any;
+  Universities: Array<{ id: String, name: String}>;
 
   constructor(public navCtrl: NavController, private DBIstance: reviewService) {
     this.Comparison = "Seleziona sede";
     //this.Unis=this.DBIstance.getUniversities("Universities");//["Seleziona sede","UNISA","UNINA","UNIBO","UNICA","UNIMI","UNI","DUI","TREI"];
     this.Universities = [];
-    this.Unis = this.fillUniversities();
+    this.fillUniversities();
   }
 
   fillUniversities() {
@@ -42,13 +43,13 @@ export class ReviewMainPage {
         // documents to the public property of locations so this can be
         // iterated through in the component template
         else {
-          this.Unis = data;
-          for (let i = 0; i < this.Unis.length; i++) {
-            //console.log("University", this.Unis[i]);
+          //this.Unis = data;
+          for (let i = 0; i < data.length; i++) {
+            //console.log("University", this.Unis[i]["Reviews"]);
             this.Universities.push(
               {
-                id: this.Unis[i][this.uniDocument],
-                name: this.Unis[i][this.uniDocument]
+                id: data[i]["id"],
+                name: data[i][this.uniDocument]
               }
             )
           }
@@ -62,8 +63,14 @@ export class ReviewMainPage {
   goToReviews() {
     if (this.Sede != null && this.Sede != this.Comparison) {
       console.log(this.Sede);
-      //localStorage.setItem("University", this.Sede);
-      this.navCtrl.push(ReviewsListPage, { University: this.Sede });
+      localStorage.setItem("University", this.Sede);
+      this.navCtrl.push(ReviewsListPage, { University: this.Sede,
+      });
     }
+  }
+
+  saveID()
+  {
+    console.log("IDDDDDD","11111111111");
   }
 }
