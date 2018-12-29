@@ -21,24 +21,24 @@
 
             <ion-item>
               <ion-label>1 Stella</ion-label>
-              <ion-radio checked="true" value="one"></ion-radio>
+              <ion-radio checked="true" value="1"></ion-radio>
             </ion-item>
 
             <ion-item>
               <ion-label>2 Stelle</ion-label>
-              <ion-radio value="two"></ion-radio>
+              <ion-radio value="2"></ion-radio>
             </ion-item>
             <ion-item>
               <ion-label>3 Stelle</ion-label>
-              <ion-radio value="three"></ion-radio>
+              <ion-radio value="3"></ion-radio>
             </ion-item>
             <ion-item>
               <ion-label>4 Stelle</ion-label>
-              <ion-radio value="four"></ion-radio>
+              <ion-radio value="4"></ion-radio>
             </ion-item>
             <ion-item>
               <ion-label>5 Stelle</ion-label>
-              <ion-radio value="five"></ion-radio>
+              <ion-radio value="5"></ion-radio>
             </ion-item>
           </ion-list>
           <div align="right">
@@ -59,7 +59,7 @@
             <h2>{{review.recensore}}</h2>
             <p>{{review.date}}</p>
             <p>
-              <ion-icon name="ios-star" *ngFor='let stars of review.stars'></ion-icon>
+              <ion-icon name="ios-star" *ngFor='let stars of review.starsA'></ion-icon>
             </p>
           </ion-item>
 

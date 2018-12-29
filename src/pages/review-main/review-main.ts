@@ -45,10 +45,10 @@ export class ReviewMainPage {
         else {
           //this.Unis = data;
           for (let i = 0; i < data.length; i++) {
-            console.log("DDUniversity", data[i]);
+            //console.log("DDUniversity", data[i]);
             this.Universities.push(
               {
-                id: data[i]["id"],
+                id: data[i][this.idDocument],
                 name: data[i][this.uniDocument]
               }
             )
@@ -62,7 +62,7 @@ export class ReviewMainPage {
   }
   goToReviews() {
     if (this.Sede != null && this.Sede != this.Comparison) {
-      console.log(this.Sede);
+      //console.log(this.Sede);
       localStorage.setItem("University", this.Sede);
       this.navCtrl.push(ReviewsListPage, { University: this.Sede,
       });
