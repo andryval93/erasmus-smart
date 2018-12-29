@@ -1,6 +1,8 @@
 import { Component} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { OpenchatPage } from '../openchat/openchat';
+import { AccountService } from '../../providers/service/accountService';
+import { Account, student } from '../../model/model';
 /**
  * Generated class for the UiChatPage page.
  *
@@ -14,13 +16,35 @@ import { OpenchatPage } from '../openchat/openchat';
   templateUrl: 'ui-chat.html',
 })
 export class UiChatPage{
+  account: Account;
+  items: Array<any>;
+  student: student;
+  type: string;
+  status: string;
+  email: string;
+  accepted: boolean;
 
-  items: Array<{nome: string, sede: string}>;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.items = [];
+  constructor(public navCtrl: NavController, public navParams: NavParams, public DBInstance: AccountService) {
+    this.email = localStorage.getItem("email");
+    DBInstance.getAccount('Account', this.email, this.account);
+    for(var i = 0; i < this.account.students.length; i++){
+      DBInstance.getAccount('Account', this.account.students[i].email, this.student);
+      if(this.account.students[i].status == "pending"){
+        this.accepted = false;
+      } else {
+        this.accepted = true;
+      }
+        this.items.push({
+          name: this.student.name,
+          surname: this.student.surname,
+          sede: this.student.sede,
+          accepted: this.accepted
+        });
+      console.log(this.account.students[i].email); 
+    };
+  }
     //caricamento della lista dal db 
-    this.items.push({
+   /* this.items.push({
       nome: "Pino",
       sede: "Gragnano"
     });
@@ -39,14 +63,25 @@ export class UiChatPage{
     this.items.push({
       nome: "Zio Ciccio",
       sede: "Piazza Italia"
-    });
-  }
+    });*/
 
   public isSearchbarOpened = false;
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UiChatPage');
-
+    this.type = localStorage.getItem("type");
+    this.status = localStorage.getItem("status");
+    if(this.status != null || this.status != "pending"){
+      if(this.type == "student"){
+        this.navCtrl.push(OpenchatPage);
+      }
+      //else if(this.type == "tutor"){
+        
+        //Metodo per prendere la lista di studenti dal tutor
+     // }
+    } else {
+      console.log("ERRORE");
+    }
     /*
     *
     
