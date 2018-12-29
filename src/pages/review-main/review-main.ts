@@ -25,7 +25,6 @@ export class ReviewMainPage {
 
   constructor(public navCtrl: NavController, private DBIstance: reviewService) {
     this.Comparison = "Seleziona sede";
-    //this.Unis=this.DBIstance.getUniversities("Universities");//["Seleziona sede","UNISA","UNINA","UNIBO","UNICA","UNIMI","UNI","DUI","TREI"];
     this.Universities = [];
     this.fillUniversities();
   }
@@ -48,7 +47,7 @@ export class ReviewMainPage {
             //console.log("University", this.Unis[i]["Reviews"]);
             this.Universities.push(
               {
-                id: data[i]["id"],
+                id: data[i][this.idDocument],
                 name: data[i][this.uniDocument]
               }
             )
