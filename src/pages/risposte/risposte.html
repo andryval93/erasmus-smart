@@ -14,11 +14,12 @@
 
 <ion-content padding>
 
- 
-        <h1>
-            {{numDomanda}}
-        </h1>
-      
+  <ion-card>
+    <ion-card-header>
+      <h1 style="text-align:left">  {{numDomanda}} </h1>
+    </ion-card-header>
+  </ion-card>
+              
           <ion-item *ngFor='let D of ArrayData'>
            <h2> {{ D }} </h2> 
           </ion-item>

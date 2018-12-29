@@ -29,7 +29,7 @@ import { SingletonDatabase } from '../../model/Database';
 
 @Injectable()
 
-export class QeaServiceProvider {
+export class NuovaDomandaServiceProvider {
   
   //private DBistance: any;
     DBistance: any;

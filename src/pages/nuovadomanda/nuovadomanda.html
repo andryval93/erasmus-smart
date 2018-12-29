@@ -8,6 +8,7 @@
 </ion-header>
 
 
+
 <ion-content padding>
 
   <ion-card>
@@ -16,21 +17,56 @@
     </ion-card-header>
   </ion-card>
 
+  <ion-list class="select">
+    <ion-item>
+      <ion-label>Sede</ion-label>
+
+      <!--Metto tutte le sedi dentro la combo box "Sedi"-->
+      <ion-select [(ngModel)]="Sedi" (ngModelChange)="onChangeSede(Sedi)">
+
+        <ion-option *ngFor='let locationSede of locationsSedi'>{{locationSede.nome}}</ion-option>
+
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <form
+    [formGroup]='form'
+    (ngSubmit)='saveDocument(form.value)'>
   <ion-list>
 
     <ion-item>
       <ion-label floating>Titolo</ion-label>
-      <ion-input type="Titolo"></ion-input>
+      <ion-input formControlName='Domanda' [(ngModel)]='Domanda' type="Domanda"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Descrizione</ion-label>
-      <ion-textarea type="text" rows= "10" ></ion-textarea>
+      <ion-textarea formControlName='Descrizione' [(ngModel)]='Descrizione' type="text" rows= "10" ></ion-textarea>
     </ion-item>
 
   </ion-list>
 
-  <button ion-button class="inviaDomanda">Invia Domanda</button>
+  <ion-item>
+    <button class="inviaDomanda"
+      ion-button
+      block
+      color="primary"
+      text-center
+      padding-top
+      padding-bottom
+      [disabled]="!form.valid">
+       <div>
+          INVIA DOMANDA
+       </div>
+
+       
+       </button>
+    </ion-item>
+
+</form>
+
+ 
 </ion-content>
 
 <ion-footer>
