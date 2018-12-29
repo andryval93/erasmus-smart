@@ -1,3 +1,4 @@
+import { reviewService } from './../providers/service/reviewsService';
 import { ReviewMainPage } from './../pages/review-main/review-main';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -41,6 +42,7 @@ import { LoginService } from '../providers/service/loginService';
 import { RegistrazionePage } from '../pages/registrazione/registrazione';
 import { ENV } from '../config/env';
 import { ReviewsListPage } from '../pages/reviews-list/reviews-list';
+import { NuovaDomandaServiceProvider } from '../providers/service/nuovaDomandaService';
 
 @NgModule({
   declarations: [
@@ -104,8 +106,11 @@ import { ReviewsListPage } from '../pages/reviews-list/reviews-list';
     QeaServiceProvider,
     LoginService,
     AngularFireAuth,
-
+    reviewService,
     RisposteQeaServiceProvider,
+    RisposteQeaServiceProvider,
+    NuovaDomandaServiceProvider,
+
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
