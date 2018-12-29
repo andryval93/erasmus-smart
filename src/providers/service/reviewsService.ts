@@ -74,7 +74,8 @@ export class reviewService {
               obj.push({
                 id: doc.id,
                 university: doc.data().university,
-                region: doc.data().region
+                region: doc.data().region,
+                reviews: doc.data().Reviews
               });
             });
 
@@ -86,7 +87,7 @@ export class reviewService {
     });
   }
 
-getReviews(collectionObj: string): Promise<any> {
+/*getReviews(collectionObj: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this.DBistance.collection(collectionObj)
         .get()
@@ -96,9 +97,9 @@ getReviews(collectionObj: string): Promise<any> {
             .forEach((doc: any) => {
               obj.push({
                 id: doc.id,
-                recensione: doc.data().review,
-                inserzionista: doc.data().inserzionista,
-                stelle: doc.data().stars,
+                recensione: doc.data().Text,
+                inserzionista: doc.data().Recensore,
+                stelle: doc.data().Stars,
                 recensioni: doc.data().recensioni,
                 data: doc.data().data
               });
@@ -110,7 +111,7 @@ getReviews(collectionObj: string): Promise<any> {
           reject(error);
         });
     });
-  }
+  }*/
   /**
    * Add a new document to a selected database collection
    */
