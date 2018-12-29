@@ -73,9 +73,7 @@ export class reviewService {
             .forEach((doc: any) => {
               obj.push({
                 id: doc.id,
-                university: doc.data().university,
-                region: doc.data().region,
-                reviews: doc.data().Reviews
+                nome: doc.data().nome,
               });
             });
 
@@ -87,6 +85,30 @@ export class reviewService {
     });
   }
 
+
+
+  getReviews(collectionObj: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.DBistance.collection(collectionObj)
+        .get()
+        .then((querySnapshot) => {
+          let obj: any = [];
+          querySnapshot
+            .forEach((doc: any) => {
+              obj.push({
+                id: doc.id,
+                Reviews: doc.data().ReviewsList,
+                university: doc.data().uni_name,
+              });
+            });
+
+          resolve(obj);
+        })
+        .catch((error: any) => {
+          reject(error);
+        });
+    });
+  }
 /*getReviews(collectionObj: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this.DBistance.collection(collectionObj)

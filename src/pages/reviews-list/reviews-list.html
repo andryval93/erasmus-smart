@@ -59,11 +59,7 @@
             <h2>{{review.recensore}}</h2>
             <p>{{review.date}}</p>
             <p>
-              <ion-icon name="ios-star"></ion-icon>
-              <ion-icon name="ios-star"></ion-icon>
-              <ion-icon name="ios-star"></ion-icon>
-              <ion-icon name="ios-star"></ion-icon>
-              <ion-icon name="ios-star"></ion-icon>
+              <ion-icon name="ios-star" *ngFor='let stars of review.stars'></ion-icon>
             </p>
           </ion-item>
 

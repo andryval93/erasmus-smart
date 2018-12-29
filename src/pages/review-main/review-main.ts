@@ -15,8 +15,8 @@ import { reviewService } from '../../providers/service/reviewsService'
   templateUrl: 'review-main.html',
 })
 export class ReviewMainPage {
-  private Document: string ="Universities";
-  private uniDocument: string ="university";
+  private Document: string ="Sedi";
+  private uniDocument: string ="nome";
   private idDocument: string="id";
   Sede: any;
   Comparison: String;
@@ -45,7 +45,7 @@ export class ReviewMainPage {
         else {
           //this.Unis = data;
           for (let i = 0; i < data.length; i++) {
-            //console.log("University", this.Unis[i]["Reviews"]);
+            console.log("DDUniversity", data[i]);
             this.Universities.push(
               {
                 id: data[i]["id"],

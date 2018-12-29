@@ -16,7 +16,7 @@ import { reviewService } from '../../providers/service/reviewsService'
 })
 
 export class ReviewsListPage {
-  private Document :string="Universities"
+  private Document :string="Reviews"
   Stars: any;
   University: any;
   private uni: String;
@@ -32,7 +32,7 @@ export class ReviewsListPage {
 
   fillUniversityReviews() {
     console.log("activated", "yessssssssss");
-    this.DBIstance.getUniversities(this.Document)
+    this.DBIstance.getReviews(this.Document)
       .then((data) => {
         if (data.length === 0) {
           console.log("Error", "Errorrrrrrrrrrrr!!!!!!!")
@@ -46,14 +46,14 @@ export class ReviewsListPage {
             }
           }
           for (let i = 0; i < data.length; i++) {
-            console.log("University", data[i]["reviews"]["Review"]);
+            console.log("University", data[i]);
             if(this.University===data[i]["university"]){
             this.Reviews.push(
               {
-                recensore: data[i]["reviews"]["Review"]["recensore"],
-                date: data[i]["reviews"]["Review"]["date"],
-                stars: data[i]["reviews"]["Review"]["stars"],
-                text: data[i]["reviews"]["Review"]["text"],
+                recensore: data[i]["Reviews"]["Review"]["recensore"],
+                date: data[i]["Reviews"]["Review"]["date"],
+                stars: data[i]["Reviews"]["Review"]["stars"],
+                text: data[i]["Reviews"]["Review"]["text"],
               })
             }
           }
