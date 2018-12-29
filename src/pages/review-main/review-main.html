@@ -36,7 +36,6 @@
               <ion-col>
                 <ion-list class="select">
                   <ion-item>
-                    <!--<ion-item *ngFor="let university of Universities">-->
                     <ion-select [(ngModel)]="Sede" interface="popover">
                       <ion-option *ngFor="let unversities of Universities" [value]="unversities.id">{{unversities.name}}</ion-option>
                     </ion-select>

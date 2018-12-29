@@ -1,32 +1,40 @@
+	<ion-header>
+		<header-es [title]="title"></header-es>
+	</ion-header>
+  
+	<ion-content padding>
+		<form (ngSubmit)="login()" [formGroup]="loginForm">
+			<ion-list>
+			<ion-item>
+				<ion-icon name="contact" item-start></ion-icon>
+				<ion-label fixed>E-Mail</ion-label>
+				<ion-input type="text" name="email" required formControlName="email"></ion-input>
+			</ion-item>
+		
+			<ion-item>
+				<ion-icon name="lock" item-start></ion-icon>
+				<ion-label fixed>Password</ion-label>
+				<ion-input type="password" name="password" required formControlName="password"></ion-input>
+			</ion-item>
+			</ion-list>
+			
+			<div padding id="buttonLoginDiv">
+				<div class="form-error" style="color:red">{{loginError}}</div>
 
-  <ion-header>
-    <ion-navbar>
-      <ion-title>Login</ion-title>
-    </ion-navbar>
-  </ion-header>
-  
-  <ion-content padding>
-    <ion-list>
-      <ion-item>
-        <ion-icon name="contact" item-start></ion-icon>
-        <ion-label fixed>E-Mail</ion-label>
-        <ion-input type="text" name="email" required></ion-input>
-      </ion-item>
-  
-      <ion-item>
-        <ion-icon name="lock" item-start></ion-icon>
-        <ion-label fixed>Password</ion-label>
-        <ion-input type="password" name="password" required></ion-input>
-      </ion-item>
-    </ion-list>
-    
-    <div padding>
-      <button type="submit" ion-button round large icon-start>
-        <ion-icon name="checkmark-circle-outline"></ion-icon>  
-        Login
-      </button>
-    </div>
-  </ion-content>
+				<button ion-button round large icon-start id="loginButton" type="submit">
+					<ion-icon name="checkmark-circle-outline"></ion-icon>
+					Login
+				</button>
+			</div>
+				
+			<ion-list>
+				<button ion-button large icon-start block clear color="es_white" (click)="signup()">
+					<ion-icon name="person-add"></ion-icon>
+					Sign up
+				</button>
+			</ion-list>
+		</form>
+	</ion-content>
   
 
 <!--Parte di Emilio-->

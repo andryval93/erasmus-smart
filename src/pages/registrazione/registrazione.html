@@ -15,144 +15,163 @@ lettera.
 -->
 
 <ion-header>
-	<ion-navbar>
-	  <ion-title>Registration</ion-title>
-	</ion-navbar>
-  </ion-header>
-  
-  <ion-content padding>
-	<ion-grid>
-	  <ion-row>
-  
-		<ion-col>
-		  <ion-list>
-			<ion-list-header>Dati Personali</ion-list-header>
-  
-			<ion-item>
-				<ion-label floating>Nome</ion-label>
-				<ion-input type="text" name="name" required></ion-input>
-			</ion-item>
-  
-			<ion-item>
-				<ion-label floating>Cognome</ion-label>
-				<ion-input type="text" name="surname" required></ion-input>
-			</ion-item>
-  
-			<ion-grid radio-group>
-			  <ion-row>
-				<ion-label>Sesso</ion-label>
-			  </ion-row>
-			  <ion-row>
-				<ion-col col-2>
-				  <ion-label>M</ion-label>
-				  <ion-radio value="male" checked="true"></ion-radio>
-				</ion-col>
-				<ion-col col-2>
-				  <ion-label>F</ion-label>
-				  <ion-radio value="female"></ion-radio>
-				</ion-col>
-			  </ion-row>
-			</ion-grid>
-			
-			<ion-item>
-				<ion-label>Data di nascita</ion-label>
-				<ion-input type="date" name="email" required></ion-input>
-			</ion-item>
-  
-			<ion-item>
-				<ion-label floating>Luogo di Nascita</ion-label>
-				<ion-input type="text" name="birthPlace" required></ion-input>
-			</ion-item>
-  
-			<ion-item>
-				<ion-label floating>Codice Fiscale</ion-label>
-				<ion-input type="text" name="fiscalCode" required></ion-input>
-			</ion-item>
-		  </ion-list>
-		</ion-col>
-  
-  
-		<ion-col>
-		  <ion-list>
-			<ion-list-header>Dati Utente</ion-list-header>
-			
-			<ion-grid radio-group>
-			  <ion-row>
-				<ion-label>Tipo Account</ion-label>
-			  </ion-row>
-			  <ion-row>
-				<ion-col col-2>
-				  <ion-label>Studente</ion-label>
-				  <ion-radio value="student" checked="true"></ion-radio>
-				</ion-col>
-				 <ion-col col-2>
-				  <ion-label>Docente</ion-label>
-				  <ion-radio value="tutor"></ion-radio>
-				</ion-col>
-			  </ion-row>
-			</ion-grid>
-  
-			<ion-item>
-				<ion-label floating>E-Mail</ion-label>
-				<ion-input type="text" name="email" required></ion-input>
-			</ion-item>
-  
-			<ion-item>
-				<ion-label floating>Password</ion-label>
-				<ion-input type="password" name="password" required></ion-input>
-			</ion-item>
-			
-			<ion-item>
-				<ion-label floating>Conferma Password</ion-label>
-				<ion-input type="password" name="confirmPassword" required></ion-input>
-			</ion-item>
-  
-			<ion-item>
-				<ion-label floating>License</ion-label>
-				<ion-input type="text" name="license" required></ion-input>
-			</ion-item>
-		  </ion-list>
-		</ion-col>
-		
-	  </ion-row>
-	</ion-grid>
-  </ion-content>
+  <header-es [title]="title"></header-es>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+
+    <ion-col class="boxForm">
+      <ion-list>
+      <ion-list-header class="boxFormHeader">Dati Personali</ion-list-header>
+
+      <ion-item class="boxFormItem">
+        <ion-label color="es_white">Nome</ion-label>
+        <ion-input type="text" name="name" required></ion-input>
+      </ion-item>
+
+      <ion-item class="boxFormItem">
+        <ion-label color="es_white">Cognome</ion-label>
+        <ion-input type="text" name="surname" required></ion-input>
+      </ion-item>
+
+      <ion-item class="boxFormItem">
+        <ion-label color="es_white">Sesso</ion-label>
+      </ion-item>
+
+      <ion-grid  class="boxFormRadioGrid" radio-group>
+        <ion-row>
+        <ion-col col-1>
+          <div class="boxFormRadioDiv">M</div>
+        </ion-col>
+        <ion-col col-3>
+          <ion-radio value="male" checked="true" color="es_white"></ion-radio>
+        </ion-col>
+        
+        <ion-col col-1>
+          <div class="boxFormRadioDiv">F</div>
+        </ion-col>
+        <ion-col col-1>
+          <ion-radio value="female" color="es_white"></ion-radio>
+        </ion-col>
+        </ion-row>
+      </ion-grid>
+      
+      <ion-item class="boxFormItem">
+        <ion-label color="es_white">Data di nascita</ion-label>
+        <ion-input type="date" name="birthDate" required></ion-input>
+      </ion-item>
+
+      <ion-item class="boxFormItem">
+        <ion-label color="es_white">Luogo di Nascita</ion-label>
+        <ion-input type="text" name="birthPlace" required></ion-input>
+      </ion-item>
+
+      <ion-item class="boxFormItem">
+        <ion-label color="es_white">Codice Fiscale</ion-label>
+        <ion-input type="text" name="fiscalCode" required></ion-input>
+      </ion-item>
+      </ion-list>
+    </ion-col>
+
+
+    <ion-col class="boxForm">
+      <ion-list>
+      <ion-list-header class="boxFormHeader">Dati Utente</ion-list-header>
+      
+      <ion-item class="boxFormItem">
+        <ion-label color="es_white">Tipo Account</ion-label>
+      </ion-item>
+
+      <ion-grid  class="boxFormRadioGrid" radio-group>
+        <ion-row>
+        <ion-col col-2>
+          <div class="boxFormRadioDiv">Studente</div>
+        </ion-col>
+        <ion-col col-3>
+          <ion-radio value="student" checked="true" color="es_white"></ion-radio>
+        </ion-col>
+        
+        <ion-col col-2>
+          <div class="boxFormRadioDiv">Docente</div>
+        </ion-col>
+        <ion-col col-1>
+          <ion-radio value="tutor" color="es_white"></ion-radio>
+        </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-item class="boxFormItem">
+        <ion-label color="es_white">E-Mail</ion-label>
+        <ion-input type="text" name="email" required></ion-input>
+      </ion-item>
+
+      <ion-item class="boxFormItem">
+        <ion-label color="es_white">Password</ion-label>
+        <ion-input type="password" name="password" required></ion-input>
+      </ion-item>
+      
+      <ion-item class="boxFormItem">
+        <ion-label color="es_white">Conferma Password</ion-label>
+        <ion-input type="password" name="confirmPassword" required></ion-input>
+      </ion-item>
+
+      <ion-item class="boxFormItem">
+        <ion-label color="es_white">Acconsento al trattamento dei dati personali</ion-label>
+        <ion-checkbox color="es_white"></ion-checkbox>
+      </ion-item>
+      </ion-list>
+    </ion-col>
+    
+    </ion-row>
+  </ion-grid>
+
+  <div>
+    <button ion-button id="registrationButton" type="submit">Registrati</button>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <footer-es></footer-es>
+</ion-footer>
+
 
 <!--Parte di Emilio-->
 <!--
 <ion-header>
-	<ion-navbar>
-		<ion-title>Sign up</ion-title>
-	</ion-navbar>
+<ion-navbar>
+  <ion-title>Sign up</ion-title>
+</ion-navbar>
 </ion-header>
 
 <ion-content>
 
-	<form (ngSubmit)="signup()" [formGroup]="form">
-		<ion-list inset>
+<form (ngSubmit)="signup()" [formGroup]="form">
+  <ion-list inset>
 
-			<ion-item [ngClass]="{ invalid: emailErrors }">
-				<ion-input type="text" placeholder="Email" formControlName="email"></ion-input>
-			</ion-item>
+    <ion-item [ngClass]="{ invalid: emailErrors }">
+      <ion-input type="text" placeholder="Email" formControlName="email"></ion-input>
+    </ion-item>
 
-			<div ngxErrors="email" #emailErrors="ngxErrors">
-				<div [ngxError]="['email', 'required']" [when]="['touched']">It should be a valid email</div>
-			</div>
+    <div ngxErrors="email" #emailErrors="ngxErrors">
+      <div [ngxError]="['email', 'required']" [when]="['touched']">It should be a valid email</div>
+    </div>
 
-			<ion-item [ngClass]="{ invalid: passwordErrors }">
-				<ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
-			</ion-item>
+    <ion-item [ngClass]="{ invalid: passwordErrors }">
+      <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+    </ion-item>
 
-			  <div ngxErrors="password" #passwordErrors="ngxErrors">
-				<div [ngxError]="['minlength', 'required']" [when]="['touched']">It should be at least 6 characters</div>
-			</div>
-		</ion-list>
+      <div ngxErrors="password" #passwordErrors="ngxErrors">
+      <div [ngxError]="['minlength', 'required']" [when]="['touched']">It should be at least 6 characters</div>
+    </div>
+  </ion-list>
 
-		<div padding-horizontal>
-			<div class="form-error">{{signupError}}</div>
+  <div padding-horizontal>
+    <div class="form-error">{{signupError}}</div>
 
-			<button ion-button full type="submit" [disabled]="!form.valid">Sign up</button>
-		</div>
-	</form>
+    <button ion-button full type="submit" [disabled]="!form.valid">Sign up</button>
+  </div>
+</form>
 </ion-content>
 -->

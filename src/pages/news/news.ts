@@ -14,6 +14,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'news.html',
 })
 export class NewsPage {
+  //var content :string;
+  title :string = "News";
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

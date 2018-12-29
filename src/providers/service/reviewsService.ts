@@ -1,4 +1,4 @@
-/*import { HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 import { Injectable } from '@angular/core';
 
@@ -20,10 +20,10 @@ import { SingletonDatabase } from '../../model/Database';
   and Angular DI.
 
 */
-/*
+
 @Injectable()
 
-export class ServiceProvider {
+export class reviewService {
 
   //private DBistance: any;
   DBistance: any;
@@ -41,7 +41,8 @@ export class ServiceProvider {
   * Note the use of merge : true flag within the returned promise  - this
   * is needed to ensure that the collection is not repeatedly recreated should
   * this method be called again (we DON'T want to overwrite our documents!)
-  *//*
+  */
+ /*
   createAndPopulateDocument(collectionObj: string,
     docID: string,
     dataObj: any): Promise<any> {
@@ -57,11 +58,12 @@ export class ServiceProvider {
           reject(error);
         })
     })
-  }
+  }*/
   /*
    * Return documents from specific database collection
-   *//*
-getDocuments(collectionObj: string): Promise<any> {
+   */
+
+  getUniversities(collectionObj: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this.DBistance.collection(collectionObj)
         .get()
@@ -71,11 +73,7 @@ getDocuments(collectionObj: string): Promise<any> {
             .forEach((doc: any) => {
               obj.push({
                 id: doc.id,
-                citta: doc.data().citta,
-                nazione: doc.data().nazione,
                 nome: doc.data().nome,
-                recensioni: doc.data().recensioni
-
               });
             });
 
@@ -86,10 +84,60 @@ getDocuments(collectionObj: string): Promise<any> {
         });
     });
   }
+
+
+
+  getReviews(collectionObj: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.DBistance.collection(collectionObj)
+        .get()
+        .then((querySnapshot) => {
+          let obj: any = [];
+          querySnapshot
+            .forEach((doc: any) => {
+              obj.push({
+                id: doc.id,
+                Reviews: doc.data().ReviewsList,
+                university: doc.data().uni_name,
+              });
+            });
+
+          resolve(obj);
+        })
+        .catch((error: any) => {
+          reject(error);
+        });
+    });
+  }
+/*getReviews(collectionObj: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.DBistance.collection(collectionObj)
+        .get()
+        .then((querySnapshot) => {
+          let obj: any = [];
+          querySnapshot
+            .forEach((doc: any) => {
+              obj.push({
+                id: doc.id,
+                recensione: doc.data().Text,
+                inserzionista: doc.data().Recensore,
+                stelle: doc.data().Stars,
+                recensioni: doc.data().recensioni,
+                data: doc.data().data
+              });
+            });
+
+          resolve(obj);
+        })
+        .catch((error: any) => {
+          reject(error);
+        });
+    });
+  }*/
   /**
    * Add a new document to a selected database collection
-   *//*
-  addDocument(collectionObj: string,
+   */
+  /*addDocument(collectionObj: string,
     dataObj: any): Promise<any> {
     return new Promise((resolve, reject) => {
       this.DBistance.collection(collectionObj).add(dataObj)
@@ -100,13 +148,13 @@ getDocuments(collectionObj: string): Promise<any> {
           reject(error);
         });
     });
-  }
+  }*/
 
 
   /**
    * Delete an existing document from a selected database collection
-   *//*
-  deleteDocument(collectionObj: string,
+   */
+  /*deleteDocument(collectionObj: string,
     docID: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this.DBistance
@@ -120,10 +168,11 @@ getDocuments(collectionObj: string): Promise<any> {
           reject(error);
         });
     });
-  }
+  }*/
   /**
    * Update an existing document within a selected database collection
-   *//*
+   */
+  /*
   updateDocument(collectionObj: string,
     docID: string,
     dataObj: any): Promise<any> {
@@ -139,5 +188,5 @@ getDocuments(collectionObj: string): Promise<any> {
           reject(error);
         });
     });
-  }
-}*/
+    }*/
+}

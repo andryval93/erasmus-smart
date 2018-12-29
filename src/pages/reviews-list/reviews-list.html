@@ -21,24 +21,24 @@
 
             <ion-item>
               <ion-label>1 Stella</ion-label>
-              <ion-radio checked="true" value="one"></ion-radio>
+              <ion-radio checked="true" value="1"></ion-radio>
             </ion-item>
 
             <ion-item>
               <ion-label>2 Stelle</ion-label>
-              <ion-radio value="two"></ion-radio>
+              <ion-radio value="2"></ion-radio>
             </ion-item>
             <ion-item>
               <ion-label>3 Stelle</ion-label>
-              <ion-radio value="three"></ion-radio>
+              <ion-radio value="3"></ion-radio>
             </ion-item>
             <ion-item>
               <ion-label>4 Stelle</ion-label>
-              <ion-radio value="four"></ion-radio>
+              <ion-radio value="4"></ion-radio>
             </ion-item>
             <ion-item>
               <ion-label>5 Stelle</ion-label>
-              <ion-radio value="five"></ion-radio>
+              <ion-radio value="5"></ion-radio>
             </ion-item>
           </ion-list>
           <div align="right">
@@ -49,58 +49,23 @@
       <ion-col align-self-center>
       <div id="choosen_uni">
         <h2>Recensioni per "{{University}}"</h2>
-        <ion-card>
+        
+        <ion-card *ngFor='let review of Reviews'>
 
           <ion-item>
             <ion-avatar item-start>
               <img src="../../assets/imgs/moc.png">
             </ion-avatar>
-            <h2>Rossi Mario</h2>
-            <p>November 5, 2018</p>
+            <h2>{{review.recensore}}</h2>
+            <p>{{review.date}}</p>
             <p>
-              <ion-icon name="ios-star"></ion-icon>
-              <ion-icon name="ios-star"></ion-icon>
-              <ion-icon name="ios-star"></ion-icon>
-              <ion-icon name="ios-star"></ion-icon>
-              <ion-icon name="ios-star"></ion-icon>
+              <ion-icon name="ios-star" *ngFor='let stars of review.starsA'></ion-icon>
             </p>
           </ion-item>
 
           <ion-card-content>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-              ex ea
-              commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-              anim id est laborum.</p>
-          </ion-card-content>
-        </ion-card>
-
-
-        <ion-card>
-
-          <ion-item>
-            <ion-avatar item-start>
-              <img src="../../assets/imgs/moc.png">
-            </ion-avatar>
-            <h2>Bruni Pasquale</h2>
-            <p>Dicember 20, 2018</p>
-            <p>
-              <ion-icon name="ios-star"></ion-icon>
-              <ion-icon name="ios-star"></ion-icon>
-              <ion-icon name="ios-star"></ion-icon>
-              <ion-icon name="ios-star"></ion-icon>
-              <ion-icon name="ios-star"></ion-icon>
+            <p>{{review.text}}
             </p>
-          </ion-item>
-
-          <ion-card-content>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-              ex ea
-              commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-              anim id est laborum.</p>
           </ion-card-content>
         </ion-card>
       </div>
