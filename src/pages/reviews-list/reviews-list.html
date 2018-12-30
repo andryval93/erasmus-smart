@@ -9,8 +9,8 @@
   <ion-navbar>
     <ion-title>ui_rg</ion-title>
   </ion-navbar>
-
 </ion-header>
+
 <ion-content padding>
   <ion-grid>
     <ion-row>
@@ -51,7 +51,9 @@
         <h2>Recensioni per "{{University}}"</h2>
         
         <ion-card *ngFor='let review of Reviews'>
+          <!--<div *ngIf='review.length'>
 
+          </div>-->
           <ion-item>
             <ion-avatar item-start>
               <img src="../../assets/imgs/moc.png">

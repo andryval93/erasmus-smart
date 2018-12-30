@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { reviewService } from '../../providers/service/reviewsService'
+import { reviewService } from '../../providers/service/reviewsService';
+import { LoadingController } from 'ionic-angular';
+import { CssSelector } from '@angular/compiler';
 
 /**
  * Generated class for the ReviewsListPage page.
@@ -20,13 +22,16 @@ export class ReviewsListPage {
   Stars: any=0;
   University: any;
   private uni: String;
+  loaded: boolean=true;
 
-  allReviews: Array<{recensore: String, date: String, starsA: any, text: String,starsI: any }>
-  Reviews: Array<{recensore: String, date: String, starsA: any, text: String,starsI: any }>
+  allReviews: Array<{recensore: String, date: String, starsA: any, text: String,starsI: any}>
+  Reviews: Array<{recensore: String, date: String, starsA: any, text: String,starsI: any}>
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private DBIstance: reviewService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private DBIstance: reviewService, public loadingCtrl: LoadingController) {
+    this.presentLoading();
     this.uni=navParams.get("University");
     //const uni=localStorage.getItem("University");
+    console.log("loaded", this.loaded);
     this.allReviews=[];
     this.Reviews=[];
     this.fillUniversityReviews();
@@ -48,7 +53,6 @@ export class ReviewsListPage {
             }
           }
           for (let i = 0; i < data.length; i++) {
-            //console.log("University", data[i]["Reviews"]["Review"]["stars"].length);
             if(this.University===data[i]["university"]){
             this.allReviews.push(
               {
@@ -56,7 +60,7 @@ export class ReviewsListPage {
                 date: data[i]["Reviews"]["Review"]["date"],
                 starsA: data[i]["Reviews"]["Review"]["stars"],
                 text: data[i]["Reviews"]["Review"]["text"],
-                starsI: data[i]["Reviews"]["Review"]["stars"].length
+                starsI: data[i]["Reviews"]["Review"]["stars"].length,
               })
             }
           }
@@ -66,12 +70,12 @@ export class ReviewsListPage {
       .catch();
   }
 
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ReviewsListPage');
+  ionViewDidLoad(){
+    console.log('notloaded', this.loaded);
   }
 
   selectReviews(){
+    this.presentLoading();
     this.Reviews=[];
     for (let i = 0; i < this.allReviews.length; i++) {
       if(this.allReviews[i]["starsI"]>=this.Stars){
@@ -84,8 +88,18 @@ export class ReviewsListPage {
           text: this.allReviews[i]["text"],
           starsI: this.allReviews[i]["starsI"]
         })
-        //console.log("aaaUni", this.allReviews[i]["university"])
       }
     }
+    //console.log("loaded", "loadedok")
+  }
+
+  presentLoading() {
+    this.loadingCtrl.create({
+      spinner: "ios",
+      content: 'Please wait...',
+      duration: 1,
+      dismissOnPageChange: true,
+      cssClass: "my-loading"
+    }).present();
   }
 }

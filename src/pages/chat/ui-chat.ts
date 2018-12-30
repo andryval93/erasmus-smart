@@ -23,7 +23,6 @@ export class UiChatPage{
   type: string;
   status: string;
   email: string;
-  accepted: boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public DBInstance: AccountService) {
     this.email = localStorage.getItem("email");
@@ -49,16 +48,11 @@ export class UiChatPage{
                                                                         this.student.setSede(data.data().sede)
 
         }).then(()=>{
-          if(this.student.status == "pending"){
-            this.accepted = false;
-          } else {
-            this.accepted = true;
-          }
             this.items.push({
               name: this.student.name,
               surname: this.student.surname,
               sede: this.student.sede,
-              accepted: this.accepted
+              status: this.student.status
             });
           });
         console.log(this.students); 
@@ -141,10 +135,10 @@ export class UiChatPage{
     */
   }
   
-  openChat(nome, sede){
+  openChat(nome, surname, sede){
    // localStorage.setItem("nome", nome);
    // localStorage.setItem("sede", sede);
-    this.navCtrl.push(OpenchatPage, {"nome":nome, "sede":sede});
+    this.navCtrl.push(OpenchatPage, {"nome":nome, "surname":surname, "sede":sede});
   }
 }
 

@@ -30,6 +30,37 @@ page-openchat {
         text-align: right;
     }
 
+    #files{
+        position: absolute;
+        left: 25%;
+        width: 75%;
+        height: 90%;
+        color: black;
+        border-bottom-color: black;
+        border-bottom-style: solid;
+        text-align: right;
+    }
+
+    .chatButton{
+        color: white;
+        font-size: 25px;
+        background-color: rgb(66, 66, 66);
+        border-left: none;
+        position: absolute;
+        top: 90%;
+        left: 3%;
+    }
+
+    .filesButton{
+        color: white;
+        font-size: 25px;
+        background-color: rgb(66, 66, 66);
+        position: absolute;
+        border-left: none;
+        top: 90%;
+        left: 14%;
+    }
+
     .messageText{
         border-style: none;
         resize: none;   

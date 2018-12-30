@@ -15,8 +15,11 @@
         <td class="sede">
           {{item.sede}}
         </td>
-        <td *ngIf="item.accepted" class="send"><button ion-button round (click)="openChat(item.nome, item.sede)">
-          Invio Messaggio</button>
+        <td *ngIf="item.status == 'pending'" class="send">
+          <button ion-button round (click)="openChat(item.nome, item.surname, item.sede)">BluBla</button>
+        </td>
+        <td *ngIf="item.status != 'pending'" class="send">
+            <button ion-button round (click)="openChat(item.nome, item.surname, item.sede)">Invio Messaggio</button>
         </td>
       </tr>
     </table>
