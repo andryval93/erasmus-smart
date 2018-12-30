@@ -25,10 +25,12 @@
       <ion-select [(ngModel)]="Sedi" (ngModelChange)="onChangeSede(Sedi)">
 
         <ion-option *ngFor='let locationSede of locationsSedi'>{{locationSede.nome}}</ion-option>
-
+        <ion-option >Generic</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>
+
+
 
   <form
     [formGroup]='form'

@@ -4,6 +4,7 @@ import { NuovaDomandaServiceProvider } from '../../providers/service/nuovaDomand
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController } from 'ionic-angular';
 import { ServiceProvider } from '../../providers/service/stepperService';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 
 /**
@@ -88,7 +89,7 @@ export class NuovadomandaPage {
    Domande: { Domanda: any; Descrizione: any; };
    arrayDomande: any;
    temp: { Domanda: any; Descrizione: any; risposte: String[]; };
-   sceltaSede: any;
+   sceltaSede: String;
 
 
    constructor(public navCtrl: NavController,
@@ -218,7 +219,34 @@ export class NuovadomandaPage {
     */
 
    saveDocument(val: any): void {
-      this.arrayDomande = this.locations[0].Domande;
+      let idDocumento : string;
+      let stringaSede: string;
+     
+      for(let i=0; 1<this.locations.length; i++){
+         var str1 = new String( this.locations[i].Sede );
+         var index =str1.localeCompare(this.sceltaSede.substring(0));
+        
+console.log("localeCompare first :" + index );
+
+         if(str1.localeCompare(this.sceltaSede.substring(0)) == 0){
+             this.arrayDomande = this.locations[i].Domande;
+             idDocumento = this.locations[i].id;
+             break; 
+         } if(i == this.locations.length-1){
+             idDocumento = "Errori";
+             break;
+         }
+         console.log(this.locations[i].Sede);
+         console.log(this.sceltaSede);
+         console.log(idDocumento);
+         console.log(this.locations[i].id);
+      }
+      
+     // this.arrayDomande = this.locations[0].Domande;
+      // console.log(this.locations[1].Sede);
+
+
+
       this.temp = {
          Domanda: this.form.controls["Domanda"].value,
          Descrizione: this.form.controls["Descrizione"].value,
@@ -230,7 +258,7 @@ export class NuovadomandaPage {
       };
       this.arrayDomande = null;
       this.DBistance.addDocument(this._COLL,
-         this._DOC,
+         idDocumento,
          this._CONTENT)
          .then((data: any) => {
             console.dir(data);
