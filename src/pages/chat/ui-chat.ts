@@ -19,6 +19,7 @@ export class UiChatPage{
   account: Account;
   items: Array<any>;
   student: student;
+  students: Array<string>;
   type: string;
   status: string;
   email: string;
@@ -26,22 +27,43 @@ export class UiChatPage{
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public DBInstance: AccountService) {
     this.email = localStorage.getItem("email");
-    DBInstance.getAccount('Account', this.email, this.account);
-    for(var i = 0; i < this.account.students.length; i++){
-      DBInstance.getAccount('Account', this.account.students[i].email, this.student);
-      if(this.account.students[i].status == "pending"){
-        this.accepted = false;
-      } else {
-        this.accepted = true;
-      }
-        this.items.push({
-          name: this.student.name,
-          surname: this.student.surname,
-          sede: this.student.sede,
-          accepted: this.accepted
-        });
-      console.log(this.account.students[i].email); 
-    };
+    this.account = new Account();
+    this.student = new student();
+    this.students = [];
+    this.items = [];
+    DBInstance.getAccount('Account', "tienivince@live.it").then((data)=>{this.account.setEmail(data.data().email)
+                                                                         this.account.setName(data.data().name)
+                                                                         this.account.setSurname(data.data().surname)
+                                                                         this.account.setType(data.data().userType)
+                                                                         this.account.setStudents(data.data().students)
+    }).then(()=>{
+      console.log(this.account);
+      console.log(this.students);
+      console.log("ciao", this.account.getStudents());
+      this.students = this.account.getStudents();
+      console.log(this.students);
+      for(var i = 0; i < this.students.length; i++){
+        DBInstance.getAccount('Account', this.students[i]).then((data)=>{this.student.setName(data.data().name)
+                                                                        this.student.setSurname(data.data().surname)
+                                                                        this.student.setStatus(data.data().status)
+                                                                        this.student.setSede(data.data().sede)
+
+        }).then(()=>{
+          if(this.student.status == "pending"){
+            this.accepted = false;
+          } else {
+            this.accepted = true;
+          }
+            this.items.push({
+              name: this.student.name,
+              surname: this.student.surname,
+              sede: this.student.sede,
+              accepted: this.accepted
+            });
+          });
+        console.log(this.students); 
+      };
+    });
   }
     //caricamento della lista dal db 
    /* this.items.push({

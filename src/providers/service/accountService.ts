@@ -38,18 +38,17 @@ export class AccountService {
   constructor(public http: HttpClient) {
     console.log('Hello DatabaseProvider Provider');
     //this.DBistance = firebase.firestore();
-  this.DBistance =  SingletonDatabase.getInstance();
+    this.DBistance =  SingletonDatabase.getInstance();
   }
 
-  getAccount(collectionObj: string, docID: string, dataObj: any) : Promise<any>{
+  getAccount(collectionObj: string, docID: string) : Promise<any>{
       return new Promise((resolve, reject) => {
-        this.DBistance.collection(collectionObj).docID(docID).set(dataObj).then((data : any) => {
+        this.DBistance.collection(collectionObj).doc(docID).get().then((data : any) => {
             resolve(data);
         }).catch((error:any) => {
             reject(error);
         })
     })
-
   }
 
   /**

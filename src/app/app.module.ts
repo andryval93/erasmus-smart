@@ -43,6 +43,7 @@ import { RegistrazionePage } from '../pages/registrazione/registrazione';
 import { ENV } from '../config/env';
 import { ReviewsListPage } from '../pages/reviews-list/reviews-list';
 import { NuovaDomandaServiceProvider } from '../providers/service/nuovaDomandaService';
+import { AccountService } from '../providers/service/accountService';
 
 @NgModule({
   declarations: [
@@ -112,7 +113,7 @@ import { NuovaDomandaServiceProvider } from '../providers/service/nuovaDomandaSe
     RisposteQeaServiceProvider,
     RisposteQeaServiceProvider,
     NuovaDomandaServiceProvider,
-
+    AccountService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

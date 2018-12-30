@@ -19,6 +19,7 @@ import { LoginPage } from '../pages/login/login';
 import { RegistrazionePage } from '../pages/registrazione/registrazione';
 import { AngularFireModule } from 'angularfire2';
 import { ReviewMainPage } from '../pages/review-main/review-main';
+import { LoginService } from '../providers/service/loginService';
 
 
 
@@ -32,7 +33,7 @@ export class MyApp {
 
   pages: Array<{ title: string, component: any }>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public loginService: LoginService) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -49,8 +50,22 @@ export class MyApp {
       { title: 'NewsTEMP', component: NewNewsPage},
     ];
 
-    firebase.initializeApp(ENV.firebase);
+    //firebase.initializeApp(ENV.firebase);
     
+    this.loginService.afAuth.authState
+      .subscribe(
+        user => {
+          console.log("authenticated",user);
+          if (user) {
+            this.rootPage = HomePage;
+          } else {
+            this.rootPage = LoginPage;
+          }
+        },
+        () => {
+          this.rootPage = LoginPage;
+        }
+      );
   }
 
   initializeApp() {
