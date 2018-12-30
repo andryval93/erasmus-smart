@@ -64,8 +64,7 @@ export class ReviewMainPage {
     if (this.Sede != null && this.Sede != this.Comparison) {
       //console.log(this.Sede);
       localStorage.setItem("University", this.Sede);
-      this.navCtrl.push(ReviewsListPage, { University: this.Sede,
-      });
+      this.navCtrl.push(ReviewsListPage, { University: this.Sede});
     }
   }
 
