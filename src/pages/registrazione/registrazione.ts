@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController, IonicPage } from 'ionic-angular';
 import { RegistrationProvider } from '../../providers/service/registrationService'
 import { HomePage } from '../home/home';
+import  CodiceFiscale from 'codice-fiscale-js';
 //import CodiceFiscale from 'codice-fiscale-js'
 
 

@@ -19,10 +19,7 @@ import { RegistrazionePage } from '../pages/registrazione/registrazione';
 import { AngularFireModule } from 'angularfire2';
 import { ReviewMainPage } from '../pages/review-main/review-main';
 import { LoginService } from '../providers/service/loginService';
-<<<<<<< HEAD
 
-=======
->>>>>>> develop
 
 
 @Component({
@@ -40,7 +37,6 @@ export class MyApp {
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public loginService: LoginService) {
     this.initializeApp();
 
-<<<<<<< HEAD
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
@@ -71,10 +67,8 @@ export class MyApp {
           this.rootPage = LoginPage;
         }
       );
-=======
     //fix error - Firebase App named '[DEFAULT]' already exists (app/duplicate-app)
    // firebase.initializeApp(ENV.firebase);
->>>>>>> develop
   }
 
   initializeApp() {
