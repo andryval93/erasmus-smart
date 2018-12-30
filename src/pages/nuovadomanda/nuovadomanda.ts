@@ -219,30 +219,26 @@ export class NuovadomandaPage {
     */
 
    saveDocument(val: any): void {
-      let idDocumento : string;
+      let idDocumento: string;
       let stringaSede: string;
-     
-      for(let i=0; 1<this.locations.length; i++){
-         var str1 = new String( this.locations[i].Sede );
-         var index =str1.localeCompare(this.sceltaSede.substring(0));
-        
-console.log("localeCompare first :" + index );
 
-         if(str1.localeCompare(this.sceltaSede.substring(0)) == 0){
-             this.arrayDomande = this.locations[i].Domande;
-             idDocumento = this.locations[i].id;
-             break; 
-         } if(i == this.locations.length-1){
-             idDocumento = "Errori";
-             break;
+      for (let i = 0; 1 < this.locations.length; i++) {
+         var str1 = new String(this.locations[i].Sede);
+         if (str1.localeCompare(this.sceltaSede.substring(0)) == 0) {
+            this.arrayDomande = this.locations[i].Domande;
+            idDocumento = this.locations[i].id;
+            break;
+         } if (i == this.locations.length - 1) {
+            idDocumento = "Errori";
+            break;
          }
          console.log(this.locations[i].Sede);
          console.log(this.sceltaSede);
          console.log(idDocumento);
          console.log(this.locations[i].id);
       }
-      
-     // this.arrayDomande = this.locations[0].Domande;
+
+      // this.arrayDomande = this.locations[0].Domande;
       // console.log(this.locations[1].Sede);
 
 
