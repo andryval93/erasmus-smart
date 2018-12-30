@@ -30,43 +30,89 @@ lettera.
 							<ion-label floating>Nome</ion-label>
 							<ion-input type="text" name="name" required formControlName="name"></ion-input>
 						</ion-item>
+						<div class="error" *ngIf="form.get('name').hasError('required') && form.get('name').touched" style="color: red; padding-top: 0.2rem">
+							Campo obbligatorio
+						</div>
+						<div class="error" *ngIf="form.get('name').hasError('maxlength') && form.get('name').touched" style="color: red; padding-top: 0.2rem">
+							Massimo 16 caratteri
+						</div>
+						<div class="error" *ngIf="form.get('name').hasError('pattern') && form.get('name').touched" style="color: red; padding-top: 0.2rem">
+							Utilizzare solo lettere
+						</div>
 
 						<ion-item>
 							<ion-label floating>Cognome</ion-label>
 							<ion-input type="text" name="surname" required formControlName="surname"></ion-input>
 						</ion-item>
 						
-						<ion-grid radio-group ng-controller="genderController" formControlName="gender"> 
+						<div class="error" *ngIf="form.get('surname').hasError('required') && form.get('surname').touched" style="color: red; padding-top: 0.2rem">
+							Campo obbligatorio
+						</div>
+						<div class="error" *ngIf="form.get('surname').hasError('maxlength') && form.get('surname').touched" style="color: red; padding-top: 0.2rem">
+							Massimo 16 caratteri
+						</div>
+						<div class="error" *ngIf="form.get('surname').hasError('pattern') && form.get('surname').touched" style="color: red; padding-top: 0.2rem">
+							Utilizzare solo lettere
+						</div>
+
+						<ion-grid radio-group ng-controller="genderController" formControlName="gender">
 							<ion-row>
 								<ion-label>Sesso</ion-label>
 							</ion-row>
 							<ion-row>
 								<ion-col col-2>
 									<ion-label>M</ion-label>
-									<ion-radio value="male" checked="true" ng-model="gender"></ion-radio>
+									<ion-radio value="M" checked="true" ng-model="gender"></ion-radio>
 								</ion-col>
 								<ion-col col-2>
 									<ion-label>F</ion-label>
-									<ion-radio value="female" ng-model="gender"></ion-radio>
+									<ion-radio value="F" ng-model="gender"></ion-radio>
 								</ion-col>
 							</ion-row>
-						</ion-grid> 
-					
+						</ion-grid>
+
 						<ion-item>
 							<ion-label>Data di nascita</ion-label>
 							<ion-input type="date" name="birthDay" required formControlName="birthDay"></ion-input>
 						</ion-item>
+						<div class="error" *ngIf="form.get('birthDay').hasError('required') && form.get('birthDay').touched" style="color: red; padding-top: 0.2rem">
+							Campo obbligatorio
+						</div>
 					
 						<ion-item>
 							<ion-label floating>Luogo di Nascita</ion-label>
-							<ion-input type="text" name="birthPlace" required formControlName="birthPlace" ></ion-input>
+							<ion-input type="text" name="birthPlace" required formControlName="birthPlace"></ion-input>
 						</ion-item>
+
+						<div class="error" *ngIf="form.get('birthPlace').hasError('required') && form.get('birthPlace').touched" style="color: red; padding-top: 0.2rem">
+							Campo obbligatorio
+						</div>
+						<div class="error" *ngIf="form.get('birthPlace').hasError('maxlength') && form.get('birthPlace').touched" style="color: red; padding-top: 0.2rem">
+							Massimo 16 caratteri
+						</div>
+						<div class="error" *ngIf="form.get('birthPlace').hasError('pattern') && form.get('birthPlace').touched" style="color: red; padding-top: 0.2rem">
+							Utilizzare solo lettere
+						</div>
 
 						<ion-item>
 							<ion-label floating>Codice Fiscale</ion-label>
 							<ion-input type="text" name="fiscalCode" formControlName="fiscalCode" required></ion-input>
 						</ion-item>
 						
+						<div class="error" *ngIf="form.get('fiscalCode').hasError('required') && form.get('fiscalCode').touched" style="color: red; padding-top: 0.2rem">
+							Campo obbligatorio
+						</div>
+						<div id="errorCF" style="color: red; padding-top: 0.2rem">
+							{{ errorMessageCF }}
+						</div>
+
+						<div class="error" *ngIf="form.get('fiscalCode').hasError('maxlength') && form.get('fiscalCode').touched" style="color: red; padding-top: 0.2rem">
+							Massimo 16 caratteri
+						</div>
+						<div class="error" *ngIf="form.get('fiscalCode').hasError('pattern') && form.get('fiscalCode').touched" style="color: red; padding-top: 0.2rem">
+							Utilizzare solo lettere e numeri
+						</div>
+
 					</ion-list>
 				</ion-col>
 
@@ -74,7 +120,7 @@ lettera.
 				<ion-col>
 					<ion-list>
 						<ion-list-header>Dati Utente</ion-list-header>
-						
+
 						<ion-grid radio-group ng-controller="accountTypeController" formControlName="userType">
 							<ion-row>
 								<ion-label>Tipo Account</ion-label>
@@ -89,34 +135,56 @@ lettera.
 									<ion-radio value="tutor" ng-model="accountType"></ion-radio>
 								</ion-col>
 							</ion-row>
-						</ion-grid> 
+						</ion-grid>
 
 						<ion-item>
 							<ion-label floating>E-Mail</ion-label>
 							<ion-input type="text" name="email" formControlName="email" required></ion-input>
 						</ion-item>
 
+						<div class="error" *ngIf="form.get('email').hasError('required') && form.get('email').touched" style="color: red; padding-top: 0.2rem">
+							Campo obbligatorio
+						</div>
+
+						<div class="error" *ngIf="form.get('email').hasError('pattern') && form.get('email').touched" style="color: red; padding-top: 0.2rem">
+							Formato email non valido
+						</div>
+
 						<ion-item>
 							<ion-label floating>Password</ion-label>
 							<ion-input type="password" name="password" formControlName="password" required></ion-input>
 						</ion-item>
 
+						<div class="error" *ngIf="form.get('password').hasError('required') && form.get('password').touched" style="color: red; padding-top: 0.2rem">
+							Campo obbligatorio
+						</div>
+						<div class="error" *ngIf="form.get('password').hasError('minlength') && form.get('password').touched" style="color: red; padding-top: 0.2rem">
+							Minimo 6 caratteri
+						</div>
+						<div class="error" *ngIf="form.get('password').hasError('pattern') && form.get('password').touched" style="color: red; padding-top: 0.2rem">
+							Utilizzare solo lettere e numeri
+						</div>
+
 						<ion-item>
 							<ion-label floating>Conferma Password</ion-label>
 							<ion-input type="password" name="confirmPassword" formControlName="confirmPassword"></ion-input>
 						</ion-item>
-					
+
+						<div id="errorCF" style="color: red; padding-top: 0.2rem">
+							{{ errorMessagePassword }}
+						</div>
+
 						<ion-item>
 							<ion-label floating>License</ion-label>
 							<ion-checkbox formControlName="privacyCheck"></ion-checkbox>
 							<ion-label floating>Acconsento ai trattamenti dei dati</ion-label>
 						</ion-item>
-						
+
 					</ion-list>
 
 				</ion-col>
-				
-			</ion-row> 
+
+			</ion-row>
 
 		</ion-grid>
 

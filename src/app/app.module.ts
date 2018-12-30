@@ -41,6 +41,7 @@ import { LoginService } from '../providers/service/loginService';
 import { RegistrazionePage } from '../pages/registrazione/registrazione';
 import { ENV } from '../config/env';
 import { ReviewsListPage } from '../pages/reviews-list/reviews-list';
+import { RegistrationProvider } from '../providers/service/registrationService';
 
 @NgModule({
   declarations: [
@@ -104,7 +105,7 @@ import { ReviewsListPage } from '../pages/reviews-list/reviews-list';
     QeaServiceProvider,
     LoginService,
     AngularFireAuth,
-
+    RegistrationProvider,
     RisposteQeaServiceProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
