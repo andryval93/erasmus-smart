@@ -44,7 +44,7 @@ lettera.
 							<ion-label floating>Cognome</ion-label>
 							<ion-input type="text" name="surname" required formControlName="surname"></ion-input>
 						</ion-item>
-						
+
 						<div class="error" *ngIf="form.get('surname').hasError('required') && form.get('surname').touched" style="color: red; padding-top: 0.2rem">
 							Campo obbligatorio
 						</div>
@@ -78,7 +78,10 @@ lettera.
 						<div class="error" *ngIf="form.get('birthDay').hasError('required') && form.get('birthDay').touched" style="color: red; padding-top: 0.2rem">
 							Campo obbligatorio
 						</div>
-					
+						<div class="error" style="color: red; padding-top: 0.2rem">
+							{{ errorMessageBirthDay }}
+						</div>
+
 						<ion-item>
 							<ion-label floating>Luogo di Nascita</ion-label>
 							<ion-input type="text" name="birthPlace" required formControlName="birthPlace"></ion-input>
@@ -102,7 +105,7 @@ lettera.
 							<ion-label floating>Codice Fiscale</ion-label>
 							<ion-input type="text" name="fiscalCode" formControlName="fiscalCode" required></ion-input>
 						</ion-item>
-						
+
 						<div class="error" *ngIf="form.get('fiscalCode').hasError('required') && form.get('fiscalCode').touched" style="color: red; padding-top: 0.2rem">
 							Campo obbligatorio
 						</div>
@@ -179,9 +182,10 @@ lettera.
 						</div>
 
 						<ion-checkbox formControlName="privacyCheck"> </ion-checkbox>
-							Acconsento ai trattamenti dei dati
-					
-						<div class="error" *ngIf="form.get('privacyCheck').hasError('required') && form.get('privacyCheck').touched" style="color: red; padding-top: 0.2rem">
+						Acconsento ai trattamenti dei dati
+
+						<div class="error" *ngIf="form.get('privacyCheck').hasError('required') && form.get('privacyCheck').touched"
+						 style="color: red; padding-top: 0.2rem">
 							Accettare le condizioni sulla privacy
 						</div>
 

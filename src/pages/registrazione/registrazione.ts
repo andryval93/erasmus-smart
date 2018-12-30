@@ -49,8 +49,11 @@ export class RegistrazionePage {
 		this.data = this.form.value;
 		let splittedBirth = this.data.birthDay.split("-");
 
+		//Verifica che l'utente sia maggiorenne o che abbia al più 100 anni
+		this.verifyBirthDay(splittedBirth[0])
+
 		//Verifica che la città inserita sia corretta
-		this.verifyBirthPlace(this.data.birthPlace)
+		this.verifyBirthPlace(this.data.birthPlace)		
 
 		//Verifica i validators  
 		if (this.form.status == "INVALID") {
@@ -138,5 +141,18 @@ export class RegistrazionePage {
 		}
 		else
 			this.errorMessageBirthPlace = undefined
+	}
+
+	private verifyBirthDay(bb) {
+		
+		let today = new Date();
+		let thisYear = today.getFullYear();
+
+		if (!(bb <= thisYear-18 && bb >= thisYear-50)) {
+			this.errorMessageBirthDay = "Inserire un anno compreso tra " + (thisYear-18) + " e " + (thisYear-50)
+			return
+		}
+		else
+			this.errorMessageBirthDay = undefined
 	}
 }
