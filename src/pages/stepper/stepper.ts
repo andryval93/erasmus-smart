@@ -3,7 +3,7 @@ import { IonicPage, NavController} from 'ionic-angular';
 import { ServiceProvider } from '../../providers/service/stepperService';
 import { InserisciRecensionePage } from '../inserisci-recensione/inserisci-recensione';
 import { HomePage } from '../home/home';
-
+import { LoginService } from '../../providers/service/loginService';
 
 
 /**
@@ -31,6 +31,11 @@ export class StepperPage {
    sceltaTutor: any;
    sceltaSede: any;
    hideConferma: boolean;
+   arrayAccounts: any;
+   locationsAccount: any;
+   temp: { status: string; };
+   _CONTENT2: { students: any; };
+ 
   
    
    onChangeTutor(SelectedValue: any){
@@ -89,7 +94,8 @@ export class StepperPage {
   mode: string;
    
   constructor(public navCtrl        : NavController,
-              private DBistance     : ServiceProvider){
+              private DBistance     : ServiceProvider,
+              private  loginService  : LoginService    ){
                 this.mode = "horizontal";
               this.hide=true;
              
@@ -133,19 +139,14 @@ export class StepperPage {
       this.DBistance.getDocuments(this._COLL)
       .then((data) =>
       {
-       // IF we don't have any documents then the collection doesn't exist
-         // so we create it!
-         if(data.length === 0)
-         {
-            this.generateCollectionAndDocument();
-         }
-         // Otherwise the collection does exist and we assign the returned
-         // documents to the public property of locations so this can be
-         // iterated through in the component template
-         else
-         {
-            this.locations = data;
-         }
+            this.locations = data; 
+      })
+      .catch();
+
+      this.DBistance.getDocuments("Account")
+      .then((data) =>
+      {
+            this.locationsAccount = data; 
       })
       .catch();
    }
@@ -158,19 +159,78 @@ export class StepperPage {
     * @method generateCollectionAndDocument
     * @return {none}
     */
-   generateCollectionAndDocument() : void
-   {
-      this.DBistance.createAndPopulateDocument(this._COLL,
-                                        this._DOC,
-                                         this._CONTENT)
-      .then((data : any) =>
-      {
+
+ 
+ saveDocument(): void {
+
+   /*controlli negli ngIF */
+   this.hide=false;
+   this.show=true;
+   this.hideConferma=false;
+ /*                  */ 
+
+   let idDocumento: string;
+   
+   var email= new String( this.loginService.user.email);
+  for (let i = 0; i < this.locationsAccount.length + 1; i++) {
+      var str1 = new String(this.locationsAccount[i].name + " " + this.locationsAccount[i].surname);
+      
+      console.log(str1 + "nome + cognome Tutor");
+      console.log (str1.localeCompare(this.sceltaTutor.substring(0)) + " comparison" );
+      console.log(this.locationsAccount[i].students);
+      if (str1.localeCompare(this.sceltaTutor.substring(0)) == 0) {
+       
+         this.arrayAccounts = this.locationsAccount[i].students;
+         
+         idDocumento = this.locationsAccount[i].id;
+         break;
+      } 
+     /* if (i == this.locations.length) {
+         idDocumento = "Errori";
+         break;
+      }*/
+      
+
+   // this.arrayDomande = this.locations[0].Domande;
+   // console.log(this.locations[1].Sede);
+
+
+
+  /* this.temp = {
+          status : "pending",
+   }
+   this.arrayAccounts.push(this.temp);*/
+   
+  // var email = localStorage.getItem("email");
+   console.log(email + "email Loggato")
+   this._CONTENT = {
+      status : "pending",
+      sede :  this.sceltaSede
+   };
+  
+   /* aggiungo status e sede a uno studente */ 
+   this.DBistance.addDocument("Account",
+       email.substring(0),
+      this._CONTENT)
+      .then((data: any) => {
          console.dir(data);
       })
-      .catch((error : any) =>
-      {
+      .catch((error: any) => {
          console.dir(error);
       });
- }
+   }
+/* aggiorno la lista di studenti in attesa */
 
+   this.arrayAccounts.push(email.substring(0));
+      this._CONTENT2 = {
+        students : this.arrayAccounts,
+      };
+
+
+      this.DBistance.addDocument("Account",
+      idDocumento,
+     this._CONTENT2)
+   
+
+   }
 }

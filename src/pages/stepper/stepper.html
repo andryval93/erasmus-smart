@@ -115,7 +115,7 @@
           <ion-label>Tutor</ion-label>
           <ion-select #newSelect [(ngModel)]="tutors" (ngModelChange)="onChangeTutor(tutors)">
 
-            <ion-option value="Tutor1">Tutor1</ion-option>
+            <ion-option value="Aldo Baglio">Aldo Baglio</ion-option>
             <ion-option value="Tutor2">Tutor2</ion-option>
 
           </ion-select>
@@ -129,7 +129,7 @@
         </ion-item>
         <div class="Conferma-contenitore">
 
-          <button (click)="onClickMe(tutors)" *ngIf="hideConferma" ion-button small class="Conferma-Step4">Conferma</button>
+          <button (click)="saveDocument(tutors)" *ngIf="hideConferma" ion-button small class="Conferma-Step4">Conferma</button>
           <p class="Richiesta-in-attesa" *ngIf="show"> Richiesta in attesa di accettazione </p>
 
         </div>
