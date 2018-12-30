@@ -94,6 +94,10 @@ lettera.
 							Utilizzare solo lettere
 						</div>
 
+						<div class="error" style="color: red; padding-top: 0.2rem">
+							{{ errorMessageBirthPlace }}
+						</div>
+
 						<ion-item>
 							<ion-label floating>Codice Fiscale</ion-label>
 							<ion-input type="text" name="fiscalCode" formControlName="fiscalCode" required></ion-input>
@@ -102,7 +106,7 @@ lettera.
 						<div class="error" *ngIf="form.get('fiscalCode').hasError('required') && form.get('fiscalCode').touched" style="color: red; padding-top: 0.2rem">
 							Campo obbligatorio
 						</div>
-						<div id="errorCF" style="color: red; padding-top: 0.2rem">
+						<div class="error" style="color: red; padding-top: 0.2rem">
 							{{ errorMessageCF }}
 						</div>
 
@@ -170,15 +174,16 @@ lettera.
 							<ion-input type="password" name="confirmPassword" formControlName="confirmPassword"></ion-input>
 						</ion-item>
 
-						<div id="errorCF" style="color: red; padding-top: 0.2rem">
+						<div class="error" style="color: red; padding-top: 0.2rem">
 							{{ errorMessagePassword }}
 						</div>
 
-						<ion-item>
-							<ion-label floating>License</ion-label>
-							<ion-checkbox formControlName="privacyCheck"></ion-checkbox>
-							<ion-label floating>Acconsento ai trattamenti dei dati</ion-label>
-						</ion-item>
+						<ion-checkbox formControlName="privacyCheck"> </ion-checkbox>
+							Acconsento ai trattamenti dei dati
+					
+						<div class="error" *ngIf="form.get('privacyCheck').hasError('required') && form.get('privacyCheck').touched" style="color: red; padding-top: 0.2rem">
+							Accettare le condizioni sulla privacy
+						</div>
 
 					</ion-list>
 
