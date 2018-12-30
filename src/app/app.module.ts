@@ -42,6 +42,7 @@ import { LoginService } from '../providers/service/loginService';
 import { RegistrazionePage } from '../pages/registrazione/registrazione';
 import { ENV } from '../config/env';
 import { ReviewsListPage } from '../pages/reviews-list/reviews-list';
+import { RegistrationProvider } from '../providers/service/registrationService';
 import { NuovaDomandaServiceProvider } from '../providers/service/nuovaDomandaService';
 
 @NgModule({
@@ -106,6 +107,8 @@ import { NuovaDomandaServiceProvider } from '../providers/service/nuovaDomandaSe
     QeaServiceProvider,
     LoginService,
     AngularFireAuth,
+    RegistrationProvider,
+    RisposteQeaServiceProvider,
     reviewService,
     RisposteQeaServiceProvider,
     reviewService,
