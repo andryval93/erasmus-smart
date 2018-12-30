@@ -11,7 +11,6 @@ import { QeaPage } from '../pages/qea/qea';
 import { UiChatPage } from '../pages/chat/ui-chat';
 import { NewNewsPage } from '../pages/new-news/new-news';
 
-
 import { ENV } from '../config/env';
 import firebase from 'firebase';
 
@@ -19,20 +18,23 @@ import { LoginPage } from '../pages/login/login';
 import { RegistrazionePage } from '../pages/registrazione/registrazione';
 import { AngularFireModule } from 'angularfire2';
 import { ReviewMainPage } from '../pages/review-main/review-main';
+import { LoginService } from '../providers/service/loginService';
 
 
 
 @Component({
   templateUrl: 'app.html'
 })
+
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   
-  rootPage: any = HomePage;
+  //root page
+  rootPage: any;
 
   pages: Array<{ title: string, component: any }>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public loginService: LoginService) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -49,12 +51,71 @@ export class MyApp {
       { title: 'NewsTEMP', component: NewNewsPage},
     ];
 
-    firebase.initializeApp(ENV.firebase);
+    //firebase.initializeApp(ENV.firebase);
     
+    this.loginService.afAuth.authState
+      .subscribe(
+        user => {
+          console.log("authenticated",user);
+          if (user) {
+            this.rootPage = HomePage;
+          } else {
+            this.rootPage = LoginPage;
+          }
+        },
+        () => {
+          this.rootPage = LoginPage;
+        }
+      );
+    //fix error - Firebase App named '[DEFAULT]' already exists (app/duplicate-app)
+   // firebase.initializeApp(ENV.firebase);
   }
 
   initializeApp() {
+    
     this.platform.ready().then(() => {
+      
+      this.loginService.afAuth.authState
+      .subscribe(
+        user => {
+          console.log("authenticated",user);
+
+          //user logged
+          if (user != null) {
+
+            this.rootPage = HomePage;
+
+            this.pages = [
+              { title: 'Home', component: HomePage },
+              { title: 'News', component: NewsPage },
+              { title: 'Q&A', component: QeaPage},
+              { title: 'Recensioni', component: ReviewMainPage},
+              { title: 'Stepper', component: StepperPage },
+              { title: 'Chat', component: UiChatPage },
+              { title: 'NewsTEMP', component: NewNewsPage},
+            ];
+          } 
+          
+          //user unlogged
+          else {
+
+            this.rootPage = LoginPage;
+            
+            this.pages = [
+              { title: 'Home', component: HomePage },
+              { title: 'Login', component: LoginPage},
+              { title: 'News', component: NewsPage },
+              { title: 'Q&A', component: QeaPage},
+              { title: 'Recensioni', component: ReviewMainPage},
+              { title: 'NewsTEMP', component: NewNewsPage},
+            ];
+          }
+        },
+        () => {
+          this.rootPage = LoginPage;
+        }
+      );
+
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();

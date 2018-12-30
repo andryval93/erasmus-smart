@@ -5,7 +5,34 @@ import { List } from "lodash";
     name: string;
     surname: string;
     type: string;
-    students: Array<any>;
+    students: Array<string>;
+
+    setEmail(email: string){
+      this.email = email;
+    }
+
+    setName(name: string){
+      this.name = name;
+    }
+
+    setSurname(surname: string){
+      this.surname = surname;
+    }
+
+    setType(type: string){
+      this.type = type;
+    }
+
+    setStudents(students: Array<string>){
+      this.students = students;
+    }
+    getName(){
+      return this.name;
+    }
+    
+    getStudents(){
+      return this.students;
+    }
   }
   
   export class Message {
@@ -15,9 +42,15 @@ import { List } from "lodash";
     receiver: string;
   }
 
-  export class student{
-    name: string;
-    surname: string;
+  export class student extends Account{
     sede: string;
     status: string;
+
+    setSede(sede: string){
+      this.sede = sede;
+    }
+
+    setStatus(status: string){
+      this.status = status;
+    }
   }
