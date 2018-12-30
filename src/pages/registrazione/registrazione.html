@@ -15,125 +15,190 @@ lettera.
 -->
 
 <ion-header>
-  <header-es [title]="title"></header-es>
+	<header-es [title]="title"></header-es>
 </ion-header>
-
 <ion-content padding>
-  <ion-grid>
-    <ion-row>
+	<form (ngSubmit)="signup()" [formGroup]="form">
+		<ion-grid>
+			<ion-row>
 
-    <ion-col class="boxForm">
-      <ion-list>
-      <ion-list-header class="boxFormHeader">Dati Personali</ion-list-header>
+				<ion-col>
+					<ion-list>
+						<ion-list-header>Dati Personali</ion-list-header>
 
-      <ion-item class="boxFormItem">
-        <ion-label color="es_white">Nome</ion-label>
-        <ion-input type="text" name="name" required></ion-input>
-      </ion-item>
+						<ion-item>
+							<ion-label floating>Nome</ion-label>
+							<ion-input type="text" name="name" required formControlName="name"></ion-input>
+						</ion-item>
+						<div class="error" *ngIf="form.get('name').hasError('required') && form.get('name').touched" style="color: red; padding-top: 0.2rem">
+							Campo obbligatorio
+						</div>
+						<div class="error" *ngIf="form.get('name').hasError('maxlength') && form.get('name').touched" style="color: red; padding-top: 0.2rem">
+							Massimo 16 caratteri
+						</div>
+						<div class="error" *ngIf="form.get('name').hasError('pattern') && form.get('name').touched" style="color: red; padding-top: 0.2rem">
+							Utilizzare solo lettere
+						</div>
 
-      <ion-item class="boxFormItem">
-        <ion-label color="es_white">Cognome</ion-label>
-        <ion-input type="text" name="surname" required></ion-input>
-      </ion-item>
+						<ion-item>
+							<ion-label floating>Cognome</ion-label>
+							<ion-input type="text" name="surname" required formControlName="surname"></ion-input>
+						</ion-item>
+						
+						<div class="error" *ngIf="form.get('surname').hasError('required') && form.get('surname').touched" style="color: red; padding-top: 0.2rem">
+							Campo obbligatorio
+						</div>
+						<div class="error" *ngIf="form.get('surname').hasError('maxlength') && form.get('surname').touched" style="color: red; padding-top: 0.2rem">
+							Massimo 16 caratteri
+						</div>
+						<div class="error" *ngIf="form.get('surname').hasError('pattern') && form.get('surname').touched" style="color: red; padding-top: 0.2rem">
+							Utilizzare solo lettere
+						</div>
 
-      <ion-item class="boxFormItem">
-        <ion-label color="es_white">Sesso</ion-label>
-      </ion-item>
+						<ion-grid radio-group ng-controller="genderController" formControlName="gender">
+							<ion-row>
+								<ion-label>Sesso</ion-label>
+							</ion-row>
+							<ion-row>
+								<ion-col col-2>
+									<ion-label>M</ion-label>
+									<ion-radio value="M" checked="true" ng-model="gender"></ion-radio>
+								</ion-col>
+								<ion-col col-2>
+									<ion-label>F</ion-label>
+									<ion-radio value="F" ng-model="gender"></ion-radio>
+								</ion-col>
+							</ion-row>
+						</ion-grid>
 
-      <ion-grid  class="boxFormRadioGrid" radio-group>
-        <ion-row>
-        <ion-col col-1>
-          <div class="boxFormRadioDiv">M</div>
-        </ion-col>
-        <ion-col col-3>
-          <ion-radio value="male" checked="true" color="es_white"></ion-radio>
-        </ion-col>
-        
-        <ion-col col-1>
-          <div class="boxFormRadioDiv">F</div>
-        </ion-col>
-        <ion-col col-1>
-          <ion-radio value="female" color="es_white"></ion-radio>
-        </ion-col>
-        </ion-row>
-      </ion-grid>
-      
-      <ion-item class="boxFormItem">
-        <ion-label color="es_white">Data di nascita</ion-label>
-        <ion-input type="date" name="birthDate" required></ion-input>
-      </ion-item>
+						<ion-item>
+							<ion-label>Data di nascita</ion-label>
+							<ion-input type="date" name="birthDay" required formControlName="birthDay"></ion-input>
+						</ion-item>
+						<div class="error" *ngIf="form.get('birthDay').hasError('required') && form.get('birthDay').touched" style="color: red; padding-top: 0.2rem">
+							Campo obbligatorio
+						</div>
+					
+						<ion-item>
+							<ion-label floating>Luogo di Nascita</ion-label>
+							<ion-input type="text" name="birthPlace" required formControlName="birthPlace"></ion-input>
+						</ion-item>
 
-      <ion-item class="boxFormItem">
-        <ion-label color="es_white">Luogo di Nascita</ion-label>
-        <ion-input type="text" name="birthPlace" required></ion-input>
-      </ion-item>
+						<div class="error" *ngIf="form.get('birthPlace').hasError('required') && form.get('birthPlace').touched" style="color: red; padding-top: 0.2rem">
+							Campo obbligatorio
+						</div>
+						<div class="error" *ngIf="form.get('birthPlace').hasError('maxlength') && form.get('birthPlace').touched" style="color: red; padding-top: 0.2rem">
+							Massimo 16 caratteri
+						</div>
+						<div class="error" *ngIf="form.get('birthPlace').hasError('pattern') && form.get('birthPlace').touched" style="color: red; padding-top: 0.2rem">
+							Utilizzare solo lettere
+						</div>
 
-      <ion-item class="boxFormItem">
-        <ion-label color="es_white">Codice Fiscale</ion-label>
-        <ion-input type="text" name="fiscalCode" required></ion-input>
-      </ion-item>
-      </ion-list>
-    </ion-col>
+						<ion-item>
+							<ion-label floating>Codice Fiscale</ion-label>
+							<ion-input type="text" name="fiscalCode" formControlName="fiscalCode" required></ion-input>
+						</ion-item>
+						
+						<div class="error" *ngIf="form.get('fiscalCode').hasError('required') && form.get('fiscalCode').touched" style="color: red; padding-top: 0.2rem">
+							Campo obbligatorio
+						</div>
+						<div id="errorCF" style="color: red; padding-top: 0.2rem">
+							{{ errorMessageCF }}
+						</div>
+
+						<div class="error" *ngIf="form.get('fiscalCode').hasError('maxlength') && form.get('fiscalCode').touched" style="color: red; padding-top: 0.2rem">
+							Massimo 16 caratteri
+						</div>
+						<div class="error" *ngIf="form.get('fiscalCode').hasError('pattern') && form.get('fiscalCode').touched" style="color: red; padding-top: 0.2rem">
+							Utilizzare solo lettere e numeri
+						</div>
+
+					</ion-list>
+				</ion-col>
 
 
-    <ion-col class="boxForm">
-      <ion-list>
-      <ion-list-header class="boxFormHeader">Dati Utente</ion-list-header>
-      
-      <ion-item class="boxFormItem">
-        <ion-label color="es_white">Tipo Account</ion-label>
-      </ion-item>
+				<ion-col>
+					<ion-list>
+						<ion-list-header>Dati Utente</ion-list-header>
 
-      <ion-grid  class="boxFormRadioGrid" radio-group>
-        <ion-row>
-        <ion-col col-2>
-          <div class="boxFormRadioDiv">Studente</div>
-        </ion-col>
-        <ion-col col-3>
-          <ion-radio value="student" checked="true" color="es_white"></ion-radio>
-        </ion-col>
-        
-        <ion-col col-2>
-          <div class="boxFormRadioDiv">Docente</div>
-        </ion-col>
-        <ion-col col-1>
-          <ion-radio value="tutor" color="es_white"></ion-radio>
-        </ion-col>
-        </ion-row>
-      </ion-grid>
+						<ion-grid radio-group ng-controller="accountTypeController" formControlName="userType">
+							<ion-row>
+								<ion-label>Tipo Account</ion-label>
+							</ion-row>
+							<ion-row>
+								<ion-col col-2>
+									<ion-label>Studente</ion-label>
+									<ion-radio value="student" ng-model="accountType" checked="true"></ion-radio>
+								</ion-col>
+								<ion-col col-2>
+									<ion-label>Docente</ion-label>
+									<ion-radio value="tutor" ng-model="accountType"></ion-radio>
+								</ion-col>
+							</ion-row>
+						</ion-grid>
 
-      <ion-item class="boxFormItem">
-        <ion-label color="es_white">E-Mail</ion-label>
-        <ion-input type="text" name="email" required></ion-input>
-      </ion-item>
+						<ion-item>
+							<ion-label floating>E-Mail</ion-label>
+							<ion-input type="text" name="email" formControlName="email" required></ion-input>
+						</ion-item>
 
-      <ion-item class="boxFormItem">
-        <ion-label color="es_white">Password</ion-label>
-        <ion-input type="password" name="password" required></ion-input>
-      </ion-item>
-      
-      <ion-item class="boxFormItem">
-        <ion-label color="es_white">Conferma Password</ion-label>
-        <ion-input type="password" name="confirmPassword" required></ion-input>
-      </ion-item>
+						<div class="error" *ngIf="form.get('email').hasError('required') && form.get('email').touched" style="color: red; padding-top: 0.2rem">
+							Campo obbligatorio
+						</div>
 
-      <ion-item class="boxFormItem">
-        <ion-label color="es_white">Acconsento al trattamento dei dati personali</ion-label>
-        <ion-checkbox color="es_white"></ion-checkbox>
-      </ion-item>
-      </ion-list>
-    </ion-col>
-    
-    </ion-row>
-  </ion-grid>
+						<div class="error" *ngIf="form.get('email').hasError('pattern') && form.get('email').touched" style="color: red; padding-top: 0.2rem">
+							Formato email non valido
+						</div>
 
-  <div>
-    <button ion-button id="registrationButton" type="submit">Registrati</button>
-  </div>
+						<ion-item>
+							<ion-label floating>Password</ion-label>
+							<ion-input type="password" name="password" formControlName="password" required></ion-input>
+						</ion-item>
+
+						<div class="error" *ngIf="form.get('password').hasError('required') && form.get('password').touched" style="color: red; padding-top: 0.2rem">
+							Campo obbligatorio
+						</div>
+						<div class="error" *ngIf="form.get('password').hasError('minlength') && form.get('password').touched" style="color: red; padding-top: 0.2rem">
+							Minimo 6 caratteri
+						</div>
+						<div class="error" *ngIf="form.get('password').hasError('pattern') && form.get('password').touched" style="color: red; padding-top: 0.2rem">
+							Utilizzare solo lettere e numeri
+						</div>
+
+						<ion-item>
+							<ion-label floating>Conferma Password</ion-label>
+							<ion-input type="password" name="confirmPassword" formControlName="confirmPassword"></ion-input>
+						</ion-item>
+
+						<div id="errorCF" style="color: red; padding-top: 0.2rem">
+							{{ errorMessagePassword }}
+						</div>
+
+						<ion-item>
+							<ion-label floating>License</ion-label>
+							<ion-checkbox formControlName="privacyCheck"></ion-checkbox>
+							<ion-label floating>Acconsento ai trattamenti dei dati</ion-label>
+						</ion-item>
+
+					</ion-list>
+
+				</ion-col>
+
+			</ion-row>
+
+		</ion-grid>
+
+		<ion-item>
+			<div class="form-error">{{signupError}}</div>
+
+			<button ion-button full type="submit">Sign up</button>
+
+		</ion-item>
+	</form>
 </ion-content>
 
 <ion-footer>
-  <footer-es></footer-es>
+	<footer-es></footer-es>
 </ion-footer>
 
 

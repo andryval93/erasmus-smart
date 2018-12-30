@@ -78,7 +78,6 @@ export class NuovaDomandaServiceProvider {
           obj.push({
            id             : doc.id,
            Domande        : doc.data().Domande,
-           risposte       : doc.data().risposte,
            Sede           : doc.data().Sede
           
           }); 
