@@ -3,9 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController, IonicPage } from 'ionic-angular';
 import { RegistrationProvider } from '../../providers/service/registrationService'
 import { HomePage } from '../home/home';
-import  CodiceFiscale from 'codice-fiscale-js';
-//import CodiceFiscale from 'codice-fiscale-js'
-
+import CodiceFiscale from 'codice-fiscale-js'
+import { COMUNI } from 'codice-fiscale-js/src/geo-data.js'
 
 @IonicPage()
 
@@ -14,7 +13,7 @@ import  CodiceFiscale from 'codice-fiscale-js';
 	templateUrl: './registrazione.html'
 })
 export class RegistrazionePage {
-	
+
 	signupError: string;
 	form: FormGroup;
 	public gender: any;
@@ -22,6 +21,8 @@ export class RegistrazionePage {
 	cf: any;
 	errorMessageCF: string;
 	errorMessagePassword: string;
+	errorMessageBirthPlace: string;
+	errorMessageBirthDay: string;
 
 	constructor(
 		private navCtrl: NavController,
@@ -48,14 +49,19 @@ export class RegistrazionePage {
 		this.data = this.form.value;
 		let splittedBirth = this.data.birthDay.split("-");
 
+		//Verifica che la città inserita sia corretta
+		this.verifyBirthPlace(this.data.birthPlace)
+
+		//Verifica i validators  
 		if (this.form.status == "INVALID") {
 			this.markFormGroupTouched(this.form);
-			let error = this.form.getError;
-			//console.log(this.form.status + ", " + this.form.)
+			console.log("Form Invalido:", this.form)
 			return;
 		}
 
-		/* TESTATO e FUNZIONANTE CON BGLLDA80B11H703B ovvero Aldo Baglio M 11/02/1980 Salerno */
+		//Calcola il codice fiscale con i dati inseriti
+		/* TESTATO e FUNZIONANTE CON BGLLDA80B11H703B ovvero Aldo Baglio M 11/02/1980 Salerno
+			e PLACCC98B22F839E Cicco Paolo M 22/02/1998 Napoli  */
 		this.cf = new CodiceFiscale({
 			name: this.data.name,
 			surname: this.data.surname,
@@ -66,20 +72,27 @@ export class RegistrazionePage {
 			birthplace: this.data.birthPlace
 		});
 
-		if (!(this.data.fiscalCode.substring(0,15) == this.cf.code.substring(0,15))) {
+
+		//Verifica che il codice fiscale inserito è uguale a quello generato
+		if (!(this.data.fiscalCode.substring(0, 15) == this.cf.code.substring(0, 15))) {
 			console.log("CF INVALIDO!!!")
 			this.errorMessageCF = "Codice Fiscale non valido"
 			return;
 		}
 		else
-			console.log("CF VALIDO !!!") 
+			console.log("CF VALIDO !!!")
+		this.errorMessageCF = undefined
 
+		//Verifica che le due password inserite sono uguali
 		if (this.data.password != this.data.confirmPassword) {
 			console.log("PASS DIVERSE!!!");
 			this.errorMessagePassword = "Password diverse, inserire la stessa password"
 			return;
 		}
+		else
+			this.errorMessagePassword = undefined
 
+		//Crea l'account da salvare nel DB
 		let credentials = {
 			email: this.data.email,
 			password: this.data.password,
@@ -92,6 +105,7 @@ export class RegistrazionePage {
 			userType: this.data.userType
 		};
 
+		//Salva l'account nel DB nella collection Account con ID l'email inserita
 		this.serviceProv.addDocument("Account", this.data.email, credentials).then(
 			() => this.navCtrl.setRoot(HomePage),
 			error => this.signupError = error.message
@@ -99,6 +113,7 @@ export class RegistrazionePage {
 
 	}
 
+	//Imposta tutti i form "touched" per la visualizzazione degli errori se l'utente non ha cliccato su uno dei form
 	private markFormGroupTouched(formGroup: FormGroup) {
 		(<any>Object).values(formGroup.controls).forEach(control => {
 			control.markAsTouched();
@@ -107,5 +122,21 @@ export class RegistrazionePage {
 				this.markFormGroupTouched(control);
 			}
 		});
+	}
+
+	private verifyBirthPlace(cc) {
+		let result;
+		for (const item of COMUNI) {
+			if (item[2] === cc.toUpperCase()) {
+				result = item;
+				break;
+			}
+		}
+		if (result === undefined) {
+			this.errorMessageBirthPlace = "Comune non trovato, inserire un comune valido"
+			return
+		}
+		else
+			this.errorMessageBirthPlace = undefined
 	}
 }
