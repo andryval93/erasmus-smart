@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { reviewService } from '../../providers/service/reviewsService';
 import { LoadingController } from 'ionic-angular';
-import { CssSelector } from '@angular/compiler';
 
 /**
  * Generated class for the ReviewsListPage page.
@@ -25,7 +24,7 @@ export class ReviewsListPage {
   loaded: boolean=true;
 
   allReviews: Array<{recensore: String, date: String, starsA: any, text: String,starsI: any}>
-  Reviews: Array<{recensore: String, date: String, starsA: any, text: String,starsI: any}>
+  Reviews: Array<{recensore: String, date: String, starsA: any, text: String,starsI: any, img: String}>
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private DBIstance: reviewService, public loadingCtrl: LoadingController) {
     this.presentLoading();
@@ -86,9 +85,23 @@ export class ReviewsListPage {
           date: this.allReviews[i]["date"],
           starsA: this.allReviews[i]["starsA"],
           text: this.allReviews[i]["text"],
-          starsI: this.allReviews[i]["starsI"]
+          starsI: this.allReviews[i]["starsI"],
+          img:"../../assets/imgs/balsamiq.png"
         })
       }
+    }
+    if(this.Reviews.length==0)
+    {
+      this.Reviews.push(
+        {
+          recensore: "Nessuna recensione",
+          date: "",
+          starsA: "",
+          text: "",
+          starsI: "",
+          img:"../../assets/imgs/error.png"
+        }
+      )
     }
     //console.log("loaded", "loadedok")
   }

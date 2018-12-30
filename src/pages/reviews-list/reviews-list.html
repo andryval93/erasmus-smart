@@ -55,7 +55,9 @@
           </div>-->
           <ion-item>
             <ion-avatar item-start>
-              <img src="../../assets/imgs/moc.png">
+              <div *ngIf="review.img != ''">
+                <img [src]="review.img">
+              </div>
             </ion-avatar>
             <h2>{{review.recensore}}</h2>
             <p>{{review.date}}</p>
