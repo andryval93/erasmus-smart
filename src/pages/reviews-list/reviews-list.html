@@ -17,27 +17,9 @@
         <div id="choose_stars">
           <ion-list [(ngModel)]="Stars" radio-group>
             <h3>Filtra recensioni</h3>
-
-            <ion-item>
-              <ion-label>1 Stella</ion-label>
-              <ion-radio checked="true" value="1"></ion-radio>
-            </ion-item>
-
-            <ion-item>
-              <ion-label>2 Stelle</ion-label>
-              <ion-radio value="2"></ion-radio>
-            </ion-item>
-            <ion-item>
-              <ion-label>3 Stelle</ion-label>
-              <ion-radio value="3"></ion-radio>
-            </ion-item>
-            <ion-item>
-              <ion-label>4 Stelle</ion-label>
-              <ion-radio value="4"></ion-radio>
-            </ion-item>
-            <ion-item>
-              <ion-label>5 Stelle</ion-label>
-              <ion-radio value="5"></ion-radio>
+            <ion-item *ngFor='let s of StarsSelector'>
+              <ion-label>{{s.key}}</ion-label>
+              <ion-radio checked="true" [value]='s.value'></ion-radio>
             </ion-item>
           </ion-list>
           <div align="right">
