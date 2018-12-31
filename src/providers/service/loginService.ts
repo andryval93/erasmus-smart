@@ -38,6 +38,9 @@ export class LoginService {
 		};
 	}*/
 
+/*	getEmail() {
+		return this.user && this.user.email;
+	}*/
 	getEmail() {
 		return this.user && this.user.email;
 	}
