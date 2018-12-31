@@ -55,3 +55,8 @@ page-reviews-list {
         padding: 0;
     }
 }
+.my-loading {
+    ion-backdrop {
+        background: opacify($color: #000000, $amount: 0)
+    }
+}

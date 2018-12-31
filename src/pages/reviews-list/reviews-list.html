@@ -6,11 +6,10 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>ui_rg</ion-title>
-  </ion-navbar>
+  <header-es [title]="title"></header-es>
 
 </ion-header>
+
 <ion-content padding>
   <ion-grid>
     <ion-row>
@@ -18,27 +17,9 @@
         <div id="choose_stars">
           <ion-list [(ngModel)]="Stars" radio-group>
             <h3>Filtra recensioni</h3>
-
-            <ion-item>
-              <ion-label>1 Stella</ion-label>
-              <ion-radio checked="true" value="1"></ion-radio>
-            </ion-item>
-
-            <ion-item>
-              <ion-label>2 Stelle</ion-label>
-              <ion-radio value="2"></ion-radio>
-            </ion-item>
-            <ion-item>
-              <ion-label>3 Stelle</ion-label>
-              <ion-radio value="3"></ion-radio>
-            </ion-item>
-            <ion-item>
-              <ion-label>4 Stelle</ion-label>
-              <ion-radio value="4"></ion-radio>
-            </ion-item>
-            <ion-item>
-              <ion-label>5 Stelle</ion-label>
-              <ion-radio value="5"></ion-radio>
+            <ion-item *ngFor='let s of StarsSelector'>
+              <ion-label>{{s.key}}</ion-label>
+              <ion-radio checked="true" [value]='s.value'></ion-radio>
             </ion-item>
           </ion-list>
           <div align="right">
@@ -51,10 +32,14 @@
         <h2>Recensioni per "{{University}}"</h2>
         
         <ion-card *ngFor='let review of Reviews'>
+          <!--<div *ngIf='review.length'>
 
+          </div>-->
           <ion-item>
             <ion-avatar item-start>
-              <img src="../../assets/imgs/moc.png">
+              <div *ngIf="review.img != ''">
+                <img [src]="review.img">
+              </div>
             </ion-avatar>
             <h2>{{review.recensore}}</h2>
             <p>{{review.date}}</p>
@@ -73,3 +58,6 @@
     </ion-row>
   </ion-grid>
 </ion-content>
+<ion-footer>
+  <footer-es></footer-es>
+</ion-footer>

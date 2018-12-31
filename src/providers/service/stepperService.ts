@@ -80,8 +80,10 @@ export class ServiceProvider {
            citta          : doc.data().citta,
            nazione        : doc.data().nazione,
            nome           : doc.data().nome,
-           recensioni     : doc.data().recensioni
-          
+           recensioni     : doc.data().recensioni,
+           name           : doc.data().name,
+           surname        : doc.data().surname,
+           students      : doc.data().students
           }); 
         });
         
@@ -95,19 +97,22 @@ export class ServiceProvider {
   /**
    * Add a new document to a selected database collection
    */
-  addDocument(collectionObj : string,
-              dataObj : any) : Promise<any>{
-    return new Promise((resolve, reject) => {
-      this.DBistance.collection(collectionObj).add(dataObj)
-      .then((obj : any) => {
-        resolve(obj);
-      })
-      .catch((error : any) => {
-        reject(error);
-      });
-    });
-  }
-
+  addDocument(collectionObj: string,
+    docID: String,
+    dataObj: any) : Promise<any>{
+return new Promise((resolve, reject) => {
+this.DBistance
+.collection(collectionObj)
+.doc(docID)
+.set(dataObj, {merge: true})
+.then((data : any) => {
+resolve(data);
+})
+.catch((error: any) => {
+reject(error);
+})
+})
+}
 
   /**
    * Delete an existing document from a selected database collection
