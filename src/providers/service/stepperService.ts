@@ -83,7 +83,8 @@ export class ServiceProvider {
            recensioni     : doc.data().recensioni,
            name           : doc.data().name,
            surname        : doc.data().surname,
-           students      : doc.data().students
+           students       : doc.data().students,
+           userType       :doc.data().userType
           }); 
         });
         
