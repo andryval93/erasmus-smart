@@ -40,6 +40,35 @@ export class MyApp {
     this.initializeApp();
     this.logged = false;
 
+    // used for an example of ngFor and navigation
+    this.pages = [
+      { title: 'Home', component: HomePage },
+      { title: 'News', component: NewsPage },
+      { title: 'Stepper', component: StepperPage },
+      { title: 'Q&A', component: QeaPage},
+      { title: 'Login', component: LoginPage},
+      { title: 'Registrazione', component: RegistrazionePage},
+      { title: 'Chat', component: UiChatPage },
+      { title: 'Recensioni', component: ReviewMainPage},
+      { title: 'NewsTEMP', component: NewNewsPage},
+    ];
+
+    //firebase.initializeApp(ENV.firebase);
+    
+    this.loginService.afAuth.authState
+      .subscribe(
+        user => {
+          console.log("authenticated",user);
+          if (user) {
+            this.rootPage = HomePage;
+          } else {
+            this.rootPage = LoginPage;
+          }
+        },
+        () => {
+          this.rootPage = LoginPage;
+        }
+      );
     //fix error - Firebase App named '[DEFAULT]' already exists (app/duplicate-app)
     // firebase.initializeApp(ENV.firebase);
   }
@@ -56,6 +85,22 @@ export class MyApp {
           console.log("authenticated",user);
 
           //user logged
+          if (user != null) {
+
+            this.rootPage = HomePage;
+
+            this.pages = [
+              { title: 'Home', component: HomePage },
+              { title: 'News', component: NewsPage },
+              { title: 'Q&A', component: QeaPage},
+              { title: 'Recensioni', component: ReviewMainPage},
+              { title: 'Stepper', component: StepperPage },
+              { title: 'Chat', component: UiChatPage },
+              { title: 'NewsTEMP', component: NewNewsPage}
+             
+              
+            ];
+          } 
           if (user != null) {this.logged = true;} 
           
           //user unlogged

@@ -38,10 +38,12 @@ export class LoginPage {
 			email: data.email,
 			password: data.password
 		};
+	
 		this.auth.signInWithEmail(credentials)
 			.then(
 				() => this.navCtrl.setRoot(HomePage),
-				error => this.loginError = error.message
+				error => this.loginError = error.message,
+				
 			);
     }
 
