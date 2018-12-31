@@ -1,4 +1,4 @@
-<ion-header>ciaso
+<ion-header>
   <header-es [title]="title">Messaggi</header-es>
 </ion-header>
 
@@ -6,12 +6,12 @@
 <ion-content padding>
   <div id="container">
     <div id="infodestinatario">
-      {{nome}}<br>
-      {{surname}}<br>
+      {{name}} {{surname}}<br>
       {{sede}}
     </div>
-    <button class="chatButton" (click)="hideFiles()">Chat</button>
-    <button class="filesButton" (click)="hideChat()">Files</button>
+    <img id="circleAvatar" src="https://www.w3schools.com/howto/img_avatar.png">
+    <button class="chatButton" (click)="showChat()">Chat</button>
+    <button class="filesButton" (click)="showFiles()">Files</button>
     <div *ngIf="chatOpen == true" id="chat">
       ciao vicienzo.
       bella fra
@@ -19,8 +19,9 @@
     <div *ngIf="chatOpen == false" id="files">
       eccoti i file
     </div>
+    <input class="uploadFile" type="submit" value="" (click)="uploadFile()">
     <textarea class="messageText" rows="1" placeholder="Inserisci il tuo testo qui" required="required"></textarea>
-    <input class="inputType" type="submit" value="">
+    <input class="inputType" type="submit" value="" (click)="sendMessage()">
   </div>
 </ion-content>
 

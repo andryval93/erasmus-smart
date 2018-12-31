@@ -30,6 +30,7 @@ export class UiChatPage{
     this.student = new student();
     this.students = [];
     this.items = [];
+    var i = 0; 
     DBInstance.getAccount('Account', "tienivince@live.it").then((data)=>{this.account.setEmail(data.data().email)
                                                                          this.account.setName(data.data().name)
                                                                          this.account.setSurname(data.data().surname)
@@ -41,46 +42,26 @@ export class UiChatPage{
       console.log("ciao", this.account.getStudents());
       this.students = this.account.getStudents();
       console.log(this.students);
-      for(var i = 0; i < this.students.length; i++){
-        DBInstance.getAccount('Account', this.students[i]).then((data)=>{this.student.setName(data.data().name)
+      for(; i < this.students.length; i++){
+        DBInstance.getAccount('Account', this.students[i]).then((data)=>{this.student.setEmail(data.data().email)
+                                                                        this.student.setName(data.data().name)
                                                                         this.student.setSurname(data.data().surname)
                                                                         this.student.setStatus(data.data().status)
                                                                         this.student.setSede(data.data().sede)
 
         }).then(()=>{
             this.items.push({
+              email: this.student.email,
               name: this.student.name,
               surname: this.student.surname,
               sede: this.student.sede,
               status: this.student.status
             });
-          });
-        console.log(this.students); 
+          }); 
       };
     });
   }
-    //caricamento della lista dal db 
-   /* this.items.push({
-      nome: "Pino",
-      sede: "Gragnano"
-    });
-    this.items.push({
-      nome: "Francesco",
-      sede: "Polla"
-    });
-    this.items.push({
-      nome: "Pippo Baudo",
-      sede: "Varese"
-    });
-    this.items.push({
-      nome: "Renzi",
-      sede: "Milano"
-    });
-    this.items.push({
-      nome: "Zio Ciccio",
-      sede: "Piazza Italia"
-    });*/
-
+    
   public isSearchbarOpened = false;
 
   ionViewDidLoad() {
@@ -91,10 +72,9 @@ export class UiChatPage{
       if(this.type == "student"){
         this.navCtrl.push(OpenchatPage);
       }
-      //else if(this.type == "tutor"){
-        
-        //Metodo per prendere la lista di studenti dal tutor
-     // }
+      else if(this.type == "tutor"){
+        //stay in this page
+     }
     } else {
       console.log("ERRORE");
     }
@@ -135,10 +115,10 @@ export class UiChatPage{
     */
   }
   
-  openChat(nome, surname, sede){
+  openChat(nome, surname, sede, receveir){
    // localStorage.setItem("nome", nome);
    // localStorage.setItem("sede", sede);
-    this.navCtrl.push(OpenchatPage, {"nome":nome, "surname":surname, "sede":sede});
+    this.navCtrl.push(OpenchatPage, {"name":nome, "surname":surname, "sede":sede, "receveir":receveir});
   }
 }
 

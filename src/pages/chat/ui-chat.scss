@@ -1,8 +1,24 @@
 page-ui-chat {
-    
+    .fixed-content{
+        background-color: cornflowerblue;
+    }
+
     #search{
         margin-left: 50%;
         padding-right: 80%;
+    }
+
+    
+    th{
+        text-align: center;
+    }
+
+    tr{
+        border-top-style: solid;
+    }
+
+    td{
+        text-align: center;
     }
 
     #container{
@@ -11,19 +27,28 @@ page-ui-chat {
         text-align: left;
         margin-left: 30%;
         margin-right: 30%;
+        background-color: whitesmoke;
     }
 
     .name{
-        padding-left: 1cm;
-        padding-right: 1cm;
+        padding-left: 1.6cm;
+        padding-right: 1.6cm;
     }
     
     .sede{
-        padding-left: 1cm;
-        padding-right: 1cm;
+        padding-left: 1.6cm;
+        padding-right: 1.6cm;
     }
 
     .send{
-        padding-left: 13%;
+        text-align: left;
+    }
+
+    #circleAvatar{
+        width:50px;
+        height:50px;
+        margin: 10% 0% 5% 0%;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
     }
 }
