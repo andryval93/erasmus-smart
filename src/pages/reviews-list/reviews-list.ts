@@ -23,16 +23,17 @@ export class ReviewsListPage {
   private uni: String;
   loaded: boolean=true;
 
-  allReviews: Array<{recensore: String, date: String, starsA: any, text: String,starsI: any}>
-  Reviews: Array<{recensore: String, date: String, starsA: any, text: String,starsI: any, img: String}>
+  allReviews: Array<{recensore: String, date: String, starsA: any, text: String,starsI: any}>;
+  Reviews: Array<{recensore: String, date: String, starsA: any, text: String,starsI: any, img: String}>;
+  StarsSelector: Array<{key: String, value: String}>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private DBIstance: reviewService, public loadingCtrl: LoadingController) {
-    this.presentLoading();
     this.uni=navParams.get("University");
-    //const uni=localStorage.getItem("University");
-    console.log("loaded", this.loaded);
+    this.StarsSelector=[];
     this.allReviews=[];
     this.Reviews=[];
+    this.fillStars();
+    this.presentLoading();
     this.fillUniversityReviews();
   }
 
@@ -114,5 +115,23 @@ export class ReviewsListPage {
       dismissOnPageChange: true,
       cssClass: "my-loading"
     }).present();
+  }
+
+  fillStars()
+  {
+    this.StarsSelector.push(
+      {
+        key:"1 Stella",
+        value:"1"
+      }
+    )
+    for(let i=2; i<6;i++)
+    {
+      this.StarsSelector.push(
+        {
+          key:String(i)+" Stelle",
+          value:String(i)
+        })
+    }
   }
 }
