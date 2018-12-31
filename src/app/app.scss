@@ -30,8 +30,17 @@
 ::-webkit-scrollbar-thumb {
     border-radius: 5px;
     -webkit-box-shadow: inset 10px 0 6px whitesmoke; 
-    
-   
+     
 }
+
+#circleAvatar{
+
+    width:100px;
+    height:100px;
+    margin: 10% 0% 5% 30%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
 
 

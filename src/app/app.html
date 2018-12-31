@@ -8,12 +8,10 @@
   <ion-content>
     <ion-list>
       
-      <!--
-      <ion-avatar>
-        <img src="https://www.w3schools.com/howto/img_avatar.png">
+      <ion-avatar *ngIf="logged">
+        <img id="circleAvatar" src="https://www.w3schools.com/howto/img_avatar.png">
       </ion-avatar>
-    -->
-      
+
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}
       </button>
