@@ -78,7 +78,7 @@ export class ReviewsListPage {
     this.presentLoading();
     this.Reviews=[];
     for (let i = 0; i < this.allReviews.length; i++) {
-      if(this.allReviews[i]["starsI"]>=this.Stars){
+      if(this.allReviews[i]["starsI"]==this.Stars){
         //console.log("aaaUniversity", this.allReviews[i]["starsI"]);
       this.Reviews.push(
         {
