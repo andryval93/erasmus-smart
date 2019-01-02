@@ -1,10 +1,11 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController, IonicPage } from 'ionic-angular';
 import { RegistrationProvider } from '../../providers/service/registrationService'
 import { HomePage } from '../home/home';
 import CodiceFiscale from 'codice-fiscale-js'
 import { COMUNI } from 'codice-fiscale-js/src/geo-data.js'
+import firebase from 'firebase';
 
 @IonicPage()
 
@@ -23,6 +24,7 @@ export class RegistrazionePage {
 	errorMessagePassword: string;
 	errorMessageBirthPlace: string;
 	errorMessageBirthDay: string;
+	acs: firebase.auth.ActionCodeSettings;
 
 	constructor(
 		private navCtrl: NavController,
@@ -42,7 +44,29 @@ export class RegistrazionePage {
 			confirmPassword: ['', Validators.required],
 			privacyCheck: ['false', Validators.requiredTrue]
 		});
+
+		/* Notate bene il .reload(). Senza questo anche se l'utente ha cliccato 
+			sull'email verificata le modifiche non vengono visualizzate finchè l'utente non rilogga 
+			oppure finchè non viene ricaricata L'APP.
+
+			Per controllare se un utente ha verificato la propria email, usate:
+			firebase.auth().currentUser.emailVerified
+
+		
+			console.log("User:", firebase.auth().currentUser)
+			
+			if (firebase.auth().currentUser != null)
+				firebase.auth().currentUser.reload().then(() => {
+					if (firebase.auth().currentUser.emailVerified)
+						console.log("LOG:", "Hai verificato l'email")
+					else
+						console.log("LOG:", "NON HAI VERIFICATO L'EMAIL")
+				});
+			else
+				console.log("LOG:", "Prima devi loggare!")
+		 */
 	}
+
 
 	signup() {
 
@@ -53,7 +77,7 @@ export class RegistrazionePage {
 		this.verifyBirthDay(splittedBirth[0])
 
 		//Verifica che la città inserita sia corretta
-		this.verifyBirthPlace(this.data.birthPlace)		
+		this.verifyBirthPlace(this.data.birthPlace)
 
 		//Verifica i validators  
 		if (this.form.status == "INVALID") {
@@ -105,7 +129,7 @@ export class RegistrazionePage {
 			birthPlace: this.data.birthPlace,
 			fiscalCode: this.data.fiscalCode,
 			gender: this.data.gender,
-			userType: this.data.userType
+			userType: this.data.userType,
 		};
 
 		//Salva l'account nel DB nella collection Account con ID l'email inserita
@@ -113,6 +137,16 @@ export class RegistrazionePage {
 			() => this.navCtrl.setRoot(HomePage),
 			error => this.signupError = error.message
 		);
+
+
+		firebase.auth().createUserWithEmailAndPassword(this.data.email, this.data.password).then(() => {
+			firebase.auth().signInWithEmailAndPassword(this.data.email, this.data.password);
+			let user = firebase.auth().currentUser;
+			//console.log("Email:", user.email); FUNZIONA!
+			user.sendEmailVerification().then(() => {
+				alert("Inviata un' e-mail di verifica a " + user.email)
+			});
+		});
 
 	}
 
@@ -144,12 +178,12 @@ export class RegistrazionePage {
 	}
 
 	private verifyBirthDay(bb) {
-		
+
 		let today = new Date();
 		let thisYear = today.getFullYear();
 
-		if (!(bb <= thisYear-18 && bb >= thisYear-50)) {
-			this.errorMessageBirthDay = "Inserire un anno compreso tra " + (thisYear-18) + " e " + (thisYear-50)
+		if (!(bb <= thisYear - 18 && bb >= thisYear - 50)) {
+			this.errorMessageBirthDay = "Inserire un anno compreso tra " + (thisYear - 18) + " e " + (thisYear - 50)
 			return
 		}
 		else

@@ -16,6 +16,13 @@
         {{p.title}}
       </button>
 
+      <div *ngIf="logged">
+        <button ion-button icon-start block clear color="danger" (click)="logout()">
+          <ion-icon ios="ios-exit" md="md-exit"></ion-icon>
+          Logout
+        </button>
+      </div>
+
     </ion-list>
   </ion-content>
 

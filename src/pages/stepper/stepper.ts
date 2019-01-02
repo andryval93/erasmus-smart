@@ -35,6 +35,7 @@ export class StepperPage {
    locationsAccount: any;
    temp: { status: string; };
    _CONTENT2: { students: any; };
+   listaTutors: any;
  
   
    
@@ -70,13 +71,13 @@ export class StepperPage {
    * @description      Defines the name of the database collection
    */
   private _COLL 		: string 			= "Sedi";
-  /**
+  /*
    * @name _DOC
    * @type {string}
    * @private
    * @description      Defines the initial document ID for the database collection
    */
-  private _DOC 		: string 			= "yvihlDIrC80IEkg4cYtY";
+ // private _DOC 		: string 			= "yvihlDIrC80IEkg4cYtY";
 /**
    * @name _CONTENT
    * @type {any}
@@ -115,15 +116,12 @@ export class StepperPage {
               
 
 
-    /* Retrieve all documents from the specified collection using the
-    * retrieveCollection method when the view is entered
-    *
-    * @public
-    * @method ionViewDidEnter
-    * @return {none}
-    */
+  
+
+
+
    ionViewDidEnter()
-   {
+   {  
       this.retrieveCollection();
      }
         /**
@@ -147,8 +145,20 @@ export class StepperPage {
       .then((data) =>
       {
             this.locationsAccount = data; 
+            this.creaListaTutor();
       })
       .catch();
+   }
+   creaListaTutor()
+   {    this.listaTutors = new Array<string>();
+      for(let i = 0; i < this.locationsAccount.length; i++)
+      {
+         var str1 = new String(this.locationsAccount[i].userType);
+         if(str1.localeCompare("tutor") == 0)
+         {      var str2 =  this.locationsAccount[i].name + " " + this.locationsAccount[i].surname;
+            this.listaTutors.push(str2.substring(0));
+         }
+      }
    }
      /**
     * Creates the collection and populates that with an initial document
