@@ -35,7 +35,7 @@
             citta: {{ location.citta }}
           </p>
           <em>{{ location.recensioni.length}} Recensione/i </em>
-          <button ion-button clear item-end>Vedi Recensioni</button>
+          <button ion-button clear item-end (click)="goToReviewList(location.id)">Vedi Recensioni</button>
         </ion-item>
 
         <!-- *ngFor='let recensione of location.recensioni'  -->

@@ -114,15 +114,12 @@ import { InserisciRecensioneService } from '../providers/service/inserisciRecens
     RegistrationProvider,
     RisposteQeaServiceProvider,
     reviewService,
-    RisposteQeaServiceProvider,
-    reviewService,
-    RisposteQeaServiceProvider,
-    RisposteQeaServiceProvider,
     NuovaDomandaServiceProvider,
     AccountService,
     MessaggingService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    NewNewsProvider
+    NewNewsProvider,
+    InserisciRecensioneService
   ]
 })
 export class AppModule {}
