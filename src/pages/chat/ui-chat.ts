@@ -25,15 +25,15 @@ export default class UiChatPage{
   type: string;
   status: string;
   email: string;
+  messagge: Array<Message>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public DBAccountInstance: AccountService, public DBMessaggingInstance: MessaggingService ) {
-    this.email = localStorage.getItem("email");
     this.account = new Account();
     this.student = new student();
     this.students = [];
     this.items = [];
     var i = 0; 
-    DBAccountInstance.getAccount('Account', "tienivince@live.it").then((data)=>{this.account.setEmail(data.data().email)
+    DBAccountInstance.getAccount('Account', firebase.auth().currentUser.email).then((data)=>{this.account.setEmail(data.data().email)
                                                                          this.account.setName(data.data().name)
                                                                          this.account.setSurname(data.data().surname)
                                                                          this.account.setType(data.data().userType)
@@ -66,8 +66,30 @@ export default class UiChatPage{
   acceptRequest(emailStudent: string){
     this.DBAccountInstance.acceptRequest(emailStudent);
     console.log("test", firebase.auth().currentUser.email+emailStudent);
-    this.DBMessaggingInstance.startChat(firebase.auth().currentUser.email+emailStudent);
+    this.messagge = [];
+    let object = {
+      messageList: this.messagge
+    }
+    this.DBMessaggingInstance.startChat(firebase.auth().currentUser.email+emailStudent, object);
   }
+
+  denyRequest(emailStudent: string){
+    this.DBAccountInstance.getAccount('Account', firebase.auth().currentUser.email).then((data)=>{
+      this.account.setStudents(data.data().students);
+      for(var i = 0; i < this.students.length; i++){
+        if(this.students[i]==emailStudent){
+          console.log("ListaStudenti", this.students);
+          this.students.splice(i);
+        }
+      }
+      let obj = {
+        students: this.students
+      }
+      console.log("retesting", this.students)
+      this.DBAccountInstance.denyRequest(firebase.auth().currentUser.email, obj);
+    });
+  }
+
 
   public isSearchbarOpened = false;
 

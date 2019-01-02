@@ -120,7 +120,6 @@ import { MessaggingService } from '../providers/service/messaggingService';
     NuovaDomandaServiceProvider,
     AccountService,
     MessaggingService,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     NewNewsProvider
   ]

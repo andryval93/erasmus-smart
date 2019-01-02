@@ -13,6 +13,7 @@ import 'rxjs/add/operator/map';
 import 'firebase/firestore';
 import { SingletonDatabase } from '../../model/Database';
 import { resolve } from 'url';
+import firebase from 'firebase';
 
 
 
@@ -54,9 +55,22 @@ export class AccountService {
   acceptRequest(docID: string) : Promise<any>{
     return new Promise((resolve, reject) => {
       let request = {
-        request: "accepted"
+        status: "accepted"
       }
       this.DBistance.collection("Account").doc(docID).set(request, {merge: true}).then((data : any) => {
+        resolve(data);
+      }).catch((error: any) => {
+        reject(error);
+      })
+    })
+  }
+
+  denyRequest(docID: string, deleteFromList: Array<string>) : Promise<any>{
+    return new Promise((resolve, reject) => {
+      let request = {
+        students: deleteFromList
+      }
+      this.DBistance.collection("Account").doc(docID).set(deleteFromList, {merge: true}).then((data : any) => {
         resolve(data);
       }).catch((error: any) => {
         reject(error);
