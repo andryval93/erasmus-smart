@@ -14,17 +14,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'openchat.html',
 })
 export class OpenchatPage {
-  nome: string;
+  name: string;
   sede: string;
   surname: string;
   chatOpen: boolean;
+  email: string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     //this.nome = localStorage.getItem("nome");
     //this.sede = localStorage.getItem("sede");
     //navParams per prendere parametri da NON localStorage
-    this.nome = navParams.get("nome");
+    
     this.sede = navParams.get("sede");
     this.surname = navParams.get("surname");
+    this.name = navParams.get("name");
+    this.email = navParams.get("receveir");
     this.chatOpen = true;
   }
 
@@ -32,11 +35,11 @@ export class OpenchatPage {
     console.log('ionViewDidLoad OpenchatPage');
   }
 
-  hideFiles(){
+  showChat(){
     this.chatOpen = true;
   }
 
-  hideChat(){
+  showFiles(){
     this.chatOpen = false;
   }
 }
