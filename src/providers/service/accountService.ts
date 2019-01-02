@@ -51,6 +51,19 @@ export class AccountService {
     })
   }
 
+  acceptRequest(docID: string) : Promise<any>{
+    return new Promise((resolve, reject) => {
+      let request = {
+        request: "accepted"
+      }
+      this.DBistance.collection("Account").doc(docID).set(request, {merge: true}).then((data : any) => {
+        resolve(data);
+      }).catch((error: any) => {
+        reject(error);
+      })
+    })
+  }
+
   /**
   * Create the database collection and defines an initial document
   * Note the use of merge : true flag within the returned promise  - this

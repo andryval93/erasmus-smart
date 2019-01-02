@@ -11,7 +11,7 @@ import { ListPage } from '../pages/list/list';
 import { NewsPage } from '../pages/news/news';
 import { QeaPage } from '../pages/qea/qea';
 import { NuovadomandaPage } from '../pages/nuovadomanda/nuovadomanda';
-import { UiChatPage } from '../pages/chat/ui-chat';
+import UiChatPage from '../pages/chat/ui-chat';
 import { NewNewsPage } from '../pages/new-news/new-news';
 
 import { HeaderEsComponent } from '../components/header-es/header-es';
@@ -45,6 +45,7 @@ import { ReviewsListPage } from '../pages/reviews-list/reviews-list';
 import { RegistrationProvider } from '../providers/service/registrationService';
 import { NuovaDomandaServiceProvider } from '../providers/service/nuovaDomandaService';
 import { AccountService } from '../providers/service/accountService';
+import { MessaggingService } from '../providers/service/messaggingService';
 
 @NgModule({
   declarations: [
@@ -117,6 +118,7 @@ import { AccountService } from '../providers/service/accountService';
     RisposteQeaServiceProvider,
     NuovaDomandaServiceProvider,
     AccountService,
+    MessaggingService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -20,7 +20,7 @@
         </td>
         <td *ngIf="item.status == 'pending'" class="send">
           <span>
-            <button ion-button (click)="acceptRequest()">Accept</button>
+            <button ion-button (click)="acceptRequest(item.email)">Accept</button>
           </span>
         </td>
         <td *ngIf="item.status == 'pending'" class="send">
