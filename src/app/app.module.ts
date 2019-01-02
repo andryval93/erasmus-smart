@@ -45,6 +45,7 @@ import { ReviewsListPage } from '../pages/reviews-list/reviews-list';
 import { RegistrationProvider } from '../providers/service/registrationService';
 import { NuovaDomandaServiceProvider } from '../providers/service/nuovaDomandaService';
 import { AccountService } from '../providers/service/accountService';
+import { NewsServiceProvider } from '../providers/service/newsService';
 
 @NgModule({
   declarations: [
@@ -117,6 +118,7 @@ import { AccountService } from '../providers/service/accountService';
     RisposteQeaServiceProvider,
     NuovaDomandaServiceProvider,
     AccountService,
+    NewsServiceProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

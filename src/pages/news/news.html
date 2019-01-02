@@ -10,12 +10,13 @@
 
 
 <ion-content padding>
-    <ion-card>
+    <ion-card *ngFor="let news of newsList">
         <ion-card-header>
-          News Title
+          {{news.title}}
         </ion-card-header>
+        <div class="news-date">{{news.date}}</div>
         <ion-card-content>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mattis est turpis, non consequat sem congue faucibus. Vestibulum porta placerat ullamcorper. Vestibulum ante magna, scelerisque id aliquam nec, mollis eu leo. Suspendisse potenti. Nunc lacinia lobortis purus quis placerat. Nunc convallis vitae tortor sit amet euismod. Nunc ullamcorper vehicula aliquam. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque sed mi ac metus accumsan rhoncus sit amet in urna. Integer varius feugiat mi, in mattis urna semper a. Donec in blandit est. Maecenas sit amet facilisis mauris. 
+            {{news.content}}
         </ion-card-content>
       </ion-card>
 </ion-content>
