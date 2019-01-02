@@ -77,6 +77,9 @@ export class MyApp {
     
     this.platform.ready().then(() => {
       
+      //disconessione di eventuali log precedenti prima di avviare l'app
+      this.logout();
+
       //set logged variable
       this.loginService.afAuth.authState
       .subscribe(
@@ -143,6 +146,14 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  logout() {
+
+    firebase.auth().signOut();
+    localStorage.clear();
+    this.logged = false;
+    this.nav.popToRoot;
   }
 
   openPage(page) {
