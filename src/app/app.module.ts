@@ -48,6 +48,7 @@ import { AccountService } from '../providers/service/accountService';
 import { NewNewsProvider } from '../providers/service/newNewsService';
 import { MessaggingService } from '../providers/service/messaggingService';
 
+import { InserisciRecensioneService } from '../providers/service/inserisciRecensioneService'
 @NgModule({
   declarations: [
     MyApp,
