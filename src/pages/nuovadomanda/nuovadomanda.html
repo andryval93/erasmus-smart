@@ -1,4 +1,3 @@
-
 <ion-header>
 
   <ion-navbar>
@@ -25,50 +24,43 @@
       <ion-select [(ngModel)]="Sedi" (ngModelChange)="onChangeSede(Sedi)">
 
         <ion-option *ngFor='let locationSede of locationsSedi'>{{locationSede.nome}}</ion-option>
-        <ion-option >Generic</ion-option>
+        <ion-option>Generic</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>
 
 
 
-  <form
-    [formGroup]='form'
-    (ngSubmit)='saveDocument(form.value)'>
-  <ion-list>
+  <form [formGroup]='form' (ngSubmit)='saveDocument(form.value)' (ngSubmit)='presentAlert()'>
+    <ion-list>
+
+      <ion-item>
+        <ion-label floating>Titolo</ion-label>
+        <ion-input formControlName='Domanda' [(ngModel)]='Domanda' type="Domanda"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Descrizione</ion-label>
+        <ion-textarea formControlName='Descrizione' [(ngModel)]='Descrizione' type="text" rows="10"></ion-textarea>
+      </ion-item>
+
+    </ion-list>
 
     <ion-item>
-      <ion-label floating>Titolo</ion-label>
-      <ion-input formControlName='Domanda' [(ngModel)]='Domanda' type="Domanda"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label floating>Descrizione</ion-label>
-      <ion-textarea formControlName='Descrizione' [(ngModel)]='Descrizione' type="text" rows= "10" ></ion-textarea>
-    </ion-item>
-
-  </ion-list>
-
-  <ion-item>
-    <button class="inviaDomanda"
-      ion-button
-      block
-      color="primary"
-      text-center
-      padding-top
-      padding-bottom
-      [disabled]="!form.valid">
-       <div>
+      <button class="inviaDomanda" ion-button block color="primary" text-center padding-top padding-bottom [disabled]="!form.valid">
+        <div>
           INVIA DOMANDA
-       </div>
+        </div>
+      </button>
 
-       
-       </button>
+      <h6 *ngIf="nuovaDomandaSuccess"> La domanda è stata inviata con successo!!!</h6>
+      <h6 *ngIf="nuovaDomandaError"> La domanda non è stata inviata con successo!!!</h6>
     </ion-item>
 
-</form>
 
- 
+  </form>
+
+
 </ion-content>
 
 <ion-footer>

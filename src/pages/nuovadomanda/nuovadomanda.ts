@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController } from 'ionic-angular';
 import { ServiceProvider } from '../../providers/service/stepperService';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { HomePage } from '../home/home';
 
 
 /**
@@ -90,14 +91,18 @@ export class NuovadomandaPage {
    arrayDomande: any;
    temp: { Domanda: any; Descrizione: any; risposte: String[]; };
    sceltaSede: String;
+   alertNuovaDomanda: boolean;
+
 
 
    constructor(public navCtrl: NavController,
       public navParams: NavParams,
       private DBistance: NuovaDomandaServiceProvider,
       private DBistanceSedi: ServiceProvider,
+      private alertCtrl: AlertController,
       private _FB: FormBuilder, ) {
 
+      this.alertNuovaDomanda = false;
       this.form = _FB.group({
          'Domanda': ['', Validators.required],
          'Descrizione': ['', Validators.required]
@@ -221,7 +226,6 @@ export class NuovadomandaPage {
    saveDocument(val: any): void {
       let idDocumento: string;
       let stringaSede: string;
-
       for (let i = 0; 1 < this.locations.length; i++) {
          var str1 = new String(this.locations[i].Sede);
          if (str1.localeCompare(this.sceltaSede.substring(0)) == 0) {
@@ -231,6 +235,7 @@ export class NuovadomandaPage {
          } if (i == this.locations.length - 1) {
             idDocumento = "Errori";
             break;
+
          }
          console.log(this.locations[i].Sede);
          console.log(this.sceltaSede);
@@ -249,9 +254,13 @@ export class NuovadomandaPage {
          risposte: new Array<String>()
       }
       this.arrayDomande.push(this.temp);
+      if (this.arrayDomande.length > 0) {
+         this.alertNuovaDomanda = true;
+      }
       this._CONTENT = {
          Domande: this.arrayDomande
       };
+
       this.arrayDomande = null;
       this.DBistance.addDocument(this._COLL,
          idDocumento,
@@ -262,7 +271,7 @@ export class NuovadomandaPage {
          .catch((error: any) => {
             console.dir(error);
          });
-
+      this.navCtrl.push(HomePage);
    }
 
    onChangeSede(SelectedValue: any) {
@@ -270,5 +279,24 @@ export class NuovadomandaPage {
       this.sceltaSede = SelectedValue;
    }
 
+   presentAlert() {
+      if (this.alertNuovaDomanda == true) {
+         let alert = this.alertCtrl.create({
+            title: 'Success',
+            subTitle: 'La domanda è stata creata con successo!',
+            buttons: ['Ok']
+         });
+         alert.present();
+      } else {
+         let alert = this.alertCtrl.create({
+            title: 'Error',
+            subTitle: 'La domanda non è stata creata con successo!',
+            buttons: ['Ok']
+         });
+         alert.present();
+      };
+   }
 
 }
+
+
