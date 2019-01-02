@@ -40,6 +40,23 @@ import { List } from "lodash";
     creationTime: string;
     sender: string;
     receiver: string;
+
+    
+    setMessage(message: string){
+      this.message = message;
+    }
+
+    setCreationTime(){
+   //   this.creationTime = ;
+    }
+    
+    setSender(sender: string){
+      this.sender = sender;
+    }
+
+    setReceveir(receiver: string){
+      this.receiver = receiver;
+    }
   }
 
   export class student extends Account{

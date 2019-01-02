@@ -15,20 +15,25 @@
 
 <ion-content padding>
 
+<form (ngSubmit)="saveNews(form.value)" [formGroup]="form">
+
   <ion-item>
     <ion-label floating>Titolo</ion-label>
-    <ion-input type="Titolo"></ion-input>
+    <ion-input type="text" [(ngModel)]="title" formControlName="title"></ion-input>
   </ion-item>
+
   <!--linea-->
   <ion-item-divider></ion-item-divider>
 
   <ion-item>
     <ion-label floating>Contenuto</ion-label>
-    <ion-textarea></ion-textarea>
+    <ion-textarea type="text" [(ngModel)]="content" formControlName="content"></ion-textarea>
   </ion-item>
   
   <!--Bottone per creare News-->
-  <button ion-button class="creaNews">Invia Domanda</button>
+  <button ion-button class="creaNews" type="submit"  [disabled]="!form.valid">Invia Domanda</button>
+
+</form>
   
 </ion-content>
 
