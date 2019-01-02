@@ -32,6 +32,8 @@ export class MyApp {
   rootPage: any;
   //check login into a variable
   logged: boolean;
+  //email of logged user
+  loggedEmail: String;
 
   pages: Array<{ title: string, component: any }>;
 
@@ -39,8 +41,9 @@ export class MyApp {
    
     this.initializeApp();
     this.logged = false;
+    this.loggedEmail = "Host";
 
-    // used for an example of ngFor and navigation
+    //inizialization of default navigation bar
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'News', component: NewsPage },
@@ -52,9 +55,8 @@ export class MyApp {
       { title: 'Recensioni', component: ReviewMainPage},
       { title: 'NewsTEMP', component: NewNewsPage},
     ];
-
-    //firebase.initializeApp(ENV.firebase);
     
+    //inizialization of default root page
     this.loginService.afAuth.authState
       .subscribe(
         user => {
@@ -69,6 +71,7 @@ export class MyApp {
           this.rootPage = LoginPage;
         }
       );
+
     //fix error - Firebase App named '[DEFAULT]' already exists (app/duplicate-app)
     // firebase.initializeApp(ENV.firebase);
   }
@@ -80,7 +83,7 @@ export class MyApp {
       //disconessione di eventuali log precedenti prima di avviare l'app
       this.logout();
 
-      //set logged variable
+      //set logged variable & first logged access
       this.loginService.afAuth.authState
       .subscribe(
         user => {
@@ -90,7 +93,9 @@ export class MyApp {
           //user logged
           if (user != null) {
 
+            this.logged = true;
             this.rootPage = HomePage;
+            this.loggedEmail = firebase.auth().currentUser.email;
 
             this.pages = [
               { title: 'Home', component: HomePage },
@@ -99,12 +104,9 @@ export class MyApp {
               { title: 'Recensioni', component: ReviewMainPage},
               { title: 'Stepper', component: StepperPage },
               { title: 'Chat', component: UiChatPage },
-              { title: 'NewsTEMP', component: NewNewsPage}
-             
-              
+              { title: 'NewsTEMP', component: NewNewsPage} 
             ];
-          } 
-          if (user != null) {this.logged = true;} 
+          }  
           
           //user unlogged
           else {this.logged = false;}
@@ -115,6 +117,7 @@ export class MyApp {
       if (this.logged) {
 
         this.rootPage = HomePage;
+        this.loggedEmail = firebase.auth().currentUser.email;
 
         this.pages = [
           { title: 'Home', component: HomePage },
@@ -123,13 +126,14 @@ export class MyApp {
           { title: 'Recensioni', component: ReviewMainPage},
           { title: 'Stepper', component: StepperPage },
           { title: 'Chat', component: UiChatPage },
-          { title: 'NewsTEMP', component: NewNewsPage},
+          { title: 'NewsTEMP', component: NewNewsPage} 
         ];
       }
 
       else {
 
         this.rootPage = LoginPage;
+        this.loggedEmail = "Host";
             
         this.pages = [
           { title: 'Home', component: HomePage },
@@ -153,6 +157,7 @@ export class MyApp {
     firebase.auth().signOut();
     localStorage.clear();
     this.logged = false;
+    this.loggedEmail = "Host";
     this.nav.popToRoot;
   }
 
