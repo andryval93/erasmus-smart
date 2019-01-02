@@ -45,23 +45,32 @@ export class ReviewsListPage {
           console.log("Error", "Errorrrrrrrrrrrr!!!!!!!")
         }
         else {
+          let j=0;
+          let k=0;
           for(let i=0; i<data.length;i++)
           {
             if(this.uni===data[i]["id"])
             {
               this.University=data[i]["university"]
+              k=i;
+              break;
             }
           }
-          for (let i = 0; i < data.length; i++) {
-            if(this.University===data[i]["university"]){
+          for (let i = 0; i <data.length; i++) {
+            if(data[k]["Reviews"][j]==null)
+              break;
+            if(this.University===data[k]["university"]){
+              console.log("uni",data.length)
             this.allReviews.push(
               {
-                recensore: data[i]["Reviews"]["Review"]["recensore"],
-                date: data[i]["Reviews"]["Review"]["date"],
-                starsA: data[i]["Reviews"]["Review"]["stars"],
-                text: data[i]["Reviews"]["Review"]["text"],
-                starsI: data[i]["Reviews"]["Review"]["stars"].length,
+                recensore: data[k]["Reviews"][j]["recensore"],
+                date: data[k]["Reviews"][j]["date"],
+                starsA: data[k]["Reviews"][j]["stars"],
+                text: data[k]["Reviews"][j]["text"],
+                starsI: data[k]["Reviews"][j]["stars"].length,
               })
+              j++;
+              console.log("j= ",j)
             }
           }
           this.selectReviews();
@@ -78,7 +87,7 @@ export class ReviewsListPage {
     this.presentLoading();
     this.Reviews=[];
     for (let i = 0; i < this.allReviews.length; i++) {
-      if(this.allReviews[i]["starsI"]==this.Stars){
+      if(this.allReviews[i]["starsI"]>=this.Stars){
         //console.log("aaaUniversity", this.allReviews[i]["starsI"]);
       this.Reviews.push(
         {
