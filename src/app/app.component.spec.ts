@@ -1,45 +1,34 @@
-import { async, TestBed } from '@angular/core/testing';
-import { IonicModule, Platform } from 'ionic-angular';
+import { TestBed, async, inject } from '@angular/core/testing';
+import { LoginService } from '../providers/service/loginService';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireModule } from 'angularfire2';
+import { ENV } from '../config/env';
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { MyApp } from './app.component';
-import {
-  PlatformMock,
-  StatusBarMock,
-  SplashScreenMock
-} from '../../test-config/mocks-ionic';
-
-describe('MyApp Component', () => {
-  let fixture;
-  let component;
-
+describe('Service: LoginService', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MyApp],
+      declarations: [],
       imports: [
-        IonicModule.forRoot(MyApp)
+        AngularFireModule.initializeApp(ENV.firebase)
       ],
       providers: [
-        { provide: StatusBar, useClass: StatusBarMock },
-        { provide: SplashScreen, useClass: SplashScreenMock },
-        { provide: Platform, useClass: PlatformMock }
+        LoginService,
+        AngularFireAuth
       ]
     })
   }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(MyApp);
-    component = fixture.componentInstance;
+  beforeEach(async () => {
+    inject([LoginService],(service: LoginService) =>{
+      service.signInWithEmail({
+        email: "test@t.it",
+        password: "12345678"
+      })
+    })
   });
 
-  it('should be created', () => {
-    expect(component instanceof MyApp).toBe(true);
-  });
-
-  it('should have two pages', () => {
-    expect(component.pages.length).toBe(2);
-  });
-
+  it('should do defined LoginService', inject([LoginService], (service: LoginService) => {
+    //expect(service.authenticated).toBeTruthy();
+    expect(service).toBeDefined();
+  }));
 });
