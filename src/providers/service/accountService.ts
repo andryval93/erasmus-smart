@@ -65,7 +65,7 @@ export class AccountService {
     })
   }
 
-  denyRequest(docID: string, deleteFromList: Array<string>) : Promise<any>{
+  denyRequest(docID: string, deleteFromList: any) : Promise<any>{
     return new Promise((resolve, reject) => {
       let request = {
         students: deleteFromList
