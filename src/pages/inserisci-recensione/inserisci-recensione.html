@@ -16,21 +16,25 @@
 <ion-content padding class="form-content">
 
   <div class="contenitore-step-4">
-    <form class="form">
+      <form
+      [formGroup]='form'
+      (ngSubmit)='saveDocument(form.value)'
+      (ngSubmit)='presentAlert()'
+      class="form">
 
       <ion-item>
-        <ion-label floating color="primary"> Titolo </ion-label>
-        <ion-input type="text" class="form-controll" ></ion-input>
+          <ion-label floating color="primary" > Titolo </ion-label>
+        <ion-input type="text" class="form-controll" formControlName='Titolo' [(ngModel)]='Titolo'></ion-input>
       </ion-item>
 
 
       <ion-label floating color="primary">  </ion-label>
 
 
-      <textarea #myInput style="overflow: hidden;" class="recensione-form" rows="1" maxLength="500"  maxlength="355"  placeholder="Inserisci qui la tua Recensione :" required></textarea>
+      <textarea #myInput formControlName='Descrizione' [(ngModel)]='Descrizione' style="overflow: hidden;" class="recensione-form" rows="1" maxLength="500"  maxlength="355"  placeholder="Inserisci qui la tua Recensione :" required></textarea>
 
 
-      <button ion-button full type="submit" class="Bottone-Ombra" >Submit</button>
+      <button ion-button full type="submit" class="Bottone-Ombra" [disabled]="!form.valid" >Submit</button>
     </form>
 
 

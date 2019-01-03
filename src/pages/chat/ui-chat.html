@@ -25,7 +25,7 @@
         </td>
         <td *ngIf="item.status == 'pending'" class="send">
           <span>
-            <button ion-button (click)="denyRequest()">Denied</button>
+            <button ion-button (click)="denyRequest(item.email)">Denied</button>
           </span>
         </td>
         <td *ngIf="item.status != 'pending'" class="send">

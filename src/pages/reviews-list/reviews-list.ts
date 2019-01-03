@@ -60,7 +60,7 @@ export class ReviewsListPage {
             if(data[k]["Reviews"][j]==null)
               break;
             if(this.University===data[k]["university"]){
-              console.log("uni",data.length)
+              //console.log("uni",data[k])
             this.allReviews.push(
               {
                 recensore: data[k]["Reviews"][j]["recensore"],

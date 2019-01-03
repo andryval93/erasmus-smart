@@ -48,6 +48,7 @@ import { AccountService } from '../providers/service/accountService';
 import { NewNewsProvider } from '../providers/service/newNewsService';
 import { MessaggingService } from '../providers/service/messaggingService';
 
+import { InserisciRecensioneService } from '../providers/service/inserisciRecensioneService'
 @NgModule({
   declarations: [
     MyApp,
@@ -113,15 +114,12 @@ import { MessaggingService } from '../providers/service/messaggingService';
     RegistrationProvider,
     RisposteQeaServiceProvider,
     reviewService,
-    RisposteQeaServiceProvider,
-    reviewService,
-    RisposteQeaServiceProvider,
-    RisposteQeaServiceProvider,
     NuovaDomandaServiceProvider,
     AccountService,
     MessaggingService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    NewNewsProvider
+    NewNewsProvider,
+    InserisciRecensioneService
   ]
 })
 export class AppModule {}

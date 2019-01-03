@@ -41,14 +41,17 @@ export class MessaggingService {
     this.DBistance =  SingletonDatabase.getInstance();
   }
 
-  startChat(docId: string): Promise<any> {
-        return new Promise((resolve, reject) => {
-            this.DBistance.collection("Messagges").doc(docId).then((obj: any) => {
-                        resolve(obj);
-                })
-                .catch((error: any) => {
-                    reject(error);
-                });
-        });
-    }
+  
+
+  startChat(docId: string, dataObj: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.DBistance.collection("Messages").doc(docId).set(dataObj)
+          .then((obj: any) => {
+              resolve(obj);
+          })
+          .catch((error: any) => {
+              reject(error);
+          });
+  });
+}
 }
