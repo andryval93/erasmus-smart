@@ -18,15 +18,7 @@ describe('Service: LoginService', () => {
       ]
     })
   }));
-  beforeEach(async () => {
-    inject([LoginService],(service: LoginService) =>{
-      service.signInWithEmail({
-        email: "test@t.it",
-        password: "12345678"
-      })
-    })
-  });
-
+  
   it('should do defined LoginService', inject([LoginService], (service: LoginService) => {
     //expect(service.authenticated).toBeTruthy();
     expect(service).toBeDefined();
