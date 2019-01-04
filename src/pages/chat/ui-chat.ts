@@ -2,7 +2,7 @@ import { Component} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { OpenchatPage } from '../openchat/openchat';
 import { AccountService } from '../../providers/service/accountService';
-import { MessaggingService } from '../../providers/service/messaggingService';
+import { MessageProvider } from '../../providers/service/messagingService';
 import { Account, student, Message} from '../../model/model';
 import firebase from 'firebase';
 /**
@@ -27,7 +27,7 @@ export default class UiChatPage{
   email: string;
   messagge: Array<Message>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public DBAccountInstance: AccountService, public DBMessaggingInstance: MessaggingService ) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public DBAccountInstance: AccountService, public DBMessaggingInstance: MessageProvider ) {
     this.account = new Account();
     this.student = new student();
     this.students = [];
@@ -140,12 +140,9 @@ export default class UiChatPage{
     *  3.1 Quando uno dei 2 invia un messaggio viene aggiunto un documento nella collections "messages" che ha le seguenti informazioni:
     *  -Chats è un array di tipo message formato da una serie di oggetti che ha come param: from, to, testo e data.
     *  
-<<<<<<< HEAD
     *  3.1 Quando il tutor accetta uno studente viene creato un documento nella collections "messages" che ha come partecipanti il tutor e lo studente e si usa
     *  l'id di questo documento come chatID
-=======
     *  3.2 Quando l'utente è connesso in chat usiamo le API di firebase per ascoltare aggiunte di documenti fatte nella collections "messages" e che hanno il chatID associato ai 2 partecipanti
->>>>>>> develop
     *  
     *  3.3 Quando l'utente arriva nella chat viene semplicemente fatta  una lettura di tutti i documenti presenti i chats e vengono mostrati nella chat attuale
     * 

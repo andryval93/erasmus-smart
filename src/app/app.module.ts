@@ -119,7 +119,6 @@ import { InserisciRecensioneService } from '../providers/service/inserisciRecens
     AccountService,
     MessageProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
     NewNewsProvider,
     InserisciRecensioneService
   ]
