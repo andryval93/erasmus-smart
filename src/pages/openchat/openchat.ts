@@ -29,6 +29,7 @@ export class OpenchatPage {
     this.name = navParams.get("name");
     this.email = navParams.get("receveir");
     this.chatOpen = true;
+    console.log("marianna rompi", this.email);
   }
 
   ionViewDidLoad() {

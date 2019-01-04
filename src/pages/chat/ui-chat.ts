@@ -67,9 +67,14 @@ export default class UiChatPage{
     let emailTutor = firebase.auth().currentUser.email;
     this.DBAccountInstance.acceptRequest(emailStudent, emailTutor);
     console.log("test", firebase.auth().currentUser.email+emailStudent);
-    this.messagge = [];
     let object = {
-      messageList: this.messagge
+      created: true
+    }
+    for(var i = 0; i < this.items.length; i++){
+      if(this.items[i]==emailStudent){
+        console.log("ListaStudenti", this.students);
+        this.items[i].status = "accepted";
+      }
     }
     this.DBMessaggingInstance.startChat(emailTutor+emailStudent, object);
   }
@@ -81,6 +86,12 @@ export default class UiChatPage{
         if(this.students[i]==emailStudent){
           console.log("ListaStudenti", this.students);
           this.students.splice(i);
+        }
+      }
+      for(var i = 0; i < this.items.length; i++){
+        if(this.items[i]==emailStudent){
+          console.log("ListaStudenti", this.students);
+          this.items.splice(i);
         }
       }
       let obj = {
