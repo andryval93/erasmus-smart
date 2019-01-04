@@ -11,7 +11,7 @@ import { ListPage } from '../pages/list/list';
 import { NewsPage } from '../pages/news/news';
 import { QeaPage } from '../pages/qea/qea';
 import { NuovadomandaPage } from '../pages/nuovadomanda/nuovadomanda';
-import { UiChatPage } from '../pages/chat/ui-chat';
+import UiChatPage from '../pages/chat/ui-chat';
 import { NewNewsPage } from '../pages/new-news/new-news';
 
 import { HeaderEsComponent } from '../components/header-es/header-es';
@@ -45,8 +45,15 @@ import { ReviewsListPage } from '../pages/reviews-list/reviews-list';
 import { RegistrationProvider } from '../providers/service/registrationService';
 import { NuovaDomandaServiceProvider } from '../providers/service/nuovaDomandaService';
 import { AccountService } from '../providers/service/accountService';
+<<<<<<< HEAD
 import { MessageProvider } from '../providers/service/messagingService'
+=======
+import { NewNewsProvider } from '../providers/service/newNewsService';
+import { MessaggingService } from '../providers/service/messaggingService';
+import { NewsServiceProvider } from '../providers/service/newsService';
+>>>>>>> develop
 
+import { InserisciRecensioneService } from '../providers/service/inserisciRecensioneService'
 @NgModule({
   declarations: [
     MyApp,
@@ -112,14 +119,18 @@ import { MessageProvider } from '../providers/service/messagingService'
     RegistrationProvider,
     RisposteQeaServiceProvider,
     reviewService,
-    RisposteQeaServiceProvider,
-    reviewService,
-    RisposteQeaServiceProvider,
-    RisposteQeaServiceProvider,
     NuovaDomandaServiceProvider,
     AccountService,
+<<<<<<< HEAD
     MessageProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
+=======
+    NewsServiceProvider,
+    MessaggingService,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    NewNewsProvider,
+    InserisciRecensioneService
+>>>>>>> develop
   ]
 })
 export class AppModule {}

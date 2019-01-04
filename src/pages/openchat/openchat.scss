@@ -61,6 +61,15 @@ page-openchat {
         left: 3%;
     }
 
+    #circleAvatar{
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        top: 7%;
+        right: 5%;
+        border-radius: 50%;
+    }
+
     .filesButton{
         color: white;
         font-size: 25px;
@@ -109,13 +118,6 @@ page-openchat {
         background-size: 100%;
     }
 
-    #circleAvatar{
-        width:200px;
-        height: 200px;
-        position: absolute;
-        bottom: 200px;
-        left: 13px;
-        border-radius: 50%;
-    }
+
 }
 

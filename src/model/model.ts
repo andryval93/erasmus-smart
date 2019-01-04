@@ -40,6 +40,7 @@
     sender: string;
     receiver: string;
 
+<<<<<<< HEAD
     getMessage(){
       return this.message;
     }
@@ -56,19 +57,33 @@
       return this.receiver;
     }
 
+=======
+    
+>>>>>>> develop
     setMessage(message: string){
       this.message = message;
     }
 
+<<<<<<< HEAD
     setCreationTime(creationTime: string){
       this.creationTime = creationTime;
     }
 
+=======
+    setCreationTime(){
+   //   this.creationTime = ;
+    }
+    
+>>>>>>> develop
     setSender(sender: string){
       this.sender = sender;
     }
 
+<<<<<<< HEAD
     setReceiver(receiver: string){
+=======
+    setReceveir(receiver: string){
+>>>>>>> develop
       this.receiver = receiver;
     }
   }

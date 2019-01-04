@@ -40,6 +40,7 @@ export class OpenchatPage {
     this.name = navParams.get("name");
     this.email = navParams.get("receveir");
     this.chatOpen = true;
+<<<<<<< HEAD
 
     console.log("if:", localStorage.getItem("type") == "tutor")
 
@@ -77,6 +78,9 @@ export class OpenchatPage {
     this.serviceProv.sendMessage("Messages", this.idChat, message);
     this.text.setValue("");
 
+=======
+    console.log("marianna rompi", this.email);
+>>>>>>> develop
   }
 
   ionViewDidLoad() {
