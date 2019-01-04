@@ -48,6 +48,7 @@ import { AccountService } from '../providers/service/accountService';
 import { MessageProvider } from '../providers/service/messagingService'
 import { NewNewsProvider } from '../providers/service/newNewsService';
 import { NewsServiceProvider } from '../providers/service/newsService';
+import { MessageComponent } from '../components/message/message';
 
 import { InserisciRecensioneService } from '../providers/service/inserisciRecensioneService'
 @NgModule({
@@ -70,7 +71,8 @@ import { InserisciRecensioneService } from '../providers/service/inserisciRecens
     LoginPage,
     RegistrazionePage,
     ReviewsListPage,
-    ReviewMainPage
+    ReviewMainPage,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
@@ -101,7 +103,8 @@ import { InserisciRecensioneService } from '../providers/service/inserisciRecens
     UiChatPage,
     OpenchatPage,
     ReviewsListPage,
-    ReviewMainPage
+    ReviewMainPage,
+    MessageComponent
   ],
   providers: [
     StatusBar,

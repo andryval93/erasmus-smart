@@ -25,7 +25,7 @@ export class OpenchatPage {
   email: string; //email ricevente
   idChat: string;
   text : FormControl;
-
+  messages: Array<any>
   constructor(public navCtrl: NavController, public navParams: NavParams, private serviceProv: MessageProvider) {
     //this.nome = localStorage.getItem("nome");
     //this.sede = localStorage.getItem("sede");
@@ -53,16 +53,15 @@ export class OpenchatPage {
     //messages esterno che contiene le chat
    // console.log("Mex:", serviceProv.getAllMessages("Messages", this.idChat))
 
-   let messages: any[] = new Array();
+   this.messages = new Array();
 
-    serviceProv.getAllMessages("Messages", this.idChat).then(function(result){
+    serviceProv.getAllMessages("Messages", this.idChat).then((result) => {
         
         result.forEach(el => {
-          messages.push(el)
+          this.messages.push(el)
         });
       });
-      
-      console.log("Messages:", messages)
+      console.log("Messages:", this.messages)
   }
 
   sendUserMessage(){
@@ -76,8 +75,8 @@ export class OpenchatPage {
 
     this.serviceProv.sendMessage("Messages", this.idChat, message);
     this.text.setValue("");
-
-    console.log("marianna rompi", this.email);
+    this.messages.push(message);
+    console.log("mariann", this.email);
   }
 
   ionViewDidLoad() {

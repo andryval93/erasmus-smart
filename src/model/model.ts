@@ -35,10 +35,11 @@
   }
   
   export class Message {
-    message: string;
-    creationTime: string;
     sender: string;
     receiver: string;
+    message: string;
+    creationTime: string;
+    
 
     getMessage(){
       return this.message;
