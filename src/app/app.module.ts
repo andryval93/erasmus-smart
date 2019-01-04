@@ -47,6 +47,7 @@ import { NuovaDomandaServiceProvider } from '../providers/service/nuovaDomandaSe
 import { AccountService } from '../providers/service/accountService';
 import { NewNewsProvider } from '../providers/service/newNewsService';
 import { MessaggingService } from '../providers/service/messaggingService';
+import { NewsServiceProvider } from '../providers/service/newsService';
 
 import { InserisciRecensioneService } from '../providers/service/inserisciRecensioneService'
 @NgModule({
@@ -116,6 +117,7 @@ import { InserisciRecensioneService } from '../providers/service/inserisciRecens
     reviewService,
     NuovaDomandaServiceProvider,
     AccountService,
+    NewsServiceProvider,
     MessaggingService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     NewNewsProvider,
