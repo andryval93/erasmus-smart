@@ -70,12 +70,13 @@ export default class UiChatPage{
     let object = {
       created: true
     }
+    console.log("Prima", this.items);
     for(var i = 0; i < this.items.length; i++){
-      if(this.items[i]==emailStudent){
-        console.log("ListaStudenti", this.students);
-        this.items[i].status = "accepted";
+      if(this.items[i].email == emailStudent){
+        this.items[i].status = "accepted"
       }
     }
+    console.log("Dopo", this.items);
     this.DBMessaggingInstance.startChat(emailTutor+emailStudent, object);
   }
 
@@ -89,7 +90,7 @@ export default class UiChatPage{
         }
       }
       for(var i = 0; i < this.items.length; i++){
-        if(this.items[i]==emailStudent){
+        if(this.items[i].email==emailStudent){
           console.log("ListaStudenti", this.students);
           this.items.splice(i);
         }
