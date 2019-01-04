@@ -98,7 +98,7 @@ export class UiChatPage{
     *  Nota: se nel documento dello studente loggato il campo tutor e null o non esiste a video viene mostrato un messaggio che dice di completare lo step 4 del procedimento per poter chattar 
     *  
     *  
-    *  3.1 Quando il tutor accetta uno studente viene creato un documento nella collections "chats" che ha come partecipanti il tutor e lo studente e si usa
+    *  3.1 Quando il tutor accetta uno studente viene creato un documento nella collections "messages" che ha come partecipanti il tutor e lo studente e si usa
     *  l'id di questo documento come chatID
     *  
     *  3.2 Quando uno dei 2 invia un messaggio viene aggiunto un documento nella collections "messages" che ha le seguenti informazioni:
