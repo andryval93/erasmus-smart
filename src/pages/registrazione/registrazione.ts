@@ -2,10 +2,10 @@ import { Component} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController, IonicPage } from 'ionic-angular';
 import { RegistrationProvider } from '../../providers/service/registrationService'
-import { HomePage } from '../home/home';
 import CodiceFiscale from 'codice-fiscale-js'
 import { COMUNI } from 'codice-fiscale-js/src/geo-data.js'
 import firebase from 'firebase';
+import { NewsPage } from '../news/news';
 
 @IonicPage()
 
@@ -134,7 +134,7 @@ export class RegistrazionePage {
 
 		//Salva l'account nel DB nella collection Account con ID l'email inserita
 		this.serviceProv.addDocument("Account", this.data.email, credentials).then(
-			() => this.navCtrl.setRoot(HomePage),
+			() => this.navCtrl.setRoot(NewsPage),
 			error => this.signupError = error.message
 		);
 

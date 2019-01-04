@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { InserisciRecensioneService } from '../../providers/service/inserisciRecensioneService';
 import { FormBuilder, Validators } from '@angular/forms';
 import { LoginService } from '../../providers/service/loginService';
-import { HomePage } from '../home/home';
+import { NewsPage } from '../news/news';
 
 /**
  * Generated class for the InserisciRecensionePage page.
@@ -133,7 +133,7 @@ if ( this.arrayReviews.length > 0 ){
          .catch((error: any) => {
             console.dir(error);
          });
-         this.navCtrl.push(HomePage);
+         this.navCtrl.push(NewsPage);
   }
 
   presentAlert() {

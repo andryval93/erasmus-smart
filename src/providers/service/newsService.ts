@@ -51,6 +51,7 @@ export class NewsServiceProvider {
         })
     })
   }*/
+
   /*
    * Return documents from specific database collection
    */
@@ -76,6 +77,27 @@ export class NewsServiceProvider {
         });
     });
   }
+
+  /**
+   * Add a new document to a selected database collection
+   */
+  insertNews(collectionObj: string,
+    docID: String,
+    dataObj: any) : Promise<any>{
+        return new Promise((resolve, reject) => {
+            this.DBistance
+            .collection(collectionObj)
+            .doc(docID)
+            .set(dataObj)
+            .then((data : any) => {
+            resolve(data);
+            })
+            .catch((error: any) => {
+            reject(error);
+            })
+        })
+    }
+
 /*getReviews(collectionObj: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this.DBistance.collection(collectionObj)
@@ -101,6 +123,7 @@ export class NewsServiceProvider {
         });
     });
   }*/
+
   /**
    * Add a new document to a selected database collection
    */
@@ -136,6 +159,7 @@ export class NewsServiceProvider {
         });
     });
   }*/
+
   /**
    * Update an existing document within a selected database collection
    */
@@ -156,4 +180,5 @@ export class NewsServiceProvider {
         });
     });
     }*/
+
 }

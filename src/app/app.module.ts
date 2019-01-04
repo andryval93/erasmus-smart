@@ -6,7 +6,6 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { NewsPage } from '../pages/news/news';
 import { QeaPage } from '../pages/qea/qea';
@@ -45,7 +44,6 @@ import { ReviewsListPage } from '../pages/reviews-list/reviews-list';
 import { RegistrationProvider } from '../providers/service/registrationService';
 import { NuovaDomandaServiceProvider } from '../providers/service/nuovaDomandaService';
 import { AccountService } from '../providers/service/accountService';
-import { NewNewsProvider } from '../providers/service/newNewsService';
 import { MessaggingService } from '../providers/service/messaggingService';
 import { NewsServiceProvider } from '../providers/service/newsService';
 
@@ -53,7 +51,6 @@ import { InserisciRecensioneService } from '../providers/service/inserisciRecens
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
     NewsPage,
     ListPage,
     UiChatPage,
@@ -86,7 +83,6 @@ import { InserisciRecensioneService } from '../providers/service/inserisciRecens
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
     NewsPage,
     ListPage,
     StepperPage,
@@ -120,7 +116,6 @@ import { InserisciRecensioneService } from '../providers/service/inserisciRecens
     NewsServiceProvider,
     MessaggingService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    NewNewsProvider,
     InserisciRecensioneService
   ]
 })

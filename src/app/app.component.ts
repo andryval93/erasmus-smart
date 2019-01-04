@@ -3,7 +3,6 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { NewsPage } from '../pages/news/news'
 import { StepperPage } from '../pages/stepper/stepper'
@@ -45,7 +44,6 @@ export class MyApp {
 
     //inizialization of default navigation bar
     this.pages = [
-      { title: 'Home', component: HomePage },
       { title: 'News', component: NewsPage },
       { title: 'Stepper', component: StepperPage },
       { title: 'Q&A', component: QeaPage},
@@ -53,7 +51,6 @@ export class MyApp {
       { title: 'Registrazione', component: RegistrazionePage},
       { title: 'Chat', component: UiChatPage },
       { title: 'Recensioni', component: ReviewMainPage},
-      { title: 'NewsTEMP', component: NewNewsPage},
     ];
     
     //inizialization of default root page
@@ -62,7 +59,7 @@ export class MyApp {
         user => {
           console.log("authenticated",user);
           if (user) {
-            this.rootPage = HomePage;
+            this.rootPage = NewsPage;
           } else {
             this.rootPage = LoginPage;
           }
@@ -94,17 +91,15 @@ export class MyApp {
           if (user != null) {
 
             this.logged = true;
-            this.rootPage = HomePage;
+            this.rootPage = NewsPage;
             this.loggedEmail = firebase.auth().currentUser.email;
 
             this.pages = [
-              { title: 'Home', component: HomePage },
               { title: 'News', component: NewsPage },
               { title: 'Q&A', component: QeaPage},
               { title: 'Recensioni', component: ReviewMainPage},
               { title: 'Stepper', component: StepperPage },
-              { title: 'Chat', component: UiChatPage },
-              { title: 'NewsTEMP', component: NewNewsPage} 
+              { title: 'Chat', component: UiChatPage }, 
             ];
           }  
           
@@ -116,17 +111,15 @@ export class MyApp {
       //set navigation side bar & root page (logged/unlogged)
       if (this.logged) {
 
-        this.rootPage = HomePage;
+        this.rootPage = NewsPage;
         this.loggedEmail = firebase.auth().currentUser.email;
 
         this.pages = [
-          { title: 'Home', component: HomePage },
           { title: 'News', component: NewsPage },
           { title: 'Q&A', component: QeaPage},
           { title: 'Recensioni', component: ReviewMainPage},
           { title: 'Stepper', component: StepperPage },
           { title: 'Chat', component: UiChatPage },
-          { title: 'NewsTEMP', component: NewNewsPage} 
         ];
       }
 
@@ -136,12 +129,10 @@ export class MyApp {
         this.loggedEmail = "Host";
             
         this.pages = [
-          { title: 'Home', component: HomePage },
           { title: 'Login', component: LoginPage},
           { title: 'News', component: NewsPage },
           { title: 'Q&A', component: QeaPage},
           { title: 'Recensioni', component: ReviewMainPage},
-          { title: 'NewsTEMP', component: NewNewsPage},
         ];
       }
 
