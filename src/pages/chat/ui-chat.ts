@@ -64,13 +64,14 @@ export default class UiChatPage{
   }
     
   acceptRequest(emailStudent: string){
-    this.DBAccountInstance.acceptRequest(emailStudent);
+    let emailTutor = firebase.auth().currentUser.email;
+    this.DBAccountInstance.acceptRequest(emailStudent, emailTutor);
     console.log("test", firebase.auth().currentUser.email+emailStudent);
     this.messagge = [];
     let object = {
       messageList: this.messagge
     }
-    this.DBMessaggingInstance.startChat(firebase.auth().currentUser.email+emailStudent, object);
+    this.DBMessaggingInstance.startChat(emailTutor+emailStudent, object);
   }
 
   denyRequest(emailStudent: string){

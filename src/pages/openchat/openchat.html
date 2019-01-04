@@ -6,12 +6,13 @@
 <ion-content padding>
   <div id="container">
     <div id="infodestinatario">
+      <img id="circleAvatar" src="https://www.w3schools.com/howto/img_avatar.png">
       {{name}} {{surname}}<br>
       {{sede}}
     </div>
-    <img id="circleAvatar" src="https://www.w3schools.com/howto/img_avatar.png">
     <button class="chatButton" (click)="showChat()">Chat</button>
     <button class="filesButton" (click)="showFiles()">Files</button>
+    
     <div *ngIf="chatOpen == true" id="chat">
       ciao vicienzo.
       bella fra
