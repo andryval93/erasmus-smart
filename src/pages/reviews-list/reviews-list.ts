@@ -127,7 +127,7 @@ export class ReviewsListPage {
       )
     }
     this.selected=true;
-    //console.log("loaded", "loadedok")
+    console.log("selected", this.selected)
   }
 
   presentLoading() {
