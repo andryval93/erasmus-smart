@@ -45,13 +45,9 @@ import { ReviewsListPage } from '../pages/reviews-list/reviews-list';
 import { RegistrationProvider } from '../providers/service/registrationService';
 import { NuovaDomandaServiceProvider } from '../providers/service/nuovaDomandaService';
 import { AccountService } from '../providers/service/accountService';
-<<<<<<< HEAD
 import { MessageProvider } from '../providers/service/messagingService'
-=======
 import { NewNewsProvider } from '../providers/service/newNewsService';
-import { MessaggingService } from '../providers/service/messaggingService';
 import { NewsServiceProvider } from '../providers/service/newsService';
->>>>>>> develop
 
 import { InserisciRecensioneService } from '../providers/service/inserisciRecensioneService'
 @NgModule({
@@ -121,16 +117,11 @@ import { InserisciRecensioneService } from '../providers/service/inserisciRecens
     reviewService,
     NuovaDomandaServiceProvider,
     AccountService,
-<<<<<<< HEAD
     MessageProvider,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
-=======
-    NewsServiceProvider,
-    MessaggingService,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     NewNewsProvider,
     InserisciRecensioneService
->>>>>>> develop
   ]
 })
 export class AppModule {}
