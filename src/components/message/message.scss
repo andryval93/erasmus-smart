@@ -1,0 +1,29 @@
+.message {
+    width: 100%;
+    padding: 4px 0;
+  }
+  .right {
+    text-align: right;
+  }
+  .message span {
+    width: 65%;
+    padding: 14px 10px;
+    border-radius: 5px;
+    display: inline-block;
+    /*margin: 0 20px;*/
+    text-align: left;
+  }
+  .message div {
+    padding: 6px 10px;
+    display: inline-block;
+    margin: 0 20px 8px 20px;
+    color: #BBBBBB;
+    font-size: 12px;
+  }
+  .message.left span {
+    background-color: #CCCCCC;
+  }
+  .message.right span {
+    color: #FFFFFF;
+    background-color: #007AFF;
+  }

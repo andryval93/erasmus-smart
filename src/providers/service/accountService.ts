@@ -14,6 +14,7 @@ import 'firebase/firestore';
 import { SingletonDatabase } from '../../model/Database';
 import { resolve } from 'url';
 import firebase from 'firebase';
+import { EventManagerPlugin } from '@angular/platform-browser/src/dom/events/event_manager';
 
 
 
@@ -52,10 +53,31 @@ export class AccountService {
     })
   }
 
-  acceptRequest(docID: string) : Promise<any>{
+  getTypeAccount(collectionObj: string, docID: string) : Promise<any>{
+    return new Promise((resolve, reject) => {
+      this.DBistance.collection(collectionObj).doc(docID).get().then((data : any) => {
+          resolve(data.data().userType);
+      }).catch((error:any) => {
+          reject(error);
+      })
+   })
+  }
+
+  getStudentStatus(collectionObj: string, docID: string) : Promise<any>{
+    return new Promise((resolve, reject) => {
+      this.DBistance.collection(collectionObj).doc(docID).get().then((data : any) => {
+          resolve(data.data().status);
+      }).catch((error:any) => {
+          reject(error);
+      })
+   })
+  }
+
+  acceptRequest(docID: string, emailtutor: string) : Promise<any>{
     return new Promise((resolve, reject) => {
       let request = {
-        status: "accepted"
+        status: "accepted",
+        tutor: emailtutor
       }
       this.DBistance.collection("Account").doc(docID).set(request, {merge: true}).then((data : any) => {
         resolve(data);
@@ -65,7 +87,7 @@ export class AccountService {
     })
   }
 
-  denyRequest(docID: string, deleteFromList: Array<string>) : Promise<any>{
+  denyRequest(docID: string, deleteFromList: any) : Promise<any>{
     return new Promise((resolve, reject) => {
       let request = {
         students: deleteFromList

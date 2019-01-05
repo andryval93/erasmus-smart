@@ -2,29 +2,32 @@
   <header-es [title]="title">Messaggi</header-es>
 </ion-header>
 
-
 <ion-content padding>
   <div id="container">
     <div id="infodestinatario">
+      <img id="circleAvatar" src="https://www.w3schools.com/howto/img_avatar.png">
       {{name}} {{surname}}<br>
       {{sede}}
     </div>
-    <img id="circleAvatar" src="https://www.w3schools.com/howto/img_avatar.png">
     <button class="chatButton" (click)="showChat()">Chat</button>
     <button class="filesButton" (click)="showFiles()">Files</button>
+    
     <div *ngIf="chatOpen == true" id="chat">
-      ciao vicienzo.
-      bella fra
+      <div id="messages">
+        <message *ngFor="let msg of messages" [msg]="msg"></message>
+      </div>
     </div>
     <div *ngIf="chatOpen == false" id="files">
       eccoti i file
     </div>
     <input class="uploadFile" type="submit" value="" (click)="uploadFile()">
-    <textarea class="messageText" rows="1" placeholder="Inserisci il tuo testo qui" required="required"></textarea>
-    <input class="inputType" type="submit" value="" (click)="sendMessage()">
+    <form (ngSubmit)="sendUserMessage()">
+      <textarea class="messageText" rows="1" [formControl]="text" placeholder="Inserisci il tuo testo qui" required="required"></textarea>
+      <input class="inputType" type="submit" value="">
+    </form>
   </div>
 </ion-content>
 
 <ion-footer>
-    <footer-es></footer-es>
+  <footer-es></footer-es>
 </ion-footer>

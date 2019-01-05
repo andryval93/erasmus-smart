@@ -2,9 +2,10 @@ import { Component} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { OpenchatPage } from '../openchat/openchat';
 import { AccountService } from '../../providers/service/accountService';
-import { MessaggingService } from '../../providers/service/messaggingService';
+import { MessageProvider } from '../../providers/service/messagingService';
 import { Account, student, Message} from '../../model/model';
 import firebase from 'firebase';
+import { LoginService } from '../../providers/service/loginService';
 /**
  * Generated class for the UiChatPage page.
  *
@@ -26,51 +27,73 @@ export default class UiChatPage{
   status: string;
   email: string;
   messagge: Array<Message>;
+  account2: Account;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public DBAccountInstance: AccountService, public DBMessaggingInstance: MessaggingService ) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public DBAccountInstance: AccountService, public DBMessaggingInstance: MessageProvider ) {
     this.account = new Account();
     this.student = new student();
     this.students = [];
     this.items = [];
-    var i = 0; 
-    DBAccountInstance.getAccount('Account', firebase.auth().currentUser.email).then((data)=>{this.account.setEmail(data.data().email)
-                                                                         this.account.setName(data.data().name)
-                                                                         this.account.setSurname(data.data().surname)
-                                                                         this.account.setType(data.data().userType)
-                                                                         this.account.setStudents(data.data().students)
-    }).then(()=>{
-      console.log(this.account);
-      console.log(this.students);
-      console.log("ciao", this.account.getStudents());
-      this.students = this.account.getStudents();
-      console.log(this.students);
-      for(; i < this.students.length; i++){
-        DBAccountInstance.getAccount('Account', this.students[i]).then((data)=>{this.student.setEmail(data.data().email)
-                                                                        this.student.setName(data.data().name)
-                                                                        this.student.setSurname(data.data().surname)
-                                                                        this.student.setStatus(data.data().status)
-                                                                        this.student.setSede(data.data().sede)
+    var i = 0;
+      
+      this.DBAccountInstance.getTypeAccount("Account", firebase.auth().currentUser.email).then((type) => {
+      this.type = type;
+      console.log('TESTINTYPE', this.status, this.type);
+      if(this.type == "tutor"){
+        DBAccountInstance.getAccount('Account', firebase.auth().currentUser.email).then((data)=>{this.account.setEmail(data.data().email)
+                                                                            this.account.setName(data.data().name)
+                                                                            this.account.setSurname(data.data().surname)
+                                                                            this.account.setType(data.data().userType)
+                                                                            this.account.setStudents(data.data().students)
         }).then(()=>{
-            this.items.push({
-              email: this.student.email,
-              name: this.student.name,
-              surname: this.student.surname,
-              sede: this.student.sede,
-              status: this.student.status
-            });
-          }); 
-      };
+          console.log(this.account);
+          console.log(this.students);
+          console.log("ciao", this.account.getStudents());
+          this.students = this.account.getStudents();
+          console.log(this.students);
+          for(; i < this.students.length; i++){
+            DBAccountInstance.getAccount('Account', this.students[i]).then((data)=>{this.student.setEmail(data.data().email)
+                                                                            this.student.setName(data.data().name)
+                                                                            this.student.setSurname(data.data().surname)
+                                                                            this.student.setStatus(data.data().status)
+                                                                            this.student.setSede(data.data().sede)
+            }).then(()=>{
+                this.items.push({
+                  email: this.student.email,
+                  name: this.student.name,
+                  surname: this.student.surname,
+                  sede: this.student.sede,
+                  status: this.student.status
+                });
+              }); 
+          };
+        });
+        
+      }
+      else if(this.type == "student"){
+        DBAccountInstance.getStudentStatus("Account", this.email).then((status)=>{
+          console.log('TESTINSTATUS', this.status, this.type);
+          this.status = status;   
+        })
+      }
     });
   }
     
   acceptRequest(emailStudent: string){
-    this.DBAccountInstance.acceptRequest(emailStudent);
+    let emailTutor = firebase.auth().currentUser.email;
+    this.DBAccountInstance.acceptRequest(emailStudent, emailTutor);
     console.log("test", firebase.auth().currentUser.email+emailStudent);
-    this.messagge = [];
     let object = {
-      messageList: this.messagge
+      created: true
     }
-    this.DBMessaggingInstance.startChat(firebase.auth().currentUser.email+emailStudent, object);
+    console.log("Prima", this.items);
+    for(var i = 0; i < this.items.length; i++){
+      if(this.items[i].email == emailStudent){
+        this.items[i].status = "accepted"
+      }
+    }
+    console.log("Dopo", this.items);
+    this.DBMessaggingInstance.startChat(emailTutor+emailStudent, object);
   }
 
   denyRequest(emailStudent: string){
@@ -80,6 +103,12 @@ export default class UiChatPage{
         if(this.students[i]==emailStudent){
           console.log("ListaStudenti", this.students);
           this.students.splice(i);
+        }
+      }
+      for(var z = 0; z < this.items.length; z++){
+        if(this.items[z].email==emailStudent){
+          console.log("ListaStudenti", this.students);
+          this.items.splice(z);
         }
       }
       let obj = {
@@ -93,20 +122,48 @@ export default class UiChatPage{
 
   public isSearchbarOpened = false;
 
+  openChat(nome, surname, sede, receveir){
+    this.navCtrl.push(OpenchatPage, {"name":nome, "surname":surname, "sede":sede, "receveir":receveir, "type":this.type});
+  }
+
   ionViewDidLoad() {
-    console.log('ionViewDidLoad UiChatPage');
-    this.type = localStorage.getItem("type");
-    this.status = localStorage.getItem("status");
+    this.email = firebase.auth().currentUser.email;
+    this.DBAccountInstance.getTypeAccount("Account", this.email).then((type) => {
+      this.type = type;
+    }).then(()=>{
+      
+    
+    console.log('TEST1', this.status, this.type);
     if(this.status != null || this.status != "pending"){
+      console.log('TEST2', this.status, this.type);
       if(this.type == "student"){
-        this.navCtrl.push(OpenchatPage); //aggiungere logica per recuperare l'email del tutor e fare openChat()
-      }
+        this.DBAccountInstance.getStudentStatus("Account", this.email).then((status) => {
+          this.status = status;
+        }).then(()=>{
+        console.log('TEST3', this.status, this.type);
+        let tutor;
+        this.DBAccountInstance.getAccount("Account", firebase.auth().currentUser.email).then((data)=>{
+          tutor = data.data().tutor;
+          console.log("TUTOR", tutor);
+          let account: Account;
+        }).then(()=>{
+          this.DBAccountInstance.getAccount('Account', tutor).then((data)=>{this.account.setEmail(data.data().email)
+                                                                            this.account.setName(data.data().name)
+                                                                            this.account.setSurname(data.data().surname)                                                     
+          }).then(() => {       
+          console.log("Marianna chiede", this.account);                                                        
+          this.openChat(this.account.name, this.account.surname, "Tutor", this.account.email);
+        });
+        });
+      });
+    }
       else if(this.type == "tutor"){
         //stay in this page
      }
     } else {
       console.log("ERRORE");
     }
+  });
     /*
     *
     
@@ -128,6 +185,8 @@ export default class UiChatPage{
     *  3.1 Quando uno dei 2 invia un messaggio viene aggiunto un documento nella collections "messages" che ha le seguenti informazioni:
     *  -Chats è un array di tipo message formato da una serie di oggetti che ha come param: from, to, testo e data.
     *  
+    *  3.1 Quando il tutor accetta uno studente viene creato un documento nella collections "messages" che ha come partecipanti il tutor e lo studente e si usa
+    *  l'id di questo documento come chatID
     *  3.2 Quando l'utente è connesso in chat usiamo le API di firebase per ascoltare aggiunte di documenti fatte nella collections "messages" e che hanno il chatID associato ai 2 partecipanti
     *  
     *  3.3 Quando l'utente arriva nella chat viene semplicemente fatta  una lettura di tutti i documenti presenti i chats e vengono mostrati nella chat attuale
@@ -137,8 +196,6 @@ export default class UiChatPage{
   
   
 
-  openChat(nome, surname, sede, receveir){
-    this.navCtrl.push(OpenchatPage, {"name":nome, "surname":surname, "sede":sede, "receveir":receveir});
-  }
+ 
 }
 

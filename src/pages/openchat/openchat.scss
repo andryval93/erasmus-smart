@@ -26,6 +26,7 @@ page-openchat {
     }
 
     #chat{
+        overflow: scroll;
         position: absolute;
         left: 25%;
         width: 75%;
@@ -59,6 +60,15 @@ page-openchat {
         position: absolute;
         top: 90%;
         left: 3%;
+    }
+
+    #circleAvatar{
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        top: 7%;
+        right: 5%;
+        border-radius: 50%;
     }
 
     .filesButton{
@@ -109,13 +119,6 @@ page-openchat {
         background-size: 100%;
     }
 
-    #circleAvatar{
-        width:200px;
-        height: 200px;
-        position: absolute;
-        bottom: 200px;
-        left: 13px;
-        border-radius: 50%;
-    }
+
 }
 

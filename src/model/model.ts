@@ -1,4 +1,3 @@
-import { List } from "lodash";
 
   export class Account {
     email: string;
@@ -36,18 +35,35 @@ import { List } from "lodash";
   }
   
   export class Message {
-    message: string;
-    creationTime: string;
     sender: string;
     receiver: string;
+    message: string;
+    creationTime: string;
+    
+
+    getMessage(){
+      return this.message;
+    }
+
+    getCreationTime(){
+      return this.creationTime;
+    }
+
+    getSender(){
+      return this.sender;
+    }
+
+    getReceiver(){
+      return this.receiver;
+    }
 
     
     setMessage(message: string){
       this.message = message;
     }
 
-    setCreationTime(){
-   //   this.creationTime = ;
+    setCreationTime(creationTime: string){
+      this.creationTime = creationTime;
     }
     
     setSender(sender: string){

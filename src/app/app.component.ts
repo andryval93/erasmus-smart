@@ -3,7 +3,6 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { NewsPage } from '../pages/news/news'
 import { StepperPage } from '../pages/stepper/stepper'
@@ -34,43 +33,17 @@ export class MyApp {
   logged: boolean;
   //email of logged user
   loggedEmail: String;
-
+  //list of pages
   pages: Array<{ title: string, component: any }>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public loginService: LoginService) {
-   
-    this.initializeApp();
-    this.logged = false;
-    this.loggedEmail = "Host";
 
-    //inizialization of default navigation bar
-    this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'News', component: NewsPage },
-      { title: 'Stepper', component: StepperPage },
-      { title: 'Q&A', component: QeaPage},
-      { title: 'Login', component: LoginPage},
-      { title: 'Registrazione', component: RegistrazionePage},
-      { title: 'Chat', component: UiChatPage },
-      { title: 'Recensioni', component: ReviewMainPage},
-      { title: 'NewsTEMP', component: NewNewsPage},
-    ];
-    
-    //inizialization of default root page
-    this.loginService.afAuth.authState
-      .subscribe(
-        user => {
-          console.log("authenticated",user);
-          if (user) {
-            this.rootPage = HomePage;
-          } else {
-            this.rootPage = LoginPage;
-          }
-        },
-        () => {
-          this.rootPage = LoginPage;
-        }
-      );
+    //disconessione di eventuali log precedenti prima di avviare l'app
+    //fix non più necessario
+    //firebase.auth().signOut();
+    //localStorage.clear();
+
+    this.initializeApp();
 
     //fix error - Firebase App named '[DEFAULT]' already exists (app/duplicate-app)
     // firebase.initializeApp(ENV.firebase);
@@ -78,86 +51,75 @@ export class MyApp {
 
   initializeApp() {
     
-    this.platform.ready().then(() => {
-      
-      //disconessione di eventuali log precedenti prima di avviare l'app
-      this.logout();
+    this.statusBar.styleDefault();
+    this.splashScreen.hide();
 
-      //set logged variable & first logged access
+    this.loginLogic();
+  }
+
+  loginLogic() {
+
+      //set logged variable
       this.loginService.afAuth.authState
       .subscribe(
         user => {
-
+              
           console.log("authenticated",user);
-
+    
           //user logged
           if (user != null) {
-
-            this.logged = true;
-            this.rootPage = HomePage;
-            this.loggedEmail = firebase.auth().currentUser.email;
-
-            this.pages = [
-              { title: 'Home', component: HomePage },
-              { title: 'News', component: NewsPage },
-              { title: 'Q&A', component: QeaPage},
-              { title: 'Recensioni', component: ReviewMainPage},
-              { title: 'Stepper', component: StepperPage },
-              { title: 'Chat', component: UiChatPage },
-              { title: 'NewsTEMP', component: NewNewsPage} 
-            ];
-          }  
-          
+            
+              this.logged = true;
+              this.userIsLogged();
+            }  
+            
           //user unlogged
-          else {this.logged = false;}
+          else {
+
+            this.logged = false;
+            this.userIsNotLogged();
+          }
         },
       );
+  }
 
-      //set navigation side bar & root page (logged/unlogged)
-      if (this.logged) {
+  userIsLogged() {
 
-        this.rootPage = HomePage;
-        this.loggedEmail = firebase.auth().currentUser.email;
+    this.rootPage = NewsPage;
+    this.loggedEmail = firebase.auth().currentUser.email;
 
-        this.pages = [
-          { title: 'Home', component: HomePage },
-          { title: 'News', component: NewsPage },
-          { title: 'Q&A', component: QeaPage},
-          { title: 'Recensioni', component: ReviewMainPage},
-          { title: 'Stepper', component: StepperPage },
-          { title: 'Chat', component: UiChatPage },
-          { title: 'NewsTEMP', component: NewNewsPage} 
-        ];
-      }
+    this.pages = [
+      { title: 'News', component: NewsPage },
+      { title: 'Q&A', component: QeaPage},
+      { title: 'Recensioni', component: ReviewMainPage},
+      { title: 'Stepper', component: StepperPage },
+      { title: 'Chat', component: UiChatPage },
+      
+    ];
+  }
 
-      else {
+  userIsNotLogged() {
 
-        this.rootPage = LoginPage;
-        this.loggedEmail = "Host";
-            
-        this.pages = [
-          { title: 'Home', component: HomePage },
-          { title: 'Login', component: LoginPage},
-          { title: 'News', component: NewsPage },
-          { title: 'Q&A', component: QeaPage},
-          { title: 'Recensioni', component: ReviewMainPage},
-          { title: 'NewsTEMP', component: NewNewsPage},
-        ];
-      }
-
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-    });
+    this.rootPage = LoginPage;
+    this.loggedEmail = "Host";
+        
+    this.pages = [
+      { title: 'Login', component: LoginPage},
+      { title: 'News', component: NewsPage },
+      { title: 'Q&A', component: QeaPage},
+      { title: 'Recensioni', component: ReviewMainPage},
+    ];
   }
 
   logout() {
 
     firebase.auth().signOut();
     localStorage.clear();
+
+    this.rootPage = LoginPage;
     this.logged = false;
     this.loggedEmail = "Host";
+    
     this.nav.popToRoot;
   }
 

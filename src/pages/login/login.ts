@@ -1,20 +1,20 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NavController, IonicPage } from 'ionic-angular';
-import { HomePage } from '../home/home';
 import { LoginService } from '../../providers/service/loginService';
 import { RegistrazionePage } from '../registrazione/registrazione';
+import { NewsPage } from '../news/news';
 
 @IonicPage()
 
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html',
+	selector: 'page-login',
+	templateUrl: 'login.html',
 })
 export class LoginPage {
 	loginForm: FormGroup;
 	loginError: string;
-  currentEmail : any;
+	currentEmail: any;
 	constructor(
 		private navCtrl: NavController,
 		private auth: LoginService,
@@ -26,11 +26,11 @@ export class LoginPage {
 		});
 	}
 
-  login() {
+	login() {
 		let data = this.loginForm.value;
-     
+
 		if (!data.email) {
-			
+
 			return;
 		}
 		this.currentEmail = data.email;
@@ -38,18 +38,18 @@ export class LoginPage {
 			email: data.email,
 			password: data.password
 		};
-	
+
 		this.auth.signInWithEmail(credentials)
 			.then(
-				() => this.navCtrl.setRoot(HomePage),
+				() => this.navCtrl.setRoot(NewsPage),
 				error => this.loginError = error.message,
-				
-			);
-    }
 
-  signup(){
-    this.navCtrl.push(RegistrazionePage);
-  }
+			);
+	}
+
+	signup() {
+		this.navCtrl.push(RegistrazionePage);
+	}
 
 
 

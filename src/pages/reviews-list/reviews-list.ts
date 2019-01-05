@@ -22,6 +22,7 @@ export class ReviewsListPage {
   University: any;
   private uni: String;
   loaded: boolean=true;
+  selected: boolean=false;
 
   allReviews: Array<{recensore: String, date: String, starsA: any, text: String,starsI: any}>;
   Reviews: Array<{recensore: String, date: String, starsA: any, text: String,starsI: any, img: String}>;
@@ -70,7 +71,7 @@ export class ReviewsListPage {
                 starsI: data[k]["Reviews"][j]["stars"].length,
               })
               j++;
-              console.log("j= ",j)
+              //console.log("j= ",j)
             }
           }
           this.selectReviews();
@@ -87,7 +88,19 @@ export class ReviewsListPage {
     this.presentLoading();
     this.Reviews=[];
     for (let i = 0; i < this.allReviews.length; i++) {
-      if(this.allReviews[i]["starsI"]>=this.Stars){
+      if(this.allReviews[i]["starsI"]>=this.Stars&&this.selected==false){
+        //console.log("aaaUniversity", this.allReviews[i]["starsI"]);
+      this.Reviews.push(
+        {
+          recensore: this.allReviews[i]["recensore"],
+          date: this.allReviews[i]["date"],
+          starsA: this.allReviews[i]["starsA"],
+          text: this.allReviews[i]["text"],
+          starsI: this.allReviews[i]["starsI"],
+          img:"../../assets/imgs/balsamiq.png"
+        })
+      }
+      if(this.allReviews[i]["starsI"]==this.Stars&&this.selected==true){
         //console.log("aaaUniversity", this.allReviews[i]["starsI"]);
       this.Reviews.push(
         {
@@ -113,7 +126,8 @@ export class ReviewsListPage {
         }
       )
     }
-    //console.log("loaded", "loadedok")
+    this.selected=true;
+    //console.log("selected", this.selected)
   }
 
   presentLoading() {
