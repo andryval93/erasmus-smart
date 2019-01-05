@@ -6,6 +6,8 @@ import { MessageProvider } from '../../providers/service/messagingService';
 import { Account, student, Message} from '../../model/model';
 import firebase from 'firebase';
 import { LoginService } from '../../providers/service/loginService';
+import { HomePage } from '../home/home';
+import { NewsPage } from '../news/news';
 /**
  * Generated class for the UiChatPage page.
  *
@@ -28,8 +30,9 @@ export default class UiChatPage{
   email: string;
   messagge: Array<Message>;
   account2: Account;
-
+  viewPage: boolean;
   constructor(public navCtrl: NavController, public navParams: NavParams, public DBAccountInstance: AccountService, public DBMessaggingInstance: MessageProvider ) {
+    this.viewPage = false;
     this.account = new Account();
     this.student = new student();
     this.students = [];
@@ -40,6 +43,7 @@ export default class UiChatPage{
       this.type = type;
       console.log('TESTINTYPE', this.status, this.type);
       if(this.type == "tutor"){
+        
         DBAccountInstance.getAccount('Account', firebase.auth().currentUser.email).then((data)=>{this.account.setEmail(data.data().email)
                                                                             this.account.setName(data.data().name)
                                                                             this.account.setSurname(data.data().surname)
@@ -50,6 +54,12 @@ export default class UiChatPage{
           console.log(this.students);
           console.log("ciao", this.account.getStudents());
           this.students = this.account.getStudents();
+          if(this.students.length == 0){
+            this.viewPage = false;
+          }
+          else{
+            this.viewPage = true;
+          }
           console.log(this.students);
           for(; i < this.students.length; i++){
             DBAccountInstance.getAccount('Account', this.students[i]).then((data)=>{this.student.setEmail(data.data().email)
@@ -75,6 +85,7 @@ export default class UiChatPage{
           console.log('TESTINSTATUS', this.status, this.type);
           this.status = status;   
         })
+        
       }
     });
   }
@@ -140,6 +151,10 @@ export default class UiChatPage{
         this.DBAccountInstance.getStudentStatus("Account", this.email).then((status) => {
           this.status = status;
         }).then(()=>{
+          if(this.status == null){
+            this.viewPage = false;
+          }else{
+            this.viewPage = true;
         console.log('TEST3', this.status, this.type);
         let tutor;
         this.DBAccountInstance.getAccount("Account", firebase.auth().currentUser.email).then((data)=>{
@@ -155,7 +170,9 @@ export default class UiChatPage{
           this.openChat(this.account.name, this.account.surname, "Tutor", this.account.email);
         });
         });
+      }
       });
+    
     }
       else if(this.type == "tutor"){
         //stay in this page

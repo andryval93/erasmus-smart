@@ -118,9 +118,11 @@ export class RegistrazionePage {
 		}
 		else
 			this.errorMessagePassword = undefined
-
+			let credentials;
+		if(this.data.userType == "tutor"){
 		//Crea l'account da salvare nel DB
-		let credentials = {
+		let temp = new Array();
+		credentials = {
 			email: this.data.email,
 			password: this.data.password,
 			name: this.data.name,
@@ -130,14 +132,29 @@ export class RegistrazionePage {
 			fiscalCode: this.data.fiscalCode,
 			gender: this.data.gender,
 			userType: this.data.userType,
+			students: temp
 		};
-
+		} else {
+			credentials = {
+				email: this.data.email,
+				password: this.data.password,
+				name: this.data.name,
+				surname: this.data.surname,
+				birthDay: this.data.birthDay,
+				birthPlace: this.data.birthPlace,
+				fiscalCode: this.data.fiscalCode,
+				gender: this.data.gender,
+				userType: this.data.userType,
+				tutor: null,
+				status: null,
+		};
+	}
 		//Salva l'account nel DB nella collection Account con ID l'email inserita
 		this.serviceProv.addDocument("Account", this.data.email, credentials).then(
 			() => this.navCtrl.setRoot(NewsPage),
 			error => this.signupError = error.message
 		);
-
+		
 
 		firebase.auth().createUserWithEmailAndPassword(this.data.email, this.data.password).then(() => {
 			firebase.auth().signInWithEmailAndPassword(this.data.email, this.data.password);
