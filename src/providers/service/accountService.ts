@@ -53,6 +53,26 @@ export class AccountService {
     })
   }
 
+  getTypeAccount(collectionObj: string, docID: string) : Promise<any>{
+    return new Promise((resolve, reject) => {
+      this.DBistance.collection(collectionObj).doc(docID).get().then((data : any) => {
+          resolve(data.data().userType);
+      }).catch((error:any) => {
+          reject(error);
+      })
+   })
+  }
+
+  getStudentStatus(collectionObj: string, docID: string) : Promise<any>{
+    return new Promise((resolve, reject) => {
+      this.DBistance.collection(collectionObj).doc(docID).get().then((data : any) => {
+          resolve(data.data().status);
+      }).catch((error:any) => {
+          reject(error);
+      })
+   })
+  }
+
   acceptRequest(docID: string, emailtutor: string) : Promise<any>{
     return new Promise((resolve, reject) => {
       let request = {
