@@ -26,41 +26,46 @@ export default class UiChatPage{
   status: string;
   email: string;
   messagge: Array<Message>;
-
+  account2: Account;
   constructor(public navCtrl: NavController, public navParams: NavParams, public DBAccountInstance: AccountService, public DBMessaggingInstance: MessageProvider ) {
     this.account = new Account();
     this.student = new student();
     this.students = [];
     this.items = [];
     var i = 0; 
-    DBAccountInstance.getAccount('Account', firebase.auth().currentUser.email).then((data)=>{this.account.setEmail(data.data().email)
-                                                                         this.account.setName(data.data().name)
-                                                                         this.account.setSurname(data.data().surname)
-                                                                         this.account.setType(data.data().userType)
-                                                                         this.account.setStudents(data.data().students)
-    }).then(()=>{
-      console.log(this.account);
-      console.log(this.students);
-      console.log("ciao", this.account.getStudents());
-      this.students = this.account.getStudents();
-      console.log(this.students);
-      for(; i < this.students.length; i++){
-        DBAccountInstance.getAccount('Account', this.students[i]).then((data)=>{this.student.setEmail(data.data().email)
-                                                                        this.student.setName(data.data().name)
-                                                                        this.student.setSurname(data.data().surname)
-                                                                        this.student.setStatus(data.data().status)
-                                                                        this.student.setSede(data.data().sede)
-        }).then(()=>{
-            this.items.push({
-              email: this.student.email,
-              name: this.student.name,
-              surname: this.student.surname,
-              sede: this.student.sede,
-              status: this.student.status
-            });
-          }); 
-      };
-    });
+    if(firebase.auth().currentUser.email=="tienivince@live.it"){
+      DBAccountInstance.getAccount('Account', firebase.auth().currentUser.email).then((data)=>{this.account.setEmail(data.data().email)
+                                                                          this.account.setName(data.data().name)
+                                                                          this.account.setSurname(data.data().surname)
+                                                                          this.account.setType(data.data().userType)
+                                                                          this.account.setStudents(data.data().students)
+      }).then(()=>{
+        console.log(this.account);
+        console.log(this.students);
+        console.log("ciao", this.account.getStudents());
+        this.students = this.account.getStudents();
+        console.log(this.students);
+        for(; i < this.students.length; i++){
+          DBAccountInstance.getAccount('Account', this.students[i]).then((data)=>{this.student.setEmail(data.data().email)
+                                                                          this.student.setName(data.data().name)
+                                                                          this.student.setSurname(data.data().surname)
+                                                                          this.student.setStatus(data.data().status)
+                                                                          this.student.setSede(data.data().sede)
+          }).then(()=>{
+              this.items.push({
+                email: this.student.email,
+                name: this.student.name,
+                surname: this.student.surname,
+                sede: this.student.sede,
+                status: this.student.status
+              });
+            }); 
+        };
+      });
+    }
+    else{
+
+    }
   }
     
   acceptRequest(emailStudent: string){
@@ -89,10 +94,10 @@ export default class UiChatPage{
           this.students.splice(i);
         }
       }
-      for(var i = 0; i < this.items.length; i++){
-        if(this.items[i].email==emailStudent){
+      for(var z = 0; z < this.items.length; z++){
+        if(this.items[z].email==emailStudent){
           console.log("ListaStudenti", this.students);
-          this.items.splice(i);
+          this.items.splice(z);
         }
       }
       let obj = {
@@ -106,14 +111,32 @@ export default class UiChatPage{
 
   public isSearchbarOpened = false;
 
+  openChat(nome, surname, sede, receveir){
+    this.navCtrl.push(OpenchatPage, {"name":nome, "surname":surname, "sede":sede, "receveir":receveir});
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad UiChatPage');
     this.type = localStorage.getItem("type");
     this.status = localStorage.getItem("status");
+    this.type = "student"; // da elminare dopo sistemazione del login
     if(this.status != null || this.status != "pending"){
       if(this.type == "student"){
-        this.navCtrl.push(OpenchatPage); //aggiungere logica per recuperare l'email del tutor e fare openChat()
-      }
+        let tutor;
+        this.DBAccountInstance.getAccount("Account", firebase.auth().currentUser.email).then((data)=>{
+          tutor = data.data().tutor;
+          console.log("TUTOR", tutor);
+          let account: Account;
+        }).then(()=>{
+          this.DBAccountInstance.getAccount('Account', tutor).then((data)=>{this.account.setEmail(data.data().email)
+                                                                            this.account.setName(data.data().name)
+                                                                            this.account.setSurname(data.data().surname)                                                     
+          }).then(() => {       
+          console.log("Marianna chiede", this.account);                                                        
+          this.openChat(this.account.name, this.account.surname, "Tutor", this.account.email);
+        });
+      });
+    }
       else if(this.type == "tutor"){
         //stay in this page
      }
@@ -152,8 +175,6 @@ export default class UiChatPage{
   
   
 
-  openChat(nome, surname, sede, receveir){
-    this.navCtrl.push(OpenchatPage, {"name":nome, "surname":surname, "sede":sede, "receveir":receveir});
-  }
+ 
 }
 

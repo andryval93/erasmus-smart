@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { MessageProvider } from '../../providers/service/messagingService'
 import firebase from 'firebase';
 import { FormControl, Validators } from '@angular/forms';
@@ -26,12 +26,10 @@ export class OpenchatPage {
   idChat: string;
   text : FormControl;
   messages: Array<any>
-  constructor(public navCtrl: NavController, public navParams: NavParams, private serviceProv: MessageProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private serviceProv: MessageProvider, public viewCtrl: ViewController) {
     //this.nome = localStorage.getItem("nome");
     //this.sede = localStorage.getItem("sede");
     //navParams per prendere parametri da NON localStorage
-
-    localStorage.setItem("type", "tutor")
     
     this.text = new FormControl('', Validators.required)
 
@@ -92,4 +90,7 @@ export class OpenchatPage {
     this.chatOpen = false;
   }
 
+  ionViewWillEnter() {
+    this.viewCtrl.showBackButton(false);
+}
 }
