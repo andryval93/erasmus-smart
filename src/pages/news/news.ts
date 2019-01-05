@@ -18,7 +18,7 @@ export class NewsPage {
   title :string = "News";
   private Document :string = "News";
   newsList: Array<{title: String, date: String, content: String}> = [];
-  moment = require('moment');
+ // moment = require('moment');
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private DBIstance: NewsServiceProvider, public loadingCtrl: LoadingController) {
     this.retrieveNews();
