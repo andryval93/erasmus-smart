@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 import { MessageProvider } from '../../providers/service/messagingService'
 import firebase from 'firebase';
 import { FormControl, Validators } from '@angular/forms';
-import { type } from 'os';
 
 /**
  * Generated class for the OpenchatPage page.
@@ -28,6 +27,7 @@ export class OpenchatPage {
   text : FormControl;
   messages: Array<any>
   type: string;
+  newMessage: Array<any>;
   constructor(public navCtrl: NavController, public navParams: NavParams, private serviceProv: MessageProvider, public viewCtrl: ViewController) {
     //this.nome = localStorage.getItem("nome");
     //this.sede = localStorage.getItem("sede");
@@ -75,27 +75,24 @@ export class OpenchatPage {
 
     this.serviceProv.sendMessage("Messages", this.idChat, message);
     this.text.setValue("");
-    this.messages.push(message);
     console.log("mariann", this.email);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OpenchatPage');
     let observer = this.serviceProv.getObserver("Messages", this.idChat)
-
+    let viewMessage = this;
     observer.onSnapshot({
       next(snapshot) {
         console.log("snapshot", snapshot)
         snapshot.docChanges().forEach((value, index: number, array) => {
-          console.log("Value",value.doc.data());
-          //quiii
+            viewMessage.messages.push(value.doc.data());
         })
       },
       error(error: Error) {
         console.log("Error to listen add", error)
       }
     })
-    
   }
 
   showChat(){
