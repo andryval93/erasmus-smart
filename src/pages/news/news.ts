@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { NewsServiceProvider } from '../../providers/service/newsService';
 
 /**
@@ -18,12 +18,14 @@ export class NewsPage {
   title :string = "News";
   private Document :string = "News";
   newsList: Array<{title: String, date: String, content: String}> = [];
+  moment = require('moment');
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private DBIstance: NewsServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private DBIstance: NewsServiceProvider, public loadingCtrl: LoadingController) {
     this.retrieveNews();
   }
 
   retrieveNews() {
+    this.presentLoading();
     console.log("Fetching news from the database, please wait!");
     this.DBIstance.getNews(this.Document)
       .then((data) => {
@@ -40,13 +42,21 @@ export class NewsPage {
           for (let i = 0; i < data.length; i++) {
             this.newsList.push({
               title: data[i]["title"],
-              date: data[i]["date"],
+              date: this.moment(data[i]["date"]).format("DD-MM-YYYY HH:mm"),
               content: data[i]["content"]
             });
           }
         }
       })
       .catch();
+  }
+
+  presentLoading() {
+    const loader = this.loadingCtrl.create({
+      content:"Attendi un attimo..",
+      duration: 3000
+    });
+    loader.present();
   }
 
   ionViewDidLoad() {
