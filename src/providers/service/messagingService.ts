@@ -41,6 +41,10 @@ export class MessageProvider {
         this.DBistance = SingletonDatabase.getInstance();
     }
 
+    getObserver(collectionObj:string, docID: any): any {
+        return this.DBistance.collection("/Messages/tienivince@live.itciccio@paolo.it/Messages")
+    }
+
     sendMessage(collectionObj: string,
         docID: any, newMessage: any): Promise<any> {
         return new Promise((resolve, reject) => {

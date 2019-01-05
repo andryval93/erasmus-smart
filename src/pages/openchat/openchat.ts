@@ -81,6 +81,20 @@ export class OpenchatPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OpenchatPage');
+    let observer = this.serviceProv.getObserver("Messages", this.idChat)
+
+    observer.onSnapshot({
+      next(snapshot) {
+        console.log("snapshot", snapshot)
+        snapshot.docChanges().forEach((value, index: number, array) => {
+          console.log("Value",value.doc.data());
+          //quiii
+        })
+      },
+      error(error: Error) {
+        console.log("Error to listen add", error)
+      }
+    })
     
   }
 
