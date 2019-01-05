@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 import { MessageProvider } from '../../providers/service/messagingService'
 import firebase from 'firebase';
 import { FormControl, Validators } from '@angular/forms';
+import { type } from 'os';
 
 /**
  * Generated class for the OpenchatPage page.
@@ -26,6 +27,7 @@ export class OpenchatPage {
   idChat: string;
   text : FormControl;
   messages: Array<any>
+  type: string;
   constructor(public navCtrl: NavController, public navParams: NavParams, private serviceProv: MessageProvider, public viewCtrl: ViewController) {
     //this.nome = localStorage.getItem("nome");
     //this.sede = localStorage.getItem("sede");
@@ -37,11 +39,11 @@ export class OpenchatPage {
     this.surname = navParams.get("surname");
     this.name = navParams.get("name");
     this.email = navParams.get("receveir");
+    this.type = navParams.get("type");
     this.chatOpen = true;
 
-    console.log("if:", localStorage.getItem("type") == "tutor")
 
-    if (localStorage.getItem("type") == "tutor")
+    if (this.type == "tutor")
       this.idChat = firebase.auth().currentUser.email + this.email
     else
       this.idChat = this.email + firebase.auth().currentUser.email
@@ -79,6 +81,20 @@ export class OpenchatPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OpenchatPage');
+    let observer = this.serviceProv.getObserver("Messages", this.idChat)
+
+    observer.onSnapshot({
+      next(snapshot) {
+        console.log("snapshot", snapshot)
+        snapshot.docChanges().forEach((value, index: number, array) => {
+          console.log("Value",value.doc.data());
+          //quiii
+        })
+      },
+      error(error: Error) {
+        console.log("Error to listen add", error)
+      }
+    })
     
   }
 
