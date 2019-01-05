@@ -40,11 +40,11 @@ export class NewsPage {
         else {
           console.log("News fetched from the database!");
           for (let i = 0; i < data.length; i++) {
-            this.newsList.push({
+            /*this.newsList.push({
               title: data[i]["title"],
               date: this.moment(data[i]["date"]).format("DD-MM-YYYY HH:mm"),
               content: data[i]["content"]
-            });
+            })/*/
           }
         }
       })
