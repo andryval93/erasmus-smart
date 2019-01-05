@@ -33,6 +33,7 @@ export class QeaServiceProvider {
   
   //private DBistance: any;
     DBistance: any;
+  Domande: any;
  
   constructor(public http: HttpClient) {
     console.log('Hello DatabaseProvider Provider');
@@ -78,6 +79,7 @@ export class QeaServiceProvider {
           obj.push({
            id             : doc.id,
            Domande        : doc.data().Domande,
+           Domanda        : doc.data().Domanda,
            risposte       : doc.data().risposte,
            Sede           : doc.data().Sede
           
@@ -93,7 +95,7 @@ export class QeaServiceProvider {
   }
   /**
    * Add a new document to a selected database collection
-   DA MODIFICAREEEEEEEEEE */
+   */
   addDocument(collectionObj: string,
     docID: String,
     dataObj: any) : Promise<any>{

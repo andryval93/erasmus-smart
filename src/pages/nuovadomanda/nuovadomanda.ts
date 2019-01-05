@@ -96,7 +96,6 @@ export class NuovadomandaPage {
 
 
    constructor(public navCtrl: NavController,
-      public navParams: NavParams,
       private DBistance: NuovaDomandaServiceProvider,
       private DBistanceSedi: ServiceProvider,
       private alertCtrl: AlertController,
@@ -210,8 +209,6 @@ export class NuovadomandaPage {
             console.dir(error);
          });
    }
-   // wffwfwefweefwefwefwe
-
 
    /**
     * Saves form data as newly added/edited record within Firebase Realtime
@@ -243,17 +240,13 @@ export class NuovadomandaPage {
          console.log(this.locations[i].id);
       }
 
-      // this.arrayDomande = this.locations[0].Domande;
-      // console.log(this.locations[1].Sede);
-
-
-
       this.temp = {
          Domanda: this.form.controls["Domanda"].value,
          Descrizione: this.form.controls["Descrizione"].value,
          risposte: new Array<String>()
       }
       this.arrayDomande.push(this.temp);
+
       if (this.arrayDomande.length > 0) {
          this.alertNuovaDomanda = true;
       }

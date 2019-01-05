@@ -16,18 +16,32 @@
 
   <ion-card>
     <ion-card-header>
-      <h1 style="text-align:left">  {{numDomanda}} </h1>
+      <h1 style="text-align:left"> {{domandaCorrente}} </h1>
     </ion-card-header>
   </ion-card>
-              
-          <ion-item *ngFor='let D of ArrayData'>
-           <h2> {{ D }} </h2> 
-          </ion-item>
-        
+
+  <ion-item *ngFor='let D of ArrayData'>
+    <h2> {{ D }} </h2>
+  </ion-item>
 
 
 
-  </ion-content>
+  
+  <form [formGroup]='form' (ngSubmit)='saveDocument(form.value)' (ngSubmit)='presentAlert()' *ngIf = "visualizzaFormVar" class= "formRisposta"  >  
+      <ion-item>
+        <ion-label floating>Descrizione</ion-label>
+        <ion-textarea formControlName='Descrizione' [(ngModel)]='Descrizione' type="text" rows="10"></ion-textarea>
+      </ion-item>
+  
+    <div class="Conferma-contenitore">
+      <button ion-button class="rispondiButton" (click)="openAddPage()" *ngIf = "visualizzaInviaButton"> Invia risposta</button>
+    </div>
+
+  </form>
+
+  <button ion-button class="rispondiButton" (click)="visualizzaForm()" *ngIf = "visualizzaRispondiButton" >Rispondi</button>
+</ion-content>
+
 
 <ion-footer>
   <footer-es></footer-es>
