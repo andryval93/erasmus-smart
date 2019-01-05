@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NavController, IonicPage } from 'ionic-angular';
-import { HomePage } from '../home/home';
 import { LoginService } from '../../providers/service/loginService';
 import { RegistrazionePage } from '../registrazione/registrazione';
+import { NewsPage } from '../news/news';
 
 @IonicPage()
 
@@ -41,7 +41,7 @@ export class LoginPage {
 	
 		this.auth.signInWithEmail(credentials)
 			.then(
-				() => this.navCtrl.setRoot(HomePage),
+				() => this.navCtrl.setRoot(NewsPage),
 				error => this.loginError = error.message,
 				
 			);

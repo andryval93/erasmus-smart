@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { ServiceProvider } from '../../providers/service/stepperService';
 import { InserisciRecensionePage } from '../inserisci-recensione/inserisci-recensione';
-import { HomePage } from '../home/home';
 import { LoginService } from '../../providers/service/loginService';
 import { ReviewsListPage } from '../reviews-list/reviews-list';
+import { NewsPage } from '../news/news';
 
 
 /**
@@ -104,7 +104,7 @@ export class StepperPage {
       this.navCtrl.push(InserisciRecensionePage);
    }
    HomePagePush() {
-      this.navCtrl.push(HomePage);
+      this.navCtrl.push(NewsPage);
    }
    goToReviewList(str: any) {
 

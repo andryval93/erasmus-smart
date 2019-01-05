@@ -6,7 +6,6 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { NewsPage } from '../pages/news/news';
 import { QeaPage } from '../pages/qea/qea';
@@ -46,14 +45,13 @@ import { RegistrationProvider } from '../providers/service/registrationService';
 import { NuovaDomandaServiceProvider } from '../providers/service/nuovaDomandaService';
 import { AccountService } from '../providers/service/accountService';
 import { MessageProvider } from '../providers/service/messagingService'
-import { NewNewsProvider } from '../providers/service/newNewsService';
 import { NewsServiceProvider } from '../providers/service/newsService';
+import { MessageComponent } from '../components/message/message';
 
 import { InserisciRecensioneService } from '../providers/service/inserisciRecensioneService'
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
     NewsPage,
     ListPage,
     UiChatPage,
@@ -70,7 +68,8 @@ import { InserisciRecensioneService } from '../providers/service/inserisciRecens
     LoginPage,
     RegistrazionePage,
     ReviewsListPage,
-    ReviewMainPage
+    ReviewMainPage,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
@@ -86,7 +85,6 @@ import { InserisciRecensioneService } from '../providers/service/inserisciRecens
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
     NewsPage,
     ListPage,
     StepperPage,
@@ -101,7 +99,8 @@ import { InserisciRecensioneService } from '../providers/service/inserisciRecens
     UiChatPage,
     OpenchatPage,
     ReviewsListPage,
-    ReviewMainPage
+    ReviewMainPage,
+    MessageComponent
   ],
   providers: [
     StatusBar,
@@ -117,9 +116,9 @@ import { InserisciRecensioneService } from '../providers/service/inserisciRecens
     reviewService,
     NuovaDomandaServiceProvider,
     AccountService,
+    NewsServiceProvider,
     MessageProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    NewNewsProvider,
     InserisciRecensioneService
   ]
 })

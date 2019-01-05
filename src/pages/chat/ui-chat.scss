@@ -8,6 +8,14 @@ page-ui-chat {
         padding-right: 80%;
     }
 
+    #messages {
+        width: 96%;
+        left: 2%;
+        position: absolute;
+        top: 60px;
+        bottom: 0;
+        overflow-y: scroll;
+      }
     
     th{
         text-align: center;

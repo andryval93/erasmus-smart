@@ -2,7 +2,6 @@
   <header-es [title]="title">Messaggi</header-es>
 </ion-header>
 
-
 <ion-content padding>
   <div id="container">
     <div id="infodestinatario">
@@ -14,9 +13,9 @@
     <button class="filesButton" (click)="showFiles()">Files</button>
     
     <div *ngIf="chatOpen == true" id="chat">
-      <p *ngFor="let message of messages">
-        {{message}}
-      </p>
+      <div id="messages">
+        <message *ngFor="let msg of messages" [msg]="msg"></message>
+      </div>
     </div>
     <div *ngIf="chatOpen == false" id="files">
       eccoti i file

@@ -26,6 +26,7 @@ page-openchat {
     }
 
     #chat{
+        overflow: scroll;
         position: absolute;
         left: 25%;
         width: 75%;
