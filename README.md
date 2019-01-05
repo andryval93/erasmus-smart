@@ -11,3 +11,4 @@ Erasmus Smart is a Software Engineering project for academic purposes. :mortar_b
 * [MartinCioffi](https://github.com/MartinCioffi)
 * [DevEmilio96](https://github.com/DevEmilio96)
 * [ruggerotammaro](https://github.com/ruggerotammaro)
+* [Nephti57](https://github.com/Nephti57)
