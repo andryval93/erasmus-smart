@@ -24,7 +24,7 @@ export class NewsPage {
     this.retrieveNews();
   }
 
-  retrieveNews() {
+  /* retrieveNews() {
     this.presentLoading();
     console.log("Fetching news from the database, please wait!");
     this.DBIstance.getNews(this.Document)
