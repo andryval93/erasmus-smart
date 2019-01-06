@@ -84,7 +84,8 @@ export class ServiceProvider {
            name           : doc.data().name,
            surname        : doc.data().surname,
            students       : doc.data().students,
-           userType       :doc.data().userType
+           userType       : doc.data().userType,
+           step           : doc.data().step
           }); 
         });
         

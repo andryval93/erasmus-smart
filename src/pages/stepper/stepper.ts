@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef, QueryList, ContentChildren, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { ServiceProvider } from '../../providers/service/stepperService';
 import { InserisciRecensionePage } from '../inserisci-recensione/inserisci-recensione';
 import { LoginService } from '../../providers/service/loginService';
 import { ReviewsListPage } from '../reviews-list/reviews-list';
 import { NewsPage } from '../news/news';
-
-
+import { IonicStepComponent, IonicStepperNext, IonicStepperComponent } from 'ionic-stepper';
+import { HomePage } from '../home/home';
+//import { IonicStepperComponent } from 'ionic-stepper';
 /**
  * Generated class for the StepperPage page.
  *
@@ -24,7 +25,7 @@ import { NewsPage } from '../news/news';
 
 
 
-export class StepperPage {
+export class StepperPage  {
    clickMessage = '';
    hide: boolean;
    show: boolean;
@@ -33,13 +34,30 @@ export class StepperPage {
    sceltaSede: any;
    hideConferma: boolean;
    arrayAccounts: any;
-   locationsAccount: any;
+  
    temp: { status: string; };
    _CONTENT2: { students: any; };
    listaTutors: any;
+   private _stepper: IonicStepperComponent
+   locationsAccount: any;
+   _CONTENT3: { step: any; };
 
+   retrieveCollection(): void {
+      this.DBistance.getDocuments(this._COLL)
+         .then((data) => {
+            this.locations = data;
+         })
+         .catch();
 
-
+      this.DBistance.getDocuments("Account")
+         .then((data) => {
+            this.locationsAccount = data;
+            this.creaListaTutor();
+            this.stepperState();
+         })
+         .catch();
+   }
+   
    onChangeTutor(SelectedValue: any) {
       console.log("Selected:", SelectedValue);
       this.sceltaTutor = SelectedValue;
@@ -86,25 +104,54 @@ export class StepperPage {
     */
    public locations: any;
    mode: string;
+/*stepper logic */
+disabled: boolean;
+_selectedIndex = 0;
+@ContentChildren(IonicStepComponent) _steps: QueryList<IonicStepComponent>;
 
+@Input()
+get selectedIndex(): number {
+  return this._selectedIndex;
+}
+
+set selectedIndex(index: number) {
+  this._selectedIndex = index;
+  this.selectIndexChange.emit(this._selectedIndex);
+}
+
+@Output() selectIndexChange: EventEmitter<number> = new EventEmitter<number>();
+
+/* fine */
+@ViewChild('stepper') stepper: IonicStepperComponent;
    constructor(public navCtrl: NavController,
       private DBistance: ServiceProvider,
-      private loginService: LoginService) {
+      private loginService: LoginService,
+      private _changeDetectorRef: ChangeDetectorRef,
+      ) {
       this.mode = "horizontal";
       this.hide = true;
-
-
+      
    }
 
    selectChange(e: any) {
+      var email = new String(this.loginService.user.email);
+   
+       this._CONTENT3 = {
+         step : e
+      };
 
+       this.DBistance.addDocument("Account",
+       email.substring(0),
+       this._CONTENT3)
+      
       console.log(e);
    }
    inserisciRecensionePush() {
       this.navCtrl.push(InserisciRecensionePage);
    }
    HomePagePush() {
-      this.navCtrl.push(NewsPage);
+      this.navCtrl.setRoot(NewsPage);
+ 
    }
    goToReviewList(str: any) {
 
@@ -112,14 +159,42 @@ export class StepperPage {
       this.navCtrl.push(ReviewsListPage, { University: str });
    }
 
+   /* Ricorda l'ultimo Step visitato (per un dato account) e se nell'account di firebase non
+       esiste lo crea */
+       
+  stepperState(){
+   var email = new String(this.loginService.user.email);
+   for (let i = 0; 1 < this.locationsAccount.length; i++) {
+      var str1 = new String(this.locationsAccount[i].id);
+      if (str1.localeCompare(email.substring(0)) == 0) {
+         let num :number;
 
+         if(this.locationsAccount[i].step == undefined){
+            this._CONTENT3 = {
+               step : 0
+            };
+             this.DBistance.addDocument("Account",
+             email.substring(0),
+             this._CONTENT3)
+         }
 
-
-
-
-
+         num = this.locationsAccount[i].step;
+         if(num==this.stepper._steps.length-1){
+            this.stepper.setStep(0);
+            for( let i = 0 ; i<this.stepper._steps.length-1 ; i++ )  
+            this.stepper.nextStep();
+         }
+         else {
+            this.stepper.setStep(num);
+         }
+        console.log(num + "step firebase");   
+        break;
+      }
+    }
+   }
    ionViewDidEnter() {
       this.retrieveCollection();
+     
    }
    /**
 * Retrieve all documents from the specified collection using the
@@ -129,20 +204,7 @@ export class StepperPage {
 * @method retrieveCollection
 * @return {none}
 */
-   retrieveCollection(): void {
-      this.DBistance.getDocuments(this._COLL)
-         .then((data) => {
-            this.locations = data;
-         })
-         .catch();
 
-      this.DBistance.getDocuments("Account")
-         .then((data) => {
-            this.locationsAccount = data;
-            this.creaListaTutor();
-         })
-         .catch();
-   }
    creaListaTutor() {
    this.listaTutors = new Array<string>();
       for (let i = 0; i < this.locationsAccount.length; i++) {

@@ -68,7 +68,30 @@ page-inserisci-recensione {
         font-weight: bold;
         font-size: 150%;
     }
-
+    .valutazione-Stars{
+        text-align: center;
+        color:cornflowerblue;
+        font-family: 'Comic Sans MS';
+        font-size: 100%;
+        padding-top: 3%;
+        
+    }
+    
+    ul {
+        padding: 0px;
+        &.rating li :hover{    
+            color: yellow;
+          }
+        &.rating li {
+          padding: 5px 10px !important;
+          background: none;
+          color: #ffb400;
+      
+          ion-icon {
+            font-size: 30px;
+          }
+        }
+      }
    
 
     /*responsive*/

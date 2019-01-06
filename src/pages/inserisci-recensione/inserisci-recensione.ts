@@ -4,6 +4,7 @@ import { InserisciRecensioneService } from '../../providers/service/inserisciRec
 import { FormBuilder, Validators } from '@angular/forms';
 import { LoginService } from '../../providers/service/loginService';
 import { NewsPage } from '../news/news';
+import { Ionic2RatingModule } from 'ionic2-rating';
 
 /**
  * Generated class for the InserisciRecensionePage page.
@@ -56,10 +57,7 @@ export class InserisciRecensionePage {
   temp: { titolo: any; text: any; recensore: string; date: string; stars: String[]; };
   idReview: any;
   alertNuovaRecensione: boolean;
-  
-
-
-
+  stars : number;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private DBistance: InserisciRecensioneService,
@@ -71,9 +69,14 @@ export class InserisciRecensionePage {
       'Descrizione': ['', Validators.required]
     });
     this.alertNuovaRecensione = false ;
+    
   }
-
+  onModelChange(stars){
+    this.stars=stars;
+   console.log(stars + " Star :");
+  }
   ionViewDidLoad() {
+   
     this.retrieveCollection();
     console.log('ionViewDidLoad InserisciRecensionePage');
   }
@@ -92,6 +95,12 @@ export class InserisciRecensionePage {
 
   }
   saveDocument(): void {
+    /* qui gestisco le stelle */
+    console.log(this.stars);
+
+
+    /* qui gestisco il testo */
+    var star : number;
     var email = new String(this.loginService.user.email);
     for (let i = 0; 1 < this.locationsAccounts.length; i++) {
       var str1 = new String(this.locationsAccounts[i].id);
@@ -108,13 +117,20 @@ export class InserisciRecensionePage {
         break;
       }
     }
+ /* creo l'array per le stelle */
+    var temp = new Array<any>();
+      for(let i = 0 ;i<this.stars;i++){
+        
+        temp.push(null);
+        console.log(star);
+         }
 
     this.temp = {
       titolo: this.form.controls["Titolo"].value,
       text: this.form.controls["Descrizione"].value,  
       recensore : email.substring(0),
       date : new Date().toISOString().substring(0,10),
-      stars : new Array<String>()
+      stars : temp,
    }
     this.arrayReviews.push(this.temp);
 
@@ -133,7 +149,8 @@ if ( this.arrayReviews.length > 0 ){
          .catch((error: any) => {
             console.dir(error);
          });
-         this.navCtrl.push(NewsPage);
+         
+         this.navCtrl.setRoot(NewsPage);
   }
 
   presentAlert() {

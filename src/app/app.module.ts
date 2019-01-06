@@ -47,8 +47,9 @@ import { AccountService } from '../providers/service/accountService';
 import { MessageProvider } from '../providers/service/messagingService'
 import { NewsServiceProvider } from '../providers/service/newsService';
 import { MessageComponent } from '../components/message/message';
+import { InserisciRecensioneService } from '../providers/service/inserisciRecensioneService';
+import { Ionic2RatingModule } from 'ionic2-rating';
 
-import { InserisciRecensioneService } from '../providers/service/inserisciRecensioneService'
 @NgModule({
   declarations: [
     MyApp,
@@ -78,6 +79,7 @@ import { InserisciRecensioneService } from '../providers/service/inserisciRecens
     AngularFirestoreModule,
     IonicStepperModule,
     IonicModule.forRoot(MyApp),
+    Ionic2RatingModule,
     AngularFireModule.initializeApp(ENV.firebase)
    
 
@@ -119,7 +121,7 @@ import { InserisciRecensioneService } from '../providers/service/inserisciRecens
     NewsServiceProvider,
     MessageProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    InserisciRecensioneService
+    InserisciRecensioneService,
   ]
 })
 export class AppModule {}

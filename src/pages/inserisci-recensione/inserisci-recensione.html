@@ -15,13 +15,16 @@
 
 <ion-content padding class="form-content">
 
+
   <div class="contenitore-step-4">
+   
       <form
       [formGroup]='form'
       (ngSubmit)='saveDocument(form.value)'
       (ngSubmit)='presentAlert()'
       class="form">
 
+   
       <ion-item>
           <ion-label floating color="primary" > Titolo </ion-label>
         <ion-input type="text" class="form-controll" formControlName='Titolo' [(ngModel)]='Titolo'></ion-input>
@@ -36,7 +39,18 @@
 
       <button ion-button full type="submit" class="Bottone-Ombra" [disabled]="!form.valid" >Submit</button>
     </form>
-
+    <div class="valutazione-Stars" >
+        <label>Se vuoi lascia una valutazione:</label>
+          <rating [(ngModel)]="rate" 
+      readOnly="false"  
+      max="5" 
+      emptyStarIconName="star-outline" 
+      halfStarIconName="star-half" 
+      starIconName="star" 
+      nullable="false" 
+      (ngModelChange)="onModelChange($event)"> <!--use it when you need to do something when user clicks on a star. in case you only need to change ngModel property, this property can be ommited.-->
+       </rating>
+      </div>
 
   </div>
 
