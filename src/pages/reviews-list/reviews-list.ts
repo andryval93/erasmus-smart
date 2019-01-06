@@ -21,7 +21,7 @@ export class ReviewsListPage {
   Stars: any=0;
   University: any;
   private uni: String;
-  loaded: boolean=true;
+  loaded: boolean=false;
   selected: boolean=false;
 
   allReviews: Array<{recensore: String, date: String, starsA: any, text: String,starsI: any}>;
@@ -57,7 +57,8 @@ export class ReviewsListPage {
               break;
             }
           }
-          for (let i = 0; i <data.length; i++) {
+          //for (let i = 0; i <data.length; i++) {
+            do{
             if(data[k]["Reviews"][j]==null)
               break;
             if(this.University===data[k]["university"]){
@@ -73,7 +74,7 @@ export class ReviewsListPage {
               j++;
               //console.log("j= ",j)
             }
-          }
+          }while(data[k]["Reviews"][j]!=null)
           this.selectReviews();
         }
       })
