@@ -10,6 +10,7 @@
 
 
 <ion-content padding>
+    <button ion-button class="newNews" (click)="newNews()" [hidden]="shouldHide">Aggiungi News</button>
     <ion-card *ngFor="let news of newsList">
         <ion-card-header>
           {{news.title}}

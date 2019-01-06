@@ -138,7 +138,6 @@ export class AccountService {
            Domande        : doc.data().Domande,
            risposte       : doc.data().risposte,
            Sede           : doc.data().Sede
-          
           }); 
         });
         

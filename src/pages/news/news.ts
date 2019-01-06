@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { NewsServiceProvider } from '../../providers/service/newsService';
+import { NewNewsPage } from '../new-news/new-news';
+import { LoginService } from '../../providers/service/loginService';
+import { AccountService } from '../../providers/service/accountService';
 
 /**
  * Generated class for the NewsPage page.
@@ -19,10 +22,45 @@ export class NewsPage {
   private Document :string = "News";
   newsList: Array<{title: String, date: String, content: String}> = [];
   moment = require('moment');
+  shouldHide: boolean = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private DBIstance: NewsServiceProvider, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: LoginService, public DBIstance: NewsServiceProvider, public DBAccount: AccountService) {
     this.retrieveNews();
+    //this.checkAdmin();
   }
+
+  /*
+  * Aggiunta di una news da parte dell'admin
+  */
+  newNews() {
+    this.navCtrl.push(NewNewsPage);
+  }
+  /*
+  * Controllo se admin è loggato
+  */
+  /*checkAdmin(){
+    let email = "guest";
+    let userType = "guest";
+    let d: any;
+    this.auth.afAuth.authState
+      .subscribe(
+        user => {
+          console.log(user.email);
+          email = user.email;
+        }
+      );
+
+    this.DBAccount.getAccount('Account', email).then((data)=>{
+      d = data.data().userType;
+    });
+
+    userType = d;
+
+    if(userType==="admin")
+      this.shouldHide = false;
+    console.log(this.shouldHide);
+  }*/
 
   retrieveNews() {
     this.presentLoading();
