@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { NewsServiceProvider } from '../../providers/service/newsService';
+import { NewNewsPage } from '../new-news/new-news';
+import { LoginService } from '../../providers/service/loginService';
+import { AccountService } from '../../providers/service/accountService';
 
 /**
  * Generated class for the NewsPage page.
@@ -15,13 +18,45 @@ import { NewsServiceProvider } from '../../providers/service/newsService';
   templateUrl: 'news.html',
 })
 export class NewsPage {
-  /*title :string = "News";
+  title :string = "News";
   private Document :string = "News";
   newsList: Array<{title: String, date: String, content: String}> = [];
-  moment = require('moment');
+  //moment = require('moment');
+  shouldHide: boolean = true;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private DBIstance: NewsServiceProvider, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: LoginService, public DBIstance: NewsServiceProvider, public DBAccount: AccountService, public loadingCtrl: LoadingController) { 
+    this.checkAdmin();
     this.retrieveNews();
+  }
+
+  /*
+  * Aggiunta di una news da parte dell'admin
+  */
+  newNews() {
+    this.navCtrl.push(NewNewsPage);
+  }
+  /*
+  * Controllo se admin è loggato
+  */
+  checkAdmin(){
+    let email = "guest";
+    let userType = "guest";
+    
+    this.auth.afAuth.authState
+      .subscribe(
+        user => {
+          email = user.email;
+          this.DBAccount.getAccount("Account", email).then((data)=>{
+            userType = data.data().userType;
+            if(userType=="admin"){
+              this.shouldHide = false;      
+            }
+            else{
+              this.shouldHide = true;
+            }
+          }).catch();
+        }
+      );
   }
 
   retrieveNews() {
@@ -42,7 +77,8 @@ export class NewsPage {
           for (let i = 0; i < data.length; i++) {
             this.newsList.push({
               title: data[i]["title"],
-              date: this.moment(data[i]["date"]).format("DD-MM-YYYY HH:mm"),
+              //date: this.moment(data[i]["date"]).format("DD-MM-YYYY HH:mm"),
+              date: data[i]["date"],
               content: data[i]["content"]
             });
           }
@@ -61,5 +97,5 @@ export class NewsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NewsPage');
-  }*/
+  }
 }
