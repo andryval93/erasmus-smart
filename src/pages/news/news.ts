@@ -15,7 +15,7 @@ import { NewsServiceProvider } from '../../providers/service/newsService';
   templateUrl: 'news.html',
 })
 export class NewsPage {
-  title :string = "News";
+  /*title :string = "News";
   private Document :string = "News";
   newsList: Array<{title: String, date: String, content: String}> = [];
   moment = require('moment');
@@ -61,5 +61,5 @@ export class NewsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NewsPage');
-  }
+  }*/
 }

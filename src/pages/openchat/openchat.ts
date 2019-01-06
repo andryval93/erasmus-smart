@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, ViewController, Content } from 'ionic-angular';
 import { MessageProvider } from '../../providers/service/messagingService'
 import firebase from 'firebase';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 /**
  * Generated class for the OpenchatPage page.
@@ -16,8 +16,9 @@ import { FormControl, Validators } from '@angular/forms';
   selector: 'page-openchat',
   templateUrl: 'openchat.html',
 })
+
 export class OpenchatPage {
-  
+  @ViewChild('content') content: Content;
   name: string;
   sede: string;
   surname: string;
@@ -28,11 +29,14 @@ export class OpenchatPage {
   messages: Array<any>
   type: string;
   newMessage: Array<any>;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private serviceProv: MessageProvider, public viewCtrl: ViewController) {
     //this.nome = localStorage.getItem("nome");
     //this.sede = localStorage.getItem("sede");
     //navParams per prendere parametri da NON localStorage
     
+    navCtrl.remove(0);
+
     this.text = new FormControl('', Validators.required)
 
     this.sede = navParams.get("sede");
@@ -73,7 +77,9 @@ export class OpenchatPage {
       creationTime: new Date().toLocaleString()
 		};
 
-    this.serviceProv.sendMessage("Messages", this.idChat, message);
+    this.serviceProv.sendMessage("Messages", this.idChat, message).then(() => {
+      this.content.scrollToBottom();
+    });
     this.text.setValue("");
     console.log("mariann", this.email);
   }
@@ -88,11 +94,13 @@ export class OpenchatPage {
         snapshot.docChanges().forEach((value, index: number, array) => {
             viewMessage.messages.push(value.doc.data());
         })
+        
       },
       error(error: Error) {
         console.log("Error to listen add", error)
       }
     })
+    
   }
 
   showChat(){
@@ -103,7 +111,11 @@ export class OpenchatPage {
     this.chatOpen = false;
   }
 
+  scrollDown(){
+    this.content.scrollToBottom(0);
+  }
+
   ionViewWillEnter() {
     this.viewCtrl.showBackButton(false);
-}
+  }
 }

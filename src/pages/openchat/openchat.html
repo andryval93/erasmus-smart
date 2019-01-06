@@ -11,11 +11,13 @@
     </div>
     <button class="chatButton" (click)="showChat()">Chat</button>
     <button class="filesButton" (click)="showFiles()">Files</button>
-    
+
     <div *ngIf="chatOpen == true" id="chat">
-      <div id="messages">
-        <message *ngFor="let msg of messages" [msg]="msg"></message>
-      </div>
+      <ion-content #content>
+          <message *ngFor="let msg of messages; let last = last" [msg]="msg">
+            {{last ? scrollDown() : ''}}
+          </message>
+      </ion-content>
     </div>
     <div *ngIf="chatOpen == false" id="files">
       eccoti i file

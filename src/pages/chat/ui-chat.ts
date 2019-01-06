@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { OpenchatPage } from '../openchat/openchat';
 import { AccountService } from '../../providers/service/accountService';
 import { MessageProvider } from '../../providers/service/messagingService';
@@ -28,8 +28,13 @@ export default class UiChatPage{
   email: string;
   messagge: Array<Message>;
   account2: Account;
+  viewPage: boolean;
+  viewLoad: boolean;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public DBAccountInstance: AccountService, public DBMessaggingInstance: MessageProvider ) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public DBAccountInstance: AccountService, public DBMessaggingInstance: MessageProvider) {
+
+    this.viewPage = false;
+    this.viewLoad = true;
     this.account = new Account();
     this.student = new student();
     this.students = [];
@@ -40,6 +45,7 @@ export default class UiChatPage{
       this.type = type;
       console.log('TESTINTYPE', this.status, this.type);
       if(this.type == "tutor"){
+        this.viewLoad = false;
         DBAccountInstance.getAccount('Account', firebase.auth().currentUser.email).then((data)=>{this.account.setEmail(data.data().email)
                                                                             this.account.setName(data.data().name)
                                                                             this.account.setSurname(data.data().surname)
@@ -127,6 +133,9 @@ export default class UiChatPage{
   }
 
   ionViewDidLoad() {
+
+    
+
     this.email = firebase.auth().currentUser.email;
     this.DBAccountInstance.getTypeAccount("Account", this.email).then((type) => {
       this.type = type;
@@ -193,7 +202,7 @@ export default class UiChatPage{
     * 
     */
   }
-  
+
   
 
  

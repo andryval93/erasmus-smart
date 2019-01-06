@@ -8,14 +8,14 @@ page-ui-chat {
         padding-right: 80%;
     }
 
-    #messages {
+     #messages {
         width: 96%;
         left: 2%;
         position: absolute;
         top: 60px;
         bottom: 0;
         overflow-y: scroll;
-      }
+      } 
     
     th{
         text-align: center;
@@ -50,6 +50,22 @@ page-ui-chat {
 
     .send{
         text-align: left;
+    }
+
+    .faultPage{
+        text-align: center;
+        color: red;
+        font-weight: bold;
+        font-size: 150%;
+        margin-top: 15%;
+    }
+
+    .loadingPage{
+        text-align: center;
+        color: whitesmoke;
+        font-weight: bold;
+        font-size: 150%;
+        margin-top: 15%;
     }
 
     #circleAvatar{
