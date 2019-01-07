@@ -9,8 +9,9 @@
     <ion-list>
       
       <ion-avatar *ngIf="logged">
+        <div id="loggedInfo">{{userType}}</div>
         <img id="circleAvatar" src="https://www.w3schools.com/howto/img_avatar.png">
-        <div id="loggedEmail">{{loggedEmail}}</div>
+        <div id="loggedInfo">{{loggedEmail}}</div>
       </ion-avatar>
 
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
