@@ -4,7 +4,7 @@ import { RisposteQeaServiceProvider } from '../../providers/service/risposteQeaS
 import { FormBuilder, Validators } from '@angular/forms';
 import { AlertController } from 'ionic-angular';
 import { QeaServiceProvider } from '../../providers/service/qeaService';
-import { HomePage } from '../home/home';
+import { NewsPage } from '../news/news';
 
 
 /**
@@ -75,8 +75,8 @@ export class RispostePage {
   constructor(public navCtrl: NavController,
     private DBistance: RisposteQeaServiceProvider,
     private _FB: FormBuilder,
-    private alertCtrl: AlertController ) {
-      this.alertNuovaDomanda = false;
+    private alertCtrl: AlertController) {
+    this.alertNuovaDomanda = false;
     this.form = _FB.group({
       'Descrizione': ['', Validators.required]
     });
@@ -91,7 +91,7 @@ export class RispostePage {
   }
 
   openAddPage() {
-    this.navCtrl.push(HomePage)
+    this.navCtrl.setRoot(NewsPage);
   }
 
   selectChange(e) {
@@ -121,15 +121,18 @@ export class RispostePage {
       if (str1.localeCompare(this.domandaCorrente.substring(0)) == 0) {
         if (str2.localeCompare(this.locationDescrizione.substring(0)) == 0) {
           this.locationQeA.Domande[i].risposte.push(this.form.controls["Descrizione"].value);
+          this.alertNuovaDomanda = true;
           break;
         }
       }
     }
 
-   /* if (this.locationQeA.Domande.risposte.length > 0) {
+    /*
+    if (this.locationQeA.Domande.risposte.length > 0) {
       this.alertNuovaDomanda = true;
    }
-*/
+   */
+
     this._CONTENT = {
       Domande: this.locationQeA.Domande,
     };
@@ -211,21 +214,21 @@ export class RispostePage {
   }
   presentAlert() {
     if (this.alertNuovaDomanda == true) {
-       let alert = this.alertCtrl.create({
-          title: 'Success',
-          subTitle: 'La risposta è stata creata con successo!',
-          buttons: ['Ok']
-       });
-       alert.present();
+      let alert = this.alertCtrl.create({
+        title: 'Success',
+        subTitle: 'La risposta è stata creata con successo!',
+        buttons: ['Ok']
+      });
+      alert.present();
     } else {
-       let alert = this.alertCtrl.create({
-          title: 'Error',
-          subTitle: 'La risposta non è stata creata con successo!',
-          buttons: ['Ok']
-       });
-       alert.present();
+      let alert = this.alertCtrl.create({
+        title: 'Error',
+        subTitle: 'La risposta non è stata creata con successo!',
+        buttons: ['Ok']
+      });
+      alert.present();
     };
- }
+  }
 
 
 }
