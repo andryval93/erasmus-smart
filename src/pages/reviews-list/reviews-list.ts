@@ -24,8 +24,8 @@ export class ReviewsListPage {
   loaded: boolean=false;
   selected: boolean=false;
 
-  allReviews: Array<{recensore: String, date: String, starsA: any, text: String,starsI: any}>;
-  Reviews: Array<{recensore: String, date: String, starsA: any, text: String,starsI: any, img: String}>;
+  allReviews: Array<{recensore: String, date: String, starsA: any, text: String,starsI: any, title: String}>;
+  Reviews: Array<{recensore: String, date: String, starsA: any, text: String,starsI: any, img: String, title: String}>;
   StarsSelector: Array<{key: String, value: String}>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private DBIstance: reviewService, public loadingCtrl: LoadingController) {
@@ -70,6 +70,7 @@ export class ReviewsListPage {
                 starsA: data[k]["Reviews"][j]["stars"],
                 text: data[k]["Reviews"][j]["text"],
                 starsI: data[k]["Reviews"][j]["stars"].length,
+                title: data[k]["Reviews"][j]["titolo"]
               })
               j++;
               //console.log("j= ",j)
@@ -98,7 +99,8 @@ export class ReviewsListPage {
           starsA: this.allReviews[i]["starsA"],
           text: this.allReviews[i]["text"],
           starsI: this.allReviews[i]["starsI"],
-          img:"../../assets/imgs/balsamiq.png"
+          img:"../../assets/imgs/balsamiq.png",
+          title:this.allReviews[i]["title"]
         })
       }
       if(this.allReviews[i]["starsI"]==this.Stars&&this.selected==true){
@@ -110,7 +112,8 @@ export class ReviewsListPage {
           starsA: this.allReviews[i]["starsA"],
           text: this.allReviews[i]["text"],
           starsI: this.allReviews[i]["starsI"],
-          img:"../../assets/imgs/balsamiq.png"
+          img:"../../assets/imgs/balsamiq.png",
+          title:this.allReviews[i]["title"]
         })
       }
     }
