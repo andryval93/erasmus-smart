@@ -126,7 +126,8 @@ export class ReviewsListPage {
           starsA: "",
           text: "",
           starsI: "",
-          img:"../../assets/imgs/error.png"
+          img:"../../assets/imgs/error.png",
+          title:""
         }
       )
     }
