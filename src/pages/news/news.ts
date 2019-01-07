@@ -4,6 +4,7 @@ import { NewsServiceProvider } from '../../providers/service/newsService';
 import { NewNewsPage } from '../new-news/new-news';
 import { LoginService } from '../../providers/service/loginService';
 import { AccountService } from '../../providers/service/accountService';
+declare var require: any;
 
 /**
  * Generated class for the NewsPage page.
@@ -17,11 +18,12 @@ import { AccountService } from '../../providers/service/accountService';
   selector: 'page-news',
   templateUrl: 'news.html',
 })
+
 export class NewsPage {
   title :string = "News";
   private Document :string = "News";
   newsList: Array<{title: String, date: String, content: String}> = [];
-  //moment = require('moment');
+  moment = require('moment');
   shouldHide: boolean = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public auth: LoginService, public DBIstance: NewsServiceProvider, public DBAccount: AccountService, public loadingCtrl: LoadingController) { 
@@ -77,8 +79,8 @@ export class NewsPage {
           for (let i = 0; i < data.length; i++) {
             this.newsList.push({
               title: data[i]["title"],
-              //date: this.moment(data[i]["date"]).format("DD-MM-YYYY HH:mm"),
-              date: data[i]["date"],
+              date: this.moment(data[i]["date"]).format("DD-MM-YYYY HH:mm"),
+              //date: data[i]["date"],
               content: data[i]["content"]
             });
           }
