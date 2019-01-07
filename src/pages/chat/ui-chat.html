@@ -3,7 +3,8 @@
   <header-es [title]="title"></header-es>
 </ion-header>
 
-<ion-content *ngIf="!viewLoad || viewPage" padding >
+<ion-content *ngIf="!viewLoad" padding >
+  <div *ngIf="viewPage">
   <ion-searchbar id="search"></ion-searchbar>
   <div id="container">
     <table>
@@ -34,6 +35,7 @@
       </tr>
     </table>
   </div>
+</div>
 </ion-content>
 <ion-content *ngIf="!viewPage">
   <p  class="faultPage">COMPLETA LE OPERAZIONI NECESSARIE PER POTER ACCEDERE AL SERVIZIO DI MESSAGGISTICA</p>
