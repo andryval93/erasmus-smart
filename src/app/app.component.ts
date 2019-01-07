@@ -30,8 +30,10 @@ export class MyApp {
   
   //root page
   rootPage: any;
-  //check login into a variable
+  //check login
   logged: boolean;
+  //check verified email
+  verified: boolean;
   //email of logged user
   loggedEmail: String;
   //type of logged user
@@ -71,14 +73,27 @@ export class MyApp {
     
           //user logged
           if (user != null) {
-            
-              this.logged = true;
-              this.userIsLogged(user);
-            }  
+          
+            this.logged = true;
+
+            //user logged & verified
+            if (user.emailVerified == true) {
+
+              this.verified = true;
+              this.userIsLogged(user, this.verified);
+            }
+
+            //user logged & not verified
+            else {
+
+              this.verified = false;
+              this.userIsLogged(user, this.verified);
+            }
+          }  
             
           //user unlogged
           else {
-
+            
             this.logged = false;
             this.userIsNotLogged();
           }
@@ -86,7 +101,7 @@ export class MyApp {
       );
   }
 
-  userIsLogged(user) {
+  userIsLogged(user, verified) {
 
     this.rootPage = NewsPage;
     this.loggedEmail = firebase.auth().currentUser.email;
@@ -96,8 +111,8 @@ export class MyApp {
     .then(
       type => {
 
-        //tutor
-        if (type == "tutor") {
+        //tutor & verified
+        if (type == "tutor" && verified == true) {
 
           this.userType = "Tutor Account";
 
@@ -109,8 +124,20 @@ export class MyApp {
           ];
         }
 
-        //student
-        else {
+        //tutor & not verified
+        else if (type == "tutor" && verified == false) {
+
+          this.userType = "Tutor Account";
+
+          this.pages = [
+            { title: 'News', component: NewsPage },
+            { title: 'Q&A', component: QeaPage},
+            { title: 'Recensioni', component: ReviewMainPage},
+          ];
+        }
+        
+        //student & verified
+        else if (verified == true) {
 
           this.userType = "Student Account"
 
@@ -122,6 +149,19 @@ export class MyApp {
             { title: 'Chat', component: UiChatPage },
           ];
         }
+
+        //student & not verified
+        else {
+          
+          this.userType = "Student Account"
+
+          this.pages = [
+            { title: 'News', component: NewsPage },
+            { title: 'Q&A', component: QeaPage},
+            { title: 'Recensioni', component: ReviewMainPage},
+          ];
+        }
+
       },
     );
   }
@@ -129,6 +169,7 @@ export class MyApp {
   userIsNotLogged() {
 
     this.rootPage = LoginPage;
+    this.verified = false;
     this.loggedEmail = "Guest@erasmussmart.org";
     this.userType = "Guest Account";
         
@@ -147,6 +188,7 @@ export class MyApp {
 
     this.rootPage = LoginPage;
     this.logged = false;
+    this.verified = false;
     this.loggedEmail = "Guest@erasmussmart.org";
     this.userType = "Guest Account";
     

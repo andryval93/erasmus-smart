@@ -24,6 +24,16 @@
           Logout
         </button>
       </div>
+      
+      <div id="notVerifiedInfo" *ngIf="logged && !verified">
+        <p>
+          <ion-icon ios="ios-alert" md="md-alert"></ion-icon>
+          L'account risulta non essere verificato.
+        </p>
+
+        Alcune delle funzionalità sono state limitate.<br>
+        Si prega l'utente di procedere alla verifica dell'account ed effettuare nuovamente la login al sito.<br>
+      </div>
 
     </ion-list>
   </ion-content>
