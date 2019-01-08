@@ -89,6 +89,8 @@ export class ReviewsListPage {
     this.presentLoading();
     this.Reviews = [];
     this.quickSort(this.allReviews,0,this.allReviews.length-1)
+    if(this.Stars==0)
+      this.selected=false;
     for (let i = 0; i < this.allReviews.length; i++) {
       if (this.allReviews[i]["starsI"] >= this.Stars && this.selected == false) {
         console.log("aaaUniversity", this.allReviews[i]);
