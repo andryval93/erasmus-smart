@@ -25,6 +25,7 @@ export class NewsPage {
   newsList: Array<{title: String, date: String, content: String}> = [];
   moment = require('moment');
   shouldHide: boolean = true;
+  loader :any = null;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public auth: LoginService, public DBIstance: NewsServiceProvider, public DBAccount: AccountService, public loadingCtrl: LoadingController) { 
     this.checkAdmin();
@@ -88,17 +89,20 @@ export class NewsPage {
         }
       })
       .catch();
+      if (this.loader != null) {
+        this.loader.dismiss();
+      }
   }
   /**
    * Spinner durante il caricamento dei contenuti
    */
   presentLoading() {
-    const loader = this.loadingCtrl.create({
+    this.loader = this.loadingCtrl.create({
       content:"Attendi un attimo..",
-      duration: 3000,
+      //duration: 3000,
       //dismissOnPageChange: true
     });
-    loader.present();
+    this.loader.present();
   }
 
   ionViewDidLoad() {
