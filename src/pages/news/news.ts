@@ -82,7 +82,6 @@ export class NewsPage {
             this.newsList.push({
               title: data[i]["title"],
               date: this.moment(data[i]["date"]).format("DD-MM-YYYY HH:mm"),
-              //date: data[i]["date"],
               content: data[i]["content"]
             });
           }
@@ -96,7 +95,8 @@ export class NewsPage {
   presentLoading() {
     const loader = this.loadingCtrl.create({
       content:"Attendi un attimo..",
-      duration: 3000
+      //duration: 1,
+      dismissOnPageChange: true
     });
     loader.present();
   }
