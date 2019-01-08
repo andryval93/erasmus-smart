@@ -45,6 +45,7 @@
             <p>{{review.date}}</p>
             <p>
               <ion-icon name="ios-star" *ngFor='let stars of review.starsA'></ion-icon>
+              <ion-icon class="nostar" name="ios-star" *ngFor='let nostars of review.voidStars'></ion-icon>
             </p>
           </ion-item>
 

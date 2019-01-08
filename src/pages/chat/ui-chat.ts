@@ -153,7 +153,7 @@ export default class UiChatPage{
         this.DBAccountInstance.getStudentStatus("Account", this.email).then((status) => {
           this.status = status;
         }).then(()=>{
-          if(this.status == null){
+          if(this.status == null || this.status == "pending"){
             this.viewLoad = false;
             this.viewPage = false;
           }else{

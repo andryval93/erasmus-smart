@@ -54,9 +54,18 @@ page-reviews-list {
     .social-cards ion-col {
         padding: 0;
     }
+    .nostar{
+        color: rgba(128, 128, 128, 0.445) !important
+        
+    }
 }
 .my-loading {
     ion-backdrop {
         background: opacify($color: #000000, $amount: 0)
     }
+    
+}
+
+.ion-ios-star{
+    color: rgb(212, 212, 9) !important
 }
