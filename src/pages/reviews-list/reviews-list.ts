@@ -18,6 +18,7 @@ import { LoadingController } from 'ionic-angular';
 
 export class ReviewsListPage {
   private Document: string = "Reviews"
+  loader: any=null;
   Stars: any = 0;
   University: any;
   private uni: String;
@@ -33,8 +34,8 @@ export class ReviewsListPage {
     this.StarsSelector = [];
     this.allReviews = [];
     this.Reviews = [];
+    this.createLoader();
     this.fillStars();
-    this.presentLoading();
     this.fillUniversityReviews();
   }
 
@@ -83,10 +84,15 @@ export class ReviewsListPage {
 
   ionViewDidLoad() {
     //console.log('notloaded', this.loaded);
+    this.loader.present();
   }
 
   selectReviews() {
-    this.presentLoading();
+    if(this.loader==null)
+    {
+      this.createLoader();
+      this.loader.present();
+    }
     this.Reviews = [];
     this.quickSort(this.allReviews,0,this.allReviews.length-1)
     if(this.Stars==0)
@@ -135,18 +141,18 @@ export class ReviewsListPage {
         }
       )
     }
+    this.loader.dismiss();
+    this.loader=null;
     this.selected = true;
     //console.log("selected", this.selected)
   }
 
-  presentLoading() {
-    this.loadingCtrl.create({
+  createLoader() {
+    this.loader=this.loadingCtrl.create({
       spinner: "ios",
       content: 'Please wait...',
-      duration: 1,
-      dismissOnPageChange: true,
       cssClass: "my-loading"
-    }).present();
+    });
   }
 
   fillStars() {
