@@ -95,8 +95,8 @@ export class NewsPage {
   presentLoading() {
     const loader = this.loadingCtrl.create({
       content:"Attendi un attimo..",
-      duration: 1,
-      dismissOnPageChange: true
+      duration: 3000,
+      //dismissOnPageChange: true
     });
     loader.present();
   }
