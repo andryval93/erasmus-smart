@@ -23,9 +23,9 @@ export class ReviewsListPage {
   private uni: String;
   loaded: boolean = false;
   selected: boolean = false;
-
-  allReviews: Array<{ recensore: String, date: String, starsA: any, text: String, starsI: any, title: String }>;
-  Reviews: Array<{ recensore: String, date: String, starsA: any, text: String, starsI: any, img: String, title: String }>;
+  noStars: any;
+  allReviews: Array<{ recensore: String, date: String, starsA: any, text: String, starsI: any, title: String, voidStars:any}>;
+  Reviews: Array<{ recensore: String, date: String, starsA: any, text: String, starsI: any, img: String, title: String, voidStars:any}>;
   StarsSelector: Array<{ key: String, value: String }>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private DBIstance: reviewService, public loadingCtrl: LoadingController) {
@@ -68,10 +68,11 @@ export class ReviewsListPage {
                   starsA: data[k]["Reviews"][j]["stars"],
                   text: data[k]["Reviews"][j]["text"],
                   starsI: data[k]["Reviews"][j]["stars"].length,
-                  title: data[k]["Reviews"][j]["titolo"]
+                  title: data[k]["Reviews"][j]["titolo"],
+                  voidStars: this.noStars=new Array(5-(data[k]["Reviews"][j]["stars"].length))
                 })
               j++;
-              //console.log("j= ",j)
+              //console.log("aaa ",)
             }
           } while (data[k]["Reviews"][j] != null)
           this.selectReviews();
@@ -90,7 +91,7 @@ export class ReviewsListPage {
     this.quickSort(this.allReviews,0,this.allReviews.length-1)
     for (let i = 0; i < this.allReviews.length; i++) {
       if (this.allReviews[i]["starsI"] >= this.Stars && this.selected == false) {
-        //console.log("aaaUniversity", this.allReviews[i]["starsI"]);
+        console.log("aaaUniversity", this.allReviews[i]);
         this.Reviews.push(
           {
             recensore: this.allReviews[i]["recensore"],
@@ -99,7 +100,8 @@ export class ReviewsListPage {
             text: this.allReviews[i]["text"],
             starsI: this.allReviews[i]["starsI"],
             img: "../../assets/imgs/balsamiq.png",
-            title: this.allReviews[i]["title"]
+            title: this.allReviews[i]["title"],
+            voidStars: this.allReviews[i]["voidStars"]
           })
       }
       if (this.allReviews[i]["starsI"] == this.Stars && this.selected == true) {
@@ -112,7 +114,8 @@ export class ReviewsListPage {
             text: this.allReviews[i]["text"],
             starsI: this.allReviews[i]["starsI"],
             img: "../../assets/imgs/balsamiq.png",
-            title: this.allReviews[i]["title"]
+            title: this.allReviews[i]["title"],
+            voidStars: this.allReviews[i]["voidStars"]
           })
       }
     }
@@ -125,7 +128,8 @@ export class ReviewsListPage {
           text: "",
           starsI: "",
           img: "../../assets/imgs/error.png",
-          title: ""
+          title: "",
+          voidStars:""
         }
       )
     }
