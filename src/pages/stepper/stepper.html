@@ -130,11 +130,12 @@
         <div class="Conferma-contenitore">
 
           <button (click)="saveDocument(tutors)" *ngIf="hideConferma" ion-button small class="Conferma-Step4">Conferma</button>
-          <p class="Richiesta-in-attesa" *ngIf="show"> Richiesta in attesa di accettazione </p>
-
+          <p class="Richiesta-in-attesa" *ngIf="statusPending"> Step bloccato, non puoi continuare la procedura fino a quando il tutor non accetta la richiesta.  </p>
+          <p class="Richiesta-accettata" *ngIf="statusAccepted"> Richiesta accettata </p>
+          
         </div>
         <div class="AvantiDietroStepper">
-          <button ion-button small ionicStepperNext class="Step-Successivo"><img src="assets/imgs/frecciaVettorialeAvanti.png"></button>
+          <button ion-button small ionicStepperNext class="Step-Successivo" *ngIf="statusAccepted" ><img src="assets/imgs/frecciaVettorialeAvanti.png"></button>
 
         </div>
         

@@ -34,6 +34,8 @@ export class StepperPage  {
    sceltaSede: any;
    hideConferma: boolean;
    arrayAccounts: any;
+   sedeSceltaAccount:String;
+   tutorAccount:String;
   
    temp: { status: string; };
    _CONTENT2: { students: any; };
@@ -41,7 +43,9 @@ export class StepperPage  {
    private _stepper: IonicStepperComponent
    locationsAccount: any;
    _CONTENT3: { step: any; };
-
+   statusAccepted: boolean ;
+   statusPending : boolean ;
+   
    retrieveCollection(): void {
       this.DBistance.getDocuments(this._COLL)
          .then((data) => {
@@ -52,10 +56,15 @@ export class StepperPage  {
       this.DBistance.getDocuments("Account")
          .then((data) => {
             this.locationsAccount = data;
+   
+            
             this.creaListaTutor();
+          //  this.setStepQuattro();
             this.stepperState();
+            
          })
          .catch();
+       
    }
    
    onChangeTutor(SelectedValue: any) {
@@ -130,6 +139,7 @@ set selectedIndex(index: number) {
       ) {
       this.mode = "horizontal";
       this.hide = true;
+    
       
    }
 
@@ -158,15 +168,25 @@ set selectedIndex(index: number) {
       localStorage.setItem("University", str);
       this.navCtrl.push(ReviewsListPage, { University: str });
    }
-
+ 
    /* Ricorda l'ultimo Step visitato (per un dato account) e se nell'account di firebase non
        esiste lo crea */
        
   stepperState(){
+
    var email = new String(this.loginService.user.email);
+   var accepted = new String("accepted");
+   var pending = new String("pending");
    for (let i = 0; 1 < this.locationsAccount.length; i++) {
       var str1 = new String(this.locationsAccount[i].id);
+     
+  
       if (str1.localeCompare(email.substring(0)) == 0) {
+         
+         var loopIndex = i ;
+         this.sedeSceltaAccount =  this.locationsAccount[i].sede;
+         this.tutorAccount =  this.locationsAccount[i].tutor;
+
          let num :number;
 
          if(this.locationsAccount[i].step == undefined){
@@ -176,25 +196,55 @@ set selectedIndex(index: number) {
              this.DBistance.addDocument("Account",
              email.substring(0),
              this._CONTENT3)
+            
          }
 
          num = this.locationsAccount[i].step;
          if(num==this.stepper._steps.length-1){
             this.stepper.setStep(0);
-            for( let i = 0 ; i<this.stepper._steps.length-1 ; i++ )  
+            for( let i = 0 ; i<this.stepper._steps.length-1 ; i++ )  {
             this.stepper.nextStep();
+            }
+          
          }
          else {
             this.stepper.setStep(num);
+        
          }
-        console.log(num + "step firebase");   
-        break;
+    break;
       }
+
+        }
+        if(this.sedeSceltaAccount != undefined && this.tutorAccount != undefined ){
+         this.hide = false;
+         this.show = true;
+         this.hideConferma = false;
+         this.sceltaTutor = this.tutorAccount;
+         this.sceltaSede = this.sedeSceltaAccount;
     }
+    var strStatus = new String(this.locationsAccount[loopIndex].status);
+   console.log( this.locationsAccount[loopIndex].status + " this.locationsAccount[loopIndex].status" )
+   if (strStatus == undefined ) {
+      this.statusPending = false;
+      this.statusAccepted = false;
+   }
+    if(strStatus.localeCompare(accepted.substring(0)) == 0){
+      this.statusAccepted = true;
+   
+   }
+
+   if(strStatus.localeCompare(pending.substring(0)) == 0){
+  
+      this.statusPending = true;
+   
+   }
+
+
+
    }
    ionViewDidEnter() {
       this.retrieveCollection();
-     
+      
    }
    /**
 * Retrieve all documents from the specified collection using the
@@ -232,6 +282,7 @@ set selectedIndex(index: number) {
       this.hide = false;
       this.show = true;
       this.hideConferma = false;
+      this.statusPending = true;
       /*                  */
 
       let idDocumento: string;
@@ -254,7 +305,8 @@ set selectedIndex(index: number) {
          console.log(email + "email Loggato")
          this._CONTENT = {
             status: "pending",
-            sede: this.sceltaSede
+            sede: this.sceltaSede,
+            tutor : this.sceltaTutor,
          };
 
          /* aggiungo status e sede a uno studente */
