@@ -141,8 +141,10 @@ export class ReviewsListPage {
         }
       )
     }
+    if(this.loader!=null){
     this.loader.dismiss();
     this.loader=null;
+    }
     this.selected = true;
     //console.log("selected", this.selected)
   }
