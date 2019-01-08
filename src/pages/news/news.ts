@@ -60,7 +60,9 @@ export class NewsPage {
         }
       );
   }
-
+  /**
+   * Recupero delle news dal database
+   */
   retrieveNews() {
     this.presentLoading();
     console.log("Fetching news from the database, please wait!");
@@ -88,11 +90,14 @@ export class NewsPage {
       })
       .catch();
   }
-
+  /**
+   * Spinner durante il caricamento dei contenuti
+   */
   presentLoading() {
     const loader = this.loadingCtrl.create({
       content:"Attendi un attimo..",
-      duration: 3000
+      duration: 1,
+      dismissOnPageChange: true
     });
     loader.present();
   }
