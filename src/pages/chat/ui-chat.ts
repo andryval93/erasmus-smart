@@ -30,10 +30,10 @@ export default class UiChatPage{
   account2: Account;
   viewPage: boolean;
   viewLoad: boolean;
-
+  tutor: string;
   constructor(public navCtrl: NavController, public navParams: NavParams, public DBAccountInstance: AccountService, public DBMessaggingInstance: MessageProvider) {
 
-    this.viewPage = false;
+    this.viewPage = true;
     this.viewLoad = true;
     this.account = new Account();
     this.student = new student();
@@ -45,7 +45,7 @@ export default class UiChatPage{
       this.type = type;
       console.log('TESTINTYPE', this.status, this.type);
       if(this.type == "tutor"){
-        this.viewLoad = false;
+        this.viewPage = true;
         DBAccountInstance.getAccount('Account', firebase.auth().currentUser.email).then((data)=>{this.account.setEmail(data.data().email)
                                                                             this.account.setName(data.data().name)
                                                                             this.account.setSurname(data.data().surname)
@@ -57,6 +57,9 @@ export default class UiChatPage{
           console.log("ciao", this.account.getStudents());
           this.students = this.account.getStudents();
           console.log(this.students);
+          if(this.students.length == 0){
+            this.viewPage = false;
+          }
           for(; i < this.students.length; i++){
             DBAccountInstance.getAccount('Account', this.students[i]).then((data)=>{this.student.setEmail(data.data().email)
                                                                             this.student.setName(data.data().name)
@@ -74,12 +77,13 @@ export default class UiChatPage{
               }); 
           };
         });
+        this.viewLoad = false;
         
       }
       else if(this.type == "student"){
         DBAccountInstance.getStudentStatus("Account", this.email).then((status)=>{
           console.log('TESTINSTATUS', this.status, this.type);
-          this.status = status;   
+          this.status = status;
         })
       }
     });
@@ -149,27 +153,34 @@ export default class UiChatPage{
         this.DBAccountInstance.getStudentStatus("Account", this.email).then((status) => {
           this.status = status;
         }).then(()=>{
+          if(this.status == null || this.status == "pending"){
+            this.viewLoad = false;
+            this.viewPage = false;
+          }else{
         console.log('TEST3', this.status, this.type);
-        let tutor;
         this.DBAccountInstance.getAccount("Account", firebase.auth().currentUser.email).then((data)=>{
-          tutor = data.data().tutor;
-          console.log("TUTOR", tutor);
+          this.tutor = data.data().tutor;
+        
+          console.log("TUTOR", this.tutor);
           let account: Account;
         }).then(()=>{
-          this.DBAccountInstance.getAccount('Account', tutor).then((data)=>{this.account.setEmail(data.data().email)
+          this.DBAccountInstance.getAccount('Account', this.tutor).then((data)=>{this.account.setEmail(data.data().email)
                                                                             this.account.setName(data.data().name)
                                                                             this.account.setSurname(data.data().surname)                                                     
           }).then(() => {       
           console.log("Marianna chiede", this.account);                                                        
           this.openChat(this.account.name, this.account.surname, "Tutor", this.account.email);
         });
+      
         });
+      }
       });
     }
       else if(this.type == "tutor"){
         //stay in this page
      }
     } else {
+      this.viewPage = true;
       console.log("ERRORE");
     }
   });

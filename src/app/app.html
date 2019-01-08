@@ -9,8 +9,9 @@
     <ion-list>
       
       <ion-avatar *ngIf="logged">
+        <div id="loggedInfo">{{userType}}</div>
         <img id="circleAvatar" src="https://www.w3schools.com/howto/img_avatar.png">
-        <div id="loggedEmail">{{loggedEmail}}</div>
+        <div id="loggedInfo">{{loggedEmail}}</div>
       </ion-avatar>
 
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
@@ -22,6 +23,16 @@
           <ion-icon ios="ios-exit" md="md-exit"></ion-icon>
           Logout
         </button>
+      </div>
+      
+      <div id="notVerifiedInfo" *ngIf="logged && !verified">
+        <p>
+          <ion-icon ios="ios-alert" md="md-alert"></ion-icon>
+          L'account risulta non essere verificato.
+        </p>
+
+        Alcune delle funzionalità sono state limitate.<br>
+        Si prega l'utente di procedere alla verifica dell'account ed effettuare nuovamente la login al sito.<br>
       </div>
 
     </ion-list>

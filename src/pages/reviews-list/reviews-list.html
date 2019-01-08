@@ -45,10 +45,12 @@
             <p>{{review.date}}</p>
             <p>
               <ion-icon name="ios-star" *ngFor='let stars of review.starsA'></ion-icon>
+              <ion-icon class="nostar" name="ios-star" *ngFor='let nostars of review.voidStars'></ion-icon>
             </p>
           </ion-item>
 
           <ion-card-content>
+            <h2><b>{{review.title}}</b></h2>
             <p>{{review.text}}
             </p>
           </ion-card-content>
@@ -58,6 +60,11 @@
     </ion-row>
   </ion-grid>
 </ion-content>
+
+
+<!--ion-content *ngIf="!loaded" >
+  <p  class="loadingPage">LOADING..</p>
+</ion-content>-->
 <ion-footer>
   <footer-es></footer-es>
 </ion-footer>

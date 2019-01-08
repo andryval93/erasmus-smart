@@ -26,8 +26,6 @@ export class NewsServiceProvider {
     this.DBistance = SingletonDatabase.getInstance();
   }
 
-
-
   /**
   * Create the database collection and defines an initial document
   * Note the use of merge : true flag within the returned promise  - this
@@ -98,49 +96,6 @@ export class NewsServiceProvider {
         })
     }
 
-/*getReviews(collectionObj: string): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.DBistance.collection(collectionObj)
-        .get()
-        .then((querySnapshot) => {
-          let obj: any = [];
-          querySnapshot
-            .forEach((doc: any) => {
-              obj.push({
-                id: doc.id,
-                recensione: doc.data().Text,
-                inserzionista: doc.data().Recensore,
-                stelle: doc.data().Stars,
-                recensioni: doc.data().recensioni,
-                data: doc.data().data
-              });
-            });
-
-          resolve(obj);
-        })
-        .catch((error: any) => {
-          reject(error);
-        });
-    });
-  }*/
-
-  /**
-   * Add a new document to a selected database collection
-   */
-  /*addDocument(collectionObj: string,
-    dataObj: any): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.DBistance.collection(collectionObj).add(dataObj)
-        .then((obj: any) => {
-          resolve(obj);
-        })
-        .catch((error: any) => {
-          reject(error);
-        });
-    });
-  }*/
-
-
   /**
    * Delete an existing document from a selected database collection
    */
@@ -180,5 +135,4 @@ export class NewsServiceProvider {
         });
     });
     }*/
-
 }

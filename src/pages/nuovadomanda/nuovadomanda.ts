@@ -264,7 +264,7 @@ export class NuovadomandaPage {
          .catch((error: any) => {
             console.dir(error);
          });
-      this.navCtrl.push(NewsPage);
+      this.navCtrl.setRoot(NewsPage);
    }
 
    onChangeSede(SelectedValue: any) {

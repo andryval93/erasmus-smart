@@ -42,7 +42,7 @@ export class MessageProvider {
     }
 
     getObserver(collectionObj:string, docID: any): any {
-        return this.DBistance.collection("/Messages/tienivince@live.itciccio@paolo.it/Messages")
+        return this.DBistance.collection("/Messages/" + docID + "/Messages")
     }
 
     sendMessage(collectionObj: string,

@@ -34,7 +34,7 @@
       </ion-item>
   
     <div class="Conferma-contenitore">
-      <button ion-button class="rispondiButton" (click)="openAddPage()" *ngIf = "visualizzaInviaButton"> Invia risposta</button>
+      <button ion-button class="rispondiButton" (click)="openAddPage()" *ngIf = "visualizzaInviaButton" [disabled]="!form.valid"> Invia risposta</button>
     </div>
 
   </form>

@@ -18,6 +18,7 @@ import { RegistrazionePage } from '../pages/registrazione/registrazione';
 import { AngularFireModule } from 'angularfire2';
 import { ReviewMainPage } from '../pages/review-main/review-main';
 import { LoginService } from '../providers/service/loginService';
+import {AccountService} from '../providers/service/accountService';
 
 @Component({
   templateUrl: 'app.html'
@@ -29,14 +30,18 @@ export class MyApp {
   
   //root page
   rootPage: any;
-  //check login into a variable
+  //check login
   logged: boolean;
+  //check verified email
+  verified: boolean;
   //email of logged user
   loggedEmail: String;
+  //type of logged user
+  userType: String;
   //list of pages
   pages: Array<{ title: string, component: any }>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public loginService: LoginService) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public loginService: LoginService, public accountService: AccountService) {
 
     //disconessione di eventuali log precedenti prima di avviare l'app
     //fix non più necessario
@@ -68,14 +73,27 @@ export class MyApp {
     
           //user logged
           if (user != null) {
-            
-              this.logged = true;
-              this.userIsLogged();
-            }  
+          
+            this.logged = true;
+
+            //user logged & verified
+            if (user.emailVerified == true) {
+
+              this.verified = true;
+              this.userIsLogged(user, this.verified);
+            }
+
+            //user logged & not verified
+            else {
+
+              this.verified = false;
+              this.userIsLogged(user, this.verified);
+            }
+          }  
             
           //user unlogged
           else {
-
+            
             this.logged = false;
             this.userIsNotLogged();
           }
@@ -83,25 +101,77 @@ export class MyApp {
       );
   }
 
-  userIsLogged() {
+  userIsLogged(user, verified) {
 
     this.rootPage = NewsPage;
     this.loggedEmail = firebase.auth().currentUser.email;
 
-    this.pages = [
-      { title: 'News', component: NewsPage },
-      { title: 'Q&A', component: QeaPage},
-      { title: 'Recensioni', component: ReviewMainPage},
-      { title: 'Stepper', component: StepperPage },
-      { title: 'Chat', component: UiChatPage },
-      
-    ];
+    //check the type of logged user
+    this.accountService.getTypeAccount("Account", user.email)
+    .then(
+      type => {
+
+        //tutor & verified
+        if (type == "tutor" && verified == true) {
+
+          this.userType = "Tutor Account";
+
+          this.pages = [
+            { title: 'News', component: NewsPage },
+            { title: 'Q&A', component: QeaPage},
+            { title: 'Recensioni', component: ReviewMainPage},
+            { title: 'Chat', component: UiChatPage },
+          ];
+        }
+
+        //tutor & not verified
+        else if (type == "tutor" && verified == false) {
+
+          this.userType = "Tutor Account";
+
+          this.pages = [
+            { title: 'News', component: NewsPage },
+            { title: 'Q&A', component: QeaPage},
+            { title: 'Recensioni', component: ReviewMainPage},
+          ];
+        }
+        
+        //student & verified
+        else if (verified == true) {
+
+          this.userType = "Student Account"
+
+          this.pages = [
+            { title: 'News', component: NewsPage },
+            { title: 'Q&A', component: QeaPage},
+            { title: 'Recensioni', component: ReviewMainPage},
+            { title: 'Stepper', component: StepperPage },
+            { title: 'Chat', component: UiChatPage },
+          ];
+        }
+
+        //student & not verified
+        else {
+          
+          this.userType = "Student Account"
+
+          this.pages = [
+            { title: 'News', component: NewsPage },
+            { title: 'Q&A', component: QeaPage},
+            { title: 'Recensioni', component: ReviewMainPage},
+          ];
+        }
+
+      },
+    );
   }
 
   userIsNotLogged() {
 
     this.rootPage = LoginPage;
-    this.loggedEmail = "Host";
+    this.verified = false;
+    this.loggedEmail = "Guest@erasmussmart.org";
+    this.userType = "Guest Account";
         
     this.pages = [
       { title: 'Login', component: LoginPage},
@@ -118,7 +188,9 @@ export class MyApp {
 
     this.rootPage = LoginPage;
     this.logged = false;
-    this.loggedEmail = "Host";
+    this.verified = false;
+    this.loggedEmail = "Guest@erasmussmart.org";
+    this.userType = "Guest Account";
     
     this.nav.popToRoot;
   }
