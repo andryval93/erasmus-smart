@@ -13,10 +13,12 @@
 </ion-header>
 
 <ion-content padding>
+
     <div class="container">
     
   <ion-stepper #stepper (selectIndexChange)="selectChange($event)" [mode]="mode">
-     
+  <!-- rendo tutto invisibile finchè la pagina non carica per evitare errori -->
+      <div *ngIf="invisibleStepDiv">
     <ion-step description="Step1 description">
       <div class="Step-1-container">
       <!-- qui va il Titolo -->
@@ -183,7 +185,7 @@
 
       </div>
     </ion-step>
-
+  </div>
   </ion-stepper>
   <div class="push"></div>
 </div>

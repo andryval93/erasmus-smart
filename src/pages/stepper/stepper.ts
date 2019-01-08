@@ -45,6 +45,7 @@ export class StepperPage  {
    _CONTENT3: { step: any; };
    statusAccepted: boolean ;
    statusPending : boolean ;
+   invisibleStepDiv: boolean;
    
    retrieveCollection(): void {
       this.DBistance.getDocuments(this._COLL)
@@ -196,8 +197,9 @@ set selectedIndex(index: number) {
              this.DBistance.addDocument("Account",
              email.substring(0),
              this._CONTENT3)
-            
+             this.navCtrl.setRoot(StepperPage);
          }
+       
 
          num = this.locationsAccount[i].step;
          if(num==this.stepper._steps.length-1){
@@ -211,9 +213,10 @@ set selectedIndex(index: number) {
             this.stepper.setStep(num);
         
          }
+         
     break;
       }
-
+     
         }
         if(this.sedeSceltaAccount != undefined && this.tutorAccount != undefined ){
          this.hide = false;
@@ -243,6 +246,7 @@ set selectedIndex(index: number) {
 
    }
    ionViewDidEnter() {
+      this.invisibleStepDiv = true ;
       this.retrieveCollection();
       
    }
