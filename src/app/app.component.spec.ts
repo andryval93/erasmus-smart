@@ -1,9 +1,8 @@
 import { TestBed, async, inject } from '@angular/core/testing';
-import { LoginService } from '../providers/service/loginService';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
 import { ENV } from '../config/env';
-
+/*
 
 describe('Service: LoginService', () => {
   beforeEach(async(() => {
@@ -23,4 +22,4 @@ describe('Service: LoginService', () => {
     //expect(service.authenticated).toBeTruthy();
     expect(service).toBeDefined();
   }));
-});
+});*/

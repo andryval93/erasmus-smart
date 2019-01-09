@@ -2,7 +2,7 @@ import { Component, ChangeDetectorRef, QueryList, ContentChildren, Input, Output
 import { IonicPage, NavController } from 'ionic-angular';
 import { ServiceProvider } from '../../providers/service/stepperService';
 import { InserisciRecensionePage } from '../inserisci-recensione/inserisci-recensione';
-import { LoginService } from '../../providers/service/loginService';
+import { AccountService } from '../../providers/service/accountService';
 import { ReviewsListPage } from '../reviews-list/reviews-list';
 import { NewsPage } from '../news/news';
 import { IonicStepComponent, IonicStepperNext, IonicStepperComponent } from 'ionic-stepper';
@@ -135,7 +135,7 @@ set selectedIndex(index: number) {
 @ViewChild('stepper') stepper: IonicStepperComponent;
    constructor(public navCtrl: NavController,
       private DBistance: ServiceProvider,
-      private loginService: LoginService,
+      private loginService: AccountService,
       private _changeDetectorRef: ChangeDetectorRef,
       ) {
       this.mode = "horizontal";

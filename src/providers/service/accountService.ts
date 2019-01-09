@@ -15,6 +15,8 @@ import { SingletonDatabase } from '../../model/Database';
 import { resolve } from 'url';
 import firebase from 'firebase';
 import { EventManagerPlugin } from '@angular/platform-browser/src/dom/events/event_manager';
+import AuthProvider = firebase.auth.AuthProvider;
+import { AngularFireAuth } from 'angularfire2/auth';
 
 
 
@@ -33,13 +35,18 @@ import { EventManagerPlugin } from '@angular/platform-browser/src/dom/events/eve
 @Injectable()
 
 export class AccountService {
-
+  public user: firebase.User;
+	static user: any;
   //private DBistance: any;
   DBistance: any;
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient, public afAuth: AngularFireAuth) {
     console.log('Hello DatabaseProvider Provider');
     //this.DBistance = firebase.firestore();
+    afAuth.authState.subscribe(user => {
+			this.user = user;
+			
+		});
     this.DBistance = SingletonDatabase.getInstance();
   }
 
@@ -113,6 +120,12 @@ export class AccountService {
     })
   }
 
+  signInWithEmail(credentials) {
+		console.log('Sign in with email');
+		return this.afAuth.auth.signInWithEmailAndPassword(credentials.email,
+			 credentials.password);
+		
+	}
   /**
   * Create the database collection and defines an initial document
   * Note the use of merge : true flag within the returned promise  - this

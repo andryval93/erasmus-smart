@@ -17,7 +17,6 @@ import { LoginPage } from '../pages/login/login';
 import { RegistrazionePage } from '../pages/registrazione/registrazione';
 import { AngularFireModule } from 'angularfire2';
 import { ReviewMainPage } from '../pages/review-main/review-main';
-import { LoginService } from '../providers/service/loginService';
 import {AccountService} from '../providers/service/accountService';
 
 @Component({
@@ -41,7 +40,7 @@ export class MyApp {
   //list of pages
   pages: Array<{ title: string, component: any }>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public loginService: LoginService, public accountService: AccountService) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public accountService: AccountService) {
 
     //disconessione di eventuali log precedenti prima di avviare l'app
     //fix non più necessario
@@ -65,7 +64,7 @@ export class MyApp {
   loginLogic() {
 
       //set logged variable
-      this.loginService.afAuth.authState
+      this.accountService.afAuth.authState
       .subscribe(
         user => {
               

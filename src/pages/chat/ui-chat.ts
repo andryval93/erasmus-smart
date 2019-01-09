@@ -5,7 +5,6 @@ import { AccountService } from '../../providers/service/accountService';
 import { MessageProvider } from '../../providers/service/messagingService';
 import { Account, student, Message} from '../../model/model';
 import firebase from 'firebase';
-import { LoginService } from '../../providers/service/loginService';
 /**
  * Generated class for the UiChatPage page.
  *

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { NewsServiceProvider } from '../../providers/service/newsService';
 import { NewNewsPage } from '../new-news/new-news';
-import { LoginService } from '../../providers/service/loginService';
 import { AccountService } from '../../providers/service/accountService';
 declare var require: any;
 
@@ -27,7 +26,7 @@ export class NewsPage {
   shouldHide: boolean = true;
   loader :any = null;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: LoginService, public DBIstance: NewsServiceProvider, public DBAccount: AccountService, public loadingCtrl: LoadingController) { 
+  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AccountService, public DBIstance: NewsServiceProvider, public DBAccount: AccountService, public loadingCtrl: LoadingController) { 
     this.checkAdmin();
     this.retrieveNews();
   }

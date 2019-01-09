@@ -86,7 +86,7 @@ export class OpenchatPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OpenchatPage');
-    let observer = this.serviceProv.getObserver("Messages", this.idChat)
+    let observer = this.serviceProv.getObserver(this.idChat)
     let viewMessage = this;
     observer.onSnapshot({
       next(snapshot) {

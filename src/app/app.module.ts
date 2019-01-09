@@ -37,7 +37,6 @@ import { RispostePage } from '../pages/risposte/risposte';
 import { from } from 'rxjs/observable/from';
 
 import { LoginPage } from '../pages/login/login';
-import { LoginService } from '../providers/service/loginService';
 import { RegistrazionePage } from '../pages/registrazione/registrazione';
 import { ENV } from '../config/env';
 import { ReviewsListPage } from '../pages/reviews-list/reviews-list';
@@ -110,7 +109,6 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     /*EnvironmentsProvider,*/
     ServiceProvider,
     QeaServiceProvider,
-    LoginService,
     AngularFireAuth,
     RisposteQeaServiceProvider,
     reviewService,
