@@ -29,7 +29,6 @@ export class OpenchatPage {
   messages: Array<any>
   type: string;
   newMessage: Array<any>;
-
   constructor(public navCtrl: NavController, public navParams: NavParams, private serviceProv: MessageProvider, public viewCtrl: ViewController) {
     //this.nome = localStorage.getItem("nome");
     //this.sede = localStorage.getItem("sede");
@@ -46,7 +45,6 @@ export class OpenchatPage {
     this.type = navParams.get("type");
     this.chatOpen = true;
 
-
     if (this.type == "tutor")
       this.idChat = firebase.auth().currentUser.email + this.email
     else
@@ -60,7 +58,7 @@ export class OpenchatPage {
    this.messages = new Array();
 
     serviceProv.getAllMessages("Messages", this.idChat).then((result) => {
-        
+        this.messages = [];
         result.forEach(el => {
           this.messages.push(el)
         });
@@ -86,7 +84,7 @@ export class OpenchatPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OpenchatPage');
-    let observer = this.serviceProv.getObserver("Messages", this.idChat)
+    let observer = this.serviceProv.getObserver(this.idChat)
     let viewMessage = this;
     observer.onSnapshot({
       next(snapshot) {

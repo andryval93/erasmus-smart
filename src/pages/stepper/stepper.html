@@ -13,10 +13,12 @@
 </ion-header>
 
 <ion-content padding>
+
     <div class="container">
     
   <ion-stepper #stepper (selectIndexChange)="selectChange($event)" [mode]="mode">
-     
+  <!-- rendo tutto invisibile finchè la pagina non carica per evitare errori -->
+      <div *ngIf="invisibleStepDiv">
     <ion-step description="Step1 description">
       <div class="Step-1-container">
       <!-- qui va il Titolo -->
@@ -71,9 +73,26 @@
       <div class="contenitore-step-5-dad">
 
         <div class="contenitore-step-5-son">
-          <h4>Qui sono riportate le informazioni relative al colloquio </h4>
-
-          <p>Link al documento relativo al colloquio</p>
+          <h4>A che serve il colloquio?</h4>
+          <p class="justify">Il colloquio è diretto ad accertare le motivazioni e le conoscenze linguistiche del candidato e si 
+            svolgerà nel periodo compreso fra il 12-19 febbraio 2019.
+            Il relativo calendario sarà comunicato attraverso il sito web <a>web.unisa.it/international</a>. 
+            Non sono previste altre forme di convocazione. 
+            I candidati potranno essere ammessi a sostenere il colloquio via Skype, qualora si trovassero 
+            all’estero o in situazione di particolare difficoltà. In tal caso è necessario concordare le modalità
+            con il delegato alla mobilità internazionale del Consiglio didattico almeno una settimana prima 
+            della data del colloquio.
+            Sono esonerati dal colloquio motivazionale gli studenti iscritti ai corsi di laurea e laurea 
+            magistrale bi-nazionali, la cui mobilità è obbligatoria: "ECONOMIA, VALORIZZAZIONE, GESTIONE DEL PATRIMONIO TURISTICO" e 
+            "LINGUISTICA E DIDATTICA DELL'ITALIANO NEL CONTESTO INTERNAZIONALE". 
+            I suddetti studenti devono comunque presentare la candidatura entro i termini di scadenza del bando. Per tutti gli altri corsi di studio 
+            la mancata presentazione ai colloqui determinerà l’esclusione dalla procedura concorsuale. 
+            Un bonus fino ad un massimo di 30 punti sarà attribuito ai candidati iscritti IV e al V anno di Ingegneria edile-architettura e di Scienze della formazione primaria nel caso in cui concorrano 
+            alla selezione unitamente agli studenti iscritti a corsi di laurea magistrale di II ciclo.
+            In base all’esito del colloquio la Commissione può modificare la sede della mobilità. 
+            Terminata tale fase non sarà più possibile operare alcun cambiamento.
+          </p>
+          <p>Ulteriori informazioni possono essere reperite dal bando presente a questo <a href="https://web.unisa.it/uploads/rescue/164/1790/era-sms-bando-19-20-con-icm.pdf">link</a>.</p>
         </div>
 
         <div class="AvantiDietroStepper">
@@ -130,11 +149,12 @@
         <div class="Conferma-contenitore">
 
           <button (click)="saveDocument(tutors)" *ngIf="hideConferma" ion-button small class="Conferma-Step4">Conferma</button>
-          <p class="Richiesta-in-attesa" *ngIf="show"> Richiesta in attesa di accettazione </p>
-
+          <p class="Richiesta-in-attesa" *ngIf="statusPending"> Step bloccato, non puoi continuare la procedura fino a quando il tutor non accetta la richiesta.  </p>
+          <p class="Richiesta-accettata" *ngIf="statusAccepted"> Richiesta accettata </p>
+          
         </div>
         <div class="AvantiDietroStepper">
-          <button ion-button small ionicStepperNext class="Step-Successivo"><img src="assets/imgs/frecciaVettorialeAvanti.png"></button>
+          <button ion-button small ionicStepperNext class="Step-Successivo" *ngIf="statusAccepted" ><img src="assets/imgs/frecciaVettorialeAvanti.png"></button>
 
         </div>
         
@@ -150,7 +170,7 @@
           <div class="contenitore-step-5-son">
             <h4>Qui sono riportate le informazioni relative al Learning Agreement </h4>
             <img src="assets/imgs/learning-agreement-facsimile.jpg">
-            <p>Link al documento relativo al Learning Agreement </p>
+            <p>Puoi trovare un esempio di Learning Agreement a <a href="https://firebasestorage.googleapis.com/v0/b/erasmus-smart-2018.appspot.com/o/stepper%2Fera-learning-agreement-for-study.-doc-2.doc?alt=media&token=0b68226e-cb42-40fe-83ec-96278dd18d51">questo link</a>.</p>
           </div>
 
           <div class="AvantiDietroStepper">
@@ -182,7 +202,7 @@
 
       </div>
     </ion-step>
-
+  </div>
   </ion-stepper>
   <div class="push"></div>
 </div>

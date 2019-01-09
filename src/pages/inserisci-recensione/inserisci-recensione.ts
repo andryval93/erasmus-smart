@@ -2,9 +2,9 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { InserisciRecensioneService } from '../../providers/service/inserisciRecensioneService';
 import { FormBuilder, Validators } from '@angular/forms';
-import { LoginService } from '../../providers/service/loginService';
 import { NewsPage } from '../news/news';
 import { Ionic2RatingModule } from 'ionic2-rating';
+import { AccountService } from '../../providers/service/accountService';
 
 /**
  * Generated class for the InserisciRecensionePage page.
@@ -62,7 +62,7 @@ export class InserisciRecensionePage {
     public navParams: NavParams,
     private DBistance: InserisciRecensioneService,
     private _FB: FormBuilder,
-    private loginService: LoginService,
+    private loginService: AccountService,
     private alertCtrl : AlertController) {
     this.form = _FB.group({
       'Titolo': ['', Validators.required],

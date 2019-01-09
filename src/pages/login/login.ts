@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NavController, IonicPage } from 'ionic-angular';
-import { LoginService } from '../../providers/service/loginService';
+import { AccountService } from '../../providers/service/accountService';
 import { RegistrazionePage } from '../registrazione/registrazione';
 import { NewsPage } from '../news/news';
 
@@ -17,7 +17,7 @@ export class LoginPage {
 	currentEmail: any;
 	constructor(
 		private navCtrl: NavController,
-		private auth: LoginService,
+		private auth: AccountService,
 		fb: FormBuilder
 	) {
 		this.loginForm = fb.group({

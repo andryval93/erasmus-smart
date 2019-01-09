@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { NewsServiceProvider } from '../../providers/service/newsService';
 import { NewNewsPage } from '../new-news/new-news';
-import { LoginService } from '../../providers/service/loginService';
 import { AccountService } from '../../providers/service/accountService';
 declare var require: any;
 
@@ -25,20 +24,23 @@ export class NewsPage {
   newsList: Array<{title: String, date: String, content: String}> = [];
   moment = require('moment');
   shouldHide: boolean = true;
+  loader :any = null;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: LoginService, public DBIstance: NewsServiceProvider, public DBAccount: AccountService, public loadingCtrl: LoadingController) { 
+  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AccountService, public DBIstance: NewsServiceProvider, public DBAccount: AccountService, public loadingCtrl: LoadingController) { 
     this.checkAdmin();
     this.retrieveNews();
   }
 
-  /*
-  * Aggiunta di una news da parte dell'admin
+  /**
+  * @description Sposta l'amministratore sulla pagina per il caricamento news
+  * @author Giovanni Buonincontri
   */
   newNews() {
     this.navCtrl.push(NewNewsPage);
   }
-  /*
-  * Controllo se admin è loggato
+  /**
+  * @description Controlla se l'admin è loggato
+  * @author Giovanni Buonincontri
   */
   checkAdmin(){
     let email = "guest";
@@ -60,7 +62,10 @@ export class NewsPage {
         }
       );
   }
-
+  /**
+   * @description Recupera le news da mostrare nella pagina web dal database.
+   * @author Giosuè Sulipano
+   */
   retrieveNews() {
     this.presentLoading();
     console.log("Fetching news from the database, please wait!");
@@ -80,21 +85,27 @@ export class NewsPage {
             this.newsList.push({
               title: data[i]["title"],
               date: this.moment(data[i]["date"]).format("DD-MM-YYYY HH:mm"),
-              //date: data[i]["date"],
               content: data[i]["content"]
             });
           }
         }
       })
       .catch();
+      if (this.loader != null) {
+        this.loader.dismiss();
+      }
   }
-
+  /**
+   * @description Crea un LoadingController da mostrare durante il caricamento dei contenuti.
+   * @author Giosuè Sulipano
+   */
   presentLoading() {
-    const loader = this.loadingCtrl.create({
+    this.loader = this.loadingCtrl.create({
       content:"Attendi un attimo..",
-      duration: 3000
+      //duration: 3000,
+      //dismissOnPageChange: true
     });
-    loader.present();
+    this.loader.present();
   }
 
   ionViewDidLoad() {

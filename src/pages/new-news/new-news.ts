@@ -35,6 +35,10 @@ export class NewNewsPage {
     console.log('ionViewDidLoad NewNewsPage');
   }
 
+  /**
+  * @description Salva una nuova news all'interno del database.
+  * @author Giovanni Buonincontri
+  */
   saveNews(){
     this.data = this.form.value;
     let News = {

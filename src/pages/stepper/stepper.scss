@@ -3,6 +3,11 @@ page-stepper {
   body {
 	height: 100%;
 }
+
+.justify {
+    text-align: justify;
+}
+
 ion-content {
     height: 100%;
 }
@@ -166,6 +171,11 @@ text-align: center;
 color:rgb(163, 5, 5);
 font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
+.Richiesta-accettata{
+    text-align: center;
+    color:green;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    }
 
 /*step 6 */
 .Step-6-scritta{

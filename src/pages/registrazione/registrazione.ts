@@ -1,7 +1,7 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController, IonicPage } from 'ionic-angular';
-import { RegistrationProvider } from '../../providers/service/registrationService'
+import { AccountService } from '../../providers/service/accountService'
 import CodiceFiscale from 'codice-fiscale-js'
 import { COMUNI } from 'codice-fiscale-js/src/geo-data.js'
 import firebase from 'firebase';
@@ -21,6 +21,7 @@ export class RegistrazionePage {
 	data: any;
 	cf: any;
 	errorMessageCF: string;
+	errorMessageEmail: string;
 	errorMessagePassword: string;
 	errorMessageBirthPlace: string;
 	errorMessageBirthDay: string;
@@ -28,7 +29,7 @@ export class RegistrazionePage {
 
 	constructor(
 		private navCtrl: NavController,
-		private serviceProv: RegistrationProvider,
+		private serviceProv: AccountService,
 		fb: FormBuilder
 	) {
 		this.form = fb.group({
@@ -78,6 +79,8 @@ export class RegistrazionePage {
 
 		//Verifica che la città inserita sia corretta
 		this.verifyBirthPlace(this.data.birthPlace)
+		if (this.errorMessageBirthPlace != undefined)
+			return;
 
 		//Verifica i validators  
 		if (this.form.status == "INVALID") {
@@ -106,9 +109,23 @@ export class RegistrazionePage {
 			this.errorMessageCF = "Codice Fiscale non valido"
 			return;
 		}
-		else
+		else {
 			console.log("CF VALIDO !!!")
-		this.errorMessageCF = undefined
+			this.errorMessageCF = undefined
+		}
+
+		//Verifica che non esista un account già registrato con l'email inserita
+		this.serviceProv.getAccount('Account', this.data.email).then((result) => {
+			if (result.data() != undefined) {
+				console.log("EMAIL INVALIDA!!!")
+				this.errorMessageEmail = "Account già esistente. Inserire un'email diversa";
+				return;
+			}
+			else {
+				console.log("EMAIL VALIDA !!!")
+				this.errorMessageEmail = undefined
+			}
+		});
 
 		//Verifica che le due password inserite sono uguali
 		if (this.data.password != this.data.confirmPassword) {
@@ -133,7 +150,7 @@ export class RegistrazionePage {
 		};
 
 		//Salva l'account nel DB nella collection Account con ID l'email inserita
-		this.serviceProv.addDocument("Account", this.data.email, credentials).then(
+		this.serviceProv.registration("Account", this.data.email, credentials).then(
 			() => this.navCtrl.setRoot(NewsPage),
 			error => this.signupError = error.message
 		);
