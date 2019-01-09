@@ -91,42 +91,17 @@ export class QeaPage {
 * @return {none}
 */
    retrieveCollection(): void {
-      this.DBistance.getDocuments(this._COLL)
+      this.DBistance.getAnswers(this._COLL)
          .then((data) => {
             // IF we don't have any documents then the collection doesn't exist
             // so we create it!
-            if (data.length === 0) {
-               this.generateCollectionAndDocument();
-            }
-            // Otherwise the collection does exist and we assign the returned
-            // documents to the public property of locations so this can be
-            // iterated through in the component template
-            else {
-               this.locations = data;
-            }
+          
+          
+               this.locations = data;   
          })
          .catch();
    }
-   /**
-  * Creates the collection and populates that with an initial document
-  * using the createAndPopulateDocument method of the DatabaseProvider
-  * service
-  *
-  * @public
-  * @method generateCollectionAndDocument
-  * @return {none}
-  */
-   generateCollectionAndDocument(): void {
-      this.DBistance.createAndPopulateDocument(this._COLL,
-         this._DOC,
-         this._CONTENT)
-         .then((data: any) => {
-            console.dir(data);
-         })
-         .catch((error: any) => {
-            console.dir(error);
-         });
-   }
+
 
 
 

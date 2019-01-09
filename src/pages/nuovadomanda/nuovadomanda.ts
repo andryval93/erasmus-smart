@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { NuovaDomandaServiceProvider } from '../../providers/service/nuovaDomandaService';
+import { QeaServiceProvider } from '../../providers/service/qeaService';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController } from 'ionic-angular';
 import { ServiceProvider } from '../../providers/service/stepperService';
@@ -96,7 +96,7 @@ export class NuovadomandaPage {
 
 
    constructor(public navCtrl: NavController,
-      private DBistance: NuovaDomandaServiceProvider,
+      private DBistance: QeaServiceProvider,
       private DBistanceSedi: ServiceProvider,
       private alertCtrl: AlertController,
       private _FB: FormBuilder, ) {
@@ -133,19 +133,13 @@ export class NuovadomandaPage {
 * @return {none}
 */
    retrieveCollection(): void {
-      this.DBistance.getDocuments(this._COLL)
+      this.DBistance.getQuestions(this._COLL)
          .then((data) => {
             // IF we don't have any documents then the collection doesn't exist
             // so we create it!
-            if (data.length === 0) {
-               this.generateCollectionAndDocument();
-            }
-            // Otherwise the collection does exist and we assign the returned
-            // documents to the public property of locations so this can be
-            // iterated through in the component template
-            else {
+            
                this.locations = data;
-            }
+            
          })
          .catch();
    }
@@ -189,26 +183,7 @@ export class NuovadomandaPage {
 
 
 
-   /**
-  * Creates the collection and populates that with an initial document
-  * using the createAndPopulateDocument method of the DatabaseProvider
-  * service
-  *
-  * @public
-  * @method generateCollectionAndDocument
-  * @return {none}
-  */
-   generateCollectionAndDocument(): void {
-      this.DBistance.createAndPopulateDocument(this._COLL,
-         this._DOC,
-         this._CONTENT)
-         .then((data: any) => {
-            console.dir(data);
-         })
-         .catch((error: any) => {
-            console.dir(error);
-         });
-   }
+
 
    /**
     * Saves form data as newly added/edited record within Firebase Realtime
@@ -255,7 +230,7 @@ export class NuovadomandaPage {
       };
 
       this.arrayDomande = null;
-      this.DBistance.addDocument(this._COLL,
+      this.DBistance.insertQuestion(this._COLL,
          idDocumento,
          this._CONTENT)
          .then((data: any) => {

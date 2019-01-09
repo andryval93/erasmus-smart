@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Nav } from 'ionic-angular';
-import { RisposteQeaServiceProvider } from '../../providers/service/risposteQeaService';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AlertController } from 'ionic-angular';
 import { QeaServiceProvider } from '../../providers/service/qeaService';
@@ -69,11 +68,12 @@ export class RispostePage {
   locationQeA: any;
   locationIdQeA: string;
   domandaCorrente: string;
+  descrizioneCorrente: string;
   locationDescrizione: string;
   alertNuovaDomanda: boolean;
 
   constructor(public navCtrl: NavController,
-    private DBistance: RisposteQeaServiceProvider,
+    private DBistance: QeaServiceProvider,
     private _FB: FormBuilder,
     private alertCtrl: AlertController) {
     this.alertNuovaDomanda = false;
@@ -81,6 +81,7 @@ export class RispostePage {
       'Descrizione': ['', Validators.required]
     });
     this.domandaCorrente = localStorage.getItem("Domanda");
+    this.descrizioneCorrente = localStorage.getItem("Descrizione");
     this.locationIdQeA = localStorage.getItem("locationIdQeA");
     this.locationDescrizione = localStorage.getItem("Descrizione");
     localStorage.removeItem("locationQeA");
@@ -127,8 +128,8 @@ export class RispostePage {
       }
     }
 
-    /*
-    if (this.locationQeA.Domande.risposte.length > 0) {
+    
+    /* if (this.locationQeA.Domande.risposte.length > 0) {
       this.alertNuovaDomanda = true;
    }
    */
@@ -136,7 +137,7 @@ export class RispostePage {
     this._CONTENT = {
       Domande: this.locationQeA.Domande,
     };
-    this.DBistance.addDocument(this._COLL,
+    this.DBistance.insertAnswer(this._COLL,
       this.locationIdQeA,
       this._CONTENT,
     )
@@ -169,26 +170,24 @@ export class RispostePage {
   }
   /**
 * Retrieve all documents from the specified collection using the
-* getDocuments method of the DatabaseProvider service
+* getAnswers method of the DatabaseProvider service
 *
 * @public
 * @method retrieveCollection
 * @return {none}
 */
   retrieveCollection(): void {
-    this.DBistance.getDocuments(this._COLL)
+    this.DBistance.getAnswers(this._COLL)
       .then((data) => {
         // IF we don't have any documents then the collection doesn't exist
         // so we create it!
-        if (data.length === 0) {
-          this.generateCollectionAndDocument();
-        }
+       
         // Otherwise the collection does exist and we assign the returned
         // documents to the public property of locations so this can be
         // iterated through in the component template
-        else {
+         
           this.locations = data;
-        }
+        
       })
       .catch();
   }
@@ -201,17 +200,7 @@ export class RispostePage {
  * @method generateCollectionAndDocument
  * @return {none}
  */
-  generateCollectionAndDocument(): void {
-    this.DBistance.createAndPopulateDocument(this._COLL,
-      this._DOC,
-      this._CONTENT)
-      .then((data: any) => {
-        console.dir(data);
-      })
-      .catch((error: any) => {
-        console.dir(error);
-      });
-  }
+
   presentAlert() {
     if (this.alertNuovaDomanda == true) {
       let alert = this.alertCtrl.create({

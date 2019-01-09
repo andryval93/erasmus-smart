@@ -17,6 +17,8 @@
   <ion-card>
     <ion-card-header>
       <h1 style="text-align:left"> {{domandaCorrente}} </h1>
+     
+      <h2> {{descrizioneCorrente}}</h2>
     </ion-card-header>
   </ion-card>
 
@@ -30,7 +32,7 @@
   <form [formGroup]='form' (ngSubmit)='saveDocument(form.value)' (ngSubmit)='presentAlert()' *ngIf = "visualizzaFormVar" class= "formRisposta"  >  
       <ion-item>
         <ion-label floating>Descrizione</ion-label>
-        <ion-textarea formControlName='Descrizione' [(ngModel)]='Descrizione' type="text" rows="10"></ion-textarea>
+        <ion-textarea formControlName='Descrizione' [(ngModel)]='Descrizione' type="text" rows="10"  maxlength="500"></ion-textarea>
       </ion-item>
   
     <div class="Conferma-contenitore">

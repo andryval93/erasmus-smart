@@ -32,7 +32,7 @@ import { AngularFirestoreModule } from "angularfire2/firestore";
 import { ServiceProvider } from '../providers/service/stepperService';
 import { InserisciRecensionePage } from '../pages/inserisci-recensione/inserisci-recensione'
 import { QeaServiceProvider } from '../providers/service/qeaService';
-import { RisposteQeaServiceProvider } from '../providers/service/risposteQeaService';
+
 import { RispostePage } from '../pages/risposte/risposte';
 import { from } from 'rxjs/observable/from';
 
@@ -42,7 +42,7 @@ import { RegistrazionePage } from '../pages/registrazione/registrazione';
 import { ENV } from '../config/env';
 import { ReviewsListPage } from '../pages/reviews-list/reviews-list';
 import { RegistrationProvider } from '../providers/service/registrationService';
-import { NuovaDomandaServiceProvider } from '../providers/service/nuovaDomandaService';
+
 import { AccountService } from '../providers/service/accountService';
 import { MessageProvider } from '../providers/service/messagingService'
 import { NewsServiceProvider } from '../providers/service/newsService';
@@ -114,9 +114,9 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     LoginService,
     AngularFireAuth,
     RegistrationProvider,
-    RisposteQeaServiceProvider,
+ 
     reviewService,
-    NuovaDomandaServiceProvider,
+   
     AccountService,
     NewsServiceProvider,
     MessageProvider,
