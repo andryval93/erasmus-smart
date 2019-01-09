@@ -41,7 +41,7 @@ export class MessageProvider {
         this.DBistance = SingletonDatabase.getInstance();
     }
 
-    getObserver(collectionObj:string, docID: any): any {
+    getObserver(docID: any): any {
         return this.DBistance.collection("/Messages/" + docID + "/Messages")
     }
 
