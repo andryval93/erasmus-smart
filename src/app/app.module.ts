@@ -41,7 +41,6 @@ import { LoginService } from '../providers/service/loginService';
 import { RegistrazionePage } from '../pages/registrazione/registrazione';
 import { ENV } from '../config/env';
 import { ReviewsListPage } from '../pages/reviews-list/reviews-list';
-import { RegistrationProvider } from '../providers/service/registrationService';
 import { NuovaDomandaServiceProvider } from '../providers/service/nuovaDomandaService';
 import { AccountService } from '../providers/service/accountService';
 import { MessageProvider } from '../providers/service/messagingService'
@@ -113,7 +112,6 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     QeaServiceProvider,
     LoginService,
     AngularFireAuth,
-    RegistrationProvider,
     RisposteQeaServiceProvider,
     reviewService,
     NuovaDomandaServiceProvider,

@@ -165,6 +165,9 @@ lettera.
 				<div class="error" *ngIf="form.get('email').hasError('pattern') && form.get('email').touched" style="color: red; padding-top: 0.2rem">
 					Formato email non valido
 				</div>
+				<div class="error" style="color: red; padding-top: 0.2rem">
+					{{ errorMessageEmail }}
+				</div>
 				
 				<ion-item class="boxFormItem">
 					<ion-label color="es_white">Password</ion-label>

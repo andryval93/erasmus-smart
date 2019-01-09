@@ -33,53 +33,32 @@ import { EventManagerPlugin } from '@angular/platform-browser/src/dom/events/eve
 @Injectable()
 
 export class AccountService {
-  
+
   //private DBistance: any;
-    DBistance: any;
- 
+  DBistance: any;
+
   constructor(public http: HttpClient) {
     console.log('Hello DatabaseProvider Provider');
     //this.DBistance = firebase.firestore();
-    this.DBistance =  SingletonDatabase.getInstance();
+    this.DBistance = SingletonDatabase.getInstance();
   }
 
-  getAccount(collectionObj: string, docID: string) : Promise<any>{
-      return new Promise((resolve, reject) => {
-        this.DBistance.collection(collectionObj).doc(docID).get().then((data : any) => {
-            resolve(data);
-        }).catch((error:any) => {
-            reject(error);
-        })
-    })
-  }
-
-  getTypeAccount(collectionObj: string, docID: string) : Promise<any>{
+  registration(collectionObj: string, docId: string,
+    dataObj: any): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.DBistance.collection(collectionObj).doc(docID).get().then((data : any) => {
-          resolve(data.data().userType);
-      }).catch((error:any) => {
-          reject(error);
-      })
-   })
-  }
+        this.DBistance.collection(collectionObj).doc(docId).set(dataObj)
+            .then((obj: any) => {
+                resolve(obj);
+            })
+            .catch((error: any) => {
+                reject(error);
+            });
+    });
+}
 
-  getStudentStatus(collectionObj: string, docID: string) : Promise<any>{
+  getAccount(collectionObj: string, docID: string): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.DBistance.collection(collectionObj).doc(docID).get().then((data : any) => {
-          resolve(data.data().status);
-      }).catch((error:any) => {
-          reject(error);
-      })
-   })
-  }
-
-  acceptRequest(docID: string, emailtutor: string) : Promise<any>{
-    return new Promise((resolve, reject) => {
-      let request = {
-        status: "accepted",
-        tutor: emailtutor
-      }
-      this.DBistance.collection("Account").doc(docID).set(request, {merge: true}).then((data : any) => {
+      this.DBistance.collection(collectionObj).doc(docID).get().then((data: any) => {
         resolve(data);
       }).catch((error: any) => {
         reject(error);
@@ -87,12 +66,46 @@ export class AccountService {
     })
   }
 
-  denyRequest(docID: string, deleteFromList: any) : Promise<any>{
+  getTypeAccount(collectionObj: string, docID: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.DBistance.collection(collectionObj).doc(docID).get().then((data: any) => {
+        resolve(data.data().userType);
+      }).catch((error: any) => {
+        reject(error);
+      })
+    })
+  }
+
+  getStudentStatus(collectionObj: string, docID: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.DBistance.collection(collectionObj).doc(docID).get().then((data: any) => {
+        resolve(data.data().status);
+      }).catch((error: any) => {
+        reject(error);
+      })
+    })
+  }
+
+  acceptRequest(docID: string, emailtutor: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let request = {
+        status: "accepted",
+        tutor: emailtutor
+      }
+      this.DBistance.collection("Account").doc(docID).set(request, { merge: true }).then((data: any) => {
+        resolve(data);
+      }).catch((error: any) => {
+        reject(error);
+      })
+    })
+  }
+
+  denyRequest(docID: string, deleteFromList: any): Promise<any> {
     return new Promise((resolve, reject) => {
       let request = {
         students: deleteFromList
       }
-      this.DBistance.collection("Account").doc(docID).set(deleteFromList, {merge: true}).then((data : any) => {
+      this.DBistance.collection("Account").doc(docID).set(deleteFromList, { merge: true }).then((data: any) => {
         resolve(data);
       }).catch((error: any) => {
         reject(error);
@@ -107,60 +120,60 @@ export class AccountService {
   * this method be called again (we DON'T want to overwrite our documents!)
   */
   createAndPopulateDocument(collectionObj: string,
-                            docID: string,
-                            dataObj: any) : Promise<any>{
-     return new Promise((resolve, reject) => {
+    docID: string,
+    dataObj: any): Promise<any> {
+    return new Promise((resolve, reject) => {
       this.DBistance
-       .collection(collectionObj)
-       .doc(docID)
-       .set(dataObj, {merge: true})
-       .then((data : any) => {
-         resolve(data);
-       })
-       .catch((error: any) => {
-         reject(error);
-       })
-     })
+        .collection(collectionObj)
+        .doc(docID)
+        .set(dataObj, { merge: true })
+        .then((data: any) => {
+          resolve(data);
+        })
+        .catch((error: any) => {
+          reject(error);
+        })
+    })
   }
   /*
    * Return documents from specific database collection
    */
-  getDocuments(collectionObj: string) : Promise<any>{
+  getDocuments(collectionObj: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this.DBistance.collection(collectionObj)
-      .get()
-      .then((querySnapshot) => {
-        let obj : any = [];
-        querySnapshot
-        .forEach((doc: any) => {
-          obj.push({
-           id             : doc.id,
-           Domande        : doc.data().Domande,
-           risposte       : doc.data().risposte,
-           Sede           : doc.data().Sede
-          }); 
+        .get()
+        .then((querySnapshot) => {
+          let obj: any = [];
+          querySnapshot
+            .forEach((doc: any) => {
+              obj.push({
+                id: doc.id,
+                Domande: doc.data().Domande,
+                risposte: doc.data().risposte,
+                Sede: doc.data().Sede
+              });
+            });
+
+          resolve(obj);
+        })
+        .catch((error: any) => {
+          reject(error);
         });
-        
-      resolve(obj);
-      })
-      .catch((error : any) => {
-        reject(error);
-      });
     });
   }
   /**
    * Add a new document to a selected database collection
    */
-  addDocument(collectionObj : string,
-              dataObj : any) : Promise<any>{
+  addDocument(collectionObj: string,
+    dataObj: any): Promise<any> {
     return new Promise((resolve, reject) => {
       this.DBistance.collection(collectionObj).add(dataObj)
-      .then((obj : any) => {
-        resolve(obj);
-      })
-      .catch((error : any) => {
-        reject(error);
-      });
+        .then((obj: any) => {
+          resolve(obj);
+        })
+        .catch((error: any) => {
+          reject(error);
+        });
     });
   }
 
@@ -168,38 +181,38 @@ export class AccountService {
   /**
    * Delete an existing document from a selected database collection
    */
-   deleteDocument(collectionObj : string,
-                  docID : string) : Promise<any>{
-      return new Promise((resolve, reject) => {
-        this.DBistance
-       .collection(collectionObj)
-       .doc(docID)
-       .delete()
-       .then((obj : any) => {
-       resolve(obj);
+  deleteDocument(collectionObj: string,
+    docID: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.DBistance
+        .collection(collectionObj)
+        .doc(docID)
+        .delete()
+        .then((obj: any) => {
+          resolve(obj);
         })
-        .catch((error : any) => {
+        .catch((error: any) => {
           reject(error);
         });
-      });
-    }
-    /**
-     * Update an existing document within a selected database collection
-     */
-    updateDocument(collectionObj : string,
-                    docID : string,
-                    dataObj : any) : Promise<any>{
-      return new Promise((resolve, reject) => {
-        this.DBistance
+    });
+  }
+  /**
+   * Update an existing document within a selected database collection
+   */
+  updateDocument(collectionObj: string,
+    docID: string,
+    dataObj: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.DBistance
         .collection(collectionObj)
         .doc(docID)
         .update(dataObj)
-        .then((obj : any) => {
+        .then((obj: any) => {
           resolve(obj);
         })
-        .catch((error : any) => {
+        .catch((error: any) => {
           reject(error);
         });
-      });
-    }
+    });
+  }
 }
