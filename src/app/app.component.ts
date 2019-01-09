@@ -137,9 +137,9 @@ export class MyApp {
         }
         
         //student & verified
-        else if (verified == true) {
+        else if (type == "student" && verified == true) {
 
-          this.userType = "Student Account"
+          this.userType = "Student Account";
 
           this.pages = [
             { title: 'News', component: NewsPage },
@@ -151,9 +151,9 @@ export class MyApp {
         }
 
         //student & not verified
-        else {
+        else if (type == "student" && verified == false) {
           
-          this.userType = "Student Account"
+          this.userType = "Student Account";
 
           this.pages = [
             { title: 'News', component: NewsPage },
@@ -162,6 +162,20 @@ export class MyApp {
           ];
         }
 
+        //admin
+        else if (type == "admin") {
+
+          this.userType = "Admin Account";
+
+          this.pages = [];
+        }
+
+        //error
+        else {
+
+          this.userIsNotLogged();
+          this.logout();
+        }
       },
     );
   }
