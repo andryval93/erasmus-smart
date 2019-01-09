@@ -32,14 +32,16 @@ export class NewsPage {
     this.retrieveNews();
   }
 
-  /*
-  * Aggiunta di una news da parte dell'admin
+  /**
+  * @description Sposta l'amministratore sulla pagina per il caricamento news
+  * @author Giovanni Buonincontri
   */
   newNews() {
     this.navCtrl.push(NewNewsPage);
   }
-  /*
-  * Controllo se admin è loggato
+  /**
+  * @description Controlla se l'admin è loggato
+  * @author Giovanni Buonincontri
   */
   checkAdmin(){
     let email = "guest";
@@ -62,7 +64,8 @@ export class NewsPage {
       );
   }
   /**
-   * Recupero delle news dal database
+   * @description Recupera le news da mostrare nella pagina web dal database.
+   * @author Giosuè Sulipano
    */
   retrieveNews() {
     this.presentLoading();
@@ -94,7 +97,8 @@ export class NewsPage {
       }
   }
   /**
-   * Spinner durante il caricamento dei contenuti
+   * @description Crea un LoadingController da mostrare durante il caricamento dei contenuti.
+   * @author Giosuè Sulipano
    */
   presentLoading() {
     this.loader = this.loadingCtrl.create({
