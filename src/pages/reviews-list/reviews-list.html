@@ -22,9 +22,16 @@
               <ion-radio checked="true" [value]='s.value'></ion-radio>
             </ion-item>
           </ion-list>
-          <div align="right">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
             <button ion-button color="light" (click)="selectReviews()">Filtra</button>
-          </div>
+              </ion-col>
+              <ion-col>
+            <button ion-button color="danger" (click)="deleteFilters()">Elimina Filtri</button>
+            </ion-col>
+            </ion-row>
+        </ion-grid>
         </div>
       </ion-col>
       <ion-col align-self-center>
@@ -32,9 +39,6 @@
         <h2>Recensioni per "{{University}}"</h2>
         
         <ion-card *ngFor='let review of Reviews'>
-          <!--<div *ngIf='review.length'>
-
-          </div>-->
           <ion-item>
             <ion-avatar item-start>
               <div *ngIf="review.img != ''">
@@ -60,11 +64,6 @@
     </ion-row>
   </ion-grid>
 </ion-content>
-
-
-<!--ion-content *ngIf="!loaded" >
-  <p  class="loadingPage">LOADING..</p>
-</ion-content>-->
 <ion-footer>
   <footer-es></footer-es>
 </ion-footer>

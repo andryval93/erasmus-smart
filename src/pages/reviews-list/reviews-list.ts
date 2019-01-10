@@ -18,15 +18,15 @@ import { LoadingController } from 'ionic-angular';
 
 export class ReviewsListPage {
   private Document: string = "Reviews"
-  loader: any=null;
+  loader: any = null;
   Stars: any = 0;
   University: any;
   private uni: String;
-  loaded: boolean = false;
+  selectedStars: any = -1;
   selected: boolean = false;
   noStars: any;
-  allReviews: Array<{ recensore: String, date: String, starsA: any, text: String, starsI: any, title: String, voidStars:any}>;
-  Reviews: Array<{ recensore: String, date: String, starsA: any, text: String, starsI: any, img: String, title: String, voidStars:any}>;
+  allReviews: Array<{ recensore: String, date: String, starsA: any, text: String, starsI: any, title: String, voidStars: any }>;
+  Reviews: Array<{ recensore: String, date: String, starsA: any, text: String, starsI: any, img: String, title: String, voidStars: any }>;
   StarsSelector: Array<{ key: String, value: String }>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private DBIstance: reviewService, public loadingCtrl: LoadingController) {
@@ -70,7 +70,7 @@ export class ReviewsListPage {
                   text: data[k]["Reviews"][j]["text"],
                   starsI: data[k]["Reviews"][j]["stars"].length,
                   title: data[k]["Reviews"][j]["titolo"],
-                  voidStars: this.noStars=new Array(5-(data[k]["Reviews"][j]["stars"].length))
+                  voidStars: this.noStars = new Array(5 - (data[k]["Reviews"][j]["stars"].length))
                 })
               j++;
               //console.log("aaa ",)
@@ -88,69 +88,73 @@ export class ReviewsListPage {
   }
 
   selectReviews() {
-    if(this.loader==null)
-    {
-      this.createLoader();
-      this.loader.present();
+    if (this.selectedStars == this.Stars) {
     }
-    this.Reviews = [];
-    this.quickSort(this.allReviews,0,this.allReviews.length-1)
-    if(this.Stars==0)
-      this.selected=false;
-    for (let i = 0; i < this.allReviews.length; i++) {
-      if (this.allReviews[i]["starsI"] >= this.Stars && this.selected == false) {
-        console.log("aaaUniversity", this.allReviews[i]);
-        this.Reviews.push(
-          {
-            recensore: this.allReviews[i]["recensore"],
-            date: this.allReviews[i]["date"],
-            starsA: this.allReviews[i]["starsA"],
-            text: this.allReviews[i]["text"],
-            starsI: this.allReviews[i]["starsI"],
-            img: "../../assets/imgs/balsamiq.png",
-            title: this.allReviews[i]["title"],
-            voidStars: this.allReviews[i]["voidStars"]
-          })
+    else {
+      if (this.loader == null) {
+        this.createLoader();
+        this.loader.present();
       }
-      if (this.allReviews[i]["starsI"] == this.Stars && this.selected == true) {
-        //console.log("aaaUniversity", this.allReviews[i]["starsI"]);
-        this.Reviews.push(
-          {
-            recensore: this.allReviews[i]["recensore"],
-            date: this.allReviews[i]["date"],
-            starsA: this.allReviews[i]["starsA"],
-            text: this.allReviews[i]["text"],
-            starsI: this.allReviews[i]["starsI"],
-            img: "../../assets/imgs/balsamiq.png",
-            title: this.allReviews[i]["title"],
-            voidStars: this.allReviews[i]["voidStars"]
-          })
-      }
-    }
-    if (this.Reviews.length == 0) {
-      this.Reviews.push(
-        {
-          recensore: "Nessuna recensione",
-          date: "",
-          starsA: "",
-          text: "",
-          starsI: "",
-          img: "../../assets/imgs/error.png",
-          title: "",
-          voidStars:""
+      this.Reviews = [];
+      this.quickSort(this.allReviews, 0, this.allReviews.length - 1);
+      if (this.Stars == 0)
+        this.selected = false;
+      for (let i = 0; i < this.allReviews.length; i++) {
+        if (this.allReviews[i]["starsI"] >= this.Stars && this.selected == false) {
+          console.log("aaaUniversity", this.allReviews[i]);
+          this.Reviews.push(
+            {
+              recensore: this.allReviews[i]["recensore"],
+              date: this.allReviews[i]["date"],
+              starsA: this.allReviews[i]["starsA"],
+              text: this.allReviews[i]["text"],
+              starsI: this.allReviews[i]["starsI"],
+              img: "../../assets/imgs/balsamiq.png",
+              title: this.allReviews[i]["title"],
+              voidStars: this.allReviews[i]["voidStars"]
+            })
         }
-      )
+        if (this.allReviews[i]["starsI"] == this.Stars && this.selected == true) {
+          //console.log("aaaUniversity", this.allReviews[i]["starsI"]);
+          this.Reviews.push(
+            {
+              recensore: this.allReviews[i]["recensore"],
+              date: this.allReviews[i]["date"],
+              starsA: this.allReviews[i]["starsA"],
+              text: this.allReviews[i]["text"],
+              starsI: this.allReviews[i]["starsI"],
+              img: "../../assets/imgs/balsamiq.png",
+              title: this.allReviews[i]["title"],
+              voidStars: this.allReviews[i]["voidStars"]
+            })
+        }
+      }
+      if (this.Reviews.length == 0) {
+        this.Reviews.push(
+          {
+            recensore: "Nessuna recensione",
+            date: "",
+            starsA: "",
+            text: "",
+            starsI: "",
+            img: "../../assets/imgs/error.png",
+            title: "",
+            voidStars: ""
+          }
+        )
+      }
+      if (this.loader != null) {
+        this.loader.dismiss();
+        this.loader = null;
+      }
+      this.selected = true;
+      //console.log("selected", this.selected)
     }
-    if(this.loader!=null){
-    this.loader.dismiss();
-    this.loader=null;
-    }
-    this.selected = true;
-    //console.log("selected", this.selected)
+    this.selectedStars=this.Stars;
   }
 
   createLoader() {
-    this.loader=this.loadingCtrl.create({
+    this.loader = this.loadingCtrl.create({
       spinner: "ios",
       content: 'Please wait...',
       cssClass: "my-loading"
@@ -173,6 +177,12 @@ export class ReviewsListPage {
     }
   }
 
+
+  deleteFilters() {
+    this.Stars = 0;
+    this.selectReviews();
+  }
+
   quickSort(arr: any, p: number, q: number) {
     let index = this.partition(arr, p, q);
     if (p < index - 1) {
@@ -182,7 +192,7 @@ export class ReviewsListPage {
       this.quickSort(arr, index, q)
     }
   }
-  partition(arr: any, p: number, q: number):number {
+  partition(arr: any, p: number, q: number): number {
     let tmp: any;
     let i: number;
     let j: number;
@@ -190,7 +200,7 @@ export class ReviewsListPage {
     i = p;
     j = q;
     pivot = arr[Math.floor((i + j) / 2)]["starsI"];
-    
+
     while (i <= j) {
       while (arr[i]["starsI"] < pivot)
         i++;
