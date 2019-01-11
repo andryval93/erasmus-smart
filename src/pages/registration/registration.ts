@@ -10,10 +10,10 @@ import { NewsPage } from '../news/news';
 @IonicPage()
 
 @Component({
-	selector: 'page-registrazione',
-	templateUrl: './registrazione.html'
+	selector: 'page-registration',
+	templateUrl: './registration.html'
 })
-export class RegistrazionePage {
+export class RegistrationPageComponent {
 
 	signupError: string;
 	form: FormGroup;

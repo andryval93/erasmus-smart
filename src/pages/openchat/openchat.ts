@@ -17,7 +17,7 @@ import { FormControl, Validators } from '@angular/forms';
   templateUrl: 'openchat.html',
 })
 
-export class OpenchatPage {
+export class OpenchatPageComponent {
   @ViewChild('content') content: Content;
   name: string;
   sede: string;
@@ -83,6 +83,7 @@ export class OpenchatPage {
   }
 
   ionViewDidLoad() {
+    this.chatOpen = true
     console.log('ionViewDidLoad OpenchatPage');
     let observer = this.serviceProv.getObserver(this.idChat)
     let viewMessage = this;
@@ -110,6 +111,7 @@ export class OpenchatPage {
   }
 
   scrollDown(){
+    if(this.content != undefined)
     this.content.scrollToBottom(0);
   }
 

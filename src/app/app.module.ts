@@ -10,7 +10,7 @@ import { ListPageComponent } from '../pages/list/list';
 import { NewsPage } from '../pages/news/news';
 import { QeaPage } from '../pages/qea/qea';
 import { NuovadomandaPage } from '../pages/nuovadomanda/nuovadomanda';
-import UiChatPage from '../pages/chat/ui-chat';
+import UiChatPageComponent from '../pages/chat/ui-chat';
 import { NewNewsPageComponent } from '../pages/new-news/new-news';
 
 import { HeaderEsComponent } from '../components/header-es/header-es';
@@ -18,7 +18,7 @@ import { FooterEsComponent } from '../components/footer-es/footer-es'
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { OpenchatPage } from '../pages/openchat/openchat';
+import { OpenchatPageComponent } from '../pages/openchat/openchat';
 import { IonicStepperModule } from 'ionic-stepper';
 import { StepperPage } from '../pages/stepper/stepper';
 import { HttpClientModule } from '@angular/common/http';
@@ -37,7 +37,7 @@ import { RispostePage } from '../pages/risposte/risposte';
 import { from } from 'rxjs/observable/from';
 
 import { LoginPage } from '../pages/login/login';
-import { RegistrazionePage } from '../pages/registrazione/registrazione';
+import { RegistrationPageComponent } from '../pages/registration/registration';
 import { ENV } from '../config/env';
 import { ReviewsListPageComponent } from '../pages/reviews-list/reviews-list';
 
@@ -53,8 +53,8 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     MyAppComponent,
     NewsPage,
     ListPageComponent,
-    UiChatPage,
-    OpenchatPage,
+    UiChatPageComponent,
+    OpenchatPageComponent,
     HeaderEsComponent,
     FooterEsComponent,
     StepperPage,
@@ -65,7 +65,7 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     RispostePage,
     NewNewsPageComponent,
     LoginPage,
-    RegistrazionePage,
+    RegistrationPageComponent,
     ReviewsListPageComponent,
     ReviewMainPageComponent,
     MessageComponent
@@ -95,9 +95,9 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     RispostePage,
     NewNewsPageComponent,
     LoginPage,
-    RegistrazionePage,
-    UiChatPage,
-    OpenchatPage,
+    RegistrationPageComponent,
+    UiChatPageComponent,
+    OpenchatPageComponent,
     ReviewsListPageComponent,
     ReviewMainPageComponent,
     MessageComponent

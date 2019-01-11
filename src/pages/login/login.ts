@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NavController, IonicPage } from 'ionic-angular';
 import { AccountService } from '../../providers/service/accountService';
-import { RegistrazionePage } from '../registrazione/registrazione';
+import { RegistrationPageComponent } from '../registration/registration';
 import { NewsPage } from '../news/news';
 
 @IonicPage()
@@ -48,6 +48,6 @@ export class LoginPage {
 	}
 
 	signup() {
-		this.navCtrl.push(RegistrazionePage);
+		this.navCtrl.push(RegistrationPageComponent);
 	}
 }
