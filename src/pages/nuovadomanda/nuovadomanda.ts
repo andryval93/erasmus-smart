@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController } from 'ionic-angular';
 import { ServiceProvider } from '../../providers/service/stepperService';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
-import { NewsPage } from '../news/news';
+import { NewsPageComponent } from '../news/news';
 
 
 /**
@@ -239,7 +239,7 @@ export class NuovadomandaPage {
          .catch((error: any) => {
             console.dir(error);
          });
-      this.navCtrl.setRoot(NewsPage);
+      this.navCtrl.setRoot(NewsPageComponent);
    }
 
    onChangeSede(SelectedValue: any) {

@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, Nav } from 'ionic-angular';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AlertController } from 'ionic-angular';
 import { QeaServiceProvider } from '../../providers/service/qeaService';
-import { NewsPage } from '../news/news';
+import { NewsPageComponent } from '../news/news';
 
 
 /**
@@ -92,7 +92,7 @@ export class RispostePage {
   }
 
   openAddPage() {
-    this.navCtrl.setRoot(NewsPage);
+    this.navCtrl.setRoot(NewsPageComponent);
   }
 
   selectChange(e) {

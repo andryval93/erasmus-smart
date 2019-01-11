@@ -7,7 +7,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyAppComponent } from './app.component';
 import { ListPageComponent } from '../pages/list/list';
-import { NewsPage } from '../pages/news/news';
+import { NewsPageComponent } from '../pages/news/news';
 import { QeaPage } from '../pages/qea/qea';
 import { NuovadomandaPage } from '../pages/nuovadomanda/nuovadomanda';
 import UiChatPageComponent from '../pages/chat/ui-chat';
@@ -51,7 +51,7 @@ import { Ionic2RatingModule } from 'ionic2-rating';
 @NgModule({
   declarations: [
     MyAppComponent,
-    NewsPage,
+    NewsPageComponent,
     ListPageComponent,
     UiChatPageComponent,
     OpenchatPageComponent,
@@ -85,7 +85,7 @@ import { Ionic2RatingModule } from 'ionic2-rating';
   bootstrap: [IonicApp],
   entryComponents: [
     MyAppComponent,
-    NewsPage,
+    NewsPageComponent,
     ListPageComponent,
     StepperPage,
     InserisciRecensionePage,

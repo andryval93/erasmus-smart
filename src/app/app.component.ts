@@ -4,7 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { ListPageComponent } from '../pages/list/list';
-import { NewsPage } from '../pages/news/news'
+import { NewsPageComponent } from '../pages/news/news'
 import { StepperPage } from '../pages/stepper/stepper'
 import { QeaPage } from '../pages/qea/qea';
 import UiChatPageComponent from '../pages/chat/ui-chat';
@@ -100,7 +100,7 @@ export class MyAppComponent {
 
   userIsLogged(user, verified) {
 
-    this.rootPage = NewsPage;
+    this.rootPage = NewsPageComponent;
     this.loggedEmail = firebase.auth().currentUser.email;
 
     //check the type of logged user
@@ -114,7 +114,7 @@ export class MyAppComponent {
           this.userType = "Tutor Account";
 
           this.pages = [
-            { title: 'News', component: NewsPage },
+            { title: 'News', component: NewsPageComponent },
             { title: 'Q&A', component: QeaPage},
             { title: 'Recensioni', component: ReviewMainPageComponent},
             { title: 'Chat', component: UiChatPageComponent },
@@ -127,7 +127,7 @@ export class MyAppComponent {
           this.userType = "Tutor Account";
 
           this.pages = [
-            { title: 'News', component: NewsPage },
+            { title: 'News', component: NewsPageComponent },
             { title: 'Q&A', component: QeaPage},
             { title: 'Recensioni', component: ReviewMainPageComponent},
           ];
@@ -139,7 +139,7 @@ export class MyAppComponent {
           this.userType = "Student Account";
 
           this.pages = [
-            { title: 'News', component: NewsPage },
+            { title: 'News', component: NewsPageComponent },
             { title: 'Q&A', component: QeaPage},
             { title: 'Recensioni', component: ReviewMainPageComponent},
             { title: 'Stepper', component: StepperPage },
@@ -153,7 +153,7 @@ export class MyAppComponent {
           this.userType = "Student Account";
 
           this.pages = [
-            { title: 'News', component: NewsPage },
+            { title: 'News', component: NewsPageComponent },
             { title: 'Q&A', component: QeaPage},
             { title: 'Recensioni', component: ReviewMainPageComponent},
           ];
@@ -186,7 +186,7 @@ export class MyAppComponent {
         
     this.pages = [
       { title: 'Login', component: LoginPage},
-      { title: 'News', component: NewsPage },
+      { title: 'News', component: NewsPageComponent },
       { title: 'Q&A', component: QeaPage},
       { title: 'Recensioni', component: ReviewMainPageComponent},
     ];

@@ -5,7 +5,7 @@ import { AccountService } from '../../providers/service/accountService'
 import CodiceFiscale from 'codice-fiscale-js'
 import { COMUNI } from 'codice-fiscale-js/src/geo-data.js'
 import firebase from 'firebase';
-import { NewsPage } from '../news/news';
+import { NewsPageComponent } from '../news/news';
 
 @IonicPage()
 
@@ -151,7 +151,7 @@ export class RegistrationPageComponent {
 
 		//Salva l'account nel DB nella collection Account con ID l'email inserita
 		this.serviceProv.registration("Account", this.data.email, credentials).then(
-			() => this.navCtrl.setRoot(NewsPage),
+			() => this.navCtrl.setRoot(NewsPageComponent),
 			error => this.signupError = error.message
 		);
 

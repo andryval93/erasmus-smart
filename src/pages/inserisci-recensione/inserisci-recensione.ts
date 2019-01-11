@@ -2,7 +2,7 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { InserisciRecensioneService } from '../../providers/service/inserisciRecensioneService';
 import { FormBuilder, Validators } from '@angular/forms';
-import { NewsPage } from '../news/news';
+import { NewsPageComponent } from '../news/news';
 import { Ionic2RatingModule } from 'ionic2-rating';
 import { AccountService } from '../../providers/service/accountService';
 
@@ -150,7 +150,7 @@ if ( this.arrayReviews.length > 0 ){
             console.dir(error);
          });
          
-         this.navCtrl.setRoot(NewsPage);
+         this.navCtrl.setRoot(NewsPageComponent);
   }
 
   presentAlert() {

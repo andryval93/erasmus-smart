@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { NewsPage } from '../news/news';
+import { NewsPageComponent } from '../news/news';
 import { NewsServiceProvider } from '../../providers/service/newsService';
 
 /**
@@ -47,7 +47,7 @@ export class NewNewsPageComponent {
       date: new Date(),
     };
     this.serviceProv.insertNews("News", this.data.title, News).then(
-      ()=>this.navCtrl.setRoot(NewsPage)
+      ()=>this.navCtrl.setRoot(NewsPageComponent)
     );
 
   }
