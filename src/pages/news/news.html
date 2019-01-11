@@ -13,13 +13,13 @@
     <button ion-button class="newNews" (click)="newNews()" [hidden]="shouldHide">Aggiungi News</button>
     <ion-card *ngFor="let news of newsList">
         <ion-card-header>
-          {{news.title}}
+          {{ news.title }}
         </ion-card-header>
         <div class="news-date">
-          {{news.date}}
+          {{ news.date }}
         </div>
         <ion-card-content>
-            {{news.content}}
+            {{ news.content }}
         </ion-card-content>
       </ion-card>
 </ion-content>
