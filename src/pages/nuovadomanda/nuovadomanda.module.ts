@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { NuovadomandaPage } from './nuovadomanda';
+import { NuovadomandaPageComponent } from './nuovadomanda';
 
 @NgModule({
   declarations: [
-    NuovadomandaPage,
+    NuovadomandaPageComponent,
   ],
   imports: [
-    IonicPageModule.forChild(NuovadomandaPage),
+    IonicPageModule.forChild(NuovadomandaPageComponent),
   ],
 })
 export class NuovadomandaPageModule {}

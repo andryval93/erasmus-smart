@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Nav } from 'ionic-angular';
+import { IonicPage, NavController, Nav } from 'ionic-angular';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AlertController } from 'ionic-angular';
 import { QeaServiceProvider } from '../../providers/service/qeaService';
@@ -18,7 +18,7 @@ import { NewsPageComponent } from '../news/news';
   selector: 'page-risposte',
   templateUrl: 'risposte.html',
 })
-export class RispostePage {
+export class RispostePageComponent {
   nav: Nav;
 
 
@@ -29,13 +29,7 @@ export class RispostePage {
    * @description      Defines the name of the database collection
    */
   private _COLL: string = "Q&A";
-  /**
-   * @name _DOC
-   * @type {string}
-   * @private
-   * @description      Defines the initial document ID for the database collection
-   */
-  private _DOC: string = "7PcE7STVlaVGTD9DDW6q";
+ 
   /**
      * @name _CONTENT
      * @type {any}
@@ -77,7 +71,7 @@ export class RispostePage {
     private _FB: FormBuilder,
     private alertCtrl: AlertController) {
     this.alertNuovaDomanda = false;
-    this.form = _FB.group({
+    this.form = this._FB.group({
       'Descrizione': ['', Validators.required]
     });
     this.domandaCorrente = localStorage.getItem("Domanda");
@@ -106,9 +100,9 @@ export class RispostePage {
     console.log(localStorage.getItem("locationIdQeA") + "commento");
 
     for (let i = 0; 1 < this.locations.length; i++) {
-      var str1 = new String(this.locations[i].id);
+      var str = new String(this.locations[i].id);
       console.log(this.locations[i].id + "this.locations[i].id");
-      if (str1.localeCompare(this.locationIdQeA.substring(0)) == 0) {
+      if (str.localeCompare(this.locationIdQeA.substring(0)) == 0) {
         this.locationQeA = this.locations[i];
         break;
       }

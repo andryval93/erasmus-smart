@@ -7,10 +7,12 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyAppComponent } from './app.component';
 import { ListPageComponent } from '../pages/list/list';
+
 import { NewsPageComponent } from '../pages/news/news';
-import { QeaPage } from '../pages/qea/qea';
-import { NuovadomandaPage } from '../pages/nuovadomanda/nuovadomanda';
+import { QeaPageComponent } from '../pages/qea/qea';
+import { NuovadomandaPageComponent } from '../pages/nuovadomanda/nuovadomanda';
 import UiChatPageComponent from '../pages/chat/ui-chat';
+
 import { NewNewsPageComponent } from '../pages/new-news/new-news';
 
 import { HeaderEsComponent } from '../components/header-es/header-es';
@@ -33,7 +35,7 @@ import { ServiceProvider } from '../providers/service/stepperService';
 import { InserisciRecensionePage } from '../pages/inserisci-recensione/inserisci-recensione'
 import { QeaServiceProvider } from '../providers/service/qeaService';
 
-import { RispostePage } from '../pages/risposte/risposte';
+import { RispostePageComponent } from '../pages/risposte/risposte';
 import { from } from 'rxjs/observable/from';
 
 import { LoginPage } from '../pages/login/login';
@@ -60,9 +62,9 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     StepperPage,
     InserisciRecensionePage,
     StepperPage,
-    QeaPage,
-    NuovadomandaPage,
-    RispostePage,
+    QeaPageComponent,
+    NuovadomandaPageComponent,
+    RispostePageComponent,
     NewNewsPageComponent,
     LoginPage,
     RegistrationPageComponent,
@@ -90,9 +92,9 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     StepperPage,
     InserisciRecensionePage,
     StepperPage,
-    QeaPage,
-    NuovadomandaPage,
-    RispostePage,
+    QeaPageComponent,
+    NuovadomandaPageComponent,
+    RispostePageComponent,
     NewNewsPageComponent,
     LoginPage,
     RegistrationPageComponent,
