@@ -12,9 +12,7 @@ import 'rxjs/add/operator/map';
 
 import 'firebase/firestore';
 import { SingletonDatabase } from '../../model/Database';
-import { resolve } from 'url';
 import firebase from 'firebase';
-import { EventManagerPlugin } from '@angular/platform-browser/src/dom/events/event_manager';
 import AuthProvider = firebase.auth.AuthProvider;
 import { AngularFireAuth } from 'angularfire2/auth';
 

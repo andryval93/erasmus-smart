@@ -6,8 +6,8 @@
   <div id="container">
     <div id="infodestinatario">
       <img id="circleAvatar" src="https://www.w3schools.com/howto/img_avatar.png">
-      {{name}} {{surname}}<br>
-      {{sede}}
+      {{ name }} {{ surname }}<br>
+      {{ sede }}
     </div>
     <button class="chatButton" (click)="showChat()">Chat</button>
     <button class="filesButton" (click)="showFiles()">Files</button>
@@ -15,7 +15,7 @@
     <div *ngIf="chatOpen == true" id="chat">
       <ion-content #content>
           <message *ngFor="let msg of messages; let last = last" [msg]="msg">
-            {{last ? scrollDown() : ''}}
+            {{ last ? scrollDown() : '' }}
           </message>
       </ion-content>
     </div>

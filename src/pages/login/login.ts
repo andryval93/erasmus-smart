@@ -50,7 +50,4 @@ export class LoginPage {
 	signup() {
 		this.navCtrl.push(RegistrazionePage);
 	}
-
-
-
 }

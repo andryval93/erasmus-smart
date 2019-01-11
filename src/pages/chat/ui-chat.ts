@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { OpenchatPage } from '../openchat/openchat';
 import { AccountService } from '../../providers/service/accountService';
 import { MessageProvider } from '../../providers/service/messagingService';
@@ -161,7 +161,6 @@ export default class UiChatPage{
           this.tutor = data.data().tutor;
         
           console.log("TUTOR", this.tutor);
-          let account: Account;
         }).then(()=>{
           this.DBAccountInstance.getAccount('Account', this.tutor).then((data)=>{this.account.setEmail(data.data().email)
                                                                             this.account.setName(data.data().name)

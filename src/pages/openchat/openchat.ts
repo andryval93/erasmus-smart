@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, Content } from 'ionic-angular';
 import { MessageProvider } from '../../providers/service/messagingService'
 import firebase from 'firebase';
-import { FormControl, Validators, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 
 /**
  * Generated class for the OpenchatPage page.
