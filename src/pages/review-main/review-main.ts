@@ -1,4 +1,4 @@
-import { ReviewsListPage } from '../reviews-list/reviews-list';
+import { ReviewsListPageComponent } from '../reviews-list/reviews-list';
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { reviewService } from '../../providers/service/reviewsService'
@@ -14,7 +14,7 @@ import { reviewService } from '../../providers/service/reviewsService'
   selector: 'page-review-main',
   templateUrl: 'review-main.html',
 })
-export class ReviewMainPage {
+export class ReviewMainPageComponent {
   private Document: string ="Sedi";
   private uniDocument: string ="nome";
   private idDocument: string="id";
@@ -64,7 +64,7 @@ export class ReviewMainPage {
     if (this.Sede != null && this.Sede != this.Comparison) {
       //console.log(this.Sede);
       localStorage.setItem("University", this.Sede);
-      this.navCtrl.push(ReviewsListPage, { University: this.Sede});
+      this.navCtrl.push(ReviewsListPageComponent, { University: this.Sede});
     }
   }
 

@@ -18,7 +18,7 @@
           <ion-list [(ngModel)]="Stars" radio-group>
             <h3>Filtra recensioni</h3>
             <ion-item *ngFor='let s of StarsSelector'>
-              <ion-label>{{s.key}}</ion-label>
+              <ion-label>{{ s.key }}</ion-label>
               <ion-radio checked="true" [value]='s.value'></ion-radio>
             </ion-item>
           </ion-list>
@@ -36,7 +36,7 @@
       </ion-col>
       <ion-col align-self-center>
       <div id="choosen_uni">
-        <h2>Recensioni per "{{University}}"</h2>
+        <h2>Recensioni per "{{ University }}"</h2>
         
         <ion-card *ngFor='let review of Reviews'>
           <ion-item>
@@ -45,8 +45,8 @@
                 <img [src]="review.img">
               </div>
             </ion-avatar>
-            <h2>{{review.recensore}}</h2>
-            <p>{{review.date}}</p>
+            <h2>{{ review.recensore }}</h2>
+            <p>{{ review.date }}</p>
             <p>
               <ion-icon name="ios-star" *ngFor='let stars of review.starsA'></ion-icon>
               <ion-icon class="nostar" name="ios-star" *ngFor='let nostars of review.voidStars'></ion-icon>
@@ -54,8 +54,8 @@
           </ion-item>
 
           <ion-card-content>
-            <h2><b>{{review.title}}</b></h2>
-            <p>{{review.text}}
+            <h2><b>{{ review.title }}</b></h2>
+            <p>{{ review.text }}
             </p>
           </ion-card-content>
         </ion-card>

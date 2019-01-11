@@ -3,7 +3,7 @@ import { IonicPage, NavController } from 'ionic-angular';
 import { ServiceProvider } from '../../providers/service/stepperService';
 import { InserisciRecensionePage } from '../inserisci-recensione/inserisci-recensione';
 import { AccountService } from '../../providers/service/accountService';
-import { ReviewsListPage } from '../reviews-list/reviews-list';
+import { ReviewsListPageComponent } from '../reviews-list/reviews-list';
 import { NewsPage } from '../news/news';
 import { IonicStepComponent, IonicStepperNext, IonicStepperComponent } from 'ionic-stepper';
 import { HomePage } from '../home/home';
@@ -167,7 +167,7 @@ set selectedIndex(index: number) {
    goToReviewList(str: any) {
 
       localStorage.setItem("University", str);
-      this.navCtrl.push(ReviewsListPage, { University: str });
+      this.navCtrl.push(ReviewsListPageComponent, { University: str });
    }
  
    /* Ricorda l'ultimo Step visitato (per un dato account) e se nell'account di firebase non
