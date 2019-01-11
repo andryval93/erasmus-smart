@@ -6,7 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ListPageComponent } from '../pages/list/list';
 import { NewsPageComponent } from '../pages/news/news'
 import { StepperPage } from '../pages/stepper/stepper'
-import { QeaPage } from '../pages/qea/qea';
+import { QeaPageComponent } from '../pages/qea/qea';
 import UiChatPageComponent from '../pages/chat/ui-chat';
 import { NewNewsPageComponent } from '../pages/new-news/new-news';
 
@@ -115,7 +115,7 @@ export class MyAppComponent {
 
           this.pages = [
             { title: 'News', component: NewsPageComponent },
-            { title: 'Q&A', component: QeaPage},
+            { title: 'Q&A', component: QeaPageComponent},
             { title: 'Recensioni', component: ReviewMainPageComponent},
             { title: 'Chat', component: UiChatPageComponent },
           ];
@@ -128,7 +128,7 @@ export class MyAppComponent {
 
           this.pages = [
             { title: 'News', component: NewsPageComponent },
-            { title: 'Q&A', component: QeaPage},
+            { title: 'Q&A', component: QeaPageComponent},
             { title: 'Recensioni', component: ReviewMainPageComponent},
           ];
         }
@@ -140,7 +140,7 @@ export class MyAppComponent {
 
           this.pages = [
             { title: 'News', component: NewsPageComponent },
-            { title: 'Q&A', component: QeaPage},
+            { title: 'Q&A', component: QeaPageComponent},
             { title: 'Recensioni', component: ReviewMainPageComponent},
             { title: 'Stepper', component: StepperPage },
             { title: 'Chat', component: UiChatPageComponent },
@@ -154,7 +154,7 @@ export class MyAppComponent {
 
           this.pages = [
             { title: 'News', component: NewsPageComponent },
-            { title: 'Q&A', component: QeaPage},
+            { title: 'Q&A', component: QeaPageComponent},
             { title: 'Recensioni', component: ReviewMainPageComponent},
           ];
         }
@@ -187,7 +187,7 @@ export class MyAppComponent {
     this.pages = [
       { title: 'Login', component: LoginPage},
       { title: 'News', component: NewsPageComponent },
-      { title: 'Q&A', component: QeaPage},
+      { title: 'Q&A', component: QeaPageComponent},
       { title: 'Recensioni', component: ReviewMainPageComponent},
     ];
   }
