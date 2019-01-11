@@ -1,15 +1,12 @@
 
 import { Injectable } from '@angular/core';
-
 import 'rxjs/add/operator/map';
-
-
+import { Observable } from 'rxjs/Observable'
 
 // Import firebase and firestore
-
 //import * as firebase from 'firebase';
-
 import 'firebase/firestore';
+import { AngularFireStorage } from "angularfire2/storage";
 import { SingletonDatabase } from '../../model/Database';
 
 
@@ -33,7 +30,7 @@ export class MessageProvider {
     DBistance: any;
 
 
-    constructor() {
+    constructor(private storage: AngularFireStorage) {
         console.log('Hello DatabaseProvider Provider');
         //this.DBistance = firebase.firestore();
 
@@ -92,5 +89,20 @@ export class MessageProvider {
               });
       });
 
+    }
+
+    /**
+     * @description Permette il caricaricamento di un file all'interno dello storage di Firebase
+     * @author Giosuè Sulipano
+     * 
+     * Need to be tested!!
+     */
+    uploadFile(fileToUpload, path: string, percentage: Observable<number>) {
+        const file = fileToUpload.target.files[0];
+        const filePath = "files/" + path;
+        const ref = this.storage.ref(filePath);
+        const task = ref.put(file);
+
+        percentage = task.percentageChanges();
     }
 }

@@ -26,8 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { Firebase } from '@ionic-native/firebase';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
-
 import { AngularFirestoreModule } from "angularfire2/firestore";
+import { AngularFireStorageModule } from "angularfire2/storage";
 
 import { ServiceProvider } from '../providers/service/stepperService';
 import { InserisciRecensionePage } from '../pages/inserisci-recensione/inserisci-recensione'
@@ -78,9 +78,8 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     IonicStepperModule,
     IonicModule.forRoot(MyAppComponent),
     Ionic2RatingModule,
-    AngularFireModule.initializeApp(ENV.firebase)
-   
-
+    AngularFireModule.initializeApp(ENV.firebase),
+    AngularFireStorageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

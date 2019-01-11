@@ -1,8 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, Content } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, Content, ToastController } from 'ionic-angular';
 import { MessageProvider } from '../../providers/service/messagingService'
 import firebase from 'firebase';
 import { FormControl, Validators } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
+import { ServiceProvider } from '../../providers/service/stepperService';
 
 /**
  * Generated class for the OpenchatPage page.
@@ -29,7 +32,11 @@ export class OpenchatPageComponent {
   messages: Array<any>
   type: string;
   newMessage: Array<any>;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private serviceProv: MessageProvider, public viewCtrl: ViewController) {
+  
+  uploadPercent: Observable<number>; // percentuale del file in caricamento
+  currentPercentage :Subscription;
+  toast :any;
+  constructor(public navCtrl: NavController, public navParams: NavParams, private serviceProv: MessageProvider, public viewCtrl: ViewController, public toastCtrl: ToastController) {
     //this.nome = localStorage.getItem("nome");
     //this.sede = localStorage.getItem("sede");
     //navParams per prendere parametri da NON localStorage
@@ -37,7 +44,6 @@ export class OpenchatPageComponent {
     navCtrl.remove(0);
 
     this.text = new FormControl('', Validators.required)
-
     this.sede = navParams.get("sede");
     this.surname = navParams.get("surname");
     this.name = navParams.get("name");
@@ -80,6 +86,29 @@ export class OpenchatPageComponent {
     });
     this.text.setValue("");
     console.log("mariann", this.email);
+  }
+
+  /**
+   * @description Permette il caricamento di un file all'interno della chat
+   * @author Giosuè Sulipano
+   */
+  sendUserFile(file) {
+    let path = this.idChat + "_" + new Date().toLocaleString();
+    this.serviceProv.uploadFile(file, path, this.uploadPercent);
+    console.log("File upload task sent to (MessagingService)uploadFile!")
+    this.presentToast();
+  }
+
+  /**
+   * @description Rappresenta un toast durante il caricamento del file all'interno della chat, mostrando la percentuale di caricamento.
+   * @author Giosuè Sulipano
+   */
+  presentToast() {
+    this.toast = this.toastCtrl.create({
+      message: 'Caricamento del file in corso. Percentuale: ' + this.uploadPercent,
+      duration: 5000 // temporaneo
+    });
+    this.toast.present();
   }
 
   ionViewDidLoad() {
