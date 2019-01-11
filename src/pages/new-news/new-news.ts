@@ -16,7 +16,7 @@ import { NewsServiceProvider } from '../../providers/service/newsService';
   selector: 'page-new-news',
   templateUrl: 'new-news.html',
 })
-export class NewNewsPage {
+export class NewNewsPageComponent {
 
   data: any;
   form: FormGroup;

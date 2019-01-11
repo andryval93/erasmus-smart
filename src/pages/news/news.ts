@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { NewsServiceProvider } from '../../providers/service/newsService';
-import { NewNewsPage } from '../new-news/new-news';
+import { NewNewsPageComponent } from '../new-news/new-news';
 import { AccountService } from '../../providers/service/accountService';
 declare var require: any;
 
@@ -36,7 +36,7 @@ export class NewsPage {
   * @author Giovanni Buonincontri
   */
   newNews() {
-    this.navCtrl.push(NewNewsPage);
+    this.navCtrl.push(NewNewsPageComponent);
   }
   /**
   * @description Controlla se l'admin è loggato

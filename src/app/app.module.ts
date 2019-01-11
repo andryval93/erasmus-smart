@@ -11,7 +11,7 @@ import { NewsPage } from '../pages/news/news';
 import { QeaPage } from '../pages/qea/qea';
 import { NuovadomandaPage } from '../pages/nuovadomanda/nuovadomanda';
 import UiChatPage from '../pages/chat/ui-chat';
-import { NewNewsPage } from '../pages/new-news/new-news';
+import { NewNewsPageComponent } from '../pages/new-news/new-news';
 
 import { HeaderEsComponent } from '../components/header-es/header-es';
 import { FooterEsComponent } from '../components/footer-es/footer-es'
@@ -63,7 +63,7 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     QeaPage,
     NuovadomandaPage,
     RispostePage,
-    NewNewsPage,
+    NewNewsPageComponent,
     LoginPage,
     RegistrazionePage,
     ReviewsListPageComponent,
@@ -93,7 +93,7 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     QeaPage,
     NuovadomandaPage,
     RispostePage,
-    NewNewsPage,
+    NewNewsPageComponent,
     LoginPage,
     RegistrazionePage,
     UiChatPage,
