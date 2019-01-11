@@ -16,7 +16,7 @@ import { LoadingController } from 'ionic-angular';
   templateUrl: 'reviews-list.html',
 })
 
-export class ReviewsListPage {
+export class ReviewsListPageComponent {
   private Document: string = "Reviews"
   loader: any = null;
   Stars: any = 0;

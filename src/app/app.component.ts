@@ -16,7 +16,7 @@ import firebase from 'firebase';
 import { LoginPage } from '../pages/login/login';
 import { RegistrazionePage } from '../pages/registrazione/registrazione';
 import { AngularFireModule } from 'angularfire2';
-import { ReviewMainPage } from '../pages/review-main/review-main';
+import { ReviewMainPageComponent } from '../pages/review-main/review-main';
 import {AccountService} from '../providers/service/accountService';
 
 @Component({
@@ -118,7 +118,7 @@ export class MyAppComponent {
           this.pages = [
             { title: 'News', component: NewsPage },
             { title: 'Q&A', component: QeaPage},
-            { title: 'Recensioni', component: ReviewMainPage},
+            { title: 'Recensioni', component: ReviewMainPageComponent},
             { title: 'Chat', component: UiChatPage },
           ];
         }
@@ -131,7 +131,7 @@ export class MyAppComponent {
           this.pages = [
             { title: 'News', component: NewsPage },
             { title: 'Q&A', component: QeaPage},
-            { title: 'Recensioni', component: ReviewMainPage},
+            { title: 'Recensioni', component: ReviewMainPageComponent},
           ];
         }
         
@@ -143,7 +143,7 @@ export class MyAppComponent {
           this.pages = [
             { title: 'News', component: NewsPage },
             { title: 'Q&A', component: QeaPage},
-            { title: 'Recensioni', component: ReviewMainPage},
+            { title: 'Recensioni', component: ReviewMainPageComponent},
             { title: 'Stepper', component: StepperPage },
             { title: 'Chat', component: UiChatPage },
           ];
@@ -157,7 +157,7 @@ export class MyAppComponent {
           this.pages = [
             { title: 'News', component: NewsPage },
             { title: 'Q&A', component: QeaPage},
-            { title: 'Recensioni', component: ReviewMainPage},
+            { title: 'Recensioni', component: ReviewMainPageComponent},
           ];
         }
 
@@ -190,7 +190,7 @@ export class MyAppComponent {
       { title: 'Login', component: LoginPage},
       { title: 'News', component: NewsPage },
       { title: 'Q&A', component: QeaPage},
-      { title: 'Recensioni', component: ReviewMainPage},
+      { title: 'Recensioni', component: ReviewMainPageComponent},
     ];
   }
 

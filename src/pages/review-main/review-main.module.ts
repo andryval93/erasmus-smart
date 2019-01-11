@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { ReviewMainPage } from './review-main';
+import { ReviewMainPageComponent } from './review-main';
 
 @NgModule({
   declarations: [
-    ReviewMainPage,
+    ReviewMainPageComponent,
   ],
   imports: [
-    IonicPageModule.forChild(ReviewMainPage),
+    IonicPageModule.forChild(ReviewMainPageComponent),
   ],
 })
 export class ReviewMainPageModule {}

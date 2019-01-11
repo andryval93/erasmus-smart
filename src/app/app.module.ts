@@ -1,5 +1,5 @@
 import { reviewService } from './../providers/service/reviewsService';
-import { ReviewMainPage } from './../pages/review-main/review-main';
+import { ReviewMainPageComponent } from './../pages/review-main/review-main';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -39,7 +39,7 @@ import { from } from 'rxjs/observable/from';
 import { LoginPage } from '../pages/login/login';
 import { RegistrazionePage } from '../pages/registrazione/registrazione';
 import { ENV } from '../config/env';
-import { ReviewsListPage } from '../pages/reviews-list/reviews-list';
+import { ReviewsListPageComponent } from '../pages/reviews-list/reviews-list';
 
 import { AccountService } from '../providers/service/accountService';
 import { MessageProvider } from '../providers/service/messagingService'
@@ -66,8 +66,8 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     NewNewsPage,
     LoginPage,
     RegistrazionePage,
-    ReviewsListPage,
-    ReviewMainPage,
+    ReviewsListPageComponent,
+    ReviewMainPageComponent,
     MessageComponent
   ],
   imports: [
@@ -98,8 +98,8 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     RegistrazionePage,
     UiChatPage,
     OpenchatPage,
-    ReviewsListPage,
-    ReviewMainPage,
+    ReviewsListPageComponent,
+    ReviewMainPageComponent,
     MessageComponent
   ],
   providers: [
