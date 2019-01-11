@@ -5,8 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
-import { MyApp } from './app.component';
-import { ListPage } from '../pages/list/list';
+import { MyAppComponent } from './app.component';
+import { ListPageComponent } from '../pages/list/list';
 import { NewsPage } from '../pages/news/news';
 import { QeaPage } from '../pages/qea/qea';
 import { NuovadomandaPage } from '../pages/nuovadomanda/nuovadomanda';
@@ -50,9 +50,9 @@ import { Ionic2RatingModule } from 'ionic2-rating';
 
 @NgModule({
   declarations: [
-    MyApp,
+    MyAppComponent,
     NewsPage,
-    ListPage,
+    ListPageComponent,
     UiChatPage,
     OpenchatPage,
     HeaderEsComponent,
@@ -76,7 +76,7 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     HttpClientModule,
     AngularFirestoreModule,
     IonicStepperModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyAppComponent),
     Ionic2RatingModule,
     AngularFireModule.initializeApp(ENV.firebase)
    
@@ -84,9 +84,9 @@ import { Ionic2RatingModule } from 'ionic2-rating';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
+    MyAppComponent,
     NewsPage,
-    ListPage,
+    ListPageComponent,
     StepperPage,
     InserisciRecensionePage,
     StepperPage,

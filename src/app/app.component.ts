@@ -3,7 +3,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { ListPage } from '../pages/list/list';
+import { ListPageComponent } from '../pages/list/list';
 import { NewsPage } from '../pages/news/news'
 import { StepperPage } from '../pages/stepper/stepper'
 import { QeaPage } from '../pages/qea/qea';
@@ -23,7 +23,7 @@ import {AccountService} from '../providers/service/accountService';
   templateUrl: 'app.html'
 })
 
-export class MyApp {
+export class MyAppComponent {
 
   @ViewChild(Nav) nav: Nav;
   
