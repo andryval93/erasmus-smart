@@ -31,9 +31,13 @@ export class reviewService {
   constructor() {
     console.log('Hello DatabaseProvider Provider');
     //this.DBistance = firebase.firestore();
-    this.DBistance = SingletonDatabase.getInstance();
+    this.getSingleton();
   }
 
+  async getSingleton()
+  {
+    this.DBistance=SingletonDatabase.getInstance();
+  }
 
 
   /**
