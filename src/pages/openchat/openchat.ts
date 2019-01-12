@@ -120,7 +120,7 @@ export class OpenchatPageComponent {
   }
 
   uploadFile() {
-
-    alert("insert uploadfile login in this method");
+    
+    alert("upload file logic");
   }
 }
