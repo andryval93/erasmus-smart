@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable'
 import 'firebase/firestore';
 import { AngularFireStorage } from "angularfire2/storage";
 import { SingletonDatabase } from '../../model/Database';
-
+declare var require: any;
 
 /*
 
@@ -95,12 +95,11 @@ export class MessageProvider {
      * @description Permette il caricaricamento di un file all'interno dello storage di Firebase
      * @author Giosuè Sulipano
      * 
-     * Need to be tested!!
      */
     uploadFile(fileToUpload, path: string): Promise<any> {
         return new Promise((resolve, reject) => {
             const file = fileToUpload.target.files[0];
-            const filePath = "files/chat/" + path;
+            const filePath = "files/chat/" + path + "_" + file.name;
             const ref = this.storage.ref(filePath);
             const task = ref.put(file).then((obj: any) => {
                 resolve(obj);

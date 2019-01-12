@@ -91,7 +91,7 @@ export class OpenchatPageComponent {
    * @author Giosuè Sulipano
    */
   sendUserFile($event) {
-    let timeUpload = this.moment().format("DD-MM-YYYY_hh-mm");
+    let timeUpload = this.moment().format("DDMMYYYY_hhmm");
     let path = this.idChat + "/" + timeUpload;
     console.log("File upload task sent to (MessagingService)uploadFile!");
     this.presentToast("loading");
