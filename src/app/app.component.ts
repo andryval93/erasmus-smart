@@ -2,23 +2,14 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
-import { ListPageComponent } from '../pages/list/list';
 import { NewsPageComponent } from '../pages/news/news'
 import { QeaPageComponent } from '../pages/qea/qea';
 import UiChatPageComponent from '../pages/chat/ui-chat';
 import { StepperPageComponent } from '../pages/stepper/stepper'
-import { NewNewsPageComponent } from '../pages/new-news/new-news';
-
-import { ENV } from '../config/env';
 import firebase from 'firebase';
-
 import { LoginPage } from '../pages/login/login';
-import { AngularFireModule } from 'angularfire2';
 import { ReviewMainPageComponent } from '../pages/review-main/review-main';
 import { AccountService } from '../providers/service/accountService';
-import { ConsiglicolloquioPageComponent } from '../pages/consiglicolloquio/consiglicolloquio';
-import { GuidaLAPageComponent } from '../pages/guida-LA/guida-LA';
 
 @Component({
   templateUrl: 'app.html'
