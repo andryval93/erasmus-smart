@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import UiChatPage from './ui-chat';
-import { OpenchatPage } from '../openchat/openchat';
+import { OpenchatPageComponent } from '../openchat/openchat';
 
 @NgModule({
   declarations: [
     UiChatPage,
-    OpenchatPage
+    OpenchatPageComponent
   ],
   imports: [
     IonicPageModule.forChild(UiChatPage),

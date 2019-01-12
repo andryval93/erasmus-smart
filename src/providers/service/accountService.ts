@@ -1,5 +1,3 @@
-import { HttpClient } from '@angular/common/http';
-
 import { Injectable } from '@angular/core';
 
 import 'rxjs/add/operator/map';
@@ -13,7 +11,6 @@ import 'rxjs/add/operator/map';
 import 'firebase/firestore';
 import { SingletonDatabase } from '../../model/Database';
 import firebase from 'firebase';
-import AuthProvider = firebase.auth.AuthProvider;
 import { AngularFireAuth } from 'angularfire2/auth';
 
 
@@ -37,8 +34,9 @@ export class AccountService {
 	static user: any;
   //private DBistance: any;
   DBistance: any;
+  public undef = undefined;
 
-  constructor(public http: HttpClient, public afAuth: AngularFireAuth) {
+  constructor(public afAuth: AngularFireAuth) {
     console.log('Hello DatabaseProvider Provider');
     //this.DBistance = firebase.firestore();
     afAuth.authState.subscribe(user => {

@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 
 import { Injectable } from '@angular/core';
 
@@ -12,8 +11,6 @@ import 'rxjs/add/operator/map';
 
 import 'firebase/firestore';
 import { SingletonDatabase } from '../../model/Database';
-import firebase from 'firebase';
-
 
 
 /*
@@ -35,9 +32,11 @@ export class MessageProvider {
     //private DBistance: any;
     DBistance: any;
 
-    constructor(public http: HttpClient) {
+
+    constructor() {
         console.log('Hello DatabaseProvider Provider');
         //this.DBistance = firebase.firestore();
+
         this.DBistance = SingletonDatabase.getInstance();
     }
 
@@ -60,7 +59,7 @@ export class MessageProvider {
 
     getAllMessages(collectionObj: string, docID: string): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.DBistance.collection(collectionObj).doc(docID).collection('Messages').orderBy("creationTime", "asc").get() //messages interno che contiene i singoli messaggi
+            this.DBistance.collection(collectionObj).doc(docID).collection('Messages').orderBy("creationTime", "desc").get() //messages interno che contiene i singoli messaggi
                 .then((querySnapshot) => {
                     let obj: any = [];
                     querySnapshot

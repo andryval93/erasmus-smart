@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { QeaPage } from './qea';
+import { QeaPageComponent } from './qea';
 
 @NgModule({
   declarations: [
-    QeaPage,
+    QeaPageComponent,
   ],
   imports: [
-    IonicPageModule.forChild(QeaPage),
+    IonicPageModule.forChild(QeaPageComponent),
   ],
 })
 export class QeaPageModule {}

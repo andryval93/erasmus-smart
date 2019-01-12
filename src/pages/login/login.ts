@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NavController, IonicPage } from 'ionic-angular';
 import { AccountService } from '../../providers/service/accountService';
-import { RegistrazionePage } from '../registrazione/registrazione';
-import { NewsPage } from '../news/news';
+import { RegistrationPageComponent } from '../registration/registration';
+import { NewsPageComponent } from '../news/news';
 
 @IonicPage()
 
@@ -41,13 +41,13 @@ export class LoginPage {
 
 		this.auth.signInWithEmail(credentials)
 			.then(
-				() => this.navCtrl.setRoot(NewsPage),
+				() => this.navCtrl.setRoot(NewsPageComponent),
 				error => this.loginError = error.message,
 
 			);
 	}
 
 	signup() {
-		this.navCtrl.push(RegistrazionePage);
+		this.navCtrl.push(RegistrationPageComponent);
 	}
 }

@@ -18,7 +18,7 @@ declare var require: any;
   templateUrl: 'news.html',
 })
 
-export class NewsPage {
+export class NewsPageComponent {
   title :string = "News";
   private Document :string = "News";
   newsList: Array<{title: String, date: String, content: String}> = [];

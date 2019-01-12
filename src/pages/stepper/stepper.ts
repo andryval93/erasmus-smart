@@ -4,11 +4,10 @@ import { ServiceProvider } from '../../providers/service/stepperService';
 import { InserisciRecensionePageComponent } from '../inserisci-recensione/inserisci-recensione';
 import { AccountService } from '../../providers/service/accountService';
 import { ReviewsListPageComponent } from '../reviews-list/reviews-list';
-import { NewsPage } from '../news/news';
-import { IonicStepComponent, IonicStepperComponent } from 'ionic-stepper';
+import { NewsPageComponent } from '../news/news';
 import { ConsiglicolloquioPageComponent } from '../consiglicolloquio/consiglicolloquio';
 import { GuidaLAPageComponent } from '../guida-LA/guida-LA';
-
+import { IonicStepComponent, IonicStepperComponent } from 'ionic-stepper';
 //import { IonicStepperComponent } from 'ionic-stepper';
 /**
  * Generated class for the StepperPage page.
@@ -214,8 +213,8 @@ export class StepperPageComponent {
       this.navCtrl.push(InserisciRecensionePageComponent);
    }
    HomePagePush() {
-      this.navCtrl.setRoot(NewsPage);
-
+      this.navCtrl.setRoot(NewsPageComponent);
+ 
    }
    goToReviewList(str: any) {
 

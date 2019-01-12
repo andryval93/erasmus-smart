@@ -12,14 +12,14 @@
     <button class="chatButton" (click)="showChat()">Chat</button>
     <button class="filesButton" (click)="showFiles()">Files</button>
 
-    <div *ngIf="chatOpen == true" id="chat">
+    <div [style.display]="chatOpen ? 'block' : 'none'" id="chat">
       <ion-content #content>
           <message *ngFor="let msg of messages; let last = last" [msg]="msg">
             {{ last ? scrollDown() : '' }}
           </message>
       </ion-content>
     </div>
-    <div *ngIf="chatOpen == false" id="files">
+    <div [style.display]="!chatOpen ? 'block' : 'none'" id="files">
       eccoti i file
     </div>
     <input class="uploadFile" type="submit" value="" (click)="uploadFile()">

@@ -7,10 +7,12 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyAppComponent } from './app.component';
 import { ListPageComponent } from '../pages/list/list';
-import { NewsPage } from '../pages/news/news';
-import { QeaPage } from '../pages/qea/qea';
-import { NuovadomandaPage } from '../pages/nuovadomanda/nuovadomanda';
-import UiChatPage from '../pages/chat/ui-chat';
+
+import { NewsPageComponent } from '../pages/news/news';
+import { QeaPageComponent } from '../pages/qea/qea';
+import { NuovadomandaPageComponent } from '../pages/nuovadomanda/nuovadomanda';
+import UiChatPageComponent from '../pages/chat/ui-chat';
+
 import { NewNewsPageComponent } from '../pages/new-news/new-news';
 
 import { HeaderEsComponent } from '../components/header-es/header-es';
@@ -18,7 +20,7 @@ import { FooterEsComponent } from '../components/footer-es/footer-es'
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { OpenchatPage } from '../pages/openchat/openchat';
+import { OpenchatPageComponent } from '../pages/openchat/openchat';
 import { IonicStepperModule } from 'ionic-stepper';
 import { StepperPageComponent } from '../pages/stepper/stepper';
 import { HttpClientModule } from '@angular/common/http';
@@ -33,11 +35,11 @@ import { ServiceProvider } from '../providers/service/stepperService';
 import { InserisciRecensionePageComponent } from '../pages/inserisci-recensione/inserisci-recensione'
 import { QeaServiceProvider } from '../providers/service/qeaService';
 
-import { RispostePage } from '../pages/risposte/risposte';
+import { RispostePageComponent } from '../pages/risposte/risposte';
 import { from } from 'rxjs/observable/from';
 
 import { LoginPage } from '../pages/login/login';
-import { RegistrazionePage } from '../pages/registrazione/registrazione';
+import { RegistrationPageComponent } from '../pages/registration/registration';
 import { ENV } from '../config/env';
 import { ReviewsListPageComponent } from '../pages/reviews-list/reviews-list';
 
@@ -53,20 +55,21 @@ import { ConsiglicolloquioPageComponent } from '../pages/consiglicolloquio/consi
 @NgModule({
   declarations: [
     MyAppComponent,
-    NewsPage,
+    NewsPageComponent,
     ListPageComponent,
-    UiChatPage,
-    OpenchatPage,
+    UiChatPageComponent,
+    OpenchatPageComponent,
     HeaderEsComponent,
     FooterEsComponent,
+    StepperPage,
+    QeaPageComponent,
+    NuovadomandaPageComponent,
+    RispostePageComponent,
     StepperPageComponent,
     InserisciRecensionePageComponent,
-    QeaPage,
-    NuovadomandaPage,
-    RispostePage,
     NewNewsPageComponent,
     LoginPage,
-    RegistrazionePage,
+    RegistrationPageComponent,
     ReviewsListPageComponent,
     ReviewMainPageComponent,
     MessageComponent,
@@ -88,18 +91,18 @@ import { ConsiglicolloquioPageComponent } from '../pages/consiglicolloquio/consi
   bootstrap: [IonicApp],
   entryComponents: [
     MyAppComponent,
-    NewsPage,
+    NewsPageComponent,
     ListPageComponent,
+    QeaPageComponent,
+    NuovadomandaPageComponent,
+    RispostePageComponent,
     StepperPageComponent,
     InserisciRecensionePageComponent,
-    QeaPage,
-    NuovadomandaPage,
-    RispostePage,
     NewNewsPageComponent,
     LoginPage,
-    RegistrazionePage,
-    UiChatPage,
-    OpenchatPage,
+    RegistrationPageComponent,
+    UiChatPageComponent,
+    OpenchatPageComponent,
     ReviewsListPageComponent,
     ReviewMainPageComponent,
     MessageComponent,

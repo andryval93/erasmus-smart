@@ -1,6 +1,6 @@
 import { Component} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { OpenchatPage } from '../openchat/openchat';
+import { OpenchatPageComponent } from '../openchat/openchat';
 import { AccountService } from '../../providers/service/accountService';
 import { MessageProvider } from '../../providers/service/messagingService';
 import { Account, student, Message} from '../../model/model';
@@ -17,7 +17,7 @@ import firebase from 'firebase';
   selector: 'page-ui-chat',
   templateUrl: 'ui-chat.html',
 })
-export default class UiChatPage{
+export default class UiChatPageComponent{
   account: Account;
   items: Array<any>;
   student: student;
@@ -132,7 +132,7 @@ export default class UiChatPage{
   public isSearchbarOpened = false;
 
   openChat(nome, surname, sede, receveir){
-    this.navCtrl.push(OpenchatPage, {"name":nome, "surname":surname, "sede":sede, "receveir":receveir, "type":this.type});
+    this.navCtrl.push(OpenchatPageComponent, {"name":nome, "surname":surname, "sede":sede, "receveir":receveir, "type":this.type});
   }
 
   ionViewDidLoad() {

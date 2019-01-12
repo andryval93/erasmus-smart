@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { RispostePage } from './risposte';
+import { RispostePageComponent } from './risposte';
 
 @NgModule({
   declarations: [
-    RispostePage,
+    RispostePageComponent,
   ],
   imports: [
-    IonicPageModule.forChild(RispostePage),
+    IonicPageModule.forChild(RispostePageComponent),
   ],
 })
 export class RispostePageModule {}
