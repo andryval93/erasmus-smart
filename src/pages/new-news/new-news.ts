@@ -25,7 +25,7 @@ export class NewNewsPageComponent {
     public navParams: NavParams,
     private serviceProv: NewsServiceProvider,
     private _FB: FormBuilder, ) {
-      this.form = _FB.group({
+      this.form = this._FB.group({
         'title': ['', Validators.required],
         'content': ['', Validators.required]
       });
