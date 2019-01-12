@@ -105,9 +105,6 @@ export class AccountService {
 
   denyRequest(docID: string, deleteFromList: any): Promise<any> {
     return new Promise((resolve, reject) => {
-      let request = {
-        students: deleteFromList
-      }
       this.DBistance.collection("Account").doc(docID).set(deleteFromList, { merge: true }).then((data: any) => {
         resolve(data);
       }).catch((error: any) => {
