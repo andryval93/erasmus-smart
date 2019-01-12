@@ -1,0 +1,25 @@
+<ion-header>
+
+  <header-es [title]="title"></header-es>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-slides pager>
+    <ion-slide *ngFor="let slide of slides">
+      <h2 class="slide-title2" [innerHTML]="slide.title"></h2>
+      <p [innerHTML]="slide.description" style="font-weight : bold"></p>
+      <img [src]="slide.image" class="slide-image" />
+    </ion-slide>
+    <ion-slide>
+      <h2 class="slide-title">Ritorna allo Step by Step</h2>
+      <button (click)="goToStepperPage()" class="Bottone-Ombra-LA">
+        Continua
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-slide>
+  </ion-slides>
+
+</ion-content>

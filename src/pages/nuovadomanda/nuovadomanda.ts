@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { QeaServiceProvider } from '../../providers/service/qeaService';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { AlertController } from 'ionic-angular';
 import { ServiceProvider } from '../../providers/service/stepperService';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
-import { NewsPage } from '../news/news';
+import { NewsPageComponent } from '../news/news';
+
 
 
 /**
@@ -20,7 +20,7 @@ import { NewsPage } from '../news/news';
    selector: 'page-nuovadomanda',
    templateUrl: 'nuovadomanda.html',
 })
-export class NuovadomandaPage {
+export class NuovadomandaPageComponent {
 
    /** 
      * @name Domanda
@@ -55,13 +55,7 @@ export class NuovadomandaPage {
    * @description      Defines the name of the database collection
    */
    private _COLL: string = "Q&A";
-   /**
-    * @name _DOC
-    * @type {string}
-    * @private
-    * @description      Defines the initial document ID for the database collection
-    */
-   private _DOC: string = "7PcE7STVlaVGTD9DDW6q";
+
    /**
       * @name _CONTENT
       * @type {any}
@@ -100,12 +94,12 @@ export class NuovadomandaPage {
       private DBistanceSedi: ServiceProvider,
       private alertCtrl: AlertController,
       private _FB: FormBuilder, ) {
-
-      this.alertNuovaDomanda = false;
-      this.form = _FB.group({
+      this.form = this._FB.group({
          'Domanda': ['', Validators.required],
          'Descrizione': ['', Validators.required]
       });
+
+      this.alertNuovaDomanda = false;
 
    }
 
@@ -137,9 +131,9 @@ export class NuovadomandaPage {
          .then((data) => {
             // IF we don't have any documents then the collection doesn't exist
             // so we create it!
-            
-               this.locations = data;
-            
+
+            this.locations = data;
+
          })
          .catch();
    }
@@ -196,8 +190,9 @@ export class NuovadomandaPage {
     */
 
    saveDocument(val: any): void {
+
+
       let idDocumento: string;
-      let stringaSede: string;
       for (let i = 0; 1 < this.locations.length; i++) {
          var str1 = new String(this.locations[i].Sede);
          if (str1.localeCompare(this.sceltaSede.substring(0)) == 0) {
@@ -239,7 +234,7 @@ export class NuovadomandaPage {
          .catch((error: any) => {
             console.dir(error);
          });
-      this.navCtrl.setRoot(NewsPage);
+      this.navCtrl.setRoot(NewsPageComponent);
    }
 
    onChangeSede(SelectedValue: any) {

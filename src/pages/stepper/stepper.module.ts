@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { StepperPage } from './stepper';
+import { StepperPageComponent } from './stepper';
 
 @NgModule({
   declarations: [
-    StepperPage,
+    StepperPageComponent,
   ],
   imports: [
-    IonicPageModule.forChild(StepperPage),
+    IonicPageModule.forChild(StepperPageComponent),
   ],
 })
 export class StepperPageModule {}

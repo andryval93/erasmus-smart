@@ -1,4 +1,79 @@
 page-stepper {
+    /*slider */ 
+    .toolbar-background {
+        background: #fff;
+        border-color: transparent;
+      }
+    
+      .slide-zoom {
+        height: 100%;
+      }
+    
+      .slide-title {
+        margin-top: 2.8rem;
+      }
+    
+      .slide-image {
+        max-height: 50%;
+        max-width: 60%;
+        margin: 18px 0;
+      }
+    
+      b {
+        font-weight: 500;
+      }
+    
+      p {
+        padding: 0 40px;
+        font-size: 14px;
+        line-height: 1.5;
+        color: #60646B;
+    
+        b {
+          color: #000000;
+        }
+    }
+        .Slider-Container{
+         background: #fff;
+         box-shadow: 5px 10px 18px #4b4a4a;
+        }
+        .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets{
+            left: 0 !important;
+            bottom: 10px !important;
+            width: 100% !important;
+        }
+        .swiper-pagination{
+            text-align: center !important;
+            -webkit-transform: translate3d(0, 0, 0) !important;
+            transform: translate3d(0, 0, 0) !important;
+            position: absolute !important;
+            z-index: 10 !important;
+            -webkit-transition: 300ms !important;
+            transition: 300ms !important;
+            pointer-events: none !important;
+        }
+   /* bottone blu con ombra */ 
+   .Bottone-Ombra{
+    margin-top: 2%;
+    left:30%;
+    width: 20%;  
+    font-weight: 700; 
+    color: whitesmoke; 
+    font-size: 100%;
+    text-decoration: none; 
+    padding-top: 2%;
+    padding-bottom: 2%;
+    border-radius: 2%; 
+    background: cornflowerblue; 
+    box-shadow: 5px 10px 18px grey ; 
+    transition: 0.2s; 
+}
+.Bottone-Ombra:hover { background: blue !important; } 
+
+.Bottone-Ombra:active { 
+  background: blue !important; 
+  box-shadow: 0 0px cornflowerblue; 
+} 
    /*footer*/
   body {
 	height: 100%;
@@ -114,10 +189,12 @@ ion-select{
 padding:0;
 
 }
-/*.AvantiDietroStepper:hover{
-    background: whitesmoke;
+.titoli-stepper{
+    color:black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
     
-    }*/
+}
     
 .Step-Precedente{
     margin-top: 20%;
@@ -130,7 +207,7 @@ padding:0;
     box-shadow: none;
 }
 .Step-Successivo{
-    margin-top: 20%;
+    margin-top: 10%;
     background-color: whitesmoke;
     float:right;
     width: 45%;

@@ -118,4 +118,9 @@ export class OpenchatPageComponent {
   ionViewWillEnter() {
     this.viewCtrl.showBackButton(false);
   }
+
+  uploadFile() {
+    
+    alert("upload file logic");
+  }
 }

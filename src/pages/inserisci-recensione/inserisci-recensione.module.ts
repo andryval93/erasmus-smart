@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { InserisciRecensionePage } from './inserisci-recensione';
+import { InserisciRecensionePageComponent } from './inserisci-recensione';
 
 @NgModule({
   declarations: [
-    InserisciRecensionePage,
+    InserisciRecensionePageComponent,
   ],
   imports: [
-    IonicPageModule.forChild(InserisciRecensionePage),
+    IonicPageModule.forChild(InserisciRecensionePageComponent),
   ],
 })
 export class InserisciRecensionePageModule {}

@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, Nav, } from 'ionic-angular';
-import { AlertController } from 'ionic-angular';
 import { QeaServiceProvider } from '../../providers/service/qeaService';
-import { NuovadomandaPage } from '../nuovadomanda/nuovadomanda';
-import { RispostePage } from '../risposte/risposte';
+import { NuovadomandaPageComponent } from '../nuovadomanda/nuovadomanda';
+import { RispostePageComponent } from '../risposte/risposte';
 
 /**
  * Generated class for the QeaPage page.
@@ -17,7 +16,7 @@ import { RispostePage } from '../risposte/risposte';
    selector: 'page-qea',
    templateUrl: 'qea.html',
 })
-export class QeaPage {
+export class QeaPageComponent {
    title: string = "Q&A";
    nav: Nav;
 
@@ -29,20 +28,7 @@ export class QeaPage {
     * @description      Defines the name of the database collection
     */
    private _COLL: string = "Q&A";
-   /**
-    * @name _DOC
-    * @type {string}
-    * @private
-    * @description      Defines the initial document ID for the database collection
-    */
-   private _DOC: string = "7PcE7STVlaVGTD9DDW6q";
-   /**
-      * @name _CONTENT
-      * @type {any}
-      * @private
-      * @description      Used to store/provide the initial document data for the database collection
-      */
-   private _CONTENT: any;
+  
    /**
     * @name locations
     * @type {any}
@@ -60,14 +46,14 @@ export class QeaPage {
    }
 
    openAddPage() {
-      this.navCtrl.push(NuovadomandaPage)
+      this.navCtrl.push(NuovadomandaPageComponent)
    }
    openPageRisposte(Domanda: string, tutteRisposte: Array<String>, location: any, Descrizione: any) {
       localStorage.setItem("Domanda", Domanda);
       localStorage.setItem("list_Risposte", JSON.stringify(tutteRisposte));
       localStorage.setItem("locationIdQeA", location);
       localStorage.setItem("Descrizione", Descrizione);
-      this.navCtrl.push(RispostePage)
+      this.navCtrl.push(RispostePageComponent)
    }
 
 

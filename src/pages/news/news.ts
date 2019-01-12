@@ -18,10 +18,11 @@ declare var require: any;
   templateUrl: 'news.html',
 })
 
-export class NewsPage {
+export class NewsPageComponent {
   title :string = "News";
   private Document :string = "News";
-  newsList: Array<{title: String, date: String, content: String}> = [];
+  newsList: Array<{title: string, date: string, content: string}> = [];
+  listTemp: Array<{title: string, date: string, content: string}> = [];
   moment = require('moment');
   shouldHide: boolean = true;
   loader :any = null;
@@ -82,10 +83,22 @@ export class NewsPage {
         else {
           console.log("News fetched from the database!");
           for (let i = 0; i < data.length; i++) {
-            this.newsList.push({
+            this.listTemp.push({
               title: data[i]["title"],
-              date: this.moment(data[i]["date"]).format("DD-MM-YYYY HH:mm"),
+              date: data[i]["date"],
               content: data[i]["content"]
+            });
+          }
+          this.listTemp.sort(function(a,b){
+            var c = new Date(a.date);
+            var d = new Date(b.date);
+            return c.getTime()-d.getTime();
+          });
+          for(let i = this.listTemp.length-1; i > -1; i--) {
+            this.newsList.push({
+              title: this.listTemp[i]["title"],
+              date: this.moment(this.listTemp[i]["date"]).format("DD-MM-YYYY HH:mm"),
+              content: this.listTemp[i]["content"]
             });
           }
         }

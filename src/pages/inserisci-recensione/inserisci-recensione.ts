@@ -1,9 +1,8 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { InserisciRecensioneService } from '../../providers/service/inserisciRecensioneService';
 import { FormBuilder, Validators } from '@angular/forms';
-import { NewsPage } from '../news/news';
-import { Ionic2RatingModule } from 'ionic2-rating';
+import { NewsPageComponent } from '../news/news';
 import { AccountService } from '../../providers/service/accountService';
 
 /**
@@ -18,7 +17,7 @@ import { AccountService } from '../../providers/service/accountService';
   selector: 'page-inserisci-recensione',
   templateUrl: 'inserisci-recensione.html',
 })
-export class InserisciRecensionePage {
+export class InserisciRecensionePageComponent {
   /**
    * @name _COLL
    * @type {string}
@@ -64,7 +63,7 @@ export class InserisciRecensionePage {
     private _FB: FormBuilder,
     private loginService: AccountService,
     private alertCtrl : AlertController) {
-    this.form = _FB.group({
+    this.form = this._FB.group({
       'Titolo': ['', Validators.required],
       'Descrizione': ['', Validators.required]
     });
@@ -110,8 +109,8 @@ export class InserisciRecensionePage {
       }
     }
     for (let i = 0; 1 < this.locations.length; i++) {
-      var str1 = new String(this.locations[i].sede);
-      if (str1.localeCompare(sedeAccountLoggato.substring(0)) == 0) {
+      var str2 = new String(this.locations[i].sede);
+      if (str2.localeCompare(sedeAccountLoggato.substring(0)) == 0) {
         this.arrayReviews = this.locations[i].ReviewsList;
         this.idReview = this.locations[i].id;
         break;
@@ -150,7 +149,7 @@ if ( this.arrayReviews.length > 0 ){
             console.dir(error);
          });
          
-         this.navCtrl.setRoot(NewsPage);
+         this.navCtrl.setRoot(NewsPageComponent);
   }
 
   presentAlert() {

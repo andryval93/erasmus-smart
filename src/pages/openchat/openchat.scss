@@ -83,18 +83,17 @@ page-openchat {
         top: 90%;
         left: 14%;
     }
+    
+    #uploadFileIcon {
 
-    .uploadFile{
         border-style: none;
         resize: none;   
         position: absolute;
-        left: 25%;
+        left: 24.8%;
         width: 5%;
         height: 10%;
-        top: 90%;
-        color: black;
-        background-image: url("../../assets/icon/uploadFile.png");
-        background-size: 100%;
+        top: 89%;
+        opacity: 0%;
     }
 
     .messageText{

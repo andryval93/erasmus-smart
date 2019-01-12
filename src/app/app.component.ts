@@ -2,21 +2,14 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
-import { ListPageComponent } from '../pages/list/list';
-import { NewsPage } from '../pages/news/news'
-import { StepperPage } from '../pages/stepper/stepper'
-import { QeaPage } from '../pages/qea/qea';
+import { NewsPageComponent } from '../pages/news/news'
+import { QeaPageComponent } from '../pages/qea/qea';
 import UiChatPageComponent from '../pages/chat/ui-chat';
-import { NewNewsPageComponent } from '../pages/new-news/new-news';
-
-import { ENV } from '../config/env';
+import { StepperPageComponent } from '../pages/stepper/stepper'
 import firebase from 'firebase';
-
 import { LoginPage } from '../pages/login/login';
-import { AngularFireModule } from 'angularfire2';
 import { ReviewMainPageComponent } from '../pages/review-main/review-main';
-import {AccountService} from '../providers/service/accountService';
+import { AccountService } from '../providers/service/accountService';
 
 @Component({
   templateUrl: 'app.html'
@@ -100,7 +93,7 @@ export class MyAppComponent {
 
   userIsLogged(user, verified) {
 
-    this.rootPage = NewsPage;
+    this.rootPage = NewsPageComponent;
     this.loggedEmail = firebase.auth().currentUser.email;
 
     //check the type of logged user
@@ -114,8 +107,8 @@ export class MyAppComponent {
           this.userType = "Tutor Account";
 
           this.pages = [
-            { title: 'News', component: NewsPage },
-            { title: 'Q&A', component: QeaPage},
+            { title: 'News', component: NewsPageComponent },
+            { title: 'Q&A', component: QeaPageComponent},
             { title: 'Recensioni', component: ReviewMainPageComponent},
             { title: 'Chat', component: UiChatPageComponent },
           ];
@@ -127,8 +120,8 @@ export class MyAppComponent {
           this.userType = "Tutor Account";
 
           this.pages = [
-            { title: 'News', component: NewsPage },
-            { title: 'Q&A', component: QeaPage},
+            { title: 'News', component: NewsPageComponent },
+            { title: 'Q&A', component: QeaPageComponent},
             { title: 'Recensioni', component: ReviewMainPageComponent},
           ];
         }
@@ -139,10 +132,10 @@ export class MyAppComponent {
           this.userType = "Student Account";
 
           this.pages = [
-            { title: 'News', component: NewsPage },
-            { title: 'Q&A', component: QeaPage},
+            { title: 'News', component: NewsPageComponent },
+            { title: 'Q&A', component: QeaPageComponent},
             { title: 'Recensioni', component: ReviewMainPageComponent},
-            { title: 'Stepper', component: StepperPage },
+            { title: 'Stepper', component: StepperPageComponent },
             { title: 'Chat', component: UiChatPageComponent },
           ];
         }
@@ -153,9 +146,10 @@ export class MyAppComponent {
           this.userType = "Student Account";
 
           this.pages = [
-            { title: 'News', component: NewsPage },
-            { title: 'Q&A', component: QeaPage},
+            { title: 'News', component: NewsPageComponent },
+            { title: 'Q&A', component: QeaPageComponent},
             { title: 'Recensioni', component: ReviewMainPageComponent},
+            { title: 'Stepper', component: StepperPageComponent },
           ];
         }
 
@@ -186,8 +180,8 @@ export class MyAppComponent {
         
     this.pages = [
       { title: 'Login', component: LoginPage},
-      { title: 'News', component: NewsPage },
-      { title: 'Q&A', component: QeaPage},
+      { title: 'News', component: NewsPageComponent },
+      { title: 'Q&A', component: QeaPageComponent},
       { title: 'Recensioni', component: ReviewMainPageComponent},
     ];
   }
