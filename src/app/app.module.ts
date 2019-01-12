@@ -61,7 +61,6 @@ import { ConsiglicolloquioPageComponent } from '../pages/consiglicolloquio/consi
     OpenchatPageComponent,
     HeaderEsComponent,
     FooterEsComponent,
-    StepperPage,
     QeaPageComponent,
     NuovadomandaPageComponent,
     RispostePageComponent,
