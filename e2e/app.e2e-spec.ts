@@ -1,6 +1,6 @@
 import { Page } from './app.po';
 
-describe('App', () => {
+describe('News', () => {
   let page: Page;
 
   beforeEach(() => {
@@ -14,7 +14,7 @@ describe('App', () => {
 
     it('should have a title saying Page One', () => {
       page.getPageOneTitleText().then(title => {
-        expect(title).toEqual('Page One');
+        expect(title).toEqual('News');
       });
     });
   })
