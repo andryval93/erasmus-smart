@@ -97,12 +97,16 @@ export class MessageProvider {
      * 
      * Need to be tested!!
      */
-    uploadFile(fileToUpload, path: string, percentage: Observable<number>) {
-        const file = fileToUpload.target.files[0];
-        const filePath = "files/" + path;
-        const ref = this.storage.ref(filePath);
-        const task = ref.put(file);
-
-        percentage = task.percentageChanges();
+    uploadFile(fileToUpload, path: string): Promise<any> {
+        return new Promise((resolve, reject) => {
+            const file = fileToUpload.target.files[0];
+            const filePath = "files/chat/" + path;
+            const ref = this.storage.ref(filePath);
+            const task = ref.put(file).then((obj: any) => {
+                resolve(obj);
+            }).catch((error: any) => {
+                reject(error);
+            });
+        });
     }
 }

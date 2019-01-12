@@ -32,9 +32,7 @@ export class OpenchatPageComponent {
   messages: Array<any>
   type: string;
   newMessage: Array<any>;
-  
-  uploadPercent: Observable<number>; // percentuale del file in caricamento
-  currentPercentage :Subscription;
+  moment = require('moment');
   toast :any;
   constructor(public navCtrl: NavController, public navParams: NavParams, private serviceProv: MessageProvider, public viewCtrl: ViewController, public toastCtrl: ToastController) {
     //this.nome = localStorage.getItem("nome");
@@ -92,23 +90,52 @@ export class OpenchatPageComponent {
    * @description Permette il caricamento di un file all'interno della chat
    * @author Giosuè Sulipano
    */
-  sendUserFile(file) {
-    let path = this.idChat + "_" + new Date().toLocaleString();
-    this.serviceProv.uploadFile(file, path, this.uploadPercent);
-    console.log("File upload task sent to (MessagingService)uploadFile!")
-    this.presentToast();
+  sendUserFile($event) {
+    let timeUpload = this.moment().format("DD-MM-YYYY_hh-mm");
+    let path = this.idChat + "/" + timeUpload;
+    console.log("File upload task sent to (MessagingService)uploadFile!");
+    this.presentToast("loading");
+    this.serviceProv.uploadFile($event, path).then(
+      () => {
+        this.toast.dismiss();
+        console.log("File uploaded!");
+        //qui si potrebbe inviare una notifica sotto forma di messaggio da far visualizzare ad entrambi
+        this.presentToast("success");
+      },
+      () => {
+        console.log("File not uploaded!");
+        this.toast.dismiss();
+        this.presentToast("error");
+      });
   }
 
   /**
    * @description Rappresenta un toast durante il caricamento del file all'interno della chat, mostrando la percentuale di caricamento.
    * @author Giosuè Sulipano
    */
-  presentToast() {
-    this.toast = this.toastCtrl.create({
-      message: 'Caricamento del file in corso. Percentuale: ' + this.uploadPercent,
-      duration: 5000 // temporaneo
-    });
-    this.toast.present();
+  presentToast(type: String) {
+    switch (type) {
+      case 'loading' :
+        this.toast = this.toastCtrl.create({
+          message: 'Caricamento del file in corso..'
+        });
+        this.toast.present();
+        break;
+      case 'error' :
+        this.toast = this.toastCtrl.create({
+          message: 'Caricamento del file fallito!',
+          duration: 2000
+        });
+        this.toast.present();
+        break;
+      case 'success' :
+        this.toast = this.toastCtrl.create({
+          message: 'Il file è stato caricato con successo!',
+          duration: 2000
+        });
+        this.toast.present();
+        break;
+    }
   }
 
   ionViewDidLoad() {

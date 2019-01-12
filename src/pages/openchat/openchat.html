@@ -22,7 +22,7 @@
     <div [style.display]="!chatOpen ? 'block' : 'none'" id="files">
       eccoti i file
     </div>
-    <input class="uploadFile" type="file" (change)="sendUserFile($file)" accept=".pdf, application/pdf">
+    <ion-input class="uploadFile" type="file" (change)="sendUserFile($event)" accept=".pdf, application/pdf"></ion-input>
     <form (ngSubmit)="sendUserMessage()">
       <textarea class="messageText" rows="1" [formControl]="text" placeholder="Inserisci il tuo testo qui" required="required"></textarea>
       <input class="inputType" type="submit" value="">
