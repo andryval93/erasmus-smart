@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+
 
 import { Injectable } from '@angular/core';
 
@@ -28,7 +28,7 @@ export class reviewService {
   //private DBistance: any;
   DBistance: any;
 
-  constructor(public http: HttpClient) {
+  constructor() {
     console.log('Hello DatabaseProvider Provider');
     //this.DBistance = firebase.firestore();
     this.DBistance = SingletonDatabase.getInstance();
