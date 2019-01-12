@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { ListPageComponent } from '../pages/list/list';
 import { NewsPage } from '../pages/news/news'
-import { StepperPage } from '../pages/stepper/stepper'
+import { StepperPageComponent } from '../pages/stepper/stepper'
 import { QeaPage } from '../pages/qea/qea';
 import UiChatPage from '../pages/chat/ui-chat';
 import { NewNewsPageComponent } from '../pages/new-news/new-news';
@@ -17,7 +17,9 @@ import { LoginPage } from '../pages/login/login';
 import { RegistrazionePage } from '../pages/registrazione/registrazione';
 import { AngularFireModule } from 'angularfire2';
 import { ReviewMainPageComponent } from '../pages/review-main/review-main';
-import {AccountService} from '../providers/service/accountService';
+import { AccountService } from '../providers/service/accountService';
+import { ConsiglicolloquioPageComponent } from '../pages/consiglicolloquio/consiglicolloquio';
+import { GuidaLAPageComponent } from '../pages/guida-LA/guida-LA';
 
 @Component({
   templateUrl: 'app.html'
@@ -144,8 +146,8 @@ export class MyAppComponent {
             { title: 'News', component: NewsPage },
             { title: 'Q&A', component: QeaPage},
             { title: 'Recensioni', component: ReviewMainPageComponent},
-            { title: 'Stepper', component: StepperPage },
-            { title: 'Chat', component: UiChatPage },
+            { title: 'Stepper', component: StepperPageComponent },
+            { title: 'Chat', component: UiChatPage }
           ];
         }
 
@@ -158,6 +160,7 @@ export class MyAppComponent {
             { title: 'News', component: NewsPage },
             { title: 'Q&A', component: QeaPage},
             { title: 'Recensioni', component: ReviewMainPageComponent},
+            { title: 'Stepper', component: StepperPageComponent },
           ];
         }
 

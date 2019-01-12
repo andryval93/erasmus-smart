@@ -20,7 +20,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { OpenchatPage } from '../pages/openchat/openchat';
 import { IonicStepperModule } from 'ionic-stepper';
-import { StepperPage } from '../pages/stepper/stepper';
+import { StepperPageComponent } from '../pages/stepper/stepper';
 import { HttpClientModule } from '@angular/common/http';
 
 import { Firebase } from '@ionic-native/firebase';
@@ -30,7 +30,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestoreModule } from "angularfire2/firestore";
 
 import { ServiceProvider } from '../providers/service/stepperService';
-import { InserisciRecensionePage } from '../pages/inserisci-recensione/inserisci-recensione'
+import { InserisciRecensionePageComponent } from '../pages/inserisci-recensione/inserisci-recensione'
 import { QeaServiceProvider } from '../providers/service/qeaService';
 
 import { RispostePage } from '../pages/risposte/risposte';
@@ -47,6 +47,8 @@ import { NewsServiceProvider } from '../providers/service/newsService';
 import { MessageComponent } from '../components/message/message';
 import { InserisciRecensioneService } from '../providers/service/inserisciRecensioneService';
 import { Ionic2RatingModule } from 'ionic2-rating';
+import { GuidaLAPageComponent } from '../pages/guida-LA/guida-LA';
+import { ConsiglicolloquioPageComponent } from '../pages/consiglicolloquio/consiglicolloquio';
 
 @NgModule({
   declarations: [
@@ -57,9 +59,8 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     OpenchatPage,
     HeaderEsComponent,
     FooterEsComponent,
-    StepperPage,
-    InserisciRecensionePage,
-    StepperPage,
+    StepperPageComponent,
+    InserisciRecensionePageComponent,
     QeaPage,
     NuovadomandaPage,
     RispostePage,
@@ -68,7 +69,9 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     RegistrazionePage,
     ReviewsListPageComponent,
     ReviewMainPageComponent,
-    MessageComponent
+    MessageComponent,
+    GuidaLAPageComponent,
+    ConsiglicolloquioPageComponent
   ],
   imports: [
     BrowserModule,
@@ -87,9 +90,8 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     MyAppComponent,
     NewsPage,
     ListPageComponent,
-    StepperPage,
-    InserisciRecensionePage,
-    StepperPage,
+    StepperPageComponent,
+    InserisciRecensionePageComponent,
     QeaPage,
     NuovadomandaPage,
     RispostePage,
@@ -100,7 +102,9 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     OpenchatPage,
     ReviewsListPageComponent,
     ReviewMainPageComponent,
-    MessageComponent
+    MessageComponent,
+    GuidaLAPageComponent,
+    ConsiglicolloquioPageComponent
   ],
   providers: [
     StatusBar,
@@ -110,9 +114,7 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     ServiceProvider,
     QeaServiceProvider,
     AngularFireAuth,
- 
     reviewService,
-   
     AccountService,
     NewsServiceProvider,
     MessageProvider,
