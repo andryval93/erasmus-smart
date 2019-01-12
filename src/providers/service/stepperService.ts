@@ -1,159 +1,82 @@
-import { HttpClient } from '@angular/common/http';
 
 import { Injectable } from '@angular/core';
-
 import 'rxjs/add/operator/map';
-
-
-
-// Import firebase and firestore
-
-//import * as firebase from 'firebase';
-
 import 'firebase/firestore';
 import { SingletonDatabase } from '../../model/Database';
+import { async } from 'q';
 
-
-
-/*
-
-  Generated class for the DatabaseProvider provider.
-
-
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-
-  and Angular DI.
-
-*/
 
 @Injectable()
 
 export class ServiceProvider {
-  
+
   //private DBistance: any;
-    DBistance: any;
+  DBistance: any;
+
+   constructor() { 
+    
  
-  constructor(public http: HttpClient) {
-    console.log('Hello DatabaseProvider Provider');
-    //this.DBistance = firebase.firestore();
-  this.DBistance =  SingletonDatabase.getInstance();
-  }
-
+      this.getSingleton();
   
-
-  /**
-  * Create the database collection and defines an initial document
-  * Note the use of merge : true flag within the returned promise  - this
-  * is needed to ensure that the collection is not repeatedly recreated should
-  * this method be called again (we DON'T want to overwrite our documents!)
-  */
-  createAndPopulateDocument(collectionObj: string,
-                            docID: string,
-                            dataObj: any) : Promise<any>{
-     return new Promise((resolve, reject) => {
-      this.DBistance
-       .collection(collectionObj)
-       .doc(docID)
-       .set(dataObj, {merge: true})
-       .then((data : any) => {
-         resolve(data);
-       })
-       .catch((error: any) => {
-         reject(error);
-       })
-     })
+       
+  }
+  async getSingleton(){
+    this.DBistance = SingletonDatabase.getInstance();
   }
   /*
    * Return documents from specific database collection
    */
-  getDocuments(collectionObj: string) : Promise<any>{
+  async getStepsDocuments(collectionObj: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this.DBistance.collection(collectionObj)
-      .get()
-      .then((querySnapshot) => {
-        let obj : any = [];
-        querySnapshot
-        .forEach((doc: any) => {
-          obj.push({
-           id             : doc.id,
-           citta          : doc.data().citta,
-           nazione        : doc.data().nazione,
-           nome           : doc.data().nome,
-           recensioni     : doc.data().recensioni,
-           name           : doc.data().name,
-           surname        : doc.data().surname,
-           students       : doc.data().students,
-           userType       : doc.data().userType,
-           step           : doc.data().step,
-           status         : doc.data().status,
-           sede           : doc.data().sede,
-           tutor          : doc.data().tutor
-          }); 
+        .get()
+        .then((querySnapshot) => {
+          let obj: any = [];
+          querySnapshot
+            .forEach((doc: any) => {
+              obj.push({
+                id: doc.id,
+                citta: doc.data().citta,
+                nazione: doc.data().nazione,
+                nome: doc.data().nome,
+                recensioni: doc.data().recensioni,
+                name: doc.data().name,
+                surname: doc.data().surname,
+                students: doc.data().students,
+                userType: doc.data().userType,
+                step: doc.data().step,
+                status: doc.data().status,
+                sede: doc.data().sede,
+                tutor: doc.data().tutor
+              });
+            });
+
+          resolve(obj);
+        })
+        .catch((error: any) => {
+          reject(error);
         });
-        
-      resolve(obj);
-      })
-      .catch((error : any) => {
-        reject(error);
-      });
     });
   }
   /**
    * Add a new document to a selected database collection
    */
-  addDocument(collectionObj: string,
+  async addStepsDocument(collectionObj: string,
     docID: String,
-    dataObj: any) : Promise<any>{
-return new Promise((resolve, reject) => {
-this.DBistance
-.collection(collectionObj)
-.doc(docID)
-.set(dataObj, {merge: true})
-.then((data : any) => {
-resolve(data);
-})
-.catch((error: any) => {
-reject(error);
-})
-})
-}
-
-  /**
-   * Delete an existing document from a selected database collection
-   */
-   deleteDocument(collectionObj : string,
-                  docID : string) : Promise<any>{
-      return new Promise((resolve, reject) => {
-        this.DBistance
-       .collection(collectionObj)
-       .doc(docID)
-       .delete()
-       .then((obj : any) => {
-       resolve(obj);
-        })
-        .catch((error : any) => {
-          reject(error);
-        });
-      });
-    }
-    /**
-     * Update an existing document within a selected database collection
-     */
-    updateDocument(collectionObj : string,
-                    docID : string,
-                    dataObj : any) : Promise<any>{
-      return new Promise((resolve, reject) => {
-        this.DBistance
+    dataObj: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.DBistance
         .collection(collectionObj)
         .doc(docID)
-        .update(dataObj)
-        .then((obj : any) => {
-          resolve(obj);
+        .set(dataObj, { merge: true })
+        .then((data: any) => {
+          resolve(data);
         })
-        .catch((error : any) => {
+        .catch((error: any) => {
           reject(error);
-        });
-      });
-    }
+        })
+    })
+  }
+
+
 }

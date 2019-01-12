@@ -52,13 +52,13 @@ export class StepperPageComponent {
    slidesHtml: { title: string; description: string; image: string; }[];
 
    retrieveCollection(): void {
-      this.DBistance.getDocuments(this._COLL)
+      this.DBistance.getStepsDocuments(this._COLL)
          .then((data) => {
             this.locations = data;
          })
          .catch();
 
-      this.DBistance.getDocuments("Account")
+      this.DBistance.getStepsDocuments("Account")
          .then((data) => {
             this.locationsAccount = data;
 
@@ -203,7 +203,7 @@ export class StepperPageComponent {
          step: e
       };
 
-      this.DBistance.addDocument("Account",
+      this.DBistance.addStepsDocument("Account",
          email.substring(0),
          this._CONTENT3)
 
@@ -246,7 +246,7 @@ export class StepperPageComponent {
                this._CONTENT3 = {
                   step: 0
                };
-               this.DBistance.addDocument("Account",
+               this.DBistance.addStepsDocument("Account",
                   email.substring(0),
                   this._CONTENT3)
                this.navCtrl.setRoot(StepperPageComponent);
@@ -366,7 +366,7 @@ export class StepperPageComponent {
          };
 
          /* aggiungo status e sede a uno studente */
-         this.DBistance.addDocument("Account",
+         this.DBistance.addStepsDocument("Account",
             email.substring(0),
             this._CONTENT)
             .then((data: any) => {
@@ -377,14 +377,15 @@ export class StepperPageComponent {
             });
       }
       /* aggiorno la lista di studenti in attesa */
-
+      if(this.arrayAccounts == undefined ) this.arrayAccounts = new Array<string>();
       this.arrayAccounts.push(email.substring(0));
+
       this._CONTENT2 = {
          students: this.arrayAccounts,
       };
 
 
-      this.DBistance.addDocument("Account",
+      this.DBistance.addStepsDocument("Account",
          idDocumento,
          this._CONTENT2)
 
