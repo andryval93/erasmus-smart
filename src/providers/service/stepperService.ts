@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'firebase/firestore';
 import { SingletonDatabase } from '../../model/Database';
-import { async } from 'q';
 
 
 @Injectable()

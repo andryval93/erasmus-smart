@@ -51,7 +51,6 @@ export class InserisciRecensionePageComponent {
      private _CONTENT: any;
 
   locationsAccounts: any;
-  
   arrayReviews: any;
   temp: { titolo: any; text: any; recensore: string; date: string; stars: String[]; };
   idReview: any;

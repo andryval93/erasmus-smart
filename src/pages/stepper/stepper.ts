@@ -8,7 +8,7 @@ import { NewsPageComponent } from '../news/news';
 import { ConsiglicolloquioPageComponent } from '../consiglicolloquio/consiglicolloquio';
 import { GuidaLAPageComponent } from '../guida-LA/guida-LA';
 import { IonicStepComponent, IonicStepperComponent } from 'ionic-stepper';
-import { isDefined } from 'ionic-angular/umd/util/util';
+import { GuidaCandidaturaPageComponent } from '../guidacandidatura/guidacandidatura';
 //import { IonicStepperComponent } from 'ionic-stepper';
 /**
  * Generated class for the StepperPage page.
@@ -215,7 +215,7 @@ export class StepperPageComponent {
    }
    HomePagePush() {
       this.navCtrl.setRoot(NewsPageComponent);
- 
+
    }
    goToReviewList(str: any) {
 
@@ -231,13 +231,13 @@ export class StepperPageComponent {
       var email = new String(this.loginService.user.email);
       var accepted = new String("accepted");
       var pending = new String("pending");
-      
- 
+
+
       for (let i = 0; 1 < this.locationsAccount.length; i++) {
-         var str1 = new String(this.locationsAccount[i].id);
+         var str2 = new String(this.locationsAccount[i].id);
 
 
-         if (str1.localeCompare(email.substring(0)) == 0) {
+         if (str2.localeCompare(email.substring(0)) == 0) {
 
             var loopIndex = i;
             this.sedeSceltaAccount = this.locationsAccount[i].sede;
@@ -280,17 +280,17 @@ export class StepperPageComponent {
          this.sceltaTutor = this.tutorAccount;
          this.sceltaSede = this.sedeSceltaAccount;
       }
-if(this.tutorAccount != undefined ){
-   if (this.sceltaTutor.localeCompare(this.tutorAccount.substring(0)) == 0){
-      for (let i = 0; i < this.locationsAccount.length ; i++) {
-         var str1 = new String(this.locationsAccount[i].id);
-         if (str1.localeCompare(this.sceltaTutor.substring(0)) == 0) {
-            this.sceltaTutor = this.locationsAccount[i].name + " " + this.locationsAccount[i].surname;
-            break;
+      if (this.tutorAccount != undefined) {
+         if (this.sceltaTutor.localeCompare(this.tutorAccount.substring(0)) == 0) {
+            for (let i = 0; i < this.locationsAccount.length; i++) {
+               var str1 = new String(this.locationsAccount[i].id);
+               if (str1.localeCompare(this.sceltaTutor.substring(0)) == 0) {
+                  this.sceltaTutor = this.locationsAccount[i].name + " " + this.locationsAccount[i].surname;
+                  break;
+               }
+            }
          }
       }
-   }
-}
       var strStatus = new String(this.locationsAccount[loopIndex].status);
       console.log(this.locationsAccount[loopIndex].status + " this.locationsAccount[loopIndex].status")
       if (strStatus == undefined) {
@@ -358,7 +358,7 @@ if(this.tutorAccount != undefined ){
       let idDocumento: string;
 
       var email = new String(this.loginService.user.email);
-      for (let i = 0; i < this.locationsAccount.length ; i++) {
+      for (let i = 0; i < this.locationsAccount.length; i++) {
          var str1 = new String(this.locationsAccount[i].name + " " + this.locationsAccount[i].surname);
 
          console.log(str1 + "nome + cognome Tutor");
@@ -372,7 +372,7 @@ if(this.tutorAccount != undefined ){
          }
          //if(i+1 == this.locationsAccount.length) break;
 
-     
+
       }
       console.log(email + "email Loggato")
       this._CONTENT = {
@@ -392,7 +392,7 @@ if(this.tutorAccount != undefined ){
             console.dir(error);
          });
       /* aggiorno la lista di studenti in attesa */
-      if(this.arrayAccounts == undefined ) this.arrayAccounts = new Array<string>();
+      if (this.arrayAccounts == undefined) this.arrayAccounts = new Array<string>();
       this.arrayAccounts.push(email.substring(0));
 
       this._CONTENT2 = {
@@ -411,5 +411,8 @@ if(this.tutorAccount != undefined ){
    }
    goToGuidaColloquio() {
       this.navCtrl.push(ConsiglicolloquioPageComponent);
+   }
+   goToGuidaCandidatura() {
+      this.navCtrl.push(GuidaCandidaturaPageComponent);
    }
 }

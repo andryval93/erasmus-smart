@@ -39,6 +39,7 @@ import { InserisciRecensioneService } from '../providers/service/inserisciRecens
 import { Ionic2RatingModule } from 'ionic2-rating';
 import { GuidaLAPageComponent } from '../pages/guida-LA/guida-LA';
 import { ConsiglicolloquioPageComponent } from '../pages/consiglicolloquio/consiglicolloquio';
+import { GuidaCandidaturaPageComponent } from '../pages/guidacandidatura/guidacandidatura';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { ConsiglicolloquioPageComponent } from '../pages/consiglicolloquio/consi
     ReviewMainPageComponent,
     MessageComponent,
     GuidaLAPageComponent,
-    ConsiglicolloquioPageComponent
+    ConsiglicolloquioPageComponent,
+    GuidaCandidaturaPageComponent
   ],
   imports: [
     BrowserModule,
@@ -94,7 +96,8 @@ import { ConsiglicolloquioPageComponent } from '../pages/consiglicolloquio/consi
     ReviewMainPageComponent,
     MessageComponent,
     GuidaLAPageComponent,
-    ConsiglicolloquioPageComponent
+    ConsiglicolloquioPageComponent,
+    GuidaCandidaturaPageComponent
   ],
   providers: [
     StatusBar,
