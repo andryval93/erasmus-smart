@@ -116,7 +116,7 @@ export class NuovadomandaPageComponent {
        */
    ionViewDidEnter() {
       this.retrieveCollection();
-      //Sthis.retrieveCollectionSedi();
+      this.retrieveCollectionSedi();
    }
    /**
 * Retrieve all documents from the specified collection using the
