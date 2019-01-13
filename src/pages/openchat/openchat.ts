@@ -102,7 +102,7 @@ export class OpenchatPageComponent {
         let fileInfo = {
           author: firebase.auth().currentUser.email,
           name: $event.target.files[0].name,
-          uploadDate: new Date().toLocaleString,
+          uploadDate: this.moment().format("DD-MM-YYYY, HH:mm:ss"),
           urlFile: url,
         }
         this.serviceProv.saveFileInfo(this.idChat, fileInfo);
