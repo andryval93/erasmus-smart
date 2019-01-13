@@ -1,6 +1,6 @@
 import { Component, QueryList, ContentChildren, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { IonicPage, NavController, Slides, Content } from 'ionic-angular';
-import { ServiceProvider } from '../../providers/service/stepperService';
+import { ServiceProvider } from '../../providers/service/stepService';
 import { InserisciRecensionePageComponent } from '../inserisci-recensione/inserisci-recensione';
 import { AccountService } from '../../providers/service/accountService';
 import { ReviewsListPageComponent } from '../reviews-list/reviews-list';
@@ -60,12 +60,9 @@ export class StepperPageComponent {
          .catch();
 
       this.DBistance.getStepsDocuments("Account")
-         .then((data) => {
-            this.locationsAccount = data;
-
-
+         .then((data2) => {
+            this.locationsAccount = data2;
             this.creaListaTutor();
-            //  this.setStepQuattro();
             this.stepperState();
 
          })
@@ -102,7 +99,7 @@ export class StepperPageComponent {
     * @private
     * @description      Defines the name of the database collection
     */
-   private _COLL: string = "Sedi";
+   private _COLL: string = "Reviews";
 
    /**
       * @name _CONTENT

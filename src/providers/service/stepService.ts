@@ -26,19 +26,29 @@ export class ServiceProvider {
    * Return documents from specific database collection
    */
   async getStepsDocuments(collectionObj: string): Promise<any> {
+    let obj: any = [];
     return new Promise((resolve, reject) => {
       this.DBistance.collection(collectionObj)
         .get()
         .then((querySnapshot) => {
-          let obj: any = [];
+          if(collectionObj.localeCompare("Reviews") == 0){
           querySnapshot
             .forEach((doc: any) => {
               obj.push({
                 id: doc.id,
                 citta: doc.data().citta,
                 nazione: doc.data().nazione,
-                nome: doc.data().nome,
-                recensioni: doc.data().recensioni,
+                nome : doc.data().nome,
+                uni_name : doc.data().uni_name,
+                ReviewsList : doc.data().ReviewsList,
+              });
+            });
+          } 
+          else {
+            querySnapshot
+            .forEach((doc: any) => {
+              obj.push({
+                id: doc.id,
                 name: doc.data().name,
                 surname: doc.data().surname,
                 students: doc.data().students,
@@ -46,9 +56,10 @@ export class ServiceProvider {
                 step: doc.data().step,
                 status: doc.data().status,
                 sede: doc.data().sede,
-                tutor: doc.data().tutor
+                tutor: doc.data().tutor,
               });
             });
+            }
 
           resolve(obj);
         })
@@ -60,7 +71,7 @@ export class ServiceProvider {
   /**
    * Add a new document to a selected database collection
    */
-  async addStepsDocument(collectionObj: string,
+  addStepsDocument(collectionObj: string,
     docID: String,
     dataObj: any): Promise<any> {
     return new Promise((resolve, reject) => {

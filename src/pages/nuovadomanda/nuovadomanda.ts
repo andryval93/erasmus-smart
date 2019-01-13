@@ -3,7 +3,7 @@ import { IonicPage, NavController } from 'ionic-angular';
 import { QeaServiceProvider } from '../../providers/service/qeaService';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AlertController } from 'ionic-angular';
-import { ServiceProvider } from '../../providers/service/stepperService';
+import { ServiceProvider } from '../../providers/service/stepService';
 import { NewsPageComponent } from '../news/news';
 
 

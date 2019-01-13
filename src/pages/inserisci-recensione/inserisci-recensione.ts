@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { InserisciRecensioneService } from '../../providers/service/inserisciRecensioneService';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NewsPageComponent } from '../news/news';
 import { AccountService } from '../../providers/service/accountService';
+import { reviewService } from '../../providers/service/reviewsService';
 
 /**
  * Generated class for the InserisciRecensionePage page.
@@ -56,15 +56,18 @@ export class InserisciRecensionePageComponent {
   idReview: any;
   alertNuovaRecensione: boolean;
   stars : number;
+  privacyControl: boolean;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    private DBistance: InserisciRecensioneService,
+    private DBistance: reviewService,
     private _FB: FormBuilder,
     private loginService: AccountService,
     private alertCtrl : AlertController) {
+      this.privacyControl = false;
     this.form = this._FB.group({
       'Titolo': ['', Validators.required],
-      'Descrizione': ['', Validators.required]
+      'Descrizione': ['', Validators.required],
+      privacyControl: ['false', Validators.requiredTrue]
     });
     this.alertNuovaRecensione = false ;
     
@@ -79,13 +82,14 @@ export class InserisciRecensionePageComponent {
     console.log('ionViewDidLoad InserisciRecensionePage');
   }
   retrieveCollection(): void {
-    this.DBistance.getDocuments(this._COLL)
+    this.DBistance.getReviews(this._COLL)
       .then((data) => {
         this.locations = data;
       })
       .catch();
-
-    this.DBistance.getDocuments("Account")
+/*getReview può essere usato anche per prelevare alcune informazioni
+dalla collezione "Account" */
+    this.DBistance.getReviews("Account")
       .then((data) => {
         this.locationsAccounts = data;
       })
@@ -108,9 +112,9 @@ export class InserisciRecensionePageComponent {
       }
     }
     for (let i = 0; 1 < this.locations.length; i++) {
-      var str2 = new String(this.locations[i].sede);
+      var str2 = new String(this.locations[i].university);
       if (str2.localeCompare(sedeAccountLoggato.substring(0)) == 0) {
-        this.arrayReviews = this.locations[i].ReviewsList;
+        this.arrayReviews = this.locations[i].Reviews;
         this.idReview = this.locations[i].id;
         break;
       }
@@ -138,7 +142,7 @@ if ( this.arrayReviews.length > 0 ){
     this._CONTENT = {
       ReviewsList: this.arrayReviews
    };
- this.DBistance.addDocument(this._COLL,
+ this.DBistance.addReview(this._COLL,
                             this.idReview,
                             this._CONTENT)
          .then((data: any) => {
