@@ -166,8 +166,8 @@ export class NuovadomandaPageComponent {
        * @method retrieveCollectionSedi
        * @return {none}
        */
-  /* retrieveCollectionSedi(): void {
-      this.DBistanceSedi.getDocuments(this._COLLSedi)
+   retrieveCollectionSedi(): void {
+      this.DBistanceSedi.getStepsDocuments(this._COLLSedi)
          .then((dataSedi) => {
 
             this.locationsSedi = dataSedi;
