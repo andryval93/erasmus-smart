@@ -22,7 +22,7 @@
     <div [style.display]="!chatOpen ? 'block' : 'none'" id="files">
       eccoti i file
     </div>
-    <input id="uploadFile" capture="attach" type="file" accept=".pdf, application/pdf" (click)="uploadFile()">
+    <ion-input class="uploadFile" type="file" (change)="sendUserFile($event)" accept=".pdf, application/pdf"></ion-input>
     <label id="uploadFileIcon" for="uploadFile" icon-only ion-button>
       <ion-icon name="attach"></ion-icon>
     </label>
