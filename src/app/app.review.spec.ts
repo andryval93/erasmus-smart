@@ -17,8 +17,20 @@ describe('Service: reviewService', () => {
     })
   }));
   
-  it('should do defined reviewService', inject([reviewService], (service: reviewService) => {
-    //expect(service.authenticated).toBeTruthy();
-    expect(service).toBeDefined();
+  it('should be Uni', inject([reviewService], (service: reviewService) => {
+    let uni:any
+    service.getUniversities('Sedi.u7TJSKbhV95vAbMjQWmC').then((data) => {
+      uni = data.data();
+      expect(uni).toBeDefined();
+    })  
+  }));
+
+
+  it('should be Rev', inject([reviewService], (service: reviewService) => {
+    let rev:any
+    service.getReviews('Sedi.u7TJSKbhV95vAbMjQWmC').then((data) => {
+      rev = data.data();
+      expect(rev).toBeDefined();
+    })  
   }));
 });
