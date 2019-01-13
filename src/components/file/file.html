@@ -1,9 +1,9 @@
 <div *ngIf="fl.author == email" class="message right">
-  <span>{{ fl.name }}</span>
+  <a href={{fl.urlFile}} target="_blank"> {{ fl.name }} </a>
 </div>
 
 <div *ngIf="fl.author != email" class="message left">
-  <span>{{ fl.name }}</span>
+  <a href={{fl.urlFile}} target="_blank"> {{ fl.name }} </a>
 </div>
 
 <div *ngIf="fl.type == 'Image'" class="message right">

@@ -5,7 +5,7 @@
   .right {
     text-align: right;
   }
-  .message span {
+  .message a {
     width: 65%;
     padding: 14px 10px;
     border-radius: 5px;
@@ -20,12 +20,12 @@
     color: #BBBBBB;
     font-size: 12px;
   }
-  .message.right span {
+  .message.right a {
     background-color: #CCCCCC;
     margin-left: 30%;
   }
 
-  .message.left span {
+  .message.left a {
     color: #FFFFFF;
     background-color: #007AFF;
     margin-right: 30%;
