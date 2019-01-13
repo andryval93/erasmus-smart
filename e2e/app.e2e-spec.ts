@@ -1,4 +1,5 @@
 import { Page } from './app.po';
+import { browser, by, element } from 'protractor';
 
 describe('App', () => {
   let page: Page;
@@ -12,10 +13,21 @@ describe('App', () => {
       page.navigateTo('/');
     });
 
-    it('should have a title saying Page One', () => {
-      page.getPageOneTitleText().then(title => {
-        expect(title).toEqual('Page One');
-      });
+    it('loggedInfo is present', () => {
+      element(by.id('loggedInfo')).isPresent()
+    });
+  })
+
+  describe('default screen', () => {
+    beforeEach(() => {
+      page.navigateTo('/');
+    });
+
+    it('loggedInfo is Displayed', () => {
+      element(by.id('ButtonMenu')).click();
+      browser.wait(function () {
+        return element(by.id('MenuList')).isDisplayed();
+      }, 2000);
     });
   })
 });
