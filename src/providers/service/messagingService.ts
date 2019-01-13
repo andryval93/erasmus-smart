@@ -1,14 +1,12 @@
-
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable'
-
 // Import firebase and firestore
 //import * as firebase from 'firebase';
 import 'firebase/firestore';
 import { AngularFireStorage } from "angularfire2/storage";
 import { SingletonDatabase } from '../../model/Database';
-declare var require: any;
+//declare var require: any;
 
 /*
 
@@ -28,7 +26,8 @@ export class MessageProvider {
 
     //private DBistance: any;
     DBistance: any;
-
+    //url: Observable<string | null>;
+    url: Promise<any>;
 
     constructor(private storage: AngularFireStorage) {
         console.log('Hello DatabaseProvider Provider');
@@ -100,12 +99,30 @@ export class MessageProvider {
         return new Promise((resolve, reject) => {
             const file = fileToUpload.target.files[0];
             const filePath = "files/chat/" + path + "_" + file.name;
-            const ref = this.storage.ref(filePath);
-            const task = ref.put(file).then((obj: any) => {
-                resolve(obj);
+            let ref = this.storage.ref(filePath);
+            ref.put(file).then((obj: any) => {
+                this.url = this.storage.storage.ref(filePath).getDownloadURL();
+                this.url.then((txt) => {
+                    resolve(txt);
+                });
             }).catch((error: any) => {
                 reject(error);
             });
+        });
+    }
+    /**
+     * @description Aggiunge le info del file appena caricato all'interno del database
+     * @author Giosuè Sulipano
+     */
+    saveFileInfo(docID: any, newFileInfo: any): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.DBistance.collection('Messages').doc(docID).collection('Files').add(newFileInfo)
+                .then((obj: any) => {
+                    resolve(obj);
+                })
+                .catch((error: any) => {
+                    reject(error);
+                });
         });
     }
 }

@@ -3,9 +3,8 @@ import { IonicPage, NavController, NavParams, ViewController, Content, ToastCont
 import { MessageProvider } from '../../providers/service/messagingService'
 import firebase from 'firebase';
 import { FormControl, Validators } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
-import { ServiceProvider } from '../../providers/service/stepperService';
+//import { ServiceProvider } from '../../providers/service/stepperService';
+declare var require: any;
 
 /**
  * Generated class for the OpenchatPage page.
@@ -91,23 +90,34 @@ export class OpenchatPageComponent {
    * @author Giosuè Sulipano
    */
   sendUserFile($event) {
-    let timeUpload = this.moment().format("DDMMYYYY_hhmm");
+    let timeUpload = this.moment().format("DDMMYYYY_hhmmA");
     let path = this.idChat + "/" + timeUpload;
     console.log("File upload task sent to (MessagingService)uploadFile!");
     this.presentToast("loading");
     this.serviceProv.uploadFile($event, path).then(
-      () => {
+      (url) => {
         this.toast.dismiss();
         console.log("File uploaded!");
         //qui si potrebbe inviare una notifica sotto forma di messaggio da far visualizzare ad entrambi
+        let fileInfo = {
+          author: firebase.auth().currentUser.email,
+          name: $event.target.files[0].name,
+          uploadDate: new Date().toLocaleString,
+          urlFile: url,
+        }
+        this.serviceProv.saveFileInfo(this.idChat, fileInfo);
         this.presentToast("success");
       },
       () => {
         console.log("File not uploaded!");
         this.toast.dismiss();
         this.presentToast("error");
+      }).catch((error) => {
+        console.log(error);
+        this.toast.dismiss();
+        this.presentToast("error");
       });
-  }
+    }
 
   /**
    * @description Rappresenta un toast durante il caricamento del file all'interno della chat, mostrando la percentuale di caricamento.
