@@ -8,6 +8,7 @@ import { NewsPageComponent } from '../news/news';
 import { ConsiglicolloquioPageComponent } from '../consiglicolloquio/consiglicolloquio';
 import { GuidaLAPageComponent } from '../guida-LA/guida-LA';
 import { IonicStepComponent, IonicStepperComponent } from 'ionic-stepper';
+import { isDefined } from 'ionic-angular/umd/util/util';
 //import { IonicStepperComponent } from 'ionic-stepper';
 /**
  * Generated class for the StepperPage page.
@@ -230,6 +231,8 @@ export class StepperPageComponent {
       var email = new String(this.loginService.user.email);
       var accepted = new String("accepted");
       var pending = new String("pending");
+      
+ 
       for (let i = 0; 1 < this.locationsAccount.length; i++) {
          var str1 = new String(this.locationsAccount[i].id);
 
@@ -277,6 +280,17 @@ export class StepperPageComponent {
          this.sceltaTutor = this.tutorAccount;
          this.sceltaSede = this.sedeSceltaAccount;
       }
+if(this.tutorAccount != undefined ){
+   if (this.sceltaTutor.localeCompare(this.tutorAccount.substring(0)) == 0){
+      for (let i = 0; i < this.locationsAccount.length ; i++) {
+         var str1 = new String(this.locationsAccount[i].id);
+         if (str1.localeCompare(this.sceltaTutor.substring(0)) == 0) {
+            this.sceltaTutor = this.locationsAccount[i].name + " " + this.locationsAccount[i].surname;
+            break;
+         }
+      }
+   }
+}
       var strStatus = new String(this.locationsAccount[loopIndex].status);
       console.log(this.locationsAccount[loopIndex].status + " this.locationsAccount[loopIndex].status")
       if (strStatus == undefined) {
@@ -354,28 +368,29 @@ export class StepperPageComponent {
             this.arrayAccounts = this.locationsAccount[i].students;
             idDocumento = this.locationsAccount[i].id;
 
-            
+            break;
          }
-         if(i+1 == this.locationsAccount.length) break;
+         //if(i+1 == this.locationsAccount.length) break;
 
-         console.log(email + "email Loggato")
-         this._CONTENT = {
-            status: "pending",
-            sede: this.sceltaSede,
-            tutor: idDocumento
-         };
-
-         /* aggiungo status e sede a uno studente */
-         this.DBistance.addStepsDocument("Account",
-            email.substring(0),
-            this._CONTENT)
-            .then((data: any) => {
-               console.dir(data);
-            })
-            .catch((error: any) => {
-               console.dir(error);
-            });
+     
       }
+      console.log(email + "email Loggato")
+      this._CONTENT = {
+         status: "pending",
+         sede: this.sceltaSede,
+         tutor: idDocumento
+      };
+
+      /* aggiungo status e sede a uno studente */
+      this.DBistance.addStepsDocument("Account",
+         email.substring(0),
+         this._CONTENT)
+         .then((data: any) => {
+            console.dir(data);
+         })
+         .catch((error: any) => {
+            console.dir(error);
+         });
       /* aggiorno la lista di studenti in attesa */
       if(this.arrayAccounts == undefined ) this.arrayAccounts = new Array<string>();
       this.arrayAccounts.push(email.substring(0));

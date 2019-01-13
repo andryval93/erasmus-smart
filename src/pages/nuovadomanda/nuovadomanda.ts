@@ -173,7 +173,7 @@ export class NuovadomandaPageComponent {
             this.locationsSedi = dataSedi;
          })
          .catch();
-   }*/
+   }
 
 
 
