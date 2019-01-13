@@ -166,14 +166,14 @@ export class NuovadomandaPageComponent {
        * @method retrieveCollectionSedi
        * @return {none}
        */
-   retrieveCollectionSedi(): void {
+  /* retrieveCollectionSedi(): void {
       this.DBistanceSedi.getDocuments(this._COLLSedi)
          .then((dataSedi) => {
 
             this.locationsSedi = dataSedi;
          })
          .catch();
-   }
+   }*/
 
 
 
