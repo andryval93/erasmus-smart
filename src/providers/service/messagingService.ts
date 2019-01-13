@@ -59,7 +59,7 @@ export class MessageProvider {
 
     getAllMessages(collectionObj: string, docID: string): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.DBistance.collection(collectionObj).doc(docID).collection('Messages').orderBy("creationTime", "desc").get() //messages interno che contiene i singoli messaggi
+            this.DBistance.collection(collectionObj).doc(docID).collection('Messages').orderBy("creationTime", "asc").get() //messages interno che contiene i singoli messaggi
                 .then((querySnapshot) => {
                     let obj: any = [];
                     querySnapshot
@@ -83,7 +83,7 @@ export class MessageProvider {
 
     getFiles(collectionObj: string, docID: string): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.DBistance.collection(collectionObj).doc(docID).collection('Files').orderBy("uploadDate", "desc").get()
+            this.DBistance.collection(collectionObj).doc(docID).collection('Files').orderBy("uploadDate", "asc").get()
                 .then((querySnapshot) => {
                     let obj: any = [];
                     querySnapshot

@@ -27,18 +27,19 @@ export class OpenchatPageComponent {
   chatOpen: boolean;
   email: string; //email ricevente
   idChat: string;
-  text : FormControl;
+  text: FormControl;
   messages: Array<any>;
   files: Array<any>;
   type: string;
   newMessage: Array<any>;
   moment = require('moment');
-  toast :any;
+  toast: any;
+  viewList = false;
   constructor(public navCtrl: NavController, public navParams: NavParams, private serviceProv: MessageProvider, public viewCtrl: ViewController, public toastCtrl: ToastController) {
     //this.nome = localStorage.getItem("nome");
     //this.sede = localStorage.getItem("sede");
     //navParams per prendere parametri da NON localStorage
-    
+
     navCtrl.remove(0);
 
     this.text = new FormControl('', Validators.required)
@@ -53,23 +54,23 @@ export class OpenchatPageComponent {
       this.idChat = firebase.auth().currentUser.email + this.email
     else
       this.idChat = this.email + firebase.auth().currentUser.email
-    
+
     console.log("idChat:", this.idChat)
 
     //messages esterno che contiene le chat
-   // console.log("Mex:", serviceProv.getAllMessages("Messages", this.idChat))
+    // console.log("Mex:", serviceProv.getAllMessages("Messages", this.idChat))
 
-   this.messages = new Array();
-   this.files = new Array();
+    this.messages = new Array();
+    this.files = new Array();
 
     //get all messages
-  /*  serviceProv.getAllMessages("Messages", this.idChat).then((result) => {
-        this.messages = [];
-        result.forEach(el => {
-          this.messages.push(el)
-        });
+    serviceProv.getAllMessages("Messages", this.idChat).then((result) => {
+      this.messages = [];
+      result.forEach(el => {
+        this.messages.push(el)
       });
-      console.log("Messages:", this.messages)
+    });
+    console.log("Messages:", this.messages)
 
     //get all files
     serviceProv.getFiles("Messages", this.idChat).then((result) => {
@@ -78,21 +79,20 @@ export class OpenchatPageComponent {
         this.files.push(el)
       });
     });
-    console.log("Files:", this.files)*/
 
-   
+    this.viewList = true
   }
 
-  
 
-  sendUserMessage(){
+
+  sendUserMessage() {
 
     let message = {
       message: this.text.value,
       sender: firebase.auth().currentUser.email,
       receiver: this.email,
       creationTime: new Date().toLocaleString()
-		};
+    };
 
     this.serviceProv.sendMessage("Messages", this.idChat, message).then(() => {
       this.content.scrollToBottom();
@@ -133,7 +133,7 @@ export class OpenchatPageComponent {
         this.toast.dismiss();
         this.presentToast("error");
       });
-    }
+  }
 
   /**
    * @description Rappresenta un toast durante il caricamento del file all'interno della chat, mostrando la percentuale di caricamento.
@@ -141,20 +141,20 @@ export class OpenchatPageComponent {
    */
   presentToast(type: String) {
     switch (type) {
-      case 'loading' :
+      case 'loading':
         this.toast = this.toastCtrl.create({
           message: 'Caricamento del file in corso..'
         });
         this.toast.present();
         break;
-      case 'error' :
+      case 'error':
         this.toast = this.toastCtrl.create({
           message: 'Caricamento del file fallito!',
           duration: 2000
         });
         this.toast.present();
         break;
-      case 'success' :
+      case 'success':
         this.toast = this.toastCtrl.create({
           message: 'Il file è stato caricato con successo!',
           duration: 2000
@@ -173,9 +173,10 @@ export class OpenchatPageComponent {
       next(snapshot) {
         console.log("snapshot", snapshot)
         snapshot.docChanges().forEach((value, index: number, array) => {
+          if (viewMessage.viewList)
             viewMessage.messages.push(value.doc.data());
         })
-        
+
       },
       error(error: Error) {
         console.log("Error to listen add", error)
@@ -187,6 +188,7 @@ export class OpenchatPageComponent {
       next(snapshot) {
         console.log("snapshot", snapshot)
         snapshot.docChanges().forEach((value, index: number, array) => {
+          if (viewMessage.viewList)
             viewMessage.files.push(value.doc.data());
         })
       },
@@ -196,27 +198,22 @@ export class OpenchatPageComponent {
     })
   }
 
-  
 
-  showChat(){
+
+  showChat() {
     this.chatOpen = true;
   }
 
-  showFiles(){
+  showFiles() {
     this.chatOpen = false;
   }
 
-  scrollDown(){
-    if(this.content != undefined)
-    this.content.scrollToBottom(0);
+  scrollDown() {
+    if (this.content != undefined)
+      this.content.scrollToBottom(0);
   }
 
   ionViewWillEnter() {
     this.viewCtrl.showBackButton(false);
-  }
-
-  uploadFile() {
-    
-    alert("upload file logic");
   }
 }
