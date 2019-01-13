@@ -36,6 +36,7 @@ import { AccountService } from '../providers/service/accountService';
 import { MessageProvider } from '../providers/service/messagingService'
 import { NewsServiceProvider } from '../providers/service/newsService';
 import { MessageComponent } from '../components/message/message';
+import { FileComponent } from '../components/file/file';
 import { InserisciRecensioneService } from '../providers/service/inserisciRecensioneService';
 import { Ionic2RatingModule } from 'ionic2-rating';
 import { GuidaLAPageComponent } from '../pages/guida-LA/guida-LA';
@@ -62,6 +63,7 @@ import { GuidaCandidaturaPageComponent } from '../pages/guidacandidatura/guidaca
     ReviewsListPageComponent,
     ReviewMainPageComponent,
     MessageComponent,
+    FileComponent,
     GuidaLAPageComponent,
     ConsiglicolloquioPageComponent,
     GuidaCandidaturaPageComponent
@@ -95,6 +97,7 @@ import { GuidaCandidaturaPageComponent } from '../pages/guidacandidatura/guidaca
     ReviewsListPageComponent,
     ReviewMainPageComponent,
     MessageComponent,
+    FileComponent,
     GuidaLAPageComponent,
     ConsiglicolloquioPageComponent,
     GuidaCandidaturaPageComponent

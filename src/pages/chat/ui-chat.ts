@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { OpenchatPageComponent } from '../openchat/openchat';
 import { AccountService } from '../../providers/service/accountService';
 import { MessageProvider } from '../../providers/service/messagingService';
-import { Account, student, Message} from '../../model/model';
+import { Account, student, Message, File} from '../../model/model';
 import firebase from 'firebase';
 /**
  * Generated class for the UiChatPage page.
@@ -26,6 +26,7 @@ export default class UiChatPageComponent{
   status: string;
   email: string;
   messagge: Array<Message>;
+  files: Array<File>;  
   account2: Account;
   viewPage: boolean;
   viewLoad: boolean;
