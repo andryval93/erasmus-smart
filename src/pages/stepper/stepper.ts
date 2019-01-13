@@ -344,25 +344,25 @@ export class StepperPageComponent {
       let idDocumento: string;
 
       var email = new String(this.loginService.user.email);
-      for (let i = 0; i < this.locationsAccount.length + 1; i++) {
+      for (let i = 0; i < this.locationsAccount.length ; i++) {
          var str1 = new String(this.locationsAccount[i].name + " " + this.locationsAccount[i].surname);
 
          console.log(str1 + "nome + cognome Tutor");
          console.log(str1.localeCompare(this.sceltaTutor.substring(0)) + " comparison");
          console.log(this.locationsAccount[i].students);
          if (str1.localeCompare(this.sceltaTutor.substring(0)) == 0) {
-
             this.arrayAccounts = this.locationsAccount[i].students;
-
             idDocumento = this.locationsAccount[i].id;
-            break;
+
+            
          }
+         if(i+1 == this.locationsAccount.length) break;
 
          console.log(email + "email Loggato")
          this._CONTENT = {
             status: "pending",
             sede: this.sceltaSede,
-            tutor: this.sceltaTutor,
+            tutor: idDocumento
          };
 
          /* aggiungo status e sede a uno studente */
