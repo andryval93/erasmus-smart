@@ -12,21 +12,26 @@
     <button class="chatButton" (click)="showChat()">Chat</button>
     <button class="filesButton" (click)="showFiles()">Files</button>
 
-    <div [style.display]="chatOpen ? 'block' : 'none'" id="chat">
+    <div [style.display]="chatOpen ? 'block' : 'none'" id="mainBoard">
       <ion-content #content>
           <message *ngFor="let msg of messages; let last = last" [msg]="msg">
             {{ last ? scrollDown() : '' }}
           </message>
       </ion-content>
     </div>
-    <div [style.display]="!chatOpen ? 'block' : 'none'" id="files">
-      eccoti i file
-    </div>
+
+    <div [style.display]="!chatOpen ? 'block' : 'none'" id="mainBoard">
+      <ion-content #content>
+        <file *ngFor="let fl of files; let lastf = lastf" [fl]="fl">
+          {{ lastf ? scrollDown() : '' }}
+        </file>
+    </ion-content>
+  </div>
     <input id="uploadFile" capture="attach" type="file" accept=".pdf, application/pdf" (click)="uploadFile()">
     <label id="uploadFileIcon" for="uploadFile" icon-only ion-button>
       <ion-icon name="attach"></ion-icon>
     </label>
-    <form (ngSubmit)="sendUserMessage()">
+    <form (ngSubmit)="sendUserMessage()" [style.display]="chatOpen ? 'block' : 'none'">
       <textarea class="messageText" rows="1" [formControl]="text" placeholder="Inserisci il tuo testo qui" required="required"></textarea>
       <input class="inputType" type="submit" value="">
     </form>

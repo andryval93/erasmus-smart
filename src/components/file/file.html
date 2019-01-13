@@ -1,0 +1,13 @@
+<div *ngIf="fl.author == email" class="message right">
+  <span>{{ fl.name }}</span>
+  <div>{{ fl.uploadDate }}</div>
+</div>
+
+<div *ngIf="fl.author != email" class="message left">
+  <span>{{ fl.name }}</span>
+  <div>{{ fl.uploadDate }}</div>
+</div>
+
+<div *ngIf="fl.type == 'Image'" class="message right">
+  <img style="max-width: 150px;" [src]="fl.urlImage" />
+</div>

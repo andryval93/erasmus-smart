@@ -25,7 +25,7 @@ page-openchat {
         border-color:  rgb(66, 66, 66);
     }
 
-    #chat{
+    #mainBoard{
         position: absolute;
         left: 25%;
         width: 75%;
@@ -38,21 +38,8 @@ page-openchat {
         background-color: whitesmoke; 
     }
 
-    #chat .scroll-content{
+    #mainBoard .scroll-content{
         background-color: whitesmoke;
-    }
-
-    #files{
-        position: absolute;
-        left: 25%;
-        width: 75%;
-        height: 90%;
-        color: black;
-        border-bottom-color: black;
-        border-bottom-style: solid;
-        text-align: right;
-        border-color: whitesmoke;
-        background-color: whitesmoke; 
     }
 
     .chatButton{

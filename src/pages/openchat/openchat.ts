@@ -26,7 +26,8 @@ export class OpenchatPageComponent {
   email: string; //email ricevente
   idChat: string;
   text : FormControl;
-  messages: Array<any>
+  messages: Array<any>;
+  files: Array<any>;
   type: string;
   newMessage: Array<any>;
   constructor(public navCtrl: NavController, public navParams: NavParams, private serviceProv: MessageProvider, public viewCtrl: ViewController) {
@@ -56,15 +57,30 @@ export class OpenchatPageComponent {
    // console.log("Mex:", serviceProv.getAllMessages("Messages", this.idChat))
 
    this.messages = new Array();
+   this.files = new Array();
 
-    serviceProv.getAllMessages("Messages", this.idChat).then((result) => {
+    //get all messages
+  /*  serviceProv.getAllMessages("Messages", this.idChat).then((result) => {
         this.messages = [];
         result.forEach(el => {
           this.messages.push(el)
         });
       });
       console.log("Messages:", this.messages)
+
+    //get all files
+    serviceProv.getFiles("Messages", this.idChat).then((result) => {
+      this.files = [];
+      result.forEach(el => {
+        this.files.push(el)
+      });
+    });
+    console.log("Files:", this.files)*/
+
+   
   }
+
+  
 
   sendUserMessage(){
 
@@ -82,6 +98,7 @@ export class OpenchatPageComponent {
     console.log("mariann", this.email);
   }
 
+  
   ionViewDidLoad() {
     this.chatOpen = true
     console.log('ionViewDidLoad OpenchatPage');
@@ -99,8 +116,22 @@ export class OpenchatPageComponent {
         console.log("Error to listen add", error)
       }
     })
-    
+
+    let observerFiles = this.serviceProv.getFileObserver(this.idChat)
+    observerFiles.onSnapshot({
+      next(snapshot) {
+        console.log("snapshot", snapshot)
+        snapshot.docChanges().forEach((value, index: number, array) => {
+            viewMessage.files.push(value.doc.data());
+        })
+      },
+      error(error: Error) {
+        console.log("Error to listen add", error)
+      }
+    })
   }
+
+  
 
   showChat(){
     this.chatOpen = true;

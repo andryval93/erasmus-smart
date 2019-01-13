@@ -1,3 +1,4 @@
+import { Timestamp } from "rxjs";
 
   export class Account {
     email: string;
@@ -74,6 +75,15 @@
       this.receiver = receiver;
     }
   }
+
+  export class File {
+    author: string;
+    receiver: string;
+    name: string;
+    uploadDate: Timestamp<any>;
+    urlFile: string;
+  }
+  
 
   export class student extends Account{
     sede: string;

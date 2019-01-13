@@ -35,6 +35,7 @@ import { AccountService } from '../providers/service/accountService';
 import { MessageProvider } from '../providers/service/messagingService'
 import { NewsServiceProvider } from '../providers/service/newsService';
 import { MessageComponent } from '../components/message/message';
+import { FileComponent } from '../components/file/file';
 import { InserisciRecensioneService } from '../providers/service/inserisciRecensioneService';
 import { Ionic2RatingModule } from 'ionic2-rating';
 import { GuidaLAPageComponent } from '../pages/guida-LA/guida-LA';
@@ -60,6 +61,7 @@ import { ConsiglicolloquioPageComponent } from '../pages/consiglicolloquio/consi
     ReviewsListPageComponent,
     ReviewMainPageComponent,
     MessageComponent,
+    FileComponent,
     GuidaLAPageComponent,
     ConsiglicolloquioPageComponent
   ],
@@ -93,6 +95,7 @@ import { ConsiglicolloquioPageComponent } from '../pages/consiglicolloquio/consi
     ReviewsListPageComponent,
     ReviewMainPageComponent,
     MessageComponent,
+    FileComponent,
     GuidaLAPageComponent,
     ConsiglicolloquioPageComponent
   ],
