@@ -30,10 +30,11 @@ export class MessageProvider {
     url: Promise<any>;
 
     constructor(private storage: AngularFireStorage) {
-        console.log('Hello DatabaseProvider Provider');
-        //this.DBistance = firebase.firestore();
-
-        this.DBistance = SingletonDatabase.getInstance();
+        this.getSingleton();
+    }
+    
+    async getSingleton(){
+      this.DBistance = SingletonDatabase.getInstance();
     }
 
     getObserver(docID: any): any {
