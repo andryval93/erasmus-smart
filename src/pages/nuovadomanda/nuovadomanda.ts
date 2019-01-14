@@ -146,7 +146,7 @@ export class NuovadomandaPageComponent {
     * @private
     * @description      Defines the name of the database collection
     */
-   private _COLLSedi: string = "Sedi";
+   private _COLLSedi: string = "Reviews";
 
    /**
     * @name locationsSedi
@@ -195,8 +195,15 @@ export class NuovadomandaPageComponent {
       let idDocumento: string;
       for (let i = 0; 1 < this.locations.length; i++) {
          var str1 = new String(this.locations[i].Sede);
+         console.log(str1.localeCompare(this.sceltaSede.substring(0)) + " localeCompare");
          if (str1.localeCompare(this.sceltaSede.substring(0)) == 0) {
+            if(this.locations[i].Domande == undefined){
+               this.arrayDomande = new Array<any>();
+            }
+            else{
             this.arrayDomande = this.locations[i].Domande;
+            }
+            console.log(this.arrayDomande + " arrayDomande");
             idDocumento = this.locations[i].id;
             break;
          } if (i == this.locations.length - 1) {

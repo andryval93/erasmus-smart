@@ -46,11 +46,43 @@ export class QeaServiceProvider {
   async getSingleton() {
     this.DBistance = SingletonDatabase.getInstance();
   }
+
+/*
+
+  async getAnswers(collectionObj: string): Promise<any> {
+    let obj: any = [];
+    return new Promise((resolve, reject) => {
+      this.DBistance.collection(collectionObj)
+        .get()
+        .then((querySnapshot) => {
+          if(collectionObj.localeCompare("Q&A") == 0){
+          querySnapshot
+            .forEach((doc: any) => {
+              obj.push({
+                id: doc.id,
+                Domande: doc.data().Domande,
+                Domanda: doc.data().Domanda,
+                risposte: doc.data().risposte,
+                Sede: doc.data().Sede
+              });
+            });
+          } 
+        
+
+          resolve(obj);
+        })
+        .catch((error: any) => {
+          reject(error);
+        });
+    });
+  }
+  */
   // RISPOSTE
 
   /*
    * Return documents from specific database collection
    */
+  
   getAnswers(collectionObj: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this.DBistance.collection(collectionObj)
