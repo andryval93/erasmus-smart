@@ -41,8 +41,6 @@ export class Message {
   private message: string;
   private creationTime: string;
 
-
-
   constructor($sender: string, $receiver: string, $message: string, $creationTime: string) {
     this.creationTime = $creationTime;
     this.message = $message;
@@ -66,7 +64,6 @@ export class Message {
   getReceiver() {
     return this.receiver;
   }
-
 
   setMessage(message: string) {
     this.message = message;
