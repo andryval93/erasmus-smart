@@ -23,8 +23,8 @@ import { Firebase } from '@ionic-native/firebase';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestoreModule } from "angularfire2/firestore";
-import { AngularFireStorageModule } from "angularfire2/storage";
-import { ServiceProvider } from '../providers/service/stepService';
+import { AngularFireStorageModule, AngularFireStorage } from "angularfire2/storage";
+import { ServiceProvider } from '../providers/service/stepperService';
 import { InserisciRecensionePageComponent } from '../pages/inserisci-recensione/inserisci-recensione'
 import { QeaServiceProvider } from '../providers/service/qeaService';
 import { RispostePageComponent } from '../pages/risposte/risposte';
@@ -114,6 +114,7 @@ import { GuidaCandidaturaPageComponent } from '../pages/guidacandidatura/guidaca
     AccountService,
     NewsServiceProvider,
     MessageProvider,
+    AngularFireStorage,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     InserisciRecensioneService,
   ]
