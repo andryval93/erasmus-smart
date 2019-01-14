@@ -35,12 +35,12 @@
                 </ion-thumbnail>
 
 
-                <h2>{{ location.nome }}</h2>
+                <h2>{{ location.uni_name }}</h2>
                 <p>
                   nazione: {{ location.nazione }}<br>
                   citta: {{ location.citta }}
                 </p>
-                <em>{{ location.recensioni.length }} Recensione/i </em>
+                <em>{{ location.ReviewsList.length }} Recensione/i </em>
                 <button ion-button clear item-end (click)="goToReviewList(location.id)">Vedi Recensioni</button>
               </ion-item>
 
@@ -170,7 +170,7 @@
               <!--Metto tutte le sedi dentro la combo box "Sedi"-->
               <ion-select [(ngModel)]="Sedi" (ngModelChange)="onChangeSede(Sedi)">
 
-                <ion-option *ngFor='let location of locations'>{{ location.nome }}</ion-option>
+                <ion-option *ngFor='let location of locations'>{{ location.uni_name }}</ion-option>
 
               </ion-select>
 

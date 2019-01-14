@@ -29,7 +29,7 @@ export class RispostePageComponent {
    * @description      Defines the name of the database collection
    */
   private _COLL: string = "Q&A";
- 
+
   /**
      * @name _CONTENT
      * @type {any}
@@ -100,34 +100,42 @@ export class RispostePageComponent {
     console.log(localStorage.getItem("locationIdQeA") + "commento");
 
     for (let i = 0; 1 < this.locations.length; i++) {
+      console.log("sono dentro al primo for");
       var str = new String(this.locations[i].id);
       console.log(this.locations[i].id + "this.locations[i].id");
+      console.log(str.localeCompare(this.locationIdQeA.substring(0)) + "localeCompare");
       if (str.localeCompare(this.locationIdQeA.substring(0)) == 0) {
         this.locationQeA = this.locations[i];
+        console.log(this.locationQeA.Domande.length + " -this.locationQeA.Domande.length");
+        console.log(this.locationQeA.Sede + " -locationQeA.Sede");
         break;
       }
 
     }
 
-    for (let i = 0; 1 < this.locationQeA.Domande.length - 1; i++) {
-      var str1 = new String(this.locationQeA.Domande[i].Domanda);
-      var str2 = new String(this.locationQeA.Domande[i].Descrizione);
-      console.log(this.locationDescrizione.substring(0) + "locationDescrizione");
+    for (let j = 0; 1 < this.locationQeA.Domande.length +1; j++) {
+      console.log("sono dentro al secondo for");
+      var str1 = new String(this.locationQeA.Domande[j].Domanda);
+      var str2 = new String(this.locationQeA.Domande[j].Descrizione);
+      console.log(this.locationQeA.Domande[j].Domanda + " -locationQeA.Domande[i].Domanda");
+      console.log(this.locationDescrizione.substring(0) + " -locationDescrizione");
       if (str1.localeCompare(this.domandaCorrente.substring(0)) == 0) {
         if (str2.localeCompare(this.locationDescrizione.substring(0)) == 0) {
-          this.locationQeA.Domande[i].risposte.push(this.form.controls["Descrizione"].value);
+          this.locationQeA.Domande[j].risposte.push(this.form.controls["Descrizione"].value);
           this.alertNuovaDomanda = true;
           break;
         }
       }
     }
 
-    
+
     /* if (this.locationQeA.Domande.risposte.length > 0) {
       this.alertNuovaDomanda = true;
    }
    */
-
+    if (this.locationQeA.Domande == undefined) {
+      this.locationQeA.Domande == new Array<any>();
+    }
     this._CONTENT = {
       Domande: this.locationQeA.Domande,
     };
@@ -175,13 +183,13 @@ export class RispostePageComponent {
       .then((data) => {
         // IF we don't have any documents then the collection doesn't exist
         // so we create it!
-       
+
         // Otherwise the collection does exist and we assign the returned
         // documents to the public property of locations so this can be
         // iterated through in the component template
-         
-          this.locations = data;
-        
+
+        this.locations = data;
+
       })
       .catch();
   }

@@ -92,20 +92,38 @@ export class reviewService {
 
 
   getReviews(collectionObj: string): Promise<any> {
+    let obj: any = [];
     return new Promise((resolve, reject) => {
       this.DBistance.collection(collectionObj)
         .get()
         .then((querySnapshot) => {
-          let obj: any = [];
+          if(collectionObj.localeCompare("Reviews") == 0){
           querySnapshot
             .forEach((doc: any) => {
               obj.push({
                 id: doc.id,
                 Reviews: doc.data().ReviewsList,
                 university: doc.data().uni_name,
+                /*inserisci recensione e cattura account inizio. Merge with inserisciRecensioneService*/
+                date           : doc.data().date,
+                recensore      : doc.data().recensore,
+                stars          : doc.data().stars,
+                text           : doc.data().text,
+                 /*inserisci recensione e cattura account fine Merge with inserisciRecensioneService*/
               });
             });
-
+          }
+          else 
+          {    /* Efficienza con un solo metodo posso leggere in utti i documenti 
+               / evitando di appesantire l'oggetto 'obj' con molte variabili 'undefined' */
+            querySnapshot
+            .forEach((doc: any) => {
+              obj.push({
+                id             : doc.id,
+                sede           : doc.data().sede
+              });
+            });
+          }
           resolve(obj);
         })
         .catch((error: any) => {
@@ -113,6 +131,26 @@ export class reviewService {
         });
     });
   }
+
+ /*aggiungi recensione inizio. Merge with inserisciRecensioneService*/
+  addReview(collectionObj: string,
+    docID: String,
+    dataObj: any) : Promise<any>{
+return new Promise((resolve, reject) => {
+this.DBistance
+.collection(collectionObj)
+.doc(docID)
+.set(dataObj, {merge: true})
+.then((data : any) => {
+resolve(data);
+})
+.catch((error: any) => {
+reject(error);
+})
+})
+}
+ /*aggiungi recensione fine. Merge with inserisciRecensioneService*/
+
 /*getReviews(collectionObj: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this.DBistance.collection(collectionObj)

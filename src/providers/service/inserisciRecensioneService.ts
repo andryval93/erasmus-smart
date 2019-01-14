@@ -36,8 +36,7 @@ export class InserisciRecensioneService {
  
   constructor(public http: HttpClient) {
     console.log('Hello DatabaseProvider Provider');
-    //this.DBistance = firebase.firestore();
-  this.DBistance =  SingletonDatabase.getInstance();
+    this.DBistance =  SingletonDatabase.getInstance();
   }
 
   
@@ -62,7 +61,6 @@ export class InserisciRecensioneService {
         .forEach((doc: any) => {
           obj.push({
            id             : doc.id,
-         
            ReviewsList    : doc.data().ReviewsList,
            date           : doc.data().date,
            recensore      : doc.data().recensore,
@@ -99,41 +97,4 @@ reject(error);
 })
 }
 
-  /**
-   * Delete an existing document from a selected database collection
-   */
-   deleteDocument(collectionObj : string,
-                  docID : string) : Promise<any>{
-      return new Promise((resolve, reject) => {
-        this.DBistance
-       .collection(collectionObj)
-       .doc(docID)
-       .delete()
-       .then((obj : any) => {
-       resolve(obj);
-        })
-        .catch((error : any) => {
-          reject(error);
-        });
-      });
-    }
-    /**
-     * Update an existing document within a selected database collection
-     */
-    updateDocument(collectionObj : string,
-                    docID : string,
-                    dataObj : any) : Promise<any>{
-      return new Promise((resolve, reject) => {
-        this.DBistance
-        .collection(collectionObj)
-        .doc(docID)
-        .update(dataObj)
-        .then((obj : any) => {
-          resolve(obj);
-        })
-        .catch((error : any) => {
-          reject(error);
-        });
-      });
-    }
 }

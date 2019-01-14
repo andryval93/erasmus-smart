@@ -23,7 +23,7 @@
       <!--Metto tutte le sedi dentro la combo box "Sedi"-->
       <ion-select [(ngModel)]="Sedi" (ngModelChange)="onChangeSede(Sedi)">
 
-        <ion-option *ngFor='let locationSede of locationsSedi'>{{ locationSede.nome }}</ion-option>
+        <ion-option *ngFor='let locationSede of locationsSedi'>{{ locationSede.uni_name }}</ion-option>
         <ion-option>Generic</ion-option>
       </ion-select>
     </ion-item>
