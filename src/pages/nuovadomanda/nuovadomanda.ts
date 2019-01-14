@@ -3,7 +3,7 @@ import { IonicPage, NavController } from 'ionic-angular';
 import { QeaServiceProvider } from '../../providers/service/qeaService';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AlertController } from 'ionic-angular';
-import { ServiceProvider } from '../../providers/service/stepperService';
+import { ServiceProvider } from '../../providers/service/stepService';
 import { NewsPageComponent } from '../news/news';
 
 
@@ -146,7 +146,7 @@ export class NuovadomandaPageComponent {
     * @private
     * @description      Defines the name of the database collection
     */
-   private _COLLSedi: string = "Sedi";
+   private _COLLSedi: string = "Reviews";
 
    /**
     * @name locationsSedi
@@ -167,7 +167,7 @@ export class NuovadomandaPageComponent {
        * @return {none}
        */
    retrieveCollectionSedi(): void {
-      this.DBistanceSedi.getDocuments(this._COLLSedi)
+      this.DBistanceSedi.getStepsDocuments(this._COLLSedi)
          .then((dataSedi) => {
 
             this.locationsSedi = dataSedi;
@@ -195,8 +195,15 @@ export class NuovadomandaPageComponent {
       let idDocumento: string;
       for (let i = 0; 1 < this.locations.length; i++) {
          var str1 = new String(this.locations[i].Sede);
+         console.log(str1.localeCompare(this.sceltaSede.substring(0)) + " localeCompare");
          if (str1.localeCompare(this.sceltaSede.substring(0)) == 0) {
+            if(this.locations[i].Domande == undefined){
+               this.arrayDomande = new Array<any>();
+            }
+            else{
             this.arrayDomande = this.locations[i].Domande;
+            }
+            console.log(this.arrayDomande + " arrayDomande");
             idDocumento = this.locations[i].id;
             break;
          } if (i == this.locations.length - 1) {

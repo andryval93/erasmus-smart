@@ -23,7 +23,8 @@ import { Firebase } from '@ionic-native/firebase';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestoreModule } from "angularfire2/firestore";
-import { ServiceProvider } from '../providers/service/stepperService';
+import { AngularFireStorageModule } from "angularfire2/storage";
+import { ServiceProvider } from '../providers/service/stepService';
 import { InserisciRecensionePageComponent } from '../pages/inserisci-recensione/inserisci-recensione'
 import { QeaServiceProvider } from '../providers/service/qeaService';
 import { RispostePageComponent } from '../pages/risposte/risposte';
@@ -35,10 +36,12 @@ import { AccountService } from '../providers/service/accountService';
 import { MessageProvider } from '../providers/service/messagingService'
 import { NewsServiceProvider } from '../providers/service/newsService';
 import { MessageComponent } from '../components/message/message';
+import { FileComponent } from '../components/file/file';
 import { InserisciRecensioneService } from '../providers/service/inserisciRecensioneService';
 import { Ionic2RatingModule } from 'ionic2-rating';
 import { GuidaLAPageComponent } from '../pages/guida-LA/guida-LA';
 import { ConsiglicolloquioPageComponent } from '../pages/consiglicolloquio/consiglicolloquio';
+import { GuidaCandidaturaPageComponent } from '../pages/guidacandidatura/guidacandidatura';
 
 @NgModule({
   declarations: [
@@ -60,8 +63,10 @@ import { ConsiglicolloquioPageComponent } from '../pages/consiglicolloquio/consi
     ReviewsListPageComponent,
     ReviewMainPageComponent,
     MessageComponent,
+    FileComponent,
     GuidaLAPageComponent,
-    ConsiglicolloquioPageComponent
+    ConsiglicolloquioPageComponent,
+    GuidaCandidaturaPageComponent
   ],
   imports: [
     BrowserModule,
@@ -71,9 +76,8 @@ import { ConsiglicolloquioPageComponent } from '../pages/consiglicolloquio/consi
     IonicStepperModule,
     IonicModule.forRoot(MyAppComponent),
     Ionic2RatingModule,
-    AngularFireModule.initializeApp(ENV.firebase)
-   
-
+    AngularFireModule.initializeApp(ENV.firebase),
+    AngularFireStorageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -93,8 +97,10 @@ import { ConsiglicolloquioPageComponent } from '../pages/consiglicolloquio/consi
     ReviewsListPageComponent,
     ReviewMainPageComponent,
     MessageComponent,
+    FileComponent,
     GuidaLAPageComponent,
-    ConsiglicolloquioPageComponent
+    ConsiglicolloquioPageComponent,
+    GuidaCandidaturaPageComponent
   ],
   providers: [
     StatusBar,
