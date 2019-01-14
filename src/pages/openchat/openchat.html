@@ -35,6 +35,7 @@
       <textarea class="messageText" rows="1" [formControl]="text" placeholder="Inserisci il tuo testo qui" required="required"></textarea>
       <input class="inputType" type="submit" value="">
     </form>
+    <div class="messageText" id="alternativeDiv" [style.display]="!chatOpen ? 'block' : 'none'">Documenti PDF scambiati con l'utente</div>
   </div>
 </ion-content>
 
