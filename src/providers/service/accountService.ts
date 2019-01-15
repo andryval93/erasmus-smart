@@ -35,11 +35,11 @@ export class AccountService {
   //private DBistance: any;
   DBistance: any;
   public undef = undefined;
-
-  constructor(public afAuth: AngularFireAuth) {
+  public afAuth: AngularFireAuth
+  constructor() {
     console.log('Hello DatabaseProvider Provider');
     //this.DBistance = firebase.firestore();
-    afAuth.authState.subscribe(user => {
+    this.afAuth.authState.subscribe(user => {
 			this.user = user;
 			
 		});
@@ -129,6 +129,23 @@ export class AccountService {
         .collection(collectionObj)
         .doc(docID)
         .delete()
+        .then((obj: any) => {
+          resolve(obj);
+        })
+        .catch((error: any) => {
+          reject(error);
+        });
+    });
+  }
+
+  updateDocument(collectionObj: string,
+    docID: string,
+    dataObj: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.DBistance
+        .collection(collectionObj)
+        .doc(docID)
+        .update(dataObj)
         .then((obj: any) => {
           resolve(obj);
         })
