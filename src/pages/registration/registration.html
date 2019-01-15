@@ -31,7 +31,7 @@ lettera.
 				  	
 				<ion-item class="boxFormItem">
 				  <ion-label color="es_white">Nome</ion-label>
-				  <ion-input type="text" name="name" required formControlName="name"></ion-input>
+				  <ion-input id="name" type="text" name="name" required formControlName="name"></ion-input>
 				</ion-item>
 				<div class="error" *ngIf="form.get('name').hasError('required') && form.get('name').touched" style="color: red; padding-top: 0.2rem">
 					Campo obbligatorio
@@ -45,7 +45,7 @@ lettera.
 				  
 				<ion-item class="boxFormItem">
 				  <ion-label color="es_white">Cognome</ion-label>
-				  <ion-input type="text" name="surname" required formControlName="surname"></ion-input>
+				  <ion-input id="surname" type="text" name="surname" required formControlName="surname"></ion-input>
 				</ion-item>
 				<div class="error" *ngIf="form.get('surname').hasError('required') && form.get('surname').touched" style="color: red; padding-top: 0.2rem">
 					Campo obbligatorio
@@ -81,7 +81,7 @@ lettera.
 
 				<ion-item class="boxFormItem">
 					<ion-label color="es_white">Data di nascita</ion-label>
-					<ion-input type="date" name="birthDay" required formControlName="birthDay"></ion-input>
+					<ion-input id="date" type="date" name="birthDay" required formControlName="birthDay"></ion-input>
 				</ion-item>
 				<div class="error" *ngIf="form.get('birthDay').hasError('required') && form.get('birthDay').touched" style="color: red; padding-top: 0.2rem">
 					Campo obbligatorio
@@ -92,7 +92,7 @@ lettera.
 				
 				<ion-item class="boxFormItem">
 					<ion-label color="es_white">Luogo di Nascita</ion-label>
-					<ion-input type="text" name="birthPlace" required formControlName="birthPlace"></ion-input>
+					<ion-input id="place" type="text" name="birthPlace" required formControlName="birthPlace"></ion-input>
 				</ion-item>
 				<div class="error" *ngIf="form.get('birthPlace').hasError('required') && form.get('birthPlace').touched" style="color: red; padding-top: 0.2rem">
 					Campo obbligatorio
@@ -109,7 +109,7 @@ lettera.
 				
 				<ion-item class="boxFormItem">
 					<ion-label color="es_white">Codice Fiscale</ion-label>
-					<ion-input type="text" name="fiscalCode" formControlName="fiscalCode" require></ion-input>
+					<ion-input id="cf" type="text" name="fiscalCode" formControlName="fiscalCode" require></ion-input>
 				</ion-item>
 				<div class="error" *ngIf="form.get('fiscalCode').hasError('required') && form.get('fiscalCode').touched" style="color: red; padding-top: 0.2rem">
 					Campo obbligatorio
@@ -157,7 +157,7 @@ lettera.
 
 				<ion-item class="boxFormItem">
 					<ion-label color="es_white">E-Mail</ion-label>
-					<ion-input type="text" name="email" formControlName="email" required></ion-input>
+					<ion-input id="emailr" type="text" name="email" formControlName="email" required></ion-input>
 				</ion-item>
 				<div class="error" *ngIf="form.get('email').hasError('required') && form.get('email').touched" style="color: red; padding-top: 0.2rem">
 					Campo obbligatorio
@@ -171,7 +171,7 @@ lettera.
 				
 				<ion-item class="boxFormItem">
 					<ion-label color="es_white">Password</ion-label>
-					<ion-input type="password" name="password" formControlName="password" required></ion-input>
+					<ion-input id="passr" type="password" name="password" formControlName="password" required></ion-input>
 				</ion-item>
 				<div class="error" *ngIf="form.get('password').hasError('required') && form.get('password').touched" style="color: red; padding-top: 0.2rem">
 					Campo obbligatorio
@@ -185,7 +185,7 @@ lettera.
 					  
 				<ion-item class="boxFormItem">
 					<ion-label color="es_white">Conferma Password</ion-label>
-					<ion-input type="password" name="confirmPassword" formControlName="confirmPassword"></ion-input>
+					<ion-input id="check_pass"type="password" name="confirmPassword" formControlName="confirmPassword"></ion-input>
 				  </ion-item>
 				  <div class="error" style="color: red; padding-top: 0.2rem">
 					{{ errorMessagePassword }}
@@ -194,7 +194,7 @@ lettera.
 				
 				<ion-item class="boxFormItem">
 				<ion-label color="es_white">Acconsento al trattamento dei dati personali</ion-label>
-					<ion-checkbox formControlName="privacyCheck" color="es_white"></ion-checkbox>
+					<ion-checkbox id="privacy" formControlName="privacyCheck" color="es_white"></ion-checkbox>
 				</ion-item>
 				<div class="error" *ngIf="form.get('privacyCheck').hasError('required') && form.get('privacyCheck').touched" style="color: red; padding-top: 0.2rem">
 					Accettare le condizioni sulla privacy
