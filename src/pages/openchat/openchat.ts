@@ -106,34 +106,38 @@ export class OpenchatPageComponent {
    * @author Giosuè Sulipano
    */
   sendUserFile($event) {
-    let timeUpload = this.moment().format("DDMMYYYY_hhmmA");
-    let path = this.idChat + "/" + timeUpload;
-    console.log("File upload task sent to (MessagingService)uploadFile!");
-    this.presentToast("loading");
-    this.serviceProv.uploadFile($event, path).then(
-      (url) => {
-        this.toast.dismiss();
-        console.log("File uploaded!");
-        //qui si potrebbe inviare una notifica sotto forma di messaggio da far visualizzare ad entrambi
-        let fileInfo = {
-          author: firebase.auth().currentUser.email,
-          name: $event.target.files[0].name,
-          uploadDate: this.moment().format("DD-MM-YYYY, HH:mm:ss"),
-          urlFile: url,
-        }
-        if(fileInfo.name.substring(fileInfo.name.length-4, fileInfo.name.length) == ".pdf"){
+    if ($event.target.files[0].name.substring($event.target.files[0].name.length-4, $event.target.files[0].name.length) == ".pdf") {
+      let timeUpload = this.moment().format("DDMMYYYY_hhmmA");
+      let path = this.idChat + "/" + timeUpload;
+      console.log("File upload task sent to (MessagingService)uploadFile!");
+      this.presentToast("loading");
+      this.serviceProv.uploadFile($event, path).then(
+        (url) => {
+          this.toast.dismiss();
+          console.log("File uploaded!");
+          //qui si potrebbe inviare una notifica sotto forma di messaggio da far visualizzare ad entrambi
+          let fileInfo = {
+            author: firebase.auth().currentUser.email,
+            name: $event.target.files[0].name,
+            uploadDate: this.moment().format("DD-MM-YYYY, HH:mm:ss"),
+            urlFile: url,
+          }
           this.serviceProv.saveFileInfo(this.idChat, fileInfo);
           this.presentToast("success");
-      }else{alert("Formato File Errato")}},
-      () => {
-        console.log("File not uploaded!");
-        this.toast.dismiss();
-        this.presentToast("error");
-      }).catch((error) => {
-        console.log(error);
-        this.toast.dismiss();
-        this.presentToast("error");
-      });
+        },
+        () => {
+          console.log("File not uploaded!");
+          this.toast.dismiss();
+          this.presentToast("error");
+        }).catch((error) => {
+          console.log(error);
+          this.toast.dismiss();
+          this.presentToast("error");
+        }
+      );
+    } else {
+      this.presentToast("extension");
+    }
   }
 
   /**
@@ -158,6 +162,13 @@ export class OpenchatPageComponent {
       case 'success':
         this.toast = this.toastCtrl.create({
           message: 'Il file è stato caricato con successo!',
+          duration: 2000
+        });
+        this.toast.present();
+        break;
+      case 'extension':
+        this.toast = this.toastCtrl.create({
+          message: 'Formato errato! Ricordati che puoi caricare solo file .pdf!',
           duration: 2000
         });
         this.toast.present();
