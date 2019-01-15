@@ -85,19 +85,19 @@ describe('Service: QeaService', () => {
   });
 
   /* insertAnswer TEST */
-  it('insertAnswer TEST ', function (done) {
-    let service: QeaServiceProvider = new QeaServiceProvider();
+//   it('insertAnswer TEST ', function (done) {
+//     let service: QeaServiceProvider = new QeaServiceProvider();
 
-    expect(service.insertAnswer("TEST_COL", "TEST_DOC", "TEST_CONTENT")).toBeDefined();
-    done()
-  });
+//     expect(service.insertAnswer("TEST_COL", "TEST_DOC", "TEST_CONTENT")).toBeDefined();
+//     done()
+//   });
 
-  /* insertQuestion TEST */
-  it('insertQuestion TEST ', function (done) {
-    let service: QeaServiceProvider = new QeaServiceProvider();
+//   /* insertQuestion TEST */
+//   it('insertQuestion TEST ', function (done) {
+//     let service: QeaServiceProvider = new QeaServiceProvider();
 
-    expect(service.insertQuestion("TEST_COL", "TEST_DOC", "TEST_CONTENT")).toBeDefined();
-    done()
-  });
+//     expect(service.insertQuestion("TEST_COL", "TEST_DOC", "TEST_CONTENT")).toBeDefined();
+//     done()
+//   });
 
-}); 
+// }); 
