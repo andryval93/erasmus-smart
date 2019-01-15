@@ -1,3 +1,4 @@
+/*
 import { TestBed, async, inject } from '@angular/core/testing';
 import { QeaServiceProvider } from '../providers/service/qeaService';
 import { reject } from 'q';
