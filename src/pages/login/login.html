@@ -8,13 +8,13 @@
 			<ion-item>
 				<ion-icon name="contact" item-start></ion-icon>
 				<ion-label fixed>E-Mail</ion-label>
-				<ion-input type="text" name="email" required formControlName="email"></ion-input>
+				<ion-input type="text" name="email" required formControlName="email" id="email"></ion-input>
 			</ion-item>
 		
 			<ion-item>
 				<ion-icon name="lock" item-start></ion-icon>
 				<ion-label fixed>Password</ion-label>
-				<ion-input type="password" name="password" required formControlName="password"></ion-input>
+				<ion-input type="password" name="password" required formControlName="password" id="pass"></ion-input>
 			</ion-item>
 			</ion-list>
 			
@@ -28,7 +28,7 @@
 			</div>
 				
 			<ion-list>
-				<button ion-button large icon-start block clear color="es_white" (click)="signup()">
+				<button ion-button large icon-start block clear color="es_white" (click)="signup()" id="regButton">
 					<ion-icon name="person-add"></ion-icon>
 					Sign up
 				</button>
