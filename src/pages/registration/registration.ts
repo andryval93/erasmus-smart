@@ -90,7 +90,7 @@ export class RegistrationPageComponent {
 		}
 
 		//Calcola il codice fiscale con i dati inseriti
-		/* TESTATO e FUNZIONANTE CON BGLLDA80B11H703B ovvero Aldo Baglio M 11/02/1980 Salerno
+		/* FUNZIONANTE CON BGLLDA80B11H703B ovvero Aldo Baglio M 11/02/1980 Salerno
 			e PLACCC98B22F839E Cicco Paolo M 22/02/1998 Napoli  */
 		this.cf = new CodiceFiscale({
 			name: this.data.name,
