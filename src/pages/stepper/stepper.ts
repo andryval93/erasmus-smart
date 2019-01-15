@@ -52,6 +52,9 @@ export class StepperPageComponent {
    swiper: any;
    slidesHtml: { title: string; description: string; image: string; }[];
 
+   
+
+
    retrieveCollection(): void {
       this.DBistance.getStepsDocuments(this._COLL)
          .then((data) => {
@@ -412,4 +415,5 @@ export class StepperPageComponent {
    goToGuidaCandidatura() {
       this.navCtrl.push(GuidaCandidaturaPageComponent);
    }
+ 
 }
