@@ -1,6 +1,6 @@
 import { ReviewsListPageComponent } from '../reviews-list/reviews-list';
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, ToastController } from 'ionic-angular';
 import { reviewService } from '../../providers/service/reviewsService'
 /**
  * Generated class for the ReviewMainPage page.
@@ -23,7 +23,7 @@ export class ReviewMainPageComponent {
   //Unis: any;
   Universities: Array<{ id: String, name: String}>;
 
-  constructor(public navCtrl: NavController, private DBIstance: reviewService) {
+  constructor(public navCtrl: NavController, private DBIstance: reviewService, public toastCtrl: ToastController) {
     this.Comparison = "Seleziona sede";
     //this.Unis=this.DBIstance.getUniversities("Universities");//["Seleziona sede","UNISA","UNINA","UNIBO","UNICA","UNIMI","UNI","DUI","TREI"];
     this.Universities = [];
@@ -60,11 +60,24 @@ export class ReviewMainPageComponent {
   ionViewDidLoad() {
     console.log('ionViewDidLoad UiRegPage');
   }
+
+  presentToast() {
+    let toast = this.toastCtrl.create({
+      message: 'Seleziona la sede per cui visualizzare le recensioni!',
+      duration: 3000,
+      position: 'top'
+    });
+    
+    toast.present();
+  }
+
   goToReviews() {
     if (this.Sede != null && this.Sede != this.Comparison) {
       //console.log(this.Sede);
       localStorage.setItem("University", this.Sede);
       this.navCtrl.push(ReviewsListPageComponent, { University: this.Sede});
+    } else {
+      this.presentToast();
     }
   }
 

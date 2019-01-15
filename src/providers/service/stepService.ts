@@ -22,10 +22,11 @@ export class ServiceProvider {
   async getSingleton(){
     this.DBistance = SingletonDatabase.getInstance();
   }
+ 
   /*
    * Return documents from specific database collection
    */
-  async getStepsDocuments(collectionObj: string): Promise<any> {
+   getStepsDocuments(collectionObj: string): Promise<any> {
     let obj: any = [];
     return new Promise((resolve, reject) => {
       this.DBistance.collection(collectionObj)

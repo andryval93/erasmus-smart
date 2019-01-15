@@ -7,7 +7,7 @@ describe('Test Bean: Message', () => {
     beforeEach(function () {
        message = new Message("","","","")
        spyOn(message, 'setSender');
-       message.setSender("Andrea")
+       message.setSender("Andrea");
     });
 
     it("tracks that the spy was called", function() {

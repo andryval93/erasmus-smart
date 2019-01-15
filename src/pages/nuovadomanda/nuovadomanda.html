@@ -21,9 +21,9 @@
       <ion-label>Sede</ion-label>
 
       <!--Metto tutte le sedi dentro la combo box "Sedi"-->
-      <ion-select [(ngModel)]="Sedi" (ngModelChange)="onChangeSede(Sedi)">
+      <ion-select id='sedi' [(ngModel)]="Sedi" (ngModelChange)="onChangeSede(Sedi)">
 
-        <ion-option *ngFor='let locationSede of locationsSedi'>{{ locationSede.uni_name }}</ion-option>
+        <ion-option id='sede' *ngFor='let locationSede of locationsSedi'>{{ locationSede.uni_name }}</ion-option>
         <ion-option>Generic</ion-option>
       </ion-select>
     </ion-item>
@@ -36,12 +36,12 @@
 
       <ion-item>
         <ion-label floating>Titolo</ion-label>
-        <ion-input formControlName='Domanda' [(ngModel)]='Domanda' type="Domanda"  maxlength="40"></ion-input>
+        <ion-input id='titolo' formControlName='Domanda' [(ngModel)]='Domanda' type="Domanda"  maxlength="40"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label floating>Descrizione</ion-label>
-        <ion-textarea formControlName='Descrizione' [(ngModel)]='Descrizione' type="text" rows="10"  maxlength="200"></ion-textarea>
+        <ion-textarea id='descrizione' formControlName='Descrizione' [(ngModel)]='Descrizione' type="text" rows="10"  maxlength="200"></ion-textarea>
       </ion-item>
 
     </ion-list>

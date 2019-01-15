@@ -38,7 +38,7 @@ export class RegistrationPageComponent {
 			name: ['', Validators.compose([Validators.required, Validators.maxLength(16), Validators.pattern('^[a-zA-Z]+$')])],
 			surname: ['', Validators.compose([Validators.required, Validators.maxLength(16), Validators.pattern('^[a-zA-Z]+$')])],
 			birthDay: ['', Validators.required],
-			birthPlace: ['', Validators.compose([Validators.required, Validators.maxLength(16), Validators.pattern('^[a-zA-Z]+$')])],
+			birthPlace: ['', Validators.compose([Validators.required, Validators.maxLength(40), Validators.pattern('^[a-zA-Z]+[\\s]*[a-zA-Z]*[\\s]*[a-zA-Z]*$')])],
 			fiscalCode: ['', Validators.compose([Validators.required, Validators.maxLength(16), Validators.pattern('^[a-zA-Z0-9]+$')])],
 			gender: ['M', Validators.required],
 			userType: ['student', Validators.required],
