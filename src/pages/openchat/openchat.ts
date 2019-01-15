@@ -122,9 +122,9 @@ export class OpenchatPageComponent {
           urlFile: url,
         }
         if(fileInfo.name.substring(fileInfo.name.length-4, fileInfo.name.length) == ".pdf"){
-        this.serviceProv.saveFileInfo(this.idChat, fileInfo);
-        this.presentToast("success");
-      }},
+          this.serviceProv.saveFileInfo(this.idChat, fileInfo);
+          this.presentToast("success");
+      }else{alert("Formato File Errato")}},
       () => {
         console.log("File not uploaded!");
         this.toast.dismiss();
