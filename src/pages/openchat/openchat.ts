@@ -198,8 +198,6 @@ export class OpenchatPageComponent {
     })
   }
 
-
-
   showChat() {
     this.chatOpen = true;
   }
