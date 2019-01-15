@@ -71,7 +71,6 @@ describe('Service: QeaService', () => {
 
       var rand = Math.floor(Math.random() * result.length);
       console.log("rand test", rand);
-
       expect(result[rand].id).toBeDefined()
       expect(result[rand].Domande[0]).toBeDefined()
       expect(result[rand].Sede).toBeDefined()
@@ -86,19 +85,19 @@ describe('Service: QeaService', () => {
   });
 
   /* insertAnswer TEST */
-//   it('insertAnswer TEST ', function (done) {
-//     let service: QeaServiceProvider = new QeaServiceProvider();
+  it('insertAnswer TEST ', function (done) {
+    let service: QeaServiceProvider = new QeaServiceProvider();
 
-//     expect(service.insertAnswer("TEST_COL", "TEST_DOC", "TEST_CONTENT")).toBeDefined();
-//     done()
-//   });
+    expect(service.insertAnswer("TEST_COL", "TEST_DOC", "TEST_CONTENT")).toBeDefined();
+    done()
+  });
 
-//   /* insertQuestion TEST */
-//   it('insertQuestion TEST ', function (done) {
-//     let service: QeaServiceProvider = new QeaServiceProvider();
+  /* insertQuestion TEST */
+  it('insertQuestion TEST ', function (done) {
+    let service: QeaServiceProvider = new QeaServiceProvider();
 
-//     expect(service.insertQuestion("TEST_COL", "TEST_DOC", "TEST_CONTENT")).toBeDefined();
-//     done()
-//   });
+    expect(service.insertQuestion("TEST_COL", "TEST_DOC", "TEST_CONTENT")).toBeDefined();
+    done()
+  });
 
-// }); 
+}); 
