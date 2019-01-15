@@ -77,7 +77,7 @@ export class reviewService {
             .forEach((doc: any) => {
               obj.push({
                 id: doc.id,
-                nome: doc.data().nome,
+                nome: doc.data().uni_name,
               });
             });
 

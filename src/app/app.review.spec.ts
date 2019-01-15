@@ -21,16 +21,24 @@ describe('REVIEW TEST', () => {
   }));
 
 
-  it('getReviewDocuments TEST : Prende un Oggetto Randomico dal Database e controlla se è consistente', function (done) {
-
+  it('getUniversities TEST : Prende un Oggetto Randomico dal Database e controlla se è consistente', function (done) {
     let service: reviewService = new reviewService();
-    service.getUniversities("Sedi")
-      .then((result) => {
+    service.getUniversities("Reviews").then((result) => {
 
         var rand = Math.floor((Math.random() * result.length));
+        var randDom = Math.floor((Math.random() * (result[rand].ReviewsList).length));
+        
         console.log("rand test ", rand);
-        expect(result[rand].id).toBeDefined()
-        expect(result[rand].nome).toBeDefined()
+        console.log("rand test ", randDom);
+
+        expect(result[rand].id).not.toBeDefined()
+        expect(result[rand].uni_name).not.toBeDefined()
+        expect(result[rand].ReviewsList[randDom]).not.toBeDefined()
+        expect(result[rand].ReviewsList[randDom].date).not.toBeDefined()
+        expect(result[rand].ReviewsList[randDom].recensore).not.toBeDefined()
+        expect(result[rand].ReviewsList[0].starts).not.toBeDefined()
+        expect(result[rand].ReviewsList[randDom].text).not.toBeDefined()
+
         if ((result[rand].id) != undefined) {
           done()
         }
@@ -39,7 +47,6 @@ describe('REVIEW TEST', () => {
         expect(error).toBeDefined();
         done()
       });
-
   });
 
 
