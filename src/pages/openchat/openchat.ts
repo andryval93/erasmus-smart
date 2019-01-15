@@ -121,9 +121,10 @@ export class OpenchatPageComponent {
           uploadDate: this.moment().format("DD-MM-YYYY, HH:mm:ss"),
           urlFile: url,
         }
+        if(fileInfo.name.substring(fileInfo.name.length-4, fileInfo.name.length) == ".pdf"){
         this.serviceProv.saveFileInfo(this.idChat, fileInfo);
         this.presentToast("success");
-      },
+      }},
       () => {
         console.log("File not uploaded!");
         this.toast.dismiss();

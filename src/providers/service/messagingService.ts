@@ -28,8 +28,8 @@ export class MessageProvider {
     DBistance: any;
     //url: Observable<string | null>;
     url: Promise<any>;
-
-    constructor(private storage: AngularFireStorage) {
+    storage: AngularFireStorage;
+    constructor() {
         this.getSingleton();
     }
     
