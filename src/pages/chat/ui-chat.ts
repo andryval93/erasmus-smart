@@ -127,6 +127,11 @@ export default class UiChatPageComponent{
       console.log("retesting", this.students)
       this.DBAccountInstance.denyRequest(firebase.auth().currentUser.email, obj);
     });
+
+    //cancellare : status , sede ,tutor , e reimpostare step : con il numero 3
+    /*this.DBAccountInstance.getAccount('Account', emailStudent).then((data)=>{
+        
+    });*/
   }
 
 

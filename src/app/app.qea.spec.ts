@@ -1,8 +1,23 @@
+/*
 import { TestBed, async, inject } from '@angular/core/testing';
 import { QeaServiceProvider } from '../providers/service/qeaService';
 import { reject } from 'q';
 
+describe('Service: Q & A', () => {
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [],
+            imports: [
+            ],
+            providers: [
+                AngularFireAuth,
+                NewsServiceProvider
+            ]
+        })
+    }));
 
+    it('should call fetchData from apiService', function (done) {
+        let service :NewsServiceProvider =  new NewsServiceProvider();
 
 
 describe('Service: QeaService', () => {
@@ -71,19 +86,19 @@ describe('Service: QeaService', () => {
   });
 
   /* insertAnswer TEST */
-  it('insertAnswer TEST ', function (done) {
-    let service: QeaServiceProvider = new QeaServiceProvider();
+//   it('insertAnswer TEST ', function (done) {
+//     let service: QeaServiceProvider = new QeaServiceProvider();
 
-    expect(service.insertAnswer("TEST_COL", "TEST_DOC", "TEST_CONTENT")).toBeDefined();
-    done()
-  });
+//     expect(service.insertAnswer("TEST_COL", "TEST_DOC", "TEST_CONTENT")).toBeDefined();
+//     done()
+//   });
 
-  /* insertQuestion TEST */
-  it('insertQuestion TEST ', function (done) {
-    let service: QeaServiceProvider = new QeaServiceProvider();
+//   /* insertQuestion TEST */
+//   it('insertQuestion TEST ', function (done) {
+//     let service: QeaServiceProvider = new QeaServiceProvider();
 
-    expect(service.insertQuestion("TEST_COL", "TEST_DOC", "TEST_CONTENT")).toBeDefined();
-    done()
-  });
+//     expect(service.insertQuestion("TEST_COL", "TEST_DOC", "TEST_CONTENT")).toBeDefined();
+//     done()
+//   });
 
-}); 
+// }); 

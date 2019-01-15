@@ -3,13 +3,6 @@ import 'rxjs/add/operator/map';
 import 'firebase/firestore';
 import { SingletonDatabase } from '../../model/Database';
 
-/*
-
-  Generated class for the DatabaseProvider provider.
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-
-*/
 
 @Injectable()
 
