@@ -68,16 +68,14 @@ describe('STEPPER TEST', () => {
         console.log("rand test " , rand ) ; 
       
        expect(result[rand].id).toBeDefined()
-      /* expect(result[rand].name).toBeDefined()
+       expect(result[rand].name).toBeDefined()
        expect(result[rand].surname).toBeDefined()
        expect(result[rand].userType).toBeDefined()
-       expect(result[rand].step).toBeDefined()
+     /*  expect(result[rand].step).toBeDefined()
        expect(result[rand].status).toBeDefined()
        expect(result[rand].sede).toBeDefined()
        expect(result[rand].tutor).toBeDefined()*/
   /* questi expect sono tra commento perchè il database non è consistente 
-
-
 
       /* Ulteriore controllo da cancellare in futuro */ 
        /* expect(result[n].id).toEqual("CiNxBtKSyvp0yAaUisUR")
@@ -85,8 +83,6 @@ describe('STEPPER TEST', () => {
         expect(result[n].nazione).toEqual("Italia")
         expect(result[n].uni_name).toEqual("Università di Milano")*/
         
-
-       
         if (("a.massaro196@gmail.com".localeCompare(result[n].id)) == 0) {
           done()
         }
