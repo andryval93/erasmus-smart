@@ -36,7 +36,7 @@ describe('App', () => {
     })
   
   
-    describe('logged not soccessfully no pass', () => {
+    describe('login error no pass', () => {
       beforeEach(() => {
         page.navigateTo('/');
       });
@@ -53,7 +53,26 @@ describe('App', () => {
     })
 
 
-    describe('logged not soccessfully wrong mail and pass', () => {
+    describe('login error wrong mail and pass', () => {
+      beforeEach(() => {
+        page.navigateTo('/');
+      });
+  
+      it('news is not Displayed', () => {
+          let e = element(by.id('email'));
+          let p = element(by.id('pass'));
+          browser.actions().click(e).sendKeys("a.massaro19@gmail.com").perform();
+          browser.actions().click(p).sendKeys("1234").perform();
+          element(by.id('loginButton')).click();
+        browser.wait(function () {
+          return e.isDisplayed();
+        }, 2000);
+      });
+    })
+
+
+
+    describe('registration error not soccessfully wrong mail and pass', () => {
       beforeEach(() => {
         page.navigateTo('/');
       });
@@ -91,6 +110,9 @@ describe('App', () => {
         , 10000)
     });
   })
+
+
+
 
 
 });
