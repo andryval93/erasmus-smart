@@ -11,7 +11,6 @@ export class ServiceProvider {
 
   //private DBistance: any;
   DBistance: any;
-
    constructor() { 
     
  
@@ -19,8 +18,10 @@ export class ServiceProvider {
   
        
   }
+
   async getSingleton(){
-    this.DBistance = SingletonDatabase.getInstance();
+    this.DBistance = SingletonDatabase.getInstance(); 
+
   }
  
   /*
