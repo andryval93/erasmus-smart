@@ -3,7 +3,21 @@ import { TestBed, async, inject } from '@angular/core/testing';
 import { QeaServiceProvider } from '../providers/service/qeaService';
 import { reject } from 'q';
 
+describe('Service: Q & A', () => {
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [],
+            imports: [
+            ],
+            providers: [
+                AngularFireAuth,
+                NewsServiceProvider
+            ]
+        })
+    }));
 
+    it('should call fetchData from apiService', function (done) {
+        let service :NewsServiceProvider =  new NewsServiceProvider();
 
 
 describe('Service: QeaService', () => {
