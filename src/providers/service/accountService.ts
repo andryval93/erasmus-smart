@@ -31,33 +31,33 @@ import { AngularFireAuth } from 'angularfire2/auth';
 
 export class AccountService {
   public user: firebase.User;
-	static user: any;
+  static user: any;
   //private DBistance: any;
   DBistance: any;
   public undef = undefined;
-  public afAuth: AngularFireAuth
-  constructor() {
+
+  constructor(public afAuth: AngularFireAuth) {
     console.log('Hello DatabaseProvider Provider');
     //this.DBistance = firebase.firestore();
     this.afAuth.authState.subscribe(user => {
-			this.user = user;
-			
-		});
+      this.user = user;
+
+    });
     this.DBistance = SingletonDatabase.getInstance();
   }
 
   registration(collectionObj: string, docId: string,
     dataObj: any): Promise<any> {
     return new Promise((resolve, reject) => {
-        this.DBistance.collection(collectionObj).doc(docId).set(dataObj)
-            .then((obj: any) => {
-                resolve(obj);
-            })
-            .catch((error: any) => {
-                reject(error);
-            });
+      this.DBistance.collection(collectionObj).doc(docId).set(dataObj)
+        .then((obj: any) => {
+          resolve(obj);
+        })
+        .catch((error: any) => {
+          reject(error);
+        });
     });
-}
+  }
 
   getAccount(collectionObj: string, docID: string): Promise<any> {
     return new Promise((resolve, reject) => {
@@ -114,10 +114,10 @@ export class AccountService {
   }
 
   signInWithEmail(credentials) {
-		console.log('Sign in with email');
-		return this.afAuth.auth.signInWithEmailAndPassword(credentials.email,
-			 credentials.password);
-	}
+    console.log('Sign in with email');
+    return this.afAuth.auth.signInWithEmailAndPassword(credentials.email,
+      credentials.password);
+  }
 
   /**
    * Delete an existing document from a selected database collection
