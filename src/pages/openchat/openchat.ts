@@ -106,6 +106,8 @@ export class OpenchatPageComponent {
    * @author Giosuè Sulipano
    */
   sendUserFile($event) {
+    console.log('EVENTO: ', $event);
+    console.log('FILE: ', $event.target.files[0]);
     if ($event.target.files[0].name.substring($event.target.files[0].name.length-4, $event.target.files[0].name.length) == ".pdf") {
       let timeUpload = this.moment().format("DDMMYYYY_hhmmA");
       let path = this.idChat + "/" + timeUpload;
