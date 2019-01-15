@@ -4,9 +4,6 @@ import { reject } from 'q';
 
 
 describe('STEPPER TEST', () => {
-
-  let originalTimeout: number;
-
   beforeEach((() => {
 
    /* this.originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
@@ -47,14 +44,12 @@ describe('STEPPER TEST', () => {
         expect(result[n].citta).toEqual("Milano")
         expect(result[n].nazione).toEqual("Italia")
         expect(result[n].uni_name).toEqual("Università di Milano")*/
-
-       
         if (("CiNxBtKSyvp0yAaUisUR".localeCompare(result[n].id)) == 0) {
           done()
         }
       }).catch(error => {
-        reject(error);
-        expect(error).toBeDefined();
+        /*reject(error);
+        expect(error).toBeDefined();*/
         done()
       });
 

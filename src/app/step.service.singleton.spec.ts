@@ -1,8 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-import { ServiceProvider } from '../../providers/service/stepService';
-import { reject } from 'q';
-import { StepperPageComponent } from '../../pages/stepper/stepper';
-import { SingletonDatabase } from '../../model/Database';
+import { ServiceProvider } from '../providers/service/stepService';
+import { SingletonDatabase } from '../model/Database';
+import { doesNotThrow } from 'assert';
 describe('STEPPER TEST', () => {
 
   beforeEach((() => {
@@ -19,11 +18,11 @@ describe('STEPPER TEST', () => {
     })
   }));
   
-  it('getSingleton() : TEST controlla se DBIstance viene creata una sola volta', function (done) {
+  it('getSingleton() (StepService + SingletonDatabase) : TEST controlla se DBIstance viene creata una sola volta', function (done) {
     let service: ServiceProvider = new ServiceProvider();
-    service.getSingleton();
+    //service.getSingleton();
     expect(SingletonDatabase.test).toBeTruthy();
-    done()
+ done()
   });
 
 });

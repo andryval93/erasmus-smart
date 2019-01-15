@@ -14,7 +14,8 @@ export class SingletonDatabase {
 
         if (this.test == false) {
             this.test = true ;
-            return firebase.firestore()
+            this.DBistance = firebase.firestore();
+            return this.DBistance
         } else {
             return this.DBistance
         }

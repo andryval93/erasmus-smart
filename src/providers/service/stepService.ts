@@ -20,7 +20,7 @@ export class ServiceProvider {
   }
 
   async getSingleton(){
-    this.DBistance = await SingletonDatabase.getInstance(); 
+    this.DBistance = SingletonDatabase.getInstance(); 
 
   }
  
