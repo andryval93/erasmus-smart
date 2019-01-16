@@ -137,22 +137,4 @@ export class AccountService {
         });
     });
   }
-
-  updateDocument(collectionObj: string,
-    docID: string,
-    dataObj: any): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.DBistance
-        .collection(collectionObj)
-        .doc(docID)
-        .update(dataObj)
-        .then((obj: any) => {
-          resolve(obj);
-        })
-        .catch((error: any) => {
-          reject(error);
-        });
-    });
-  }
-
 }

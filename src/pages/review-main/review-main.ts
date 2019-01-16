@@ -15,7 +15,7 @@ import { reviewService } from '../../providers/service/reviewsService'
   templateUrl: 'review-main.html',
 })
 export class ReviewMainPageComponent {
-  private Document: string ="Sedi";
+  private Document: string ="Reviews";
   private uniDocument: string ="nome";
   private idDocument: string="id";
   Sede: any;
@@ -45,7 +45,7 @@ export class ReviewMainPageComponent {
         else {
           //this.Unis = data;
           for (let i = 0; i < data.length; i++) {
-            //console.log("DDUniversity", data[i]);
+            //console.log("DDUniversity", data);
             this.Universities.push(
               {
                 id: data[i][this.idDocument],
