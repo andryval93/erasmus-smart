@@ -1,4 +1,4 @@
-/*
+
 import { reviewService } from '../providers/service/reviewsService';
 import { TestBed } from '@angular/core/testing';
 import { reject } from 'q';
@@ -78,4 +78,4 @@ describe('REVIEW TEST', () => {
     expect(service.addReview("TEST_COL", "TEST_DOC", "TEST_CONTENT")).toBeDefined();
     done()
   });
-});*/
+});
