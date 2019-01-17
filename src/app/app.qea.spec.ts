@@ -27,20 +27,19 @@ describe('Service: QeaService', () => {
   it('getAnswers Test: Prende un Oggetto Randomico dal Database e controlla se è consistente', function (done) {
     let service: QeaServiceProvider = new QeaServiceProvider();
     service.getAnswers("Q&A").then((result) => {
-
-      var rand = Math.floor((Math.random() * result.length));
-      var randDom = Math.floor((Math.random() * (result[rand].Domande).length));
+      let n: number = 0;
+      var rand = Math.floor(Math.random() * result.length) ;
+      var randDom = Math.floor(Math.random() * result[rand].Domande.length) ;
 
       console.log("rand test ", rand);
-      console.log("rand test ", randDom);
+
       expect(result[rand].id).toBeDefined()
-      expect(result[rand].Domande[randDom]).toBeDefined()
+      expect(result[rand].Domande[randDom]).not.toBeDefined()
       expect(result[rand].Domande[randDom].Descrizione).toBeDefined()
       expect(result[rand].Domande[randDom].Domanda).toBeDefined()
       expect(result[rand].Domande[randDom].risposte).toBeDefined()
       expect(result[rand].Sede).toBeDefined()
-
-      if ((result[rand].id) != undefined) {
+      if (("0PsKdTazywmJDavPMaCE".localeCompare(result[n].id)) == 0) {
         done()
       }
     }).catch(error => {
@@ -54,13 +53,16 @@ describe('Service: QeaService', () => {
     let service: QeaServiceProvider = new QeaServiceProvider();
     service.getQuestions("Q&A").then((result) => {
 
-      var rand = Math.floor(Math.random() * result.length);
+      var rand = Math.floor(Math.random() * result.length) ;
       console.log("rand test", rand);
 
       expect(result[rand].id).toBeDefined()
       expect(result[rand].Domande[0]).toBeDefined()
       expect(result[rand].Sede).toBeDefined()
       if ((result[rand].id) != undefined) {
+        done()
+      }
+      if ((result[rand].id).toComparede()) {
         done()
       }
     }).catch(error => {
