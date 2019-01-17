@@ -5,19 +5,19 @@ import 'firebase/firestore';
 
 export class SingletonDatabase {
     private static DBistance: firebase.firestore.Firestore;
-    static test: boolean = false;
+    static count: number = 0;
     private constructor() {
         SingletonDatabase.getInstance();
     }
 
     static getInstance(): firebase.firestore.Firestore {
-
-        if (this.test == false) {
-            this.test = true ;
-            this.DBistance = firebase.firestore();
-            return this.DBistance
+              
+        if (SingletonDatabase.DBistance != firebase.firestore()) {
+            this.count=this.count +1 ;
+            SingletonDatabase.DBistance = firebase.firestore();
+            return SingletonDatabase.DBistance;
         } else {
-            return this.DBistance
+            return SingletonDatabase.DBistance;
         }
 
     }

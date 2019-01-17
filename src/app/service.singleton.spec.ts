@@ -1,25 +1,30 @@
 import { TestBed } from '@angular/core/testing';
-import { ServiceProvider } from '../providers/service/stepService';
+import { StepService } from '../providers/service/stepService';
 import { SingletonDatabase } from '../model/Database';
-describe('STEPPER TEST', () => {
+import { QeaServiceProvider } from '../providers/service/qeaService';
+describe('ANYSERVICE + SINGLETONDATABASE INTEGRATION TEST', () => {
 
   beforeEach((() => {
-
-   /* this.originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;*/
     TestBed.configureTestingModule({
       declarations: [],
       imports: [
       ],
       providers: [
-        ServiceProvider,
+        StepService,
+        QeaServiceProvider
       ]
     })
   }));
-  
-  it('getSingleton() (StepService + SingletonDatabase) : TEST controlla se DBIstance viene creata una sola volta', function (done) {
-    expect(SingletonDatabase.test).toBeTruthy();
- done()
-  });
-
 });
+
+it('Testa se DBIstance viene creata una sola volta dopo che STEPSERVICE E QEASERVICE chiamano SINGLETONDATABASE.getIstance()', async function (done) {
+  let serviceStep: StepService = new StepService();
+   let serviceQeA: QeaServiceProvider = new QeaServiceProvider();
+ /*   Provo a simulare che due service diversi richiedono DBIstance a SingletonDatabase
+    quindi il singleton non dovrà ricreare la variabile più di una volta */
+   serviceStep.getSingleton()
+   serviceQeA.getSingleton()
+ /* controllo che DBIstance non sia creata piu di una volta, la variabile count "conta" quante volte DBIstance viene creata  */
+   expect(SingletonDatabase.count).toBeLessThanOrEqual(1);
+     done()
+ });

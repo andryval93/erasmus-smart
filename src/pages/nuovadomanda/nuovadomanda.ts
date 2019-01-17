@@ -3,7 +3,7 @@ import { IonicPage, NavController } from 'ionic-angular';
 import { QeaServiceProvider } from '../../providers/service/qeaService';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AlertController } from 'ionic-angular';
-import { ServiceProvider } from '../../providers/service/stepService';
+import { StepService } from '../../providers/service/stepService';
 import { NewsPageComponent } from '../news/news';
 
 
@@ -91,7 +91,7 @@ export class NuovadomandaPageComponent {
 
    constructor(public navCtrl: NavController,
       private DBistance: QeaServiceProvider,
-      private DBistanceSedi: ServiceProvider,
+      private DBistanceSedi: StepService,
       private alertCtrl: AlertController,
       private _FB: FormBuilder, ) {
       this.form = this._FB.group({

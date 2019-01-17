@@ -7,23 +7,16 @@ import { SingletonDatabase } from '../../model/Database';
 
 @Injectable()
 
-export class ServiceProvider {
+export class StepService {
 
   //private DBistance: any;
   DBistance: any;
    constructor() { 
-    
- 
       this.getSingleton();
-  
-       
   }
-
   async getSingleton(){
     this.DBistance = SingletonDatabase.getInstance(); 
-
   }
- 
   /*
    * Return documents from specific database collection
    */
@@ -62,12 +55,8 @@ export class ServiceProvider {
               });
             });
             }
-
           resolve(obj);
         })
-        .catch((error: any) => {
-          reject(error);
-        });
     });
   }
   /**
@@ -83,9 +72,6 @@ export class ServiceProvider {
         .set(dataObj, { merge: true })
         .then((data: any) => {
           resolve(data);
-        })
-        .catch((error: any) => {
-          reject(error);
         })
     })
   }

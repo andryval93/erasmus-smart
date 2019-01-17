@@ -24,7 +24,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestoreModule } from "angularfire2/firestore";
 import { AngularFireStorageModule, AngularFireStorage } from "angularfire2/storage";
-import { ServiceProvider } from '../providers/service/stepService';
+import { StepService } from '../providers/service/stepService';
 import { InserisciRecensionePageComponent } from '../pages/inserisci-recensione/inserisci-recensione'
 import { QeaServiceProvider } from '../providers/service/qeaService';
 import { RispostePageComponent } from '../pages/risposte/risposte';
@@ -106,7 +106,7 @@ import { GuidaCandidaturaPageComponent } from '../pages/guidacandidatura/guidaca
     SplashScreen,
     Firebase,
     /*EnvironmentsProvider,*/
-    ServiceProvider,
+    StepService,
     QeaServiceProvider,
     AngularFireAuth,
     reviewService,
