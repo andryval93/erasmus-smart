@@ -1,6 +1,6 @@
 import { Component, QueryList, ContentChildren, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { IonicPage, NavController, Slides, Content } from 'ionic-angular';
-import { ServiceProvider } from '../../providers/service/stepService';
+import { StepService } from '../../providers/service/stepService';
 import { InserisciRecensionePageComponent } from '../inserisci-recensione/inserisci-recensione';
 import { AccountService } from '../../providers/service/accountService';
 import { ReviewsListPageComponent } from '../reviews-list/reviews-list';
@@ -142,7 +142,7 @@ export class StepperPageComponent {
    @ViewChild(Content) content: Content;
 
    constructor(public navCtrl: NavController,
-      private DBistance: ServiceProvider,
+      private DBistance: StepService,
       private loginService: AccountService
    ) {
 
