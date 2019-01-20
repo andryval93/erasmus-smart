@@ -1,0 +1,48 @@
+.message {
+    width: 100%;
+    padding: 4px 0;
+  }
+  .right {
+    text-align: right;
+  }
+  .message a {
+    width: 65%;
+    padding: 14px 10px;
+    border-radius: 5px;
+    display: block;
+    /*margin: 0 20px;*/
+    text-align: left;
+  }
+  .message div {
+    padding: 6px 10px;
+    display: block;
+    margin: 0 20px 8px 20px;
+    color: #BBBBBB;
+    font-size: 12px;
+  }
+  .message.right a {
+    background-color: #CCCCCC;
+    margin-left: 30%;
+  }
+
+  .message.left a {
+    color: #FFFFFF;
+    background-color: #007AFF;
+    margin-right: 30%;
+    margin-left: 2%
+  }
+
+  .message.left div{
+    text-align: left;
+  }
+
+  .UrlFile {
+
+    color: black;
+    text-decoration: none;
+  }
+
+  .UrlFile:hover {
+
+    color: #FFFFFF;
+  }

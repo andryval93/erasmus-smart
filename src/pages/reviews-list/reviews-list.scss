@@ -1,0 +1,71 @@
+page-reviews-list {
+    #choosen_uni{
+        border-style: solid;
+        border-color: black;
+        //margin-left: 30%;
+        //margin-right: 30%;
+        //margin-top: 20px;
+        padding: 2%;
+        background-color: cornflowerblue;
+        color: whitesmoke;
+    }
+
+#choose_stars{
+        //margin-top: 80px;
+        border-style: solid;
+        border-color: black;
+        //position: absolute;
+        //left: 10px;
+        padding: 10px;
+        background-color: cornflowerblue;
+        color: whitesmoke;
+}
+
+    .fixed-content{
+        background-color: rgba(100, 148, 237, 0.658);
+    }
+    .review{
+        border-left: 2px;
+        border-right: 2px;
+        border-top: 2px;
+        border-bottom: 0px;
+        border-style: solid;
+        border-color: black;
+        padding: 5px;
+        background-color:rgba(100, 148, 237, 0.658);
+        color: whitesmoke;
+        min-height: 100px;
+    }
+    .cont{
+        border-left: 0px;
+        border-right: 0px;
+        border-top: 0px;
+        border-bottom: 2px;
+        border-style: solid;
+        border-color: black;
+    }
+    .my_photo{
+        float: left;
+    }
+    .text_review{
+
+        padding-left: 90px;
+    }
+    .social-cards ion-col {
+        padding: 0;
+    }
+    .nostar{
+        color: rgba(128, 128, 128, 0.445) !important
+        
+    }
+}
+.my-loading {
+    ion-backdrop {
+        background: opacify($color: #000000, $amount: 0)
+    }
+    
+}
+
+.ion-ios-star{
+    color: rgb(212, 212, 9) !important
+}

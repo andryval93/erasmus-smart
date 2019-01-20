@@ -1,0 +1,42 @@
+<!--
+  Generated template for the NewNewsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Carica news</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+<form (ngSubmit)="saveNews(form.value)" [formGroup]="form">
+
+  <ion-item>
+    <ion-label floating>Titolo</ion-label>
+    <ion-input type="text" [(ngModel)]="title" formControlName="title"></ion-input>
+  </ion-item>
+
+  <!--linea-->
+  <ion-item-divider></ion-item-divider>
+
+  <ion-item>
+    <ion-label floating>Contenuto</ion-label>
+    <ion-textarea type="text" [(ngModel)]="content" formControlName="content"></ion-textarea>
+  </ion-item>
+  
+  <!--Bottone per creare News-->
+  <button ion-button class="creaNews" type="submit"  [disabled]="!form.valid">Invia Domanda</button>
+
+</form>
+  
+</ion-content>
+
+<ion-footer>
+  <footer-es></footer-es>
+</ion-footer>

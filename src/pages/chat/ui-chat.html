@@ -1,0 +1,50 @@
+
+<ion-header>
+  <header-es [title]="title"></header-es>
+</ion-header>
+
+<ion-content *ngIf="!viewLoad" padding >
+  <div *ngIf="viewPage">
+  <ion-searchbar id="search"></ion-searchbar>
+  <div id="container">
+    <table>
+      <th>Studente</th>
+      <th>Sede</th>
+      <th>Scelta</th>
+      <tr *ngFor="let item of items">
+        
+        <td class="name">
+          <img id="circleAvatar" src="https://www.w3schools.com/howto/img_avatar.png"> <br> {{ item.name }} {{ item.surname }}
+        </td>
+        <td class="sede">
+          {{ item.sede }}
+        </td>
+        <td *ngIf="item.status == 'pending'" class="send">
+          <span>
+            <button ion-button (click)="acceptRequest(item.email)">Accept</button>
+          </span>
+        </td>
+        <td *ngIf="item.status == 'pending'" class="send">
+          <span>
+            <button ion-button (click)="denyRequest(item.email)">Denied</button>
+          </span>
+        </td>
+        <td *ngIf="item.status != 'pending'" class="send">
+            <button ion-button (click)="openChat(item.name, item.surname, item.sede, item.email)">Invio Messaggio</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</ion-content>
+<ion-content *ngIf="!viewPage">
+  <p  class="faultPage">COMPLETA LE OPERAZIONI NECESSARIE PER POTER ACCEDERE AL SERVIZIO DI MESSAGGISTICA</p>
+</ion-content>
+
+<ion-content *ngIf="viewLoad">
+  <p  class="loadingPage">LOADING..</p>
+</ion-content>
+
+<ion-footer>
+  <footer-es></footer-es>
+</ion-footer>

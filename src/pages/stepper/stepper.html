@@ -1,0 +1,298 @@
+<!--
+  Generated template for the StepperPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+<ion-header>
+
+  <header-es [title]="title"></header-es>
+
+</ion-header>
+
+<ion-content padding>
+
+  <div class="container">
+    <ion-stepper #stepper (selectIndexChange)="selectChange($event)" [mode]="mode">
+
+      <!-- rendo tutto invisibile finchè la pagina non carica per evitare errori -->
+      <div *ngIf="invisibleStepDiv">
+        <ion-step description="Step1 description">
+
+
+          <div class="Step-1-container">
+
+            <!-- qui va il Titolo -->
+            <!-- qui va il contenuto -->
+            <ion-list class="Step-1-container-list">
+
+              <ion-item *ngFor='let location of locations'>
+
+                <ion-thumbnail item-start>
+                  <img src="assets/imgs/Tenerife.jpg">
+                </ion-thumbnail>
+
+
+                <h2>{{ location.uni_name }}</h2>
+                <p>
+                  nazione: {{ location.nazione }}<br>
+                  citta: {{ location.citta }}
+                </p>
+                <em>{{ location.ReviewsList.length }} Recensione/i </em>
+                <button ion-button clear item-end (click)="goToReviewList(location.id)">Vedi Recensioni</button>
+              </ion-item>
+
+              <!-- *ngFor='let recensione of location.recensioni'  -->
+
+            </ion-list>
+            <!-- qui finisce il contenuto -->
+
+            <div class="AvantiDietroStepper">
+              <button ion-button small ionicStepperNext class="Step-1-Successivo"><img src="assets/imgs/frecciaVettorialeAvanti.png"></button>
+
+            </div>
+          </div>
+        </ion-step>
+
+        <ion-step description="Step2 description">
+
+
+          <div class="contenitore-step-5-dad">
+
+            <div class="contenitore-step-5-son">
+
+              <h4 class="titoli-stepper">Qui sono riportate le informazioni relative alla candidatura : </h4>
+              <p>La candidatura deve essere compilata online attraverso il sito web.unisa.it/international entro
+                le ore 23:59 01 febbraio 2019.
+                Lo studente è tenuto ad indicare, in ordine di preferenza e, per il ciclo di studi di riferimento,
+                un massimo di tre istituzioni ospitanti. Tali istituzioni devono essere individuate all’interno del
+                proprio Dipartimento e del proprio ambito disciplinare, pena l’esclusione dal concorso.
+                Nella candidatura sono previsti due campi note: campo “note 1” e campo “note 2” solo per
+                coloro che si dovessero ritrovare nelle condizioni sotto riportate:</p>
+              <h6> Ipotesi :</h6>
+              <ol>
+                <li>
+                  <em>si applica agli studenti iscritti ad un corso di laurea triennale che nell’anno
+                    accademico 2019-2020 (anno della mobilità) saranno iscritti ad un corso di laurea
+                    magistrale.</em>
+                </li>
+                <br>
+                <li>
+                  <em>si applica ai candidati che hanno già ottenuto un titolo di studio anche presso
+                    altro Ateneo e che intendono iscriversi ad un corso di laurea magistrale presso
+                    l’Università degli Studi di Salerno entro il 28 febbraio 2019.</em>
+                </li>
+              </ol>
+              <p>
+                All’atto della candidatura è necessario inserire la denominazione esatta del corso di laurea
+                magistrale al quale ci si iscrive nel campo “note 2” e selezionare le destinazioni di interesse
+                relative al II ciclo.
+                Per la candidatura, in mancanza del nuovo numero di matricola, è necessario utilizzare quello
+                della laurea triennale e selezionare i Dipartimenti e i Consigli didattici di interesse. Il numero di
+                matricola aggiornato deve essere comunicato all’Ufficio Relazioni Internazionali –Erasmus
+                appena lo studente ne entra in possesso.
+                Relativamente alle due ipotesi summenzionate, le mobilità potranno essere fruite
+                previa formalizzazione dell’iscrizione presso l’Università degli Studi di Salerno.
+              </p>
+              <h6>Guida di ES sulla Candidatura</h6><button (click)="goToGuidaCandidatura()" class="Bottone-Ombra">
+                QUI </button>
+            </div>
+           
+
+
+            <div class="AvantiDietroStepper">
+              <button ion-button small ionicStepperNext class="Step-Successivo"><img src="assets/imgs/frecciaVettorialeAvanti.png"></button>
+
+            </div>
+          </div>
+
+        </ion-step>
+
+
+        <ion-step description="Step3 description">
+
+          <div class="contenitore-step-5-dad">
+
+            <div class="contenitore-step-5-son">
+              <h4 class="titoli-stepper">A che serve il colloquio?</h4>
+              <p class="justify">Il colloquio è diretto ad accertare le motivazioni e le conoscenze linguistiche del
+                candidato e si
+                svolgerà nel periodo compreso fra il 12-19 febbraio 2019.
+                Il relativo calendario sarà comunicato attraverso il sito web <a>web.unisa.it/international</a>.
+                Non sono previste altre forme di convocazione.
+                I candidati potranno essere ammessi a sostenere il colloquio via Skype, qualora si trovassero
+                all’estero o in situazione di particolare difficoltà. In tal caso è necessario concordare le modalità
+                con il delegato alla mobilità internazionale del Consiglio didattico almeno una settimana prima
+                della data del colloquio.
+                Sono esonerati dal colloquio motivazionale gli studenti iscritti ai corsi di laurea e laurea
+                magistrale bi-nazionali, la cui mobilità è obbligatoria: "ECONOMIA, VALORIZZAZIONE, GESTIONE DEL
+                PATRIMONIO TURISTICO" e
+                "LINGUISTICA E DIDATTICA DELL'ITALIANO NEL CONTESTO INTERNAZIONALE".
+                I suddetti studenti devono comunque presentare la candidatura entro i termini di scadenza del bando.
+                Per tutti gli altri corsi di studio
+                la mancata presentazione ai colloqui determinerà l’esclusione dalla procedura concorsuale.
+                Un bonus fino ad un massimo di 30 punti sarà attribuito ai candidati iscritti IV e al V anno di
+                Ingegneria edile-architettura e di Scienze della formazione primaria nel caso in cui concorrano
+                alla selezione unitamente agli studenti iscritti a corsi di laurea magistrale di II ciclo.
+                In base all’esito del colloquio la Commissione può modificare la sede della mobilità.
+                Terminata tale fase non sarà più possibile operare alcun cambiamento.
+              </p>
+              <em>Ulteriori informazioni possono essere reperite dal bando presente a questo <a href="https://web.unisa.it/uploads/rescue/164/1790/era-sms-bando-19-20-con-icm.pdf">link</a>.</em>
+              <p>Consigli di Erasmus Smart per affrontare il colloquio</p><button (click)="goToGuidaColloquio()" class="Bottone-Ombra">
+                QUI </button>
+            </div>
+
+            <div class="AvantiDietroStepper">
+              <button ion-button small ionicStepperNext class="Step-Successivo"><img src="assets/imgs/frecciaVettorialeAvanti.png"></button>
+
+            </div>
+          </div>
+        </ion-step>
+
+        <ion-step description="Step4 description">
+          <div class="contenitore-step-4">
+            <h6 class="titolo"></h6>
+
+
+            <!-- Dopo Aver premuto su conferma -->
+            <h6 *ngIf="show" class="titolo">Hai Selezionato : </h6>
+            <ion-item *ngIf="show">
+              <p>{{ sceltaSede }}</p>
+            </ion-item>
+
+            <!-- Prima di premere su conferma -->
+            <h6 *ngIf="hide" class="titolo">Inserisci la sede che ti è stata assegnata</h6>
+            <ion-item *ngIf="hide">
+              <ion-label>Sede</ion-label>
+
+              <!--Metto tutte le sedi dentro la combo box "Sedi"-->
+              <ion-select [(ngModel)]="Sedi" (ngModelChange)="onChangeSede(Sedi)">
+
+                <ion-option *ngFor='let location of locations'>{{ location.uni_name }}</ion-option>
+
+              </ion-select>
+
+            </ion-item>
+
+            <!-- Prima di premere su conferma -->
+            <h6 class="titolo" *ngIf="hide">Inserisci il Tutor che ti è stato assegnato {{ prova }} </h6>
+            <ion-item *ngIf="hide">
+
+              <ion-label>Tutor</ion-label>
+              <ion-select #newSelect [(ngModel)]="tutors" (ngModelChange)="onChangeTutor(tutors)">
+
+                <ion-option *ngFor='let tutor of listaTutors'>{{ tutor }}</ion-option>
+
+
+              </ion-select>
+            </ion-item>
+            <!-- Dopo Aver premuto su conferma -->
+            <h6 *ngIf="show" class="titolo">Con il Tutor : </h6>
+            <ion-item *ngIf="show">
+
+              <p> {{ this.sceltaTutor }} </p>
+
+            </ion-item>
+            <div class="Conferma-contenitore">
+
+              <button (click)="saveDocument(tutors)" *ngIf="hideConferma" ion-button small class="Conferma-Step4">Conferma</button>
+              <p class="Richiesta-in-attesa" *ngIf="statusPending"> Step bloccato, non puoi continuare la procedura
+                fino a quando il tutor non accetta la richiesta. </p>
+              <p class="Richiesta-accettata" *ngIf="statusAccepted"> Richiesta accettata </p>
+
+            </div>
+            <div class="AvantiDietroStepper">
+              <button ion-button small ionicStepperNext class="Step-Successivo" *ngIf="statusAccepted"><img src="assets/imgs/frecciaVettorialeAvanti.png"></button>
+
+            </div>
+
+          </div>
+
+        </ion-step>
+
+
+        <ion-step description="Step5 description">
+
+          <div class="contenitore-step-5-dad">
+
+            <div class="contenitore-step-5-son">
+              <h4 class="titoli-stepper">Cos'è il Learning Agreement? </h4>
+              <ul>
+                <li>
+                  <em>il learning agreement (LA) è il contratto di studio tra studente, università di appartenenza e
+                    università ospitante</em>
+                </li>
+                <br>
+                <li>
+                  <em>rappresenta lo strumento fondamentale nella procedura di riconoscimento delle attività formative
+                    sostenute dallo studente durante un periodo di mobilità</em>
+                </li>
+                <li>
+                  <em>contiene l'elenco delle attività accademiche da svolgere all'estero e le corrispondenti attività
+                    che saranno riconosciute al rientro in Ateneo</em>
+                </li>
+                <li>
+                  <em>è il documento fondamentale e obbligatorio, previsto dal programma Erasmus+ a tutela del diritto
+                    al riconoscimento del periodo di studio svolto all'estero.</em>
+                </li>
+                <li>
+                  <em>deve essere concordato tra lo studente, l'Università di Salerno e l'università ospitante prima
+                    della partenza</em>
+                </li>
+                <li>
+                  <em>deve essere compilato dallo studente online</em>
+                </li>
+                <li>
+                  <em>nessuna attività formativa svolta all'estero dallo studente potrà essere riconosciuta se non
+                    esplicitamente inserita nel Learning Agreement approvato da ciascuna delle tre parti interessate
+                    (studente, Università di Salerno, Istituzione estera).</em>
+                </li>
+              </ul>
+              <p>Il LA dovrà contenere i codici ISCED (strumenti per fini statistici sui sistemi di istruzione)
+                corrispondenti al corso di studio dello studente</p>
+              <h6>Puoi seguire la procedura direttamente su Erasmus Smart premendo</h6><button (click)="goToGuidaLA()"
+                class="Bottone-Ombra"> QUI </button>
+              <p>Oppure Puoi trovare un esempio a <a href="https://firebasestorage.googleapis.com/v0/b/erasmus-smart-2018.appspot.com/o/stepper%2Fera-learning-agreement-for-study.-doc-2.doc?alt=media&token=0b68226e-cb42-40fe-83ec-96278dd18d51">questo
+                  link</a>.</p>
+            </div>
+
+            <div class="AvantiDietroStepper">
+              <button ion-button small ionicStepperNext class="Step-Successivo"><img src="assets/imgs/frecciaVettorialeAvanti.png"></button>
+            </div>
+
+          </div>
+        </ion-step>
+
+
+
+        <ion-step description="Step6 description">
+          <div class="contenitore-step-4">
+            <div class="Step-6-scritta">
+              <h2>Complimenti hai completato il percorso Erasmus!!!</h2>
+              <h6>E il momenti di lasciare una recensione per i tuoi colleghi che usufruiranno di questa esperienza
+              </h6>
+
+            </div>
+            <div class="Conferma-contenitore">
+
+              <button ion-button small class="Conferma-Step6" (click)="inserisciRecensionePush()">Aggiungi Recensione</button>
+
+
+            </div>
+            <div class="AvantiDietroStepper">
+              <button ion-button small class="Step-Successivo" (click)="HomePagePush()"><img src="assets/imgs/endgiallo.png"></button>
+
+            </div>
+
+          </div>
+        </ion-step>
+      </div>
+    </ion-stepper>
+    <div class="push"></div>
+  </div>
+
+  <div class="footer">Erasmus Smart - Enterprise 2018</div>
+
+</ion-content>

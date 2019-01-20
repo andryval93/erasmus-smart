@@ -1,0 +1,29 @@
+page-login {
+
+    .fixed-content {
+
+        background-color: cornflowerblue;
+    }
+
+    .item {
+
+        max-width: 50% !important;
+        margin-left: 25%;
+    }
+
+    #buttonLoginDiv {
+
+        text-align: center;
+    }    
+
+    #loginButton {
+
+        background: #f5f5f5;
+        color: cornflowerblue;
+    }
+
+    #notRegistredDivLogin {
+
+        text-align: center;
+    }
+}

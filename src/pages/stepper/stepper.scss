@@ -1,0 +1,374 @@
+page-stepper {
+    /*slider */ 
+    .toolbar-background {
+        background: #fff;
+        border-color: transparent;
+      }
+    
+      .slide-zoom {
+        height: 100%;
+      }
+    
+      .slide-title {
+        margin-top: 2.8rem;
+      }
+    
+      .slide-image {
+        max-height: 50%;
+        max-width: 60%;
+        margin: 18px 0;
+      }
+    
+      b {
+        font-weight: 500;
+      }
+    
+      p {
+        padding: 0 40px;
+        font-size: 14px;
+        line-height: 1.5;
+        color: #60646B;
+    
+        b {
+          color: #000000;
+        }
+    }
+        .Slider-Container{
+         background: #fff;
+         box-shadow: 5px 10px 18px #4b4a4a;
+        }
+        .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets{
+            left: 0 !important;
+            bottom: 10px !important;
+            width: 100% !important;
+        }
+        .swiper-pagination{
+            text-align: center !important;
+            -webkit-transform: translate3d(0, 0, 0) !important;
+            transform: translate3d(0, 0, 0) !important;
+            position: absolute !important;
+            z-index: 10 !important;
+            -webkit-transition: 300ms !important;
+            transition: 300ms !important;
+            pointer-events: none !important;
+        }
+   /* bottone blu con ombra */ 
+   .Bottone-Ombra{
+    margin-top: 2%;
+    left:30%;
+    width: 20%;  
+    font-weight: 700; 
+    color: whitesmoke; 
+    font-size: 100%;
+    text-decoration: none; 
+    padding-top: 2%;
+    padding-bottom: 2%;
+    border-radius: 2%; 
+    background: cornflowerblue; 
+    box-shadow: 5px 10px 18px grey ; 
+    transition: 0.2s; 
+}
+.Bottone-Ombra:hover { background: blue !important; } 
+
+.Bottone-Ombra:active { 
+  background: blue !important; 
+  box-shadow: 0 0px cornflowerblue; 
+} 
+   /*footer*/
+  body {
+	height: 100%;
+}
+
+.justify {
+    text-align: justify;
+}
+
+ion-content {
+    height: 100%;
+}
+.container {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -50px;
+}
+.footer {
+    border-style: ridge;
+   
+    border-width: 2px 0px 0px 0px;
+     border-color:rgb(134, 133, 133);
+     
+
+    height: 50px;
+    padding-top: 1.5%;
+    padding-bottom: 2%;
+    clear: both;
+    background: white;
+    font-weight: bold;
+    text-align: center;
+}
+.push {
+	height: 50px;
+	clear: both;
+}
+   .scroll-content{
+       padding: 0 !important;
+   }
+   .content-ios{
+       padding-bottom: 0 !important;
+   }
+   .content-md{
+       padding-bottom: 0 !important;
+   }
+  /* fine footer */ 
+/*step1*/
+.Step-1-container{
+    padding: 5%;
+    padding-bottom: 10%;
+ 
+}
+.Step-1-container-list{
+    border-style: outset;
+   border-radius: 15%;
+   border-width: 10px 10px 10px 10px;
+    border-color:blue whitesmoke;
+    box-shadow: 5px 10px 18px #4b4a4a;
+}
+.Step-1-Successivo{
+  
+    background-color: cornflowerblue;
+    float:right;
+    width: 25%;
+    
+    height: auto;
+    position:relative;
+    box-shadow: none;
+}
+.Step-1-Successivo:hover{
+  
+    background-color: cornflowerblue !important;
+    box-shadow: none;
+}
+.Step-1-Successivo:focus{
+    box-shadow: none;
+    background-color: cornflowerblue !important;
+}
+
+/*fine step 1 */
+.list-item-stepper-starter{
+    margin-top: 10%;
+}
+.item-input .label-md, .item-select .label-md, .item-datetime .label-md{
+    color:black;
+}
+
+ .titolo{
+     text-align: center;
+ }
+.contenitore-step-4{
+
+
+    margin-left:10%;
+    margin-right: 10%;
+    padding-top:10%;
+    padding-bottom: 20%;
+    padding-left: 20%;
+    padding-right: 20%;
+    border: 2px rgb(37, 36, 36) solid;
+  box-shadow: 5px 10px 18px #4b4a4a;
+  background-color: whitesmoke;
+}
+.fixed-content{
+    background-color: cornflowerblue;
+}
+
+ion-select{
+    color:cornflowerblue;
+}
+.AvantiDietroStepper{
+padding:0;
+
+}
+.titoli-stepper{
+    color:black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    
+}
+    
+.Step-Precedente{
+    margin-top: 20%;
+    background-color: whitesmoke;
+    float:left;
+    width: 45%;
+    
+    height: auto;
+    position:relative;
+    box-shadow: none;
+}
+.Step-Successivo{
+    margin-top: 10%;
+    background-color: whitesmoke;
+    float:right;
+    width: 45%;
+    
+    height: auto;
+    position:relative;
+    box-shadow: none;
+   
+}
+.Step-Successivo:hover { 
+    background: whitesmoke !important; 
+    box-shadow: none;
+  }
+  .Step-Successivo:focus { 
+    background: whitesmoke !important; 
+    box-shadow: none;
+  }
+
+
+.Conferma-Step4{
+    padding : 2%;
+    margin-top: 2%;
+    left:30%;
+     width: 40%;  
+}
+img {
+    width: 20%;
+}
+
+
+.Conferma-contenitore{
+    width: 100%;
+}
+
+
+.Richiesta-in-attesa{
+text-align: center;
+color:rgb(163, 5, 5);
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+.Richiesta-accettata{
+    text-align: center;
+    color:green;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    }
+
+/*step 6 */
+.Step-6-scritta{
+text-align: center;
+
+}
+
+.Conferma-Step6{
+   // padding : 2%;
+    margin-top: 2%;
+    left:30%;
+     width: 40%;  
+
+     font-weight: 700; 
+     color: whitesmoke; 
+    font-size: 100%;
+   
+     text-decoration: none; 
+     
+     padding-top: 4%;
+     padding-bottom: 4%;
+     border-radius: 2%; 
+     background: cornflowerblue; 
+     box-shadow: 5px 10px 18px grey ; 
+     transition: 0.2s; 
+}
+
+
+.Conferma-Step6:hover { background: blue !important; } 
+
+.Conferma-Step6:active { 
+  background: blue !important; 
+  box-shadow: 0 0px cornflowerblue; 
+} 
+
+/*step5*/
+.contenitore-step-5-son{
+text-align: center;
+
+}
+.contenitore-step-5-dad{
+   height: min-content;
+    padding-top:10%;
+    padding-bottom: 10%;
+    padding-left: 20%;
+    padding-right: 20%;
+    
+  
+    margin-left: 10%;
+    margin-right:10%;
+    min-height: 600px;
+    border: 2px rgb(37, 36, 36) solid;
+  box-shadow: 5px 10px 18px #4b4a4a;
+  background-color: whitesmoke;
+}
+@media only screen and (max-width: 600px){
+    img {
+        width: 40%;
+    }
+    .Conferma-Step4{
+    
+       
+        margin-top: 2%;
+        left:25%;
+         width: 50%;
+         
+      
+        
+    }
+
+    /*step6*/
+    .Conferma-Step6{
+        margin-top: 2%;
+        left:20%;
+        width: 60%;
+        font-size: 60%;
+    }
+    /*step5*/
+    .contenitore-step-5-dad{
+        min-height: 500px;
+    }
+  
+}
+
+
+
+
+/*stepper responsive */ 
+@media only screen and (min-width: 926px){
+   /*stepper header*/
+   .ion-step-header{
+    padding-right:0 !important;
+    padding-left:0 !important;
+    
+}
+
+.ionic-step-header-icon {
+            width:60px !important;
+            height:60px !important;
+            border-radius: 100% !important;
+            padding:0 !important;
+          
+
+}
+.ionic-stepper-horizontal-line{
+    width:25%;
+}
+.ionic-stepper-horizontal-header-container{
+    height: 115px;
+ 
+}
+.ionic-step-header-icon-number {
+    font-size: 200%;
+    font-weight: bold;
+}
+ /*stepper header fine*/
+
+}
+}

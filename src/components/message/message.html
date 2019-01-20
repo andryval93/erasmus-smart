@@ -1,0 +1,13 @@
+<div *ngIf="msg.sender == email" class="message right">
+  <span>{{ msg.message }}</span>
+  <div>{{ msg.creationTime }}</div>
+</div>
+
+<div *ngIf="msg.sender != email" class="message left">
+  <span>{{ msg.message }}</span>
+  <div>{{ msg.creationTime }}</div>
+</div>
+
+<div *ngIf="msg.type == 'Image'" class="message right">
+  <img style="max-width: 150px;" [src]="msg.urlImage" />
+</div>

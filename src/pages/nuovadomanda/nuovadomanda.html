@@ -1,0 +1,65 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Nuova Domanda</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+
+<ion-content padding>
+
+  <ion-card>
+    <ion-card-header>
+      <h1 style="text-align:center">Nuova Domanda</h1>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-list class="select">
+    <ion-item>
+      <ion-label>Sede</ion-label>
+
+      <!--Metto tutte le sedi dentro la combo box "Sedi"-->
+      <ion-select id='sedi' [(ngModel)]="Sedi" (ngModelChange)="onChangeSede(Sedi)">
+
+        <ion-option id='sede' *ngFor='let locationSede of locationsSedi'>{{ locationSede.uni_name }}</ion-option>
+        <ion-option>Generic</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+
+
+  <form [formGroup]='form' (ngSubmit)='saveDocument(form.value)' (ngSubmit)='presentAlert()'>
+    <ion-list>
+
+      <ion-item>
+        <ion-label floating>Titolo</ion-label>
+        <ion-input id='titolo' formControlName='Domanda' [(ngModel)]='Domanda' type="Domanda"  maxlength="40"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Descrizione</ion-label>
+        <ion-textarea id='descrizione' formControlName='Descrizione' [(ngModel)]='Descrizione' type="text" rows="10"  maxlength="200"></ion-textarea>
+      </ion-item>
+
+    </ion-list>
+
+    <ion-item>
+      <button class="inviaDomanda" ion-button block color="primary" text-center padding-top padding-bottom [disabled]="!form.valid">
+        <div>
+          INVIA DOMANDA
+        </div>
+      </button>
+    </ion-item>
+
+
+  </form>
+
+
+</ion-content>
+
+<ion-footer>
+  <footer-es></footer-es>
+</ion-footer>

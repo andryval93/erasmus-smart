@@ -1,0 +1,56 @@
+<!--
+  Generated template for the ReviewMainPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <header-es [title]="title"></header-es>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-md-3>
+
+      </ion-col>
+      <ion-col col-md-6>
+        <ion-grid>
+          <div id="choose_uni">
+            <ion-row>
+              <h2>
+                <ion-label>Filtra le recensioni</ion-label>
+              </h2>
+            </ion-row>
+            <ion-row>
+              <ion-col col-auto>
+                <div class="text">
+                  <h6>Lista delle sedi</h6>
+                </div>
+              </ion-col>
+              <ion-col>
+                <ion-list class="select">
+                  <ion-item>
+                    <ion-select [(ngModel)]="Sede" interface="popover">
+                      <ion-option *ngFor="let unversities of Universities" [value]="unversities.id">{{ unversities.name }}</ion-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-list>
+              </ion-col>
+            </ion-row>
+
+            <div align="right">
+              <button ion-button color="light" (click)="goToReviews()">Visualizza</button>
+            </div>
+          </div>
+        </ion-grid>
+      </ion-col>
+      <ion-col col-md-3>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <footer-es></footer-es>
+</ion-footer>

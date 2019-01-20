@@ -1,0 +1,19 @@
+page-news {
+    .news-date {
+        font-size: 0.8em;
+        color: grey;
+        padding: 0px 16px 16px 16px;
+    }
+    .newNews{
+        float: right;
+        margin-top: 2%;
+        color: cornflowerblue; 
+        border-radius: 2%; 
+        background: white; 
+        transition: 0.2s;
+        margin: 15px;  
+     }
+     .newNews:hover {
+        background-color: #efc810 !important; 
+        } 
+}

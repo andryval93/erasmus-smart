@@ -1,0 +1,78 @@
+page-ui-chat {
+    .fixed-content{
+        background-color: cornflowerblue;
+    }
+
+    #search{
+        margin-left: 50%;
+        padding-right: 80%;
+    }
+
+     #messages {
+        width: 96%;
+        left: 2%;
+        position: absolute;
+        top: 60px;
+        bottom: 0;
+        overflow-y: scroll;
+      } 
+    
+    th{
+        text-align: center;
+    }
+
+    tr{
+        border-top-style: solid;
+    }
+
+    td{
+        text-align: center;
+    }
+
+    #container{
+        border-style: solid;
+        border-color: black;
+        text-align: left;
+        margin-left: 30%;
+        margin-right: 30%;
+        background-color: whitesmoke;
+    }
+
+    .name{
+        padding-left: 1.6cm;
+        padding-right: 1.6cm;
+    }
+    
+    .sede{
+        padding-left: 1.6cm;
+        padding-right: 1.6cm;
+    }
+
+    .send{
+        text-align: left;
+    }
+
+    .faultPage{
+        text-align: center;
+        color: red;
+        font-weight: bold;
+        font-size: 150%;
+        margin-top: 15%;
+    }
+
+    .loadingPage{
+        text-align: center;
+        color: whitesmoke;
+        font-weight: bold;
+        font-size: 150%;
+        margin-top: 15%;
+    }
+
+    #circleAvatar{
+        width:50px;
+        height:50px;
+        margin: 10% 0% 5% 0%;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+    }
+}

@@ -1,0 +1,44 @@
+<ion-header>
+  <header-es [title]="title">Messaggi</header-es>
+</ion-header>
+
+<ion-content padding>
+  <div id="container">
+    <div id="infodestinatario">
+      <img id="circleAvatar" src="https://www.w3schools.com/howto/img_avatar.png">
+      {{ name }} {{ surname }}<br>
+      {{ sede }}
+    </div>
+    <button class="chatButton" (click)="showChat()">Chat</button>
+    <button class="filesButton" (click)="showFiles()">Files</button>
+
+    <div [style.display]="chatOpen ? 'block' : 'none'" id="mainBoard">
+      <ion-content #content>
+          <message *ngFor="let msg of messages; let last = last" [msg]="msg">
+            {{ last ? scrollDown() : '' }}
+          </message>
+      </ion-content>
+    </div>
+
+    <div [style.display]="!chatOpen ? 'block' : 'none'" id="mainBoard">
+      <ion-content #content>
+        <file *ngFor="let fl of files; let lastf = lastf" [fl]="fl">
+          {{ lastf ? scrollDown() : '' }}
+        </file>
+    </ion-content>
+  </div>
+    <input id="uploadFile" capture="attach" type="file" accept=".pdf, application/pdf" (change)="sendUserFile($event)">
+    <label id="uploadFileIcon" for="uploadFile" icon-only ion-button>
+      <ion-icon name="attach"></ion-icon>
+    </label>
+    <form (ngSubmit)="sendUserMessage()" [style.display]="chatOpen ? 'block' : 'none'">
+      <textarea class="messageText" rows="1" [formControl]="text" placeholder="Inserisci il tuo testo qui" required="required"></textarea>
+      <input class="inputType" type="submit" value="">
+    </form>
+    <div class="messageText" id="alternativeDiv" [style.display]="!chatOpen ? 'block' : 'none'">Documenti PDF scambiati con l'utente</div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <footer-es></footer-es>
+</ion-footer>

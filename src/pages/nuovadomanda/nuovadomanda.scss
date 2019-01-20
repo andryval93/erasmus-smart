@@ -1,0 +1,29 @@
+page-nuovadomanda {
+    .fixed-content{
+        background-color: cornflowerblue;
+    }
+    .inviaDomanda{
+        float: right;
+        margin-top: 2%;
+        color: cornflowerblue; 
+        border-radius: 2%; 
+        background: white; 
+        transition: 0.2s;  
+     }
+     .inviaDomanda:hover {
+        background-color: #efc810 !important; 
+        } 
+    .text-input{
+        resize: none;
+    }
+   /* .alert-md .alert-head{
+        text-align: center;
+    }
+    .alert-md .alert-button-group{
+    padding-left: 45%;
+    border-top: 1px solid black;
+    }
+    .alert-md .alert-wrapper {
+        border-radius: 50px !important;
+    }*/
+}  

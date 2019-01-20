@@ -1,0 +1,11 @@
+<div *ngIf="fl.author == email" class="message right">
+  <a class="UrlFile" href={{fl.urlFile}} target="_blank"> {{ fl.name }} </a>
+</div>
+
+<div *ngIf="fl.author != email" class="message left">
+  <a class="UrlFile" href={{fl.urlFile}} target="_blank"> {{ fl.name }} </a>
+</div>
+
+<div *ngIf="fl.type == 'Image'" class="message right">
+  <img style="max-width: 150px;" [src]="fl.urlImage" />
+</div>

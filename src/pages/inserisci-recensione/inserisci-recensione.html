@@ -1,0 +1,61 @@
+<!--
+  Generated template for the InserisciRecensionePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <header-es [title]="title"></header-es>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="form-content">
+
+
+  <div class="contenitore-step-4">
+   
+      <form
+      [formGroup]='form'
+      (ngSubmit)='saveDocument(form.value)'
+      (ngSubmit)='presentAlert()'
+      class="form">
+
+   
+      <ion-item>
+          <ion-label floating color="primary" > Titolo </ion-label>
+        <ion-input type="text" class="form-controll" formControlName='Titolo' [(ngModel)]='Titolo'></ion-input>
+      </ion-item>
+
+
+      <ion-label floating color="primary">  </ion-label>
+
+
+      <textarea #myInput formControlName='Descrizione' [(ngModel)]='Descrizione' style="overflow: hidden;" class="recensione-form" rows="1" maxLength="1000" placeholder="Inserisci qui la tua Recensione :" required></textarea>
+      
+      <ion-item>
+        <ion-label>Acconsento al trattamento dei dati personali al fine di rendere attendibile la recensione</ion-label>
+        <ion-toggle value="privacyControl" formControlName='privacyControl' [(ngModel)]='privacyControl'></ion-toggle>
+      </ion-item>
+
+      <button ion-button full type="submit" class="Bottone-Ombra" [disabled]="!form.valid" >Submit</button>
+    </form>
+    <div class="valutazione-Stars" >
+        <label>Se vuoi lascia una valutazione:</label>
+          <rating [(ngModel)]="rate" 
+      readOnly="false"  
+      max="5" 
+      emptyStarIconName="star-outline" 
+      halfStarIconName="star-half" 
+      starIconName="star" 
+      nullable="false" 
+      (ngModelChange)="onModelChange($event)"> <!--use it when you need to do something when user clicks on a star. in case you only need to change ngModel property, this property can be ommited.-->
+       </rating>
+      </div>
+
+  </div>
+
+</ion-content>

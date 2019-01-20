@@ -1,0 +1,50 @@
+<!--
+  Generated template for the RispostePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Risposte</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card>
+    <ion-card-header>
+      <h1 style="text-align:left"> {{ domandaCorrente }} </h1>
+     
+      <h2> {{ descrizioneCorrente }}</h2>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-item *ngFor='let D of ArrayData'>
+    <h2> {{ D }} </h2>
+  </ion-item>
+
+
+
+  
+  <form [formGroup]='form' (ngSubmit)='saveDocument(form.value)' (ngSubmit)='presentAlert()' *ngIf = "visualizzaFormVar" class= "formRisposta"  >  
+      <ion-item>
+        <ion-label floating>Descrizione</ion-label>
+        <ion-textarea formControlName='Descrizione' [(ngModel)]='Descrizione' type="text" rows="10"  maxlength="500"></ion-textarea>
+      </ion-item>
+  
+    <div class="Conferma-contenitore">
+      <button ion-button class="rispondiButton" (click)="openAddPage()" *ngIf = "visualizzaInviaButton" [disabled]="!form.valid"> Invia risposta</button>
+    </div>
+
+  </form>
+
+  <button ion-button class="rispondiButton" (click)="visualizzaForm()" *ngIf = "visualizzaRispondiButton" >Rispondi</button>
+</ion-content>
+
+
+<ion-footer>
+  <footer-es></footer-es>
+</ion-footer>

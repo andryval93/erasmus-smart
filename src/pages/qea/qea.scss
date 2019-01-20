@@ -1,0 +1,36 @@
+page-qea {
+.fixed-content{
+    background-color: cornflowerblue;
+}
+/*
+.nuovaDomandaButton{
+    float: right;
+    margin-bottom: 1.4%;
+    background: white;
+    color: black;
+    border: 2px solid yellow;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .5), 
+    inset 0 1px rgba(255, 255, 255, .3),
+    inset 0 10px rgba(255, 255, 255, .2),
+    inset 0 10px 20px rgba(255, 255, 255, .25),
+    inset 0 -15px 30px rgba(0, 0, 0, .05);  
+}
+.nuovaDomandaButton:hover{
+    background-color: yellow  !important;
+}
+*/
+.lineaDomande{
+    margin-top: 0 !important;
+}
+.nuovaDomandaButton{
+    float: right;
+    margin-top: 2%;
+    color: cornflowerblue; 
+    border-radius: 2%; 
+    background: white; 
+    transition: 0.2s;  
+ }
+ .nuovaDomandaButton:hover {
+    background-color: #efc810 !important; 
+    } 
+}

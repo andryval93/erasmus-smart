@@ -1,0 +1,25 @@
+page-risposte {
+    .fixed-content{
+        background-color: cornflowerblue;
+    }
+    .rispondiButton{
+        float: right;
+        margin-top: 2%;
+        color: cornflowerblue; 
+        border-radius: 2%; 
+        background: white; 
+        transition: 0.2s;  
+     }
+     .rispondiButton:hover {
+        background-color: #efc810 !important; 
+        } 
+    .formRisposta{
+        margin-top: 3%;
+    }
+    .text-input{
+        resize: none;
+    }
+    ::-webkit-scrollbar-thumb {
+       
+        -webkit-box-shadow: inset 10px 0 6px whitesmoke; }
+}

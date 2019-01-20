@@ -1,0 +1,33 @@
+<ion-header>
+
+  <header-es [title]="title"></header-es>
+
+</ion-header>
+
+<ion-content padding>
+  <!-- import css *ngFor='let domanda of location.Domande'-->
+
+  <ion-card>
+    <ion-card-header>
+      <h1 style="text-align:center">DOMANDE </h1>
+    </ion-card-header>
+  </ion-card>
+  <div class="Conferma-contenitore">
+    <button ion-button class="nuovaDomandaButton" (click)="openAddPage()">Nuova Domanda</button>
+  </div>
+
+
+  <h1 *ngFor='let location of locations'>
+    <ion-item *ngFor='let D of location.Domande'>
+
+      <h2 class="lineaDomande"> [{{ location.Sede }}] {{ D.Domanda }}</h2>
+
+
+      <button ion-button clear item-end (click)="openPageRisposte(D.Domanda , D.risposte , location.id , D.Descrizione)"  >{{ D.risposte.length }} risposte</button>
+    </ion-item>
+  </h1>
+</ion-content>
+
+<ion-footer>
+  <footer-es></footer-es>
+</ion-footer>

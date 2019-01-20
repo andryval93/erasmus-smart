@@ -1,0 +1,119 @@
+page-openchat {
+    .fixed-content{
+        background-color: cornflowerblue;
+    }
+
+    #container{
+        position: absolute;
+        top: 10%;
+        left: 20%; 
+        width: 60%;
+        height: 70%;
+        border-color: black;
+        border-style: solid;
+    }
+    
+    #infodestinatario{
+        position: absolute;
+        width: 25%;
+        height: 100%;
+        background-color: rgb(66, 66, 66);
+        color: white;
+        text-align: center;
+        padding-top: 30%;
+        border-style: solid;
+        border-color:  rgb(66, 66, 66);
+    }
+
+    #mainBoard{
+        position: absolute;
+        left: 25%;
+        width: 75%;
+        height: 90%;
+        color: black;
+        border-bottom-color: black;
+        border-bottom-style: solid;
+        text-align: right;
+        border-color: whitesmoke;
+        background-color: whitesmoke; 
+    }
+
+    #mainBoard .scroll-content{
+        background-color: whitesmoke;
+    }
+
+    .chatButton{
+        color: white;
+        font-size: 25px;
+        background-color: rgb(66, 66, 66);
+        border-left: none;
+        position: absolute;
+        top: 90%;
+        left: 3%;
+    }
+
+    #circleAvatar{
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        top: 7%;
+        right: 5%;
+        border-radius: 50%;
+    }
+
+    .filesButton{
+        color: white;
+        font-size: 25px;
+        background-color: rgb(66, 66, 66);
+        position: absolute;
+        border-left: none;
+        top: 90%;
+        left: 14%;
+    }
+    
+    #uploadFileIcon {
+
+        border-style: none;
+        resize: none;   
+        position: absolute;
+        left: 24.8%;
+        width: 5%;
+        height: 10%;
+        top: 89%;
+        opacity: 0%;
+    }
+
+    .messageText{
+        border-style: none;
+        resize: none;   
+        position: absolute;
+        left: 30%;
+        width: 70%;
+        height: 10%;
+        top: 90%;
+        color: black;
+        background-color: whitesmoke;
+    }
+    
+    #alternativeDiv {
+
+        text-align: center;
+        color: cornflowerblue
+    }
+
+    .inputType{
+        border-style: none;
+        resize: none;   
+        position: absolute;
+        left: 95%;
+        width: 5%;
+        height: 10%;
+        top: 90%;
+        color: black;
+        background-image: url("../../assets/icon/send.png");
+        background-size: 100%;
+    }
+
+
+}
+
