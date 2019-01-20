@@ -72,9 +72,6 @@ export class QeaServiceProvider {
 
           resolve(obj);
         })
-        .catch((error: any) => {
-          reject(error);
-        });
     });
   }
   /**
@@ -91,9 +88,6 @@ export class QeaServiceProvider {
         .set(dataObj, { merge: true })
         .then((data: any) => {
           resolve(data);
-        })
-        .catch((error: any) => {
-          reject(error);
         })
     })
   }
@@ -121,9 +115,6 @@ export class QeaServiceProvider {
 
           resolve(obj);
         })
-        .catch((error: any) => {
-          reject(error);
-        });
     });
   }
   /**
@@ -139,9 +130,6 @@ export class QeaServiceProvider {
         .set(dataObj, { merge: true })
         .then((data: any) => {
           resolve(data);
-        })
-        .catch((error: any) => {
-          reject(error);
         })
     })
   }

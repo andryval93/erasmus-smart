@@ -28,18 +28,18 @@ describe('Service: QeaService', () => {
     let service: QeaServiceProvider = new QeaServiceProvider();
     service.getAnswers("Q&A").then((result) => {
       let n: number = 0;
-      var rand = Math.floor(Math.random() * result.length) ;
-      var randDom = Math.floor(Math.random() * result[rand].Domande.length) ;
+      var rand = Math.floor(Math.random() * result.length);
+      var randDom = Math.floor(Math.random() * result[rand].Domande.length);
 
       console.log("rand test ", rand);
 
       expect(result[rand].id).toBeDefined()
-      expect(result[rand].Domande[randDom]).not.toBeDefined()
+      expect(result[rand].Domande[randDom]).toBeDefined()
       expect(result[rand].Domande[randDom].Descrizione).toBeDefined()
       expect(result[rand].Domande[randDom].Domanda).toBeDefined()
       expect(result[rand].Domande[randDom].risposte).toBeDefined()
       expect(result[rand].Sede).toBeDefined()
-      if (("0PsKdTazywmJDavPMaCE".localeCompare(result[n].id)) == 0) {
+      if ((result[rand].id).toBeDefined()) {
         done()
       }
     }).catch(error => {
@@ -53,7 +53,7 @@ describe('Service: QeaService', () => {
     let service: QeaServiceProvider = new QeaServiceProvider();
     service.getQuestions("Q&A").then((result) => {
 
-      var rand = Math.floor(Math.random() * result.length) ;
+      var rand = Math.floor(Math.random() * result.length);
       console.log("rand test", rand);
 
       expect(result[rand].id).toBeDefined()
@@ -62,7 +62,7 @@ describe('Service: QeaService', () => {
       if ((result[rand].id) != undefined) {
         done()
       }
-      if ((result[rand].id).toComparede()) {
+      if ((result[rand].id).toBeDefined()) {
         done()
       }
     }).catch(error => {
@@ -72,19 +72,25 @@ describe('Service: QeaService', () => {
     });
   });
 
-  /* insertAnswer TEST */
+  // insertAnswer test
   it('insertAnswer TEST ', function (done) {
     let service: QeaServiceProvider = new QeaServiceProvider();
 
-    expect(service.insertAnswer("TEST_COL", "TEST_DOC", "TEST_CONTENT")).toBeDefined();
-    done()
+    service.insertAnswer("Q&A", "TEST_ID", { Sede: "TEST_SEDE", risposte: new Array<any>() }).then((test) => {
+      expect(test).not.toBeDefined()
+      done()
+    }).catch(error => {
+      console.log(error)
+      done()
+    });
   });
 
-  /* insertQuestion TEST */
+
+  // insertQuestion TEST 
   it('insertQuestion TEST ', function (done) {
     let service: QeaServiceProvider = new QeaServiceProvider();
 
-    expect(service.insertQuestion("TEST_COL", "TEST_DOC", "TEST_CONTENT")).toBeDefined();
+    expect(service.insertQuestion("Q&A", "TEST_ID", { Sede: "TEST_SEDE", Domande: new Array<any>() })).toBeDefined();
     done()
   });
 
