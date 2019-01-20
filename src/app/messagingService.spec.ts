@@ -51,4 +51,45 @@ describe('MESSAGESERVICE TEST', () => {
     let idChat = "testsavefileinfotutor@test.ittestsavefileinfostudent@test.it"
     expect(service.saveFileInfo(idChat, fileInfo)).toBeDefined();
   }));
+
+  it('getAllMessages("Messages", "vincenzo.veniero@live.itruggero_93@live.it") TEST : Prende una collezione di oggetti dal Database e controlla se è consistente', inject([AngularFireStorage], (storage: AngularFireStorage) => {
+    let n: number = 0;
+    let service: MessageProvider = new MessageProvider(storage);
+    
+    service.getAllMessages("Messages", "vincenzo.veniero@live.itruggero_93@live.it")
+      .then((result) => {
+          let messages = [];
+          result.forEach(el => {
+            this.messages.push(el)
+          });
+          expect(messages[0].message).toBeDefined();
+          expect(messages[0].creationTime).toBeDefined();
+          expect(messages[0].receiver).toBeDefined();
+          expect(messages[0].sender).toBeDefined();
+        }).catch(error => {
+        reject(error);
+        expect(error).toBeDefined();
+      });
+  }));
+
+  it('sendMessage("Messages", "vincenzo.veniero@live.itruggero_93@live.it", message) TEST ', inject([AngularFireStorage], (storage: AngularFireStorage) => {
+    let service: MessageProvider = new MessageProvider(storage);
+    let message = {
+      message: "Testo" ,
+      creationTime: "15/1/2019, 16:57:41",
+      sender: "vincenzo.veniero@live.it",
+      receiver: "ruggero_93@live.it"
+    }
+    expect(service.sendMessage("Messages", "vincenzo.veniero@live.itruggero_93@live.it", message)).toBeDefined();
+  }));
+
+  it('getObserver("Messages", "vincenzo.veniero@live.itruggero_93@live.it", message) TEST ', inject([AngularFireStorage], (storage: AngularFireStorage) => {
+    let service: MessageProvider = new MessageProvider(storage);
+    expect(service.getObserver("Messages/vincenzo.veniero@live.itruggero_93@live.it/Messages")).toBeDefined();
+  }));
+
+  it('startChat("vincenzo.veniero@live.itruggero_93@live.it", true) TEST ', inject([AngularFireStorage], (storage: AngularFireStorage) => {
+    let service: MessageProvider = new MessageProvider(storage);
+    expect(service.startChat("vincenzo.veniero@live.itruggero_93@live.it", true)).toBeDefined();
+  }));
 });
